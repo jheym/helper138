@@ -1,0 +1,632 @@
+0:03
+foreign
+0:14
+chapters the first chapter we studied the principles of the networking and we
+0:20
+learned about the different layers the second chapter is about application layer so we learned about the application like
+0:28
+emails web services videos Etc the chapter 3 then is going to be a layer
+0:35
+below which is a transport layer okay and we know from what we have learned
+0:40
+before we know transport layer is actually providing services to the app layer to the application layer okay and
+0:48
+in this chapter we are going to learn in detail about those Services okay
+0:54
+so basically we will try to to talk about the multiplexing the
+0:59
+multiplexing uh how we do the reliability transfer we mentioned in TCP
+1:05
+TCP is a reliable protocol right so then we will Design our own reliability
+1:13
+transfer protocol from scratch and tell you the principles why we do that why we
+1:20
+do this okay so it's like that um then after that we will talk about the
+1:26
+protocols that we use in reality including the UDP and TCP okay
+1:32
+so let's review the transport layer Services um the transparently here basically
+1:40
+provides the logical communication between
+1:45
+application processes running on different Halls those still remember a
+1:51
+long time ago I mentioned when we see communication to communication we always say oh computer a is communicating to
+1:57
+computer B but that is not accurate right we should say process a or process one
+2:06
+is communicating with process two okay process one on computer a is coming
+2:12
+communicating with process 2 on computer B okay that's how we should say
+2:19
+um the communication um so basically what the transport layer
+2:26
+protocol do is at the center side uh the transport layer will break the
+2:31
+application layer message into smaller segments and then pass them down below
+2:38
+to the network layer
+2:45
+so we now add application layer we are sending out a message like HTTP message
+2:51
+HP request message ATV Rush long message email messages right so we look we call
+2:58
+them as messages application layer then when it goes down to transport layer the
+3:03
+messages need to be divided into smaller units we call them
+3:09
+as segments okay and if you still remember what we
+3:17
+will do is we add headers we add transport layer headers
+3:22
+to each segment and then pass them to the layer below
+3:27
+so that is at the center side at the receiver side the receiver will reassemble
+3:35
+reassemble those segments into a message and pass that to the layer above which
+3:41
+is the application layer okay and in the transport layer the common
+3:48
+protocols we use Arc TCP and UDP okay
+3:55
+so some of you may get confused about transport layer and network layer so you may think oh if I know Network layer is
+4:02
+for routine then why do I need a transport layer okay so yes that's
+4:08
+correct Network layer is can do the routing but the routing the communication is between cost okay so
+4:16
+it's like when you deliver a package okay uh Oman you write a letter
+4:21
+then the postman will simply drop this letter to
+4:27
+the uh for all this package to your house or to your friend's house right so
+4:33
+it's like that it's like a half speed half speed and house communication
+4:39
+but as we said the communication needs to happen really happen in processes
+4:44
+okay between processes um so we need for example my Firefox is
+4:51
+communicating with the Apache on the server okay it's one my person Firefox
+4:59
+process when it is running it's not called application anymore it's called a process what this process is
+5:06
+communicating with another server process at the Apache server so it's the
+5:11
+communication should happen between process and process and on my computer I may have a lot of processes not just the
+5:19
+Firefox I may also have my email running right I may also have other applications
+5:25
+running like video games maybe I'm playing video games right so a lot of processes then we need to specify which
+5:34
+process you are talking to okay or which process is communicating
+5:40
+so then within this house we have multiple processes it's like when you deliver a package okay you need to know
+5:48
+you need to say oh I'm delivering this package to somebody to to some person this specific
+5:56
+person in that house in that address okay so it's like that
+6:02
+you can see we have an analogy on the right side uh it's a household analogy
+6:08
+so travel case the end house is sending letters to tell kids uh in Bill's house
+6:16
+okay so basically here we know the houses are like the host okay and the
+6:22
+kids are like the processes okay so then the letters in the envelope are like the
+6:28
+application messages then the transported layer protocol is like
+6:33
+the app and the host n and Bo Will D Max D multiplexing
+6:40
+uh the letters to the in-house siblings okay and then the network layer protocol
+6:46
+is like the Postal Service okay so you can say the transpose layered protocol
+6:52
+is actually happening within this person within this horse
+6:58
+okay with in-house and the network layer protocol is happening uh for this entire network
+7:05
+okay uh now let's look at
+7:11
+um the two type of protocols one is TCP and unwind codp and we have mentioned
+7:16
+this for many times but I'm sure you have already forgot everything okay
+7:22
+um so basically TCP is a reliable protocol it will do reliable in order
+7:30
+delivery um so TCP can provide services like
+7:35
+congestion control flow control and connection setup it requires connection
+7:42
+setup okay I have mentioned before what is congestion tone what is flow control
+7:47
+I hope you still remember because that may be a test question okay I may ask
+7:53
+you what is the difference between flow control and congestion control you should know that okay
+7:58
+so let me remind you again flow control means we don't want to overwhelm the
+8:04
+receiver foreign
+8:18
+the receiver um it's like you don't want to call your friend again again and again
+8:24
+okay so or or if you're sending things too fast he cannot process then you are
+8:31
+overrunning your receiver so that is the flow control
+8:48
+congestion control means not to overwhelm the public network
+8:54
+okay not to overwhelm the public network that means if I know the network is
+9:00
+already congested okay then I won't send the package out or I will control my
+9:06
+speed and sending the packets out slowly so it's like that that's the major
+9:11
+difference between flow control and congestion control okay so the second protocol is called UDP UDP
+9:20
+is an unreliable protocol it will do unordered delivery
+9:28
+okay it doesn't do flow control it doesn't do congestion control nothing okay
+9:35
+um and it does not require connection setup okay for both type of protocols TCP and
+9:43
+UDP they do not guarantee the delays and they do not guarantee the bandwidth okay
+9:50
+both services do not provide this um
+9:55
+okay so that is the overview of the transport layer now let's talk about multiplexing and
+10:01
+d-mark D multiplexer you heard about that right I talked about that so multiplexing basically means we
+10:09
+handle the data from uh the sender side okay we handle data from multiple
+10:16
+sockets and transform the header that is called the mod flexing and then D
+10:21
+multiplexing is means at the receiver side when we receive the package we have
+10:27
+to assign them to different receiving processes or receiving ports okay so
+10:34
+that is called the demultiplexing so if we use the Postal Service analogy again
+10:40
+then multiplexing is like at the center side okay for example your parent is
+10:47
+collecting all the letters from your house okay from your sibling from uh
+10:53
+everybody okay and then click them together and then put them into uh the
+11:00
+outgoing mailbox okay that's the multiplexing and then D
+11:06
+multiplexing is like one for example when the receiver when your friends
+11:11
+parents okay receives a lot of letters for different people then they will
+11:17
+check the packet the letter the letter uh envelope
+11:22
+and then assign these letters to different people in the house so that is
+11:30
+the multiplexing so and now you can see we have two computers communicating uh
+11:36
+with the server buildings machine as a server um and now you can see this
+11:43
+P3 is communicating with the P1 they are processing P1 P2 P2 P4 are all processes
+11:49
+so P2 is communicating with P4 okay so it's like that and now let's uh
+11:57
+this is if this gives you like a overview of uh multiplexing and D
+12:03
+multiplexing but we actually have uh two types of multiplexing and D multiplexing
+12:09
+we are going to talk about this later okay so now let's look at firstly how
+12:14
+the D multiplexing works okay as I said the marketplace is like a sun in the
+12:20
+laterals to different people in the house right so how does this work basically the horse receives IP
+12:27
+datagrams okay each datagram so here
+12:33
+IP datagram basically means uh it's a network layer thing okay and network
+12:40
+layer we in do you remember at application layer we call it a message at the transport layer
+12:47
+we call it a segment right then at Network layer we give a different name
+12:52
+it's called IP datagram okay so now you can view an iptogram as a
+12:58
+letter when the host receive a letter one of the hosts receive our IP datagram okay
+13:04
+from the network layer then each datagram has the source IP address and
+13:10
+destination IP address it's like when you when you receive a letter on the letter you will see the source address
+13:16
+and destination address so from this address to that address okay
+13:22
+and also each datagram carries one transport layer segment
+13:29
+okay so it's like this
+13:55
+and when you receive an IP in the ground it looks like this firstly
+14:03
+it has a higher IP layer header okay in IP layer header or network layer
+14:11
+header you can see the source IP and destination IP okay and then within this
+14:32
+within this it carries it carries a TCP or UDP segment
+14:39
+okay so basically we can use the source IP and Destiny IP to to identify oh this
+14:45
+is to this computer or that computer okay so like we are using the soft stress areas and Destiny address to
+14:51
+identify the address for the house okay then within this within this diagram it
+14:58
+carries something then something is called TCP or UDP segment it's like
+15:04
+um um so so this segment is like this is
+15:10
+okay this is the TCP ODP settlement format so you can say
+15:16
+add to the
+15:23
+this part is called the transport layer header
+15:35
+okay in the transport layer header then you can see what the soft spot
+15:41
+and destination part okay Source port and dashing reports are
+15:46
+like the names on the letters okay it's like my call for address a or Draw now for
+15:55
+address B okay it's like that so The Source Point number and the Singapore number are like
+16:02
+the names on the letters So based on the Pod numbers you are able to know oh this
+16:07
+goes to process a oh that goes to process B so basically
+16:12
+the house will use the IP addresses and phone numbers to
+16:19
+direct segments to the appropriate socket okay this is a what we do
+16:25
+this is how the D multiplexing works okay so if you look if you think about
+16:31
+the entire process it's basically uh do you remember the five layers
+16:38
+send aside receiver side they all have five layers and we said the message is
+16:44
+going to be breaking into smaller segments and we will add headers to the smaller
+16:51
+segments and then it's passed to the lower layer and then
+16:56
+we will again add headers
+17:06
+to each segment right
+17:15
+okay and it has three seven and then pass them to the receiver
+17:21
+okay and the receiver sign the receiver will receive something like this
+17:26
+okay at the network layer and network layer They will receive something like the datagram
+17:33
+okay and then they will read The Source IP destination IP and check the source portion decision port and then pass them
+17:40
+to the up layer so I I want to put this into the big
+17:45
+picture so you kind of know what is happening okay now let's look at the
+17:51
+connectionally steam multiplexing which is corresponding to UDP why do we call it connections because we
+17:59
+know for UDP we do not need to establish any connection that's why we call it connectionless okay if you recall what
+18:08
+we have learned in the soccer program assignment we basically whenever we want to uh
+18:16
+start a communication as the client side especially okay so we need to create a
+18:21
+socket first and this socket will have a local port number
+18:27
+okay so for example here datagram socket
+18:33
+my socket 1 equals to new socket and we give it a phone number
+18:39
+when creating the datagram to send into the UDP socket we must also specify
+18:46
+the destination IP address and the Singapore number do you remember that okay reset for UDP we must specify the
+18:54
+destination ipn Port but for TCP we do not need to do that right because a
+18:59
+Channel or has already been established okay so then when the house receive the UDP
+19:07
+segment the host will at the receiver side the host the receiver will check the destination port in the segment and
+19:15
+direct the UDP segment to the circuit with that port
+19:21
+okay that means the uip datagrams with with the same decision Point number
+19:28
+but different Source IP addresses or Source Point numbers will be directed to
+19:34
+the same socket as a destination so what does this mean this means no matter this
+19:41
+package no matter where this package comes from as long as they have the same
+19:47
+destination port then there will be sent to the same socket
+19:54
+okay let's look at an example in this example
+19:59
+we have again one server and two clients okay
+20:04
+P1 process P1 is communicating with P3 and P4
+20:11
+so now at the client side we need to create a new socket with socket number
+20:16
+9157 and then add the other client side we
+20:22
+also need to create a new socket 5774 at the server side it will create a new
+20:27
+socket which has port number 6428 thank you
+20:33
+Peter is sending a packet or we required a segment
+20:39
+to the server with Source part 9157 and this report four six four two
+20:48
+eight and we know now this segment will be sent to
+20:53
+the socket of P1 right
+20:59
+and then this this P1 will reply back with Source Port 6428 and Destiny report
+21:06
+91557 for the the other side to the same thing
+21:13
+okay so can you guess here what is the saucepot and what is the
+21:19
+destination port so now you notice the one thing because
+21:24
+this packet and this packet they share the same destination Port sorry not this
+21:31
+one no this one this one this set this share the same doesn't import and then they
+21:37
+will be sent to the same socket oh P1 no matter where they come from although
+21:44
+they have you can say they have different they have different soft spots but still
+21:49
+they will be sent to the same socket okay this is called connectionless
+21:55
+demultiplexing okay the second type is called connection
+22:00
+oriented multiplexing and this is specially for TCP
+22:06
+this one is different from that the one of UDP okay so in TCP
+22:16
+um the socket is identified by four Tuple
+22:22
+by a four Tuple which contains Source IP address Source Point number destination
+22:28
+IP address and decision post number so when we receive a package or a
+22:35
+segment whatever you call it okay the receiver will use all the four values to
+22:41
+direct the segment to the appropriate socket that means if any value
+22:48
+for these four values if any one is different then the packet will be
+22:54
+directed into a different socket okay so that is uh the connection
+23:01
+oriented um and several Hearts May support many
+23:06
+simultaneous TCP sockets each socket identified by its own four people that's a
+23:11
+um for that product we know right for web servers web servers have different
+23:17
+sockets for each connecting client the non-processing HTTP will have a different socket for each request okay
+23:25
+so now let's look at an example an example again clients
+23:31
+a okay and server B
+23:37
+then client C so uh we also use ABC to represent IP addresses for this horse
+23:44
+okay so now let's look at um let's look at the um
+23:51
+server part first the server here now how through processes P4 P5 and P6
+23:59
+the client side has a P1 P2 P3 okay
+24:05
+and now I want you to look at um
+24:10
+this one first okay for this one the source IP is
+24:17
+B and the source Port is 80. the destination IP is a and that's not
+24:24
+import is nine five one seven sorry 9157
+24:31
+okay and this one is
+24:38
+80. call number 80. this one also has port number 80.
+24:47
+and this one also had Pawn number 80. this one has port number of
+24:53
+five seven seven five
+24:59
+okay so I'm marking the phone numbers some of you may say oh why does p 45 P6
+25:07
+has the same port we will explain this later okay for now
+25:13
+I want to I want you to look at these three this one
+25:18
+okay this one and also this one look at these three
+25:24
+packets these three segments and check their Source IP and Source
+25:30
+Port are they the same their Source IP and Source port
+25:37
+are they the same for all these three foreign
+25:45
+sport as you can see they are different they're different right they are not the
+25:51
+same okay but if you check destination IP and destination Port are they the same
+26:00
+they all have the same destination report definite destination IP okay
+26:07
+and if we are using nationalists the multiplexing if we share the same
+26:13
+destination IP and the same destination port they will be directed to the same socket
+26:18
+which is a the socket for P1 right but here as you can see although these three
+26:26
+packets let's call them number one number two and number three although
+26:32
+number one two three they all have the same destination IP and decision Port they are assigned to different sockets
+26:43
+do you see for example number one goes to the socket for P4 number two goes to
+26:49
+the socket for P6 number three goes to socket for P5 why as we said before in TCP we will check
+26:59
+all four values okay if any value is different then they
+27:05
+will be assigned to a different socket okay and especially for two and three
+27:11
+you can see although they come from the same machine they all come from C
+27:17
+okay but because we come from different processes they feel that they have a
+27:23
+different Source Point numbers okay two has five seven seven five and seven has
+27:29
+nine one five seven because their point number sourceful numbers are different then they have still they have to be
+27:35
+assigned to different sockets and the server side
+27:41
+okay this is something you need to pay attention uh that is actually the feature of
+27:46
+connection oriented the multiplexing so in reality in reality if P4 P5 and P6
+27:54
+they share the same port numbers okay we do not call them as different
+28:00
+processes we call them as different threads of the same process okay so in
+28:09
+reality in our reality P4 P5 P6 they are just a one process
+28:16
+okay one process we call it P4 for example but this process may share
+28:22
+different may have different sockets they have multiple sockets okay and for
+28:29
+this for this kind of threshold we call it threaded server that means in this
+28:34
+case um we can deal with multiple clients
+28:39
+requests at the same time okay with one process but multiple
+28:46
+threads okay multiple service and if you you have already taken 139 or if you are
+28:53
+going to take 139 you keep that in mind you are either learn the relationship between threats and processes
+29:01
+next let's talk about a little bit about the UDP okay connectionless transport
+29:06
+UDP so again UDP protocol is just a best
+29:11
+service best effort protocol okay so it will try it best to do the work it
+29:18
+doesn't care about the loss the reliability okay so it may
+29:23
+may lose data it may deliver the data out of order okay and also its
+29:30
+connection is we do not need to do any handshaking between the sender and receiver
+29:35
+each EDP segment is handled independently of the others okay so
+29:42
+UDP can be used to um for example do the
+29:48
+streaming mod media because we know multimedia can tolerate the loss right
+29:54
+if we lose some pixels it doesn't really matter okay we can still see the entire picture
+30:00
+um and then it also it is also using other protocols like DNS we just learned DNS
+30:06
+right because it's very fast you do not need to accept the connection Etc so it's a so UDP is preferred we can also
+30:15
+do reliable transfer over UDP okay if you want but it's not because the UDP
+30:23
+itself has this functionality it's because you can add reliability at the
+30:28
+application layer okay so that means you can do the
+30:34
+um checking errors or checking reliabilities at an upper layer is not in within the transport lead okay so
+30:41
+that's something you can you should keep in mind and this is the uh UDP segment format
+30:48
+so basically if you write a letter or write an email okay uh the email message
+30:55
+as we said will be be cut into smaller pieces each piece is called a segment
+31:02
+it's like this okay but we need to add something called header to that segment
+31:10
+okay so the Header information will contain The Source Point number that's
+31:16
+an important number we learned this right the length of this entire UDP segment including the header and also
+31:23
+the checksum okay so then within the data part the
+31:28
+payload part is just the application layer data it's like if you write an email then all the email content will be
+31:36
+put in the payload part if you look at the header
+31:41
+okay each line is 30 to 32 bits which means four bytes
+31:49
+so the UDP header in total will be
+31:58
+advice so eight parts it's actually very short later we are going to learn uh TCP when
+32:06
+we learn TCP will investigate the TCP header is about 20 bytes
+32:11
+or 20 plus in more than 20 okay so the UDP header is much smaller
+32:18
+so some of you may ask if UDP does not provide any flow control
+32:24
+congestion control no connection and no reliability is guaranteed nothing now
+32:30
+why do we still use UDP okay we have multiple reasons number one reason we do
+32:37
+not need to establish connection between the center and receiver okay that seems
+32:44
+a lot of delay okay it saves delay that's number one that's very important sometimes we
+32:50
+really want it to be fast okay we don't want we don't want to add like the
+32:56
+connection time okay it takes time and second
+33:01
+so it's very simple no connection States at the center and the resume side is the
+33:07
+methane okay we we can just if you want to send you the same just specify the
+33:12
+destination and there's an important there's an IP important that's that's enough okay it's very simple
+33:19
+third the third point is that it has a very small header size
+33:25
+it has only eight bytes of header if you use TCP then it's going to be it's gonna
+33:30
+be 20 plus bytes okay so the header size is a bigger in
+33:36
+TCP that's why UDP is sometimes favored okay it seems the resources
+33:43
+and number four UDP does not provide any congestion control okay so it can Blast away as fast as
+33:52
+desired as long as um you want to send as long as you have
+33:57
+the data then you can go ahead to send data you don't need to worry about anything else okay so that those are all
+34:03
+the benefits of UDP and this may be a test question I may ask you what are the features of
+34:10
+UDP or what are the benefits of using UDP okay you should delete list at least one
+34:18
+um the last thing I want to talk about is the UDC UDP checksum so here you can see
+34:24
+the checksum what is checksum used for techsum is used to detect the errors
+34:31
+which are usually inflict bits in the transmitted segment so basically what
+34:36
+will happen is at the center side the center side will treat the segment
+34:41
+contents including the header fails as a sequence of 16 bit integers so we for
+34:48
+example we treat this one as one part and this one another part then every 16
+34:54
+bit every 16 bit is treated as one integer and then we do
+35:01
+the addition of the sacrament content okay we do the addition for this we call this Chuck sum okay and
+35:09
+then the center will put the checksum value here in the UDP

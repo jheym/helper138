@@ -1,0 +1,550 @@
+0:02
+so then the next product we are going to discuss is the video streaming and the content distribution Network
+0:09
+video is a very important part in application layer okay among all of
+0:15
+these applications because we almost use video every day right uh the video
+0:20
+traffic is actually one of the major consumer of the internet bandwidth
+0:26
+um for example the Netflix YouTube they took about 37 percent at 16 percent of
+0:31
+the downstream residential ISP traffic respectively this was your old data okay
+0:37
+this is not updated you can say maybe it is even bigger percentage right and also
+0:42
+the YouTube users was 1 billion and Netflix users was 75 million but now I
+0:49
+as I again this number make become bigger anyway we we faced several
+0:54
+challenges we said with at least two challenges in the video streaming so one
+0:59
+challenge is about the skill how can we reach so many users
+1:07
+can we use just one single Mega video server will this work
+1:14
+apparently this will not work right we have discussed this question in web
+1:20
+service in DNS for those even for those applications the single server may not work okay
+1:28
+because of like single point of failure the scalability issue the uh the
+1:34
+location where should we put this server right because of a number of problems the Second Challenge is the
+1:40
+heterogeneity problem what does this mean this means different users actually
+1:45
+have different capabilities if you think about this so for example some users are using a
+1:53
+mobile phone some users are using wireless network right some some users
+1:58
+may have a bigger benefit but some may have a very
+2:03
+poor benefit but in this case how can we accommodate all these different users with different
+2:10
+capabilities how can we provide very smooth experience to them this is
+2:16
+actually another I would say huge challenge in the video application
+2:21
+so the solution to the about problem is that we need to have some kind of
+2:26
+distributed infrastructure at application Level to ensure smooth experience of the users
+2:34
+in video streaming before we talk about the the video application let's first look at the
+2:41
+video itself so we do is basically a sequence of images you think something
+2:47
+is moving the video but actually it's not it's actually just a number of static images a sequence of static
+2:55
+images displayed at a consonance rate that makes you feel like oh the things
+3:01
+are moving for each image for each image it's just an area of pixels each pixel
+3:09
+is usually represented by the Beats for example it may be represented by the red green blue color
+3:16
+for red we know it's it can be one byte for blue it can be one by Green it can
+3:22
+be one byte we can use for example 24 bits to represent one pixel of course
+3:28
+that's just one method there are many different methods to represent a digital
+3:34
+image but anime for image and for video we have
+3:42
+different encoding methods so for example one method is called spatial
+3:47
+encoding so coding means we use redundancy within and between the images
+3:53
+to decrease the number of bits used to encode the image so that means for
+3:59
+example here for spatial coding we can say we have a bunch of pixels in the same
+4:06
+color and it's in purple if we can use for example if we can use nine to
+4:12
+represent purple color because in reality we do not use 9 to
+4:19
+represent the purple color right but this is just for for demonstration for example so if we use 9 to wrap it in a
+4:26
+purple color if we have 1000 pixels in this one row then that
+4:36
+this is one row we have one thousand pixels then when we have if we want to
+4:41
+include this then we have to do
+4:51
+so we have say nine nine nine nine so we continue in total we have one thousand
+4:58
+nines to wraps in this one thousand purple color pixels but if we are doing
+5:04
+Special encoding we don't need to we don't need to do this we can just say
+5:09
+okay let's do this using
+5:14
+nine and one thousand what does this mean this means the color value is nine
+5:20
+and the number of repeated values is one thousand so this 9 is repeated for one
+5:27
+thousand times okay this is a used to represent represent the one thousandth
+5:32
+purple color pixels this is called spatial coding we can so
+5:38
+here you can see instead of using 1000 numbers we can use only two numbers to represent that right so this saves the
+5:45
+space or this saves the number of bits used to include the image a lot this is
+5:52
+one type a certain type of encoding is called temporal coding so temporal
+5:58
+coding means instead of sending a complete frame at I plus one for example
+6:05
+we have frame I and frame I plus one they have very very minor differences
+6:12
+you cannot even notice that right so then in this case we do not is we do not
+6:18
+need to send the entire frame I plus one instead of sending this complete frame
+6:24
+at I plus one we send only the differences from frame I this can save a
+6:30
+lot of bits so those are the two coding examples
+6:37
+and for video we also have constant bitrate and the variable bitrate constantly bit rate means the video
+6:43
+encoding rate is fixed it never change but variable bitrate means that we do including rate changes as amount of
+6:50
+spatial temporal coding changes so the next thing we are going to discuss is
+6:55
+how can we stream the videos to the users okay how can we do the video
+7:01
+streaming so this is a very simple scenario in this scenario we have a video server
+7:07
+the video server has the video stored on it and then we have the internet we have
+7:13
+the clients so our goal is we want to stream the video to the clients okay how
+7:19
+can we do that can we use one big server Big Mac server to connect to
+7:26
+all the clients that's not a good idea right you usually okay usually what we do is
+7:33
+actually uh we use something called content distribution Network okay so I
+7:38
+I'll talk about that later but for now let's talk about the mechanism of
+7:43
+streaming when they do the streaming one very effective way is to use Dash Okay
+7:49
+what is Dash that is a dynamic adaptive streaming
+7:56
+over HTTP that means the basic protocol is hcp then on top of HTTP we can do
+8:04
+some Dynamic and adaptive streaming okay how can we do that at the server side
+8:13
+at the server side the file the video file is divided into
+8:19
+multiple accounts it's not one complete piece of video it's actually multiple
+8:25
+chunks each chunk is stored and encoded at different rates
+8:31
+different risk means it may be faster it may be slower okay which means if it has
+8:40
+a higher rate than the video quality is usually higher because you can the
+8:46
+videos the images can be displayed at the higher speed right so the video
+8:52
+quality is usually better if you have a lower rate than the video quality is
+8:57
+usually poor and then there is one file called manifest file
+9:04
+this file will provide the URLs for different chunks
+9:09
+okay different charts at the client side the client
+9:15
+periodically matters the server to client bandwidth it will measure the benefit and say oh
+9:21
+my benefit is very good right now or all my bandwidth is not so good okay
+9:27
+depending on the bandwidth the client will Consulting the Manifest file
+9:33
+request one chunk at a one time
+9:39
+and also choose the maximum coding rate sustainable given the current database
+9:48
+so that means if my bandwidth is very good right now I can choose a
+9:55
+file chunk or video chunk with higher rate if my bandwidth is not so good then I
+10:02
+can choose a chunk with lower rate so the client can choose different
+10:09
+coding risks at different points in time okay the read may change depending
+10:15
+because the bandwidth may change right so then the reads maintain that's why when you watch the video sometimes you
+10:21
+can see oh the video quality is really good but sometimes it becomes a little bit blurry okay so that's because it is
+10:29
+dynamically changing the risk of the video okay all the reads of the file
+10:36
+chunk and if you think about this uh mechanism that you will realize
+10:43
+the intelligence is actually at the client side it's not at the server side
+10:50
+that means the client determines when to request the chunk
+10:56
+okay so that we don't won't have the buffer starvation or overflow
+11:01
+and kind will determine what encoding retro request based on the bandwidth
+11:07
+available so it will always request the higher quality videos the higher quality
+11:13
+video chunks okay when more bandwidth are available
+11:19
+and client also determines where to request the chunk okay because as we said the Manifest
+11:27
+file will provide the URLs for different chunks and then the client can check
+11:34
+this manifest file and decide oh this server this URL server is
+11:39
+probably closer to me so I want to request my file from that server okay so
+11:46
+the client is making um in the decision based on the Manifest file or This Server if this server has a
+11:53
+higher bandwidth okay then I can request from this server you can see the client
+11:58
+has the intelligence pay attention to this this may become a test problem okay I may ask you
+12:07
+who has the intelligence in dash who is deciding one what and where
+12:13
+in the dash so you need to know it's actually the client it's not the server
+12:19
+so then now let's go back to talk about the two challenges the one challenge is
+12:24
+how can we stream the content to hundreds of thousands of simultaneous users
+12:29
+option one is we can use one single large map server but as I mentioned you
+12:35
+may say seller problems firstly single point of failure if this server is done then
+12:40
+this entire application is done nobody can get videos right so second point of network condition okay this server may
+12:48
+be too busy there are too much traffic coming to this server right so this is
+12:53
+uh this may cause the network congestion and then the long path to decent clients
+12:59
+so if you put this server in us then how about the users from Europe from Asia
+13:07
+right how can they connect to this server okay their response time may be
+13:13
+too long and also multiple copies of video sent over the other Clinic these
+13:18
+are all the problems associated with the one Mega server so then the Explorer is
+13:26
+okay this doesn't scale how can we address this issue now as I said we will use something called
+13:33
+content distribution Network to address that issue then the option two is we can store or serve the multiple
+13:42
+copies of videos at multiple geographically distributed sites this is called the content distribution Network
+13:49
+so for Content Distributing Network there are usually two modes one mode is called enter deep enter deep means
+13:57
+so basically first you need to understand that the content dictionary network is basically a bunch of servers
+14:03
+okay a bunch of servers which store and also serve the multiple copies of videos
+14:09
+and they are distributed at different locations different geographical uh
+14:14
+geography locations right then in this case in this case for enter deep
+14:20
+basically means we push those servers deep into many access Networks do you
+14:28
+still remember access Networks we have for example
+14:36
+residential Networks
+14:46
+you still Channel networks and mobile networks right those are all the access networks so we can push the servers into
+14:53
+those exact Network for example we may have some kind of contribution Network server
+15:00
+in a campus that's exact State we may have CDN server on on the sensitive
+15:07
+campus so this is closer to close to the users then the user can get the videos
+15:14
+faster this is one mode another mode is instead of pushing those servers into
+15:20
+into the access networks we actually put those servers put a smaller number of
+15:29
+larger clusters in the ixps which are
+15:35
+internet exchange points near the access networks but they are not with the indu
+15:41
+access networks okay so those are the two modes that may be used enter deep and bring home
+15:47
+okay so right now let's look at this one example in this example I I try to show
+15:53
+you how the CDN Works let's say um CDN scenario restore copies of
+15:59
+content addresses and notes right so each CDN node is one is a obsidian server or a bunch of servers
+16:06
+then you can see now we have we have this uh CDN Network those servers they
+16:14
+all store a copy of a magnet okay this is a one one video and if this clients
+16:23
+when they want to watch this video Madman this
+16:29
+client will ask the server where is Madman then the Netflix server
+16:36
+will reply with a manifest file telling this kind hey the Minima is
+16:42
+available here and there so it's telling the URLs then the client may decide oh
+16:47
+okay this server is very close to me so I want to request management from this
+16:52
+server okay when I see close it doesn't necessarily mean
+16:58
+geographically close it may mean it's the response time is shorter which
+17:05
+means oh okay this this path is not so it's not uh very congested or not very
+17:11
+busy so I can get to the video faster all these benefits is higher than the
+17:17
+other path so it really depends um this is the general idea for the CDN
+17:23
+if of course one path Network part is congested then the uh subscriber or the
+17:30
+user can decide to choose a different copy from a different server
+17:36
+all right so that is the general idea now let's take a closer look of the CDN
+17:42
+pay attention many companies many video providers they have their own
+17:50
+recipients they have own CDLs to distribute the content especially for large companies
+17:57
+because they have the power they have the money to do this right but for some small providers for small video
+18:04
+companies they may not they may not have the CDN Network they may not have the
+18:11
+infrastructure in this case they may use some third-party cdns to provide the service
+18:19
+for example here we have one company called netcinema.com
+18:24
+this netsimo.com does not have the CDN Network so that's
+18:31
+why it is actually using the service the CDN service
+18:36
+from a third-party provider called kingcdn.com which means the videos are actually
+18:43
+stored on kingcdn.com is not stored on now cinema.com
+18:49
+okay the contents are stored in kingcdn.com now in this case this becomes a little
+18:56
+bit complicated because when the user is making requests
+19:01
+so for example client Bob is making requests it is actually requesting
+19:06
+directly from netcinema.com okay he said oh okay I want to watch
+19:12
+this video but the video is not stored intimate.com actually it is actually stored in
+19:19
+another URL it's stored in the CDN provider
+19:24
+kingzickian.com then in this case how can Bob reach the
+19:30
+Kings again.com okay let's look at the process the process is like this
+19:35
+firstly Bob will get the URL for the video now cinema.com 6y something from
+19:42
+the nasima.com webpage and then Bob will need to contact
+19:49
+contact Bob's local DNS server to resolve this URL
+19:55
+because this is a this URL is just telling the host name Etc it doesn't
+20:00
+tell the IP address right if you have watched the video in the uh DNS part
+20:08
+then you will know okay we need to translate this into IP address right so
+20:14
+that in this case in this case Bob's local DS server need to resolve this URL so usually what
+20:23
+happens if you remember what happened in the in the DNS part you will know Bob
+20:28
+the look of the ass may contact the root and then contact the TLD
+20:36
+which is a.com and then final contact
+20:49
+the final account has authoritative DS right so which is the net Cinema
+20:59
+so it is actually doing something else right so contact with may contact route
+21:05
+may contact TLD but um sometimes these gaps this this steps
+21:11
+may be skipped okay but eventually it will need to contact the authoritative
+21:16
+yes which is actually this one which is actually this one so and this
+21:24
+this step is very interesting so after above the local audience contact enough
+21:30
+Cinemas the authoritative Dance The Authority within us
+21:35
+normally it should return an IP address right but in this case this DNS will not
+21:43
+return an IP address it will return another URL why because it knows it
+21:53
+knows the video is not on that Cinema it is actually on key incident so that's
+21:59
+why it is actually returning another URL to redirect the Bob to kingcdn.com so
+22:06
+then after this local DS receives this then it will help to contact this kcdn's
+22:15
+authoritative DNS eventually to resolve this URL the new URL
+22:20
+of course before this it may contact the rule to make TRD Etc right so it may or may not show it
+22:28
+uh contact those ones and then finally finally can CDN will
+22:35
+return the IP address for this URL to both the local DS and then above the
+22:41
+local DNS will reply this back to what and finally Bob now know the IP address
+22:47
+for that URL so Bob will contact that one contact this one which has the video on
+22:54
+on it okay so then it will require the video from the King scan server and the
+22:59
+video will be streamed via ATP so you can see in this case in this case
+23:05
+we are using something called redirect DNS redirect okay so DNS is used to
+23:12
+redirect the client from the original server to the
+23:17
+real content distribution Network server okay that is very important pay
+23:23
+attention to that and leave me this may appear on the test so this is another example of Netflix in
+23:31
+Netflix in Netflix uh Netflix is actually using Amazon Cloud
+23:38
+to store the videos okay store the original copy of the
+23:43
+videos and also um the Manifest files so basically you
+23:48
+can see for the clients the clients need to firstly contact Netflix the registration and accounting servers okay
+23:56
+to get a Netflix account this is step one and in step two
+24:02
+but we all browse Netflix videos and then request for the Manifest file
+24:08
+so the Manifest file is returned for the request in the video after that after that you can see
+24:16
+actually those videos are already uploaded to the CDN servers
+24:22
+okay the student servers which are distributed in different locations then
+24:28
+based on the Manifest file the client Bob will check which one is the closer
+24:34
+one and then start the dash streaming with the CDN server so this is the
+24:40
+entire process Amazon Cloud is studying the videos and uploading those videos to CDN servers and Cloud will also return
+24:48
+the Manifest file to the to the client okay the client is only doing the
+24:53
+account registration and management with the Netflix servers so the next one is YouTube YouTube is
+25:01
+actually using a pulling cache which means the client is pulling the
+25:07
+um videos from the server and it is also using the DS redirect which means DNS is
+25:15
+used to redirect the client to the cluster which the rtt is the lowest rtt
+25:21
+we know this is the round trip time which is uh which means the response
+25:26
+time is the lowest which which means it can respond to the users faster okay so
+25:32
+I hope you still remember what his DNS redirect this is what we just discussed here the DNS redirect
+25:39
+all right the NASA one the last application is cancan okay kanken is
+25:46
+also a very interesting one you probably haven't heard about this before but can can is a very popular application used
+25:54
+in China for watching the videos basically 10 is using a hybrid model
+26:01
+what does this mean we know for client server model we need to pay for the
+26:06
+server hardware and also the bandwidth right the bandwidth the server uses to
+26:11
+distribute the videos this may be very costly very costly okay
+26:17
+if you want to satisfy all the demand from all the users right you have to
+26:22
+deploy a lot of servers and have a lot of bandwidth distributed videos that's
+26:28
+why uh kenkey is actually using a P2P model or we call it a hybrid CDN and P2P
+26:36
+model so what does this mean this means when the clients make the
+26:41
+initial request the client requested the beginning of the content from the CDN
+26:46
+servers if it was freshly start with the server and then in parallel thus this uh client
+26:54
+will also request the content from the peers we just talk about P2P right it
+26:59
+will also request the company from the peers when the P2P traffic is sufficient
+27:06
+which means if the peers can already satisfy
+27:12
+the the request from the uh from the client then the client will not rely on
+27:19
+the server anymore the client will seize the streaming from the CDN servers and
+27:25
+only stream from the peers only when the P2P traffic becomes insufficient then in
+27:32
+this case the client will restart the CDN connections and connect with the the server to get the
+27:40
+the video from the server okay and return to the mode of a hybrid CDN P2P
+27:46
+streaming so it's like for example for our class you will if you have a problem to resolve you will firstly contact me
+27:54
+at the same time you will also contact your classmates and if you can already resolve this
+28:00
+problem from your classmates then you don't need any help from me only when
+28:06
+you think oh they cannot help meet me okay they cannot satisfy my request then
+28:11
+in this case you can start contacting with me again say hey can you help me
+28:17
+with this problem then in this case you return to the mode of hybrid City and P2P streaming so in this case you can
+28:24
+say uh client server model is like more like a backup or P2P
+28:29
+but one very interesting observation I had before when I use the canker is
+28:35
+whenever I start camping then my computer becomes super busy a super a
+28:43
+temperature become becomes super higher high and then it becomes super slow the
+28:49
+reason is because for p2pu you think about this the P2P application You are
+28:55
+downloading and you are also uploading you are making requests you are also
+29:00
+actually serving others so that's why it uses a lot of the CPU and also bandwidth
+29:07
+okay that's why your computer can become super busy uh and it may sometimes
+29:13
+because it is occupied too much resources sometimes it may block the other applications okay the other
+29:19
+application may not get enough resources to to work that's why you feel like your
+29:25
+computer is getting slow it's it's not response responding anymore okay things
+29:30
+like that yeah so that's all about the video streaming and the content distribute
+29:36
+Network foreign

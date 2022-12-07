@@ -1,0 +1,534 @@
+1:31
+they're mean the same thing you really okay in the Enterprise Network
+1:36
+the protocol we use is usually ethernet of course we have some like
+1:44
+wireless network okay but most of the PCS servers are connected via cables
+1:51
+okay the my cables the protocol guys version is
+1:56
+the ethernet okay and in the Enterprise networks usually we firstly we have the
+2:02
+servers okay the servers are some machines that are
+2:10
+dedicated to provide some service to the you to the clients to the users okay depending
+2:17
+on different type of services we call them different servers but again
+2:23
+as I mentioned the memory C servers the servers are the computers firstly they
+2:29
+are the computers and also we refer to the server program sometimes you'll be you may even for
+2:36
+example install you may even install one sorry
+2:42
+you may install multiple server program on one machine okay so
+2:49
+here for example
+3:10
+foreign
+3:17
+so if your machine your physical machine is powerful enough and if you're if you
+3:24
+only serve a small group of people small group of users then sometimes don't even
+3:30
+need multiple physical machines you can install multiple server programs on one
+3:37
+machine and then use that one machine to service the server that is also possible okay of course you can also for example
+3:44
+deploy a number of virtual machines in one physical
+3:49
+um in one physical machine and then each washing machine serves as a server that is also possible so you can see there
+3:56
+are multiple ways of implementing this so then in the future when you talk
+4:02
+about servers we think about this they you don't always think that those servers are big machines sitting in a
+4:09
+large roomy okay uh we may have a rack of servers it's not like that it may be
+4:15
+just a regular computer okay depending on how many users you are serving
+4:20
+and then those servers again those servers they may for example you be used
+4:26
+as mail servers they need to be used as web servers um there are multiple servers in one
+4:32
+organization usually and then in addition to that of course we need to have some pieces right
+4:38
+so these are the pieces personal computers um those personal computers are usually
+4:44
+by used by regular users okay of course we have multiple client programs
+4:50
+installed on those client programs are corresponding to the server program for example if you have an email server
+4:57
+okay then you have email clients so so for example on these emotions you may
+5:03
+have Outlook you may have um Apple Mail okay so that you can check
+5:09
+emails or you can even use the web browser to check emails okay and then if
+5:15
+you have web server then on those clients you may have web web clients
+5:20
+okay web service clients like the Firefox the Chrome they are all kinds programs okay so those are the PCS and
+5:29
+then we need to connect those machines together okay so if this is a small
+5:34
+Network then we can directly connect those machines to one voucher so this
+5:40
+router we call it as a ad router
+5:47
+the reason we call this as agile Trace because it will be connected to the
+5:52
+internet directly okay it helps to connect this entire Access Network to
+5:59
+the internet that's why we call it address if this network is big
+6:06
+okay sometimes we are not able to connect those machines directly to one router we may connect them to
+6:14
+the switch first and then never switch to the router okay so this is a very
+6:20
+very common and later we will learn the difference between switch and the router
+6:25
+well now we don't need to know okay so this is like a basic structure for Enterprise Network or we call it
+6:31
+institutional Network um this is a very commonly used in
+6:37
+companies universities organizations governments okay and then depending on the size of the
+6:45
+network and the requirements the demands of the network the benefit of these networks may be different we may have 10
+6:51
+megaps 100 megaps or two even 10 gigabits transmission rates or bandwidth
+6:58
+okay so that's the structure so then let's
+7:03
+continue to look at the mobile network or we could add code column sometimes as
+7:08
+widest extent works so for our wireless access networks we have usually two
+7:13
+types one type is called the wireless lens Wireless local area networks
+7:18
+another type is called Wireless ones okay wide area network okay wide area
+7:27
+Network
+7:32
+okay this is a one so for lens we are usually uh they are
+7:39
+the line is basically means local area network
+7:51
+okay so Wireless lens are usually very small range okay uh it covers a small
+7:58
+area it's usually within a building for example you can have uh it can cover 100
+8:04
+feet and though protocol use is usually the Wi-Fi okay
+8:10
+or we we call it 80 to 11. so the transmission rate is usually very high
+8:17
+so that's for land and for what for one it's a usually covers much much wider
+8:25
+area so usually those ones are using the cellular network okay we'll refer to
+8:31
+those as cellular network and the speed are usually lower than Wi-Fi okay much lower than Wi-Fi
+8:39
+um and now we have we have 3G 4G LTE okay and even 5G is
+8:45
+coming so that is the one and again pay attention when we talk
+8:51
+about with the cellular network okay those devices these devices
+8:57
+do not connect to satellite in directly okay they have to be connected to a
+9:02
+tower first and then Tower is connected to the router to foot and then further to the internet okay so they are not
+9:10
+connected to the satellite directly pay attention to that so with those in your mind now I want to
+9:16
+talk some talk about something um that's how the host hits and the package
+9:23
+to the link okay we want to talk more a little bit more about the bandwidth now
+9:28
+because we in the past in the networks index all the different type of assets access networks we talk about the
+9:35
+bandwidth right and we said the bandwidth will affect the speed of the network or the speed of
+9:41
+transmission then how can the benefit affect that okay so
+9:46
+we want to know so now let's see this is a computer or a
+9:52
+horse so this computer is trying to send the
+9:57
+package out okay so now we have two packets packet one and package two okay each
+10:04
+packet has L Beats lbs okay and we want
+10:09
+to send each packet out we know the link transmission rate or
+10:14
+what we call as bandwidth foreign
+10:24
+then now if we want to send this l b or lbs out into the link
+10:34
+so it's like we are pushing we are pushing the data
+10:40
+in this packing one into the cable and if you imagine this cable as a
+10:47
+if you imagine this cable as a pipe okay and if you imagine the data as water
+10:55
+then we are trying to push the water into the water pipe okay of course if you have a white water
+11:04
+pipe then we can push it out much faster right but if you have a very narrow very
+11:11
+narrow pipe then we can push the data very very slow
+11:17
+okay then we may take a longer time to push all the water into the water pipe
+11:22
+so this makes sense to you the width of the pipe reference the benefit so when I see a white uh wider
+11:30
+pipe I mean a higher bandwidth uh narrower pipe I mean a lower bandwidth
+11:37
+so now if you think about the time we used to push the data or push the water
+11:43
+into the water pipe okay it's like the time we used to push
+11:49
+the data into the link okay so this time we call it as
+11:56
+transmission delay okay the time is called packet transmission
+12:02
+delay
+12:29
+okay the time spent to push the data into the link like like the time spent to pushing the water into the pipe
+12:36
+now how do we Define this transmission delay the transmission delay is defined by L over r k l divided by R so L is the
+12:45
+number of bits in this packet and R is the transmission rate or the bandwidth
+12:50
+okay so all you can see is how many bits we can take per second then if the error
+12:58
+is bigger then the delay is is smaller that means if we have a wider pipe or if
+13:05
+we have a higher bandwidth then we spend less time transmitting the data also in
+13:11
+the data out okay does this make sense foreign
+13:21
+okay so this is a very important this slide is very important
+13:28
+this may appear on the test and we are going to spend more time actually discussing all the different
+13:34
+type of delays and transmission delay is one very important type okay one more
+13:40
+important type and pay attention this time is simply the transmission delay
+13:46
+it's simply the time you spent on pushing the data out
+13:51
+okay it actually happens here between the computer the host and or the
+13:56
+the link okay um question has a time a question are
+14:03
+packing the same amount of bits each time that's a great question
+14:09
+I'll say no okay uh the packets have different amounts of bits actually in
+14:15
+reality okay depending on different protocols um so each packet may have different
+14:22
+size and even sometimes if one packet has a work it's very big okay especially
+14:28
+in ipv4 in the ordering four of Internet Protocol sometimes if one pack is too
+14:35
+big when it comes to a very narrow Network which uh very very narrow
+14:41
+let's say very uh come to a link with a small bandwidth and also maybe
+14:47
+especially this link may only allow small size or package going uh going to
+14:54
+the road then sometimes we even break this one big pack into smaller parts so
+14:59
+this is called fragmentation and we will learn that later but as you can see as you can see it's
+15:06
+like when you drive on the road sometimes the road are very wide they can they allow big trucks going through
+15:13
+but sometimes the roads are very narrow and they allow only small cards to go
+15:19
+through so it's like that the the amount of bits are different that's great
+15:24
+question question and other questions
+15:30
+okay yeah keep this formula in your mind is very important
+15:36
+okay so then let's continue to discuss the physical media and this part is not very important it's just like introduce
+15:43
+you to different types of uh Medias we may use for the network okay so the
+15:50
+physical media basically will carry the Beats from the transmitter to the
+15:55
+receiver okay the base will rock it between the transmission receiver
+16:01
+then the physical link will carry those beats those physical colleagues can even
+16:07
+can be either guided or unguided usually guided means cables okay we may have for
+16:13
+example different type of cables copper coax fiber and then for unguided media
+16:20
+we may have um Wi-Fi okay we may have radio for example okay so basically the signals
+16:26
+project propagate freely into all directions it's like that okay
+16:32
+so here on the right side you can see the twisted pair I think here you are probably very familiar with this I I saw
+16:39
+this a lot especially in the old days now now it's not very not very common
+16:45
+obviously um but yeah you you see this a lot actually
+16:52
+um so this is actually this twist pair is made with copper okay and then you
+16:58
+may also see the coaxial cable okay the classic cable can transmit the signals
+17:05
+bi-directionally the signals can go two directions um and then you may also see fiber so
+17:13
+fiber is really really high speed and usually the it has two advantages
+17:19
+actually one is high speed second one inside has a very low average okay so
+17:25
+that's why um later we talk we may talk about error correction error detection and error
+17:32
+correction let me talk about the reliability transfer usually if you are using like Wi-Fi you have to really pay
+17:38
+attention to the error Direction detection and the correction but if you are using fiber you don't really need to
+17:45
+pay attention to pay a lot of attention to that because the low the average is
+17:51
+very low okay um and then for what is networks we have
+17:59
+radio so the signals are carried uh basically uh in electron magnetic Spectrum okay so
+18:07
+the signals can go to different directions and also this can be a
+18:12
+bi-directional that means transmitter consent to receive and receiver can send it to the transmitter and sometimes they
+18:20
+may sometimes the signal may go two directions and then they may meet in the
+18:25
+middle so this is for this kind of thing we call this as clearance this is also uh something we need to to address
+18:33
+actually networking okay uh the I would say the drawbacks of radio is um it may
+18:40
+be affected by multiple factors like you may have reflection okay you may experience obstruction by
+18:48
+objects like for example if especially if you're in New York or if San
+18:54
+Francisco when where you see the high buildings and everywhere then in that
+18:59
+case the mobile the signals can be uh really bad okay and then you may also
+19:04
+have interference between signals that's another thing you need to pay attention
+19:10
+um we also have different uh radio link types as we mentioned before we have microwave micro reactive we didn't
+19:17
+mentioned but we mentioned in the line right Wi-Fi so we may have white microwave Wi-Fi cellular network and
+19:24
+even the satellite Network okay so light signals so those are the things
+19:30
+um about the physical media for this part you don't need to
+19:35
+remember you don't need to um these are just knowledge for you to
+19:41
+know like more like the introduction and and in the test I will not asking
+19:46
+you about the like the fiber coax Etc no
+19:51
+don't worry about that the next thing we are going to talk about is the network core so now we focus now we're called
+19:58
+again in your mind when we see core we mean the routers okay pay attention to
+20:03
+that so let's look at the core
+20:12
+so the network code is basically a mesh of interconnected routers
+20:17
+we we the routers we also call them Packy switch okay uh them basically what
+20:25
+will happen in the network is if we have if we think
+20:31
+about different layers again I'm talking about layers because we can never go around with layers
+20:37
+so
+20:50
+okay so in now working we have multiple layers and now
+20:55
+application layer you all know right so application we have those applications like emails webs Etc and then eventually
+21:03
+it will come down to network layer so the routers are actually working on this
+21:08
+network layer the routers work
+21:15
+especially on the network layer of course it will also it also has the lower layer like uh link layer and the
+21:22
+physical layer okay I will see up to network layer okay routers work up to
+21:27
+networking and then what will happen is in
+21:32
+networking is if we have a big message okay this message is an application
+21:40
+layer recorded message and at each later it has a different name okay so usually what we do is we need to break this
+21:47
+application layer message into smaller pieces
+21:55
+add different layers okay and then these pieces will finally
+22:00
+be passed to the network layers then for at the network layer we call
+22:05
+these pieces as uh the packets okay sometimes we say packages used a lot in
+22:12
+network but package it's like a general term but a package
+22:18
+actually if we be very formal package should be used in the network layer okay
+22:25
+it means the network layer thing and then basically what the router will do is
+22:31
+the router will carry this packet okay
+22:37
+carry this packet and pass it so for example if this is the sauce this is the destination then the router will
+22:45
+carry this package and forward it to the correct router
+22:54
+okay and you can see we may have different parts here here is called the routing actually okay and later again we are
+23:01
+going to talk more about this but now you can see this is uh the major functionality of the router okay the two
+23:09
+functions are one of the function is actually called the routine okay the other section is called forwarding
+23:17
+forwarding forwarding basically means for example when this package when this router receives a packet and then this
+23:25
+router needs to decide should I forward it to this router if we have a b
+23:33
+C and D okay this router a it receives a packet
+23:38
+it will need to decide should I forward this package to b or to C
+23:43
+okay so this is called forwarding and routine is more like more big picture
+23:49
+right routine is like choosing a path like this okay
+24:00
+but for wording as you can see forwarding is actually like it's local and locally I need to decide which
+24:07
+interface I should forward to okay question is mentioning using diagram
+24:13
+great yeah that's great point when we do the routine we need to use it we usually
+24:19
+need to choose the shortest path right or the least cost part so di construct
+24:26
+algorithm is actually one very important uh component in the routing although
+24:31
+this is not the only um algorithm used in your routine but it's a very important one okay and a
+24:39
+very commonly useful one in routine and we are going to talk more about that in the network layer
+24:44
+thanks for pointing out thanks for pointing out the question
+24:51
+any other questions or comments okay then now let's talk about how a
+25:00
+router worked okay and here again you can see we have a source computer a destination computer
+25:07
+and you can see the link has a bandwidth of our again rbps VPS I
+25:14
+mean beats per second okay this one also has rbps okay they may I
+25:21
+mean the link capacity may be the same or maybe different it doesn't really
+25:27
+matter okay so here we can have R1 R2 maybe okay but Force us
+25:33
+um Simplicity here we just assume those two links should have the same bandwidth
+25:40
+which are okay and now we have three packets
+25:45
+one two three each packet has L Beats
+25:51
+okay each pack has all these and they pay attention the router when
+25:57
+it works if you use a mechanism called store and forward what does this mean
+26:03
+this means when the routes are forward the package
+26:08
+it needs to wait for the whole package to arrive okay
+26:15
+yes this packet is not complete then the router will not send this out
+26:20
+it will not send an incomplete packet out okay so it will wait until the
+26:27
+entire package comes in the package is stored in the launcher and then the
+26:32
+router forward it out so this is called store and forward
+26:38
+okay and now you can see if you recall what we have just learned
+26:48
+here do you still remember here when we talk about pushing the data into the link right so it happens at the computer
+26:55
+side basically this computer needs to spend L
+27:02
+over R time to push the data into the link this is called the transmission
+27:09
+delay this is the delay happened at the route at the computer side okay at the
+27:15
+computer side and now if you look at this scenario
+27:24
+in this scenario the data first will be put will be pushed from the computer
+27:30
+let's see if this is a and a b okay it will be pushed from a into the link
+27:38
+and can you tell me the transmission delay we spent here
+27:44
+can you tell me how much time do we need to push
+27:49
+do we need to push one packet into the link
+27:54
+based on what we have learned before can you tell me the time let's see this is Arrow one this is L2
+28:02
+from a to L1 we see the time we spend is Lor actually right it's l over
+28:10
+this panahira is our or okay and then when the packet won when the
+28:18
+packaging one arrives at the router thus the router need to push it out
+28:25
+again yes the router need to push it out again
+28:31
+to link L2 why because here we haven't received we haven't
+28:39
+arrived at the destination yet right so of course the router need to push it out again can you tell me how much time do we need
+28:47
+to spend here at the router to push the data out
+28:54
+or formally we can see how much time what is the transmission delay as the
+29:01
+router that should be L over right that should be l over r
+29:09
+again okay of course if these are a different then here for l y if this is
+29:15
+R1 okay for L2 if this is R2 then I would say l-o-r-2 it depends on
+29:22
+the link right so then if R1 equal to R2 then in total
+29:30
+finally I mean the next step is the packet arrived at the destination right so when the packet arrives at the
+29:37
+destination do we need to push it out again no need right because it already arrived
+29:43
+at the next destination why do we need to push it again so then in total if you think about this
+29:49
+entire process how much time do we spend to push the
+29:54
+data to the link what is the total transmission delay if
+29:59
+you think about this
+30:12
+the total transmission delay is actually the time we spend at R1
+30:20
+sorry the ethnic one and the time we spent at the launcher link two
+30:26
+so it's lor1 Plus lor2 if if R1 equal to
+30:31
+R2 then we have 2 L over r okay so in this example if L equal to
+30:37
+7.5 magnitude Max this and r equal to 1.5 microbps then the one-hub
+30:44
+transmission is actually 7.5 over 1.5 which is a this is 7.5 over 1.5 which is 5 right
+30:54
+then at basically that means at at the computer a we need to spend five seconds
+30:59
+at the router side we need to simplify five seconds so in total the transmission delay is actually 10
+31:06
+seconds okay and we are going to discuss more about the delay in the future but this is a
+31:15
+definitely the beginning okay I really hope you pay attention to this and this
+31:20
+will be on the test

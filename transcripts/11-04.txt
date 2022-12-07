@@ -1,0 +1,696 @@
+0:03
+all right so the next thing we are going to introduce is the nut Network address
+0:11
+translation okay uh I think you probably heard about the local network or the
+0:19
+um the internal Network those kind of terms okay
+0:26
+so um you can see here we have a router and
+0:32
+we have the local area network okay this this Loop Network can be home network
+0:38
+can be um campus Network or any local area network so then the left part left part
+0:46
+is the rest of the internet okay so Network address translation
+0:52
+basically means basically means we will use
+0:58
+a 10 zero zeros slash 24 as the
+1:04
+Network address for a local area network okay for local area network
+1:12
+and then all so you can see this clients are all assigned a IP address
+1:19
+within this range okay within this range then when this
+1:25
+when when the um datagrams for when a packet comes from one client
+1:32
+and goes through the router okay then
+1:38
+the packet will uh the source address was originally 1001 right so then when it goes out of
+1:46
+the round trip we will change the source address into this one
+1:51
+okay into a public address okay
+1:57
+then um this this is this is like for example for your family okay for my
+2:04
+family for example for my family San family okay um we may have a outside name like sun
+2:12
+okay but uh within our family we may simply name
+2:18
+ourselves one two three four like that okay and then for any other
+2:26
+families they also have an outside name okay but within their family they only
+2:32
+call themselves one two three four okay it's like that so in this case in
+2:38
+this case we will say all the datagrams leaving the local network have the same
+2:45
+single Source net IP address which is this one and they have different Source phone
+2:51
+numbers okay the diagrams with Source or definition in this network have this
+2:57
+address for source and destination okay I know you are you still maybe you
+3:04
+still feel like you you are confused okay
+3:09
+um we will explain more okay don't worry so why do they use net you think about
+3:14
+this you think about this okay one major reason is that we for IP
+3:21
+address it is 32-bit okay IP address is 32-bit that means for
+3:29
+this entire internet we have at most 2 to 32 IP addresses
+3:39
+pay attention this is not a large number this is actually a small number compared
+3:44
+to the number of devices we are having right now okay so we can run out IP addresses very
+3:51
+soon okay then people begin to think how can we address this problem
+3:57
+then they come out of one solution one solution is that how about for this
+4:04
+entire local area network they just use one IP address okay it's like public IP
+4:11
+address but internally they all use the IP address so ten zero
+4:17
+zero something okay then to the outside this entire
+4:23
+local area network uses only one IP address but actually they can they have
+4:28
+a lot of devices okay then for other local networks for example there is one maybe for sex date
+4:36
+okay and then for UCD we may have uh we may also use just one IP address okay
+4:42
+but we may have thousands of machines within that so we may we may denote those machines also within
+4:50
+1000 1000 slash something okay so basically
+4:56
+10 0 0 is is like a special address that
+5:01
+is used for net okay and then in this case in this case
+5:07
+an entire local area network only need one IP address but but we can actually
+5:12
+denote a lot of devices using the internal address okay so that is uh I would say one
+5:21
+motivation for using net I hope you understand this it's like for my family
+5:27
+to the outside we only use the Sun as the the public name okay but inside
+5:33
+we use one two three four and this one two three four can be reused by other families okay this name can be used by
+5:40
+other families in this way we do not occupy a lot of family family names okay it's like that
+5:46
+uh any questions
+5:52
+okay so then now let's look at the motivation the motivation we have
+5:57
+several more motivations and then we will discuss uh how that works okay
+6:03
+so the motivation uh for net is that the local network uses just one IP address
+6:11
+as far as outside world is concerned
+6:16
+because of that okay uh we also we all we also want to
+6:21
+do several things um several more things first thing the range our addresses
+6:28
+is not needed for my SP because we just need one IP address
+6:34
+for all the devices of course internally we still need to
+6:39
+distinguish those devices but we can just use the internal address okay 1000 something and this internal address can
+6:47
+be reused again and again for other local area networks okay
+6:52
+and then another benefit is if we want to change the addresses or
+6:59
+devices in the local network we do not need to notify the outside world
+7:05
+that means if someday I'm not happy about the architecture for my network I
+7:10
+can change the structure freely but I don't need to tell the outside Network okay
+7:16
+second benefit the third benefit we can also change the SP without changing the
+7:24
+addresses of devices in the local area network case one day we are not happy with the
+7:29
+internship we want to change to Comcast is fine you don't need to change the addresses
+7:36
+or devices in the local network although maybe the outside public IP address has
+7:42
+been changed okay and the fourth benefit is about security the
+7:51
+device is inside the local area network is not are not explicitly addressable or
+7:57
+visible by the outside world okay so this is very good because the outside
+8:03
+world cannot directly uh communicate or can cannot
+8:09
+directly address uh device within the local area network so this is adding a
+8:16
+layer of security actually okay so now let's look at how how uh is the
+8:24
+net implemented okay um so basically the net router must do
+8:30
+several things for the outgoing datagrams okay for the outgoing datagrams we need to replace the source
+8:38
+IP address and Source port number of every Optical integram to the next IP
+8:46
+address and a new phone number okay basically replacing the internal address
+8:53
+internal port number with some out um uh
+8:59
+external or we can see uh public IP address and a new phone number
+9:05
+okay and then uh of course when the remote clients or servers respond to this
+9:12
+package they will respond to the net IP address and the net port okay they will
+9:19
+not respond to this one because they do not know this one okay and then because they are responding to
+9:27
+this one then when it comes to when the response comes to the net router the net router
+9:33
+needs to replace
+9:39
+um the net address okay with the real IP address and port
+9:46
+number okay so that is uh what the net router should do let's look I mean I mean you
+9:52
+may be confused still no it doesn't matter let's look an example and you may feel uh clear okay
+9:59
+so now we have the internal addresses of 100123 and 4.
+10:07
+okay and then we have a public address which is 138 76 29 7.
+10:15
+and this router need to have a translation table next translation table
+10:21
+the next translation table has the one side and also the land side okay so now
+10:28
+we assume there is a packet from 1001 okay ten zero zero one cents a
+10:36
+datagram to this destination address this port number so you can see it is
+10:41
+communicating with a web server and then we know the source address
+10:46
+should be 1001 and Source Port is three through four five this is a real part that means
+10:53
+this computer is actually listening to this port okay the definition we know is 128 119 40 186
+11:02
+okay for Destination Port is 18. when this datagram come to the router goes
+11:10
+through the router the router will need to replace the source
+11:16
+address with the public address
+11:21
+okay and the source port number is also replaced it's replaced with 5001
+11:29
+okay and then
+11:35
+and then pay attention the next translation table in the net transformation table the router also
+11:42
+write down this pair write down this pair okay basically this support number of
+11:48
+5001 here is referring to this
+11:55
+IP address and port number pair okay five zero zero one is representing
+12:02
+this 1001345 pair okay and then this packet is sent to the
+12:10
+server the server will respond when the server respond you can see the server
+12:15
+actually is bounded to you can see the source address is the
+12:20
+original destination address this is Source address softball number the server is replying to
+12:27
+this public IP address and 5001 because this is what is provided to the
+12:35
+server okay what was provided to the server that's why the server is replying to this one and again when this package third goes
+12:42
+through the router the router will need to check this table and say okay this IP address and this
+12:51
+port number 501 is actually matched to 1001345
+12:59
+so this router will replace replace the destination address to the
+13:06
+original address which is 1001345 okay and then now the packet can
+13:14
+be sent to 1001.0045
+13:19
+okay so here pay attention this five zero zero one is that's a real
+13:25
+pot number is a is that a real port when I say real Port I mean is there any
+13:32
+machine listening to this port is there an emotion listening to 5001
+13:39
+the answer is no 5001 is not a real post number because
+13:45
+nobody is listening to this port instead this is more like a identifier
+13:53
+an ID to denote this address and sort and Port pair okay but this 3345 is a
+14:03
+real Port because this 1001 machine is actually listening to this port okay
+14:08
+foreign now if we have another machine
+14:14
+10002 for example if it is sending out a packet also
+14:21
+okay if we have at the land side if we have 1002
+14:28
+okay this machine is sending out a datagram with the spot number one two three four
+14:33
+and then when it goes through the one side we can use a different phone number to denote this pair
+14:40
+okay and some of you may ask what if what if we have the same machine 10001
+14:50
+but a different point number maybe four five six seven what if this is
+14:57
+going through the router what can we do should we also give it a new phone number the answer is yes
+15:11
+okay so in this case as long as there is something and as
+15:17
+long as either the IP address or port number is different then we will need to
+15:22
+assign a new phone number to that a new one-sided phone number so basically as I
+15:27
+said this port number this port number is used to identify
+15:34
+this pair okay not just the IP address or just the port number okay
+15:40
+so now you can see um if we come back to review
+15:46
+the motivation again the motivation is also the benefits okay so then we know okay
+15:54
+for this entire local network we only need one IP address one IP address for
+16:00
+all the devices okay and if we want to change the internal IP address we don't
+16:06
+need to notify the upside world if we want to change the ISP we don't need to
+16:12
+change the structure or the addresses or the devices in the local area network because they are all using
+16:18
+the internal address is 100 something okay um
+16:24
+and also the device is inside the local area network are not explicitly
+16:30
+addressable or visible by the outside world so now you can see oh yes we
+16:35
+indeed have those benefits okay and some some of you may worry
+16:41
+um so how many devices open numbers can
+16:46
+be accommodate okay so you don't need to worry too much because for port number
+16:54
+for post number is
+17:00
+so that means that we can have as much the 2 to 16
+17:06
+different pairs different IP address and the phone number pairs okay so
+17:14
+um usually that is I would say that is sufficient for a regular size Network
+17:21
+okay um so that means we have sixty thousand
+17:26
+SEMA we can have at most sixty thousand um around 60 000 simple continuous
+17:33
+connections with a single landside address okay and pay attention this next
+17:39
+translation table is actually um is actually Dynamic okay which means
+17:45
+for example when this first connection is done when the communication is down we can actually delete this one
+17:52
+we can we will remove this pair from the net translation table okay and then uh
+17:59
+this is a port number of five zero zero one can be reused by some other
+18:04
+connections okay that's why usually it's sufficient because we can have
+18:10
+um 2 to 16 simultaneous connections with one single Landslide address okay and
+18:18
+this is dynamically changing okay but that is also very it's also
+18:23
+controversial because uh we know we assume the routers should only process
+18:29
+up to layer 3 which means Network layer which means we only deal with the IP
+18:35
+addresses Etc in the network layer okay we should not we should not address deal
+18:41
+with the port numbers processes uh in the network layer right uh but you can
+18:49
+see that actually while it's this end-to-end argument that is dealing with
+18:54
+the processes okay why because net is dealing with the port number so we know Paul numbers are
+19:01
+associated with the processes okay so that's why net is actually uh
+19:06
+controversial and people are thinking oh uh net is a solution a good solution to
+19:13
+address shortage the IP address shortage but it's not the final eventual solution
+19:19
+which we need to find out some other Solutions that's why eventually the
+19:24
+address shorter problem is actually sold by the ipv4 sorry iqb6 okay IPv6
+19:32
+and another thing I want to quickly talk about is the icmp okay icmp is the full
+19:38
+name is internet control message protocol so this is used by the house and routers to communicate Network level
+19:46
+information uh basically this is for Arrow reporting for example if you have
+19:51
+some hosts and reachable or some Network unreachable some port and reachable okay
+19:57
+so you may do error reporting using icmt and sometimes this can also be useful
+20:02
+for Echo Equity requests or reply okay
+20:08
+um so icmp is actually um it's not it's still it still belongs to
+20:15
+network layer but it's also viewed as a layer above the IP there okay about the
+20:23
+um IP layer so that means um the icmp messages are actually
+20:28
+carried within the IP datagrams okay we will see that a lot later
+20:34
+so for the ICM key messages usually it contains uh the type the code and then
+20:42
+uh also the a short description okay and also your list can hit that
+20:49
+sorry not the crucial difference is actually the first eight bytes of iptogram causing the error so
+20:56
+um here is uh the different type and code actually means different things so this is the short description for the
+21:03
+type and code for example if you have type 3 code 0 that means the destination
+21:12
+network is not reachable if you have a type 3 code 1 that means
+21:18
+that that's neutral host is not reachable okay so I select that and
+21:23
+um I think we use the one thing before for example if it's type 11 code 0 this means TTL
+21:32
+expired okay if you still remember the trace route before we talk about Trace
+21:39
+routes before right so how is Trace router is done we we remember we know
+21:44
+um usually this client will need to send for example uh one package of course
+21:54
+usually each time we send out three for three probes okay but for all those three packets they have the TTL equal to
+22:00
+one okay so TTL was set to one and when they arrive at the router we will need
+22:07
+to minus one on the current GTL so 1 minus one TTL now because it becomes
+22:12
+zero okay so when it becomes zero when it becomes zero we know the TTL expires
+22:20
+okay when it expires then this router needs to send back an icmp message to
+22:27
+the source okay with type 11 code 0. so
+22:32
+type 11 equals zero this TTI expire then after this response is sent to the
+22:40
+client The Source The Source will write down this message okay and then it will
+22:46
+know okay the information about the first voucher the second time okay we will send out
+22:53
+TTL equal to True okay a second set with three probes this time the TTL is set to
+22:59
+two so two then that this means the practice can travel two hops so whether
+23:06
+it arrived at um the first round for TTL becomes one when to arrive that here TTL becomes two
+23:14
+sorry zero y minus one equal to zero and then
+23:20
+TTL expires we will need to send back to the source send send the this error
+23:27
+message to the source with type 11 code 0 okay at the same time this router will
+23:34
+also need to send back its own information so then with this when this message is received by The Source The
+23:40
+Source will record the name of the router and the IP address Etc okay
+23:47
+so we will continue until
+23:52
+um we reach the destination Okay so
+23:57
+then you can see in this process actually the trace around function is implemented with icmp
+24:07
+messages okay is implemented with icmp messages and the the reason that choice route can
+24:15
+work is because every time when the TTL expires the ICM icmp message with type
+24:23
+11 code 0 will be sent back to the source together with the router's
+24:28
+information okay so for the icmp
+24:35
+um this is uh the general information so we have first an icmp message and then we have the header then this entire
+24:42
+thing is actually uh encapsulated here in the datagram and with the IP header
+24:51
+okay IP header obviously this is actually a network layer header and then we have the datagram and then here is
+24:59
+actually right this should be link layer okay and then we have nuclear headers like that okay
+25:06
+um so you can see here in in this example
+25:11
+icmp is like the TCP or UDP right so you have the payload and then you have TCP
+25:18
+UDP header and then it is in capital state encapsulated within the datagram
+25:24
+and then you need to add the network layer header and then you add the link layer header it's like that okay
+25:31
+for net although it is a very good way to use um so the IP shorted problem it
+25:38
+is not the final solution as we mentioned because we suppose the router only deal with the network layer up to
+25:45
+the network layer right but net is dealing with the port numbers port number belongs to process okay which it
+25:53
+belongs further belongs to the transport layer so that's why we say oh okay net
+25:59
+is not the final solution then what is the final solution so the final solution is IPv6 so what is
+26:09
+IPv6 basically originally ipv4 in version 4 we have 32 bits as the IP
+26:16
+address now we want to make this much longer okay we want to make this much longer we
+26:24
+want to make this 128 bits the IP address we can make it 128 bits
+26:32
+then now we can accommodate 2 to 128 devices at least right we can that means
+26:39
+we can have we can have that many IP addresses for the entire world okay of
+26:46
+course there are some other motivations for IPv6 for example uh the header
+26:51
+format hubspeed processing or forwarding so basically we can add some information
+26:57
+in the header to help speed up this the processing okay
+27:04
+um and also uh the header uh changes are made to facilitate quality of uh service
+27:12
+okay that is another motivation um for the datagram format pay attention
+27:20
+for IPv6 for ipv4 we can still remember how many bits we um
+27:27
+how many bits we had so sorry how many bytes we had for the entire header so
+27:34
+generally it is uh 20 bytes for the entire handle ipv4 right so 20 plus
+27:41
+bytes as the header but for IPv6 um the the header lens is about 40 bytes
+27:50
+okay it's much longer one of the major reasons because the IP address becomes
+27:56
+longer so you can imagine original Source address destination address in total is 64 bits now it's a 128 times 2
+28:05
+which is a 256 bits okay and also for IPv6 we do not allow any fragmentation
+28:13
+no fragmentation is allowed if you still remember
+28:18
+we may learn about ipv4 one major component is actually fragmentation
+28:25
+fragmentation means as we said we have Network links right so some links are
+28:33
+um some links have a bigger capacity or bigger bandwidth something has a smaller
+28:39
+bandwidth then in this case uh and and they can accommodate and
+28:46
+comment the different the size of the package measurement maximum segment size
+28:52
+okay so then when a bigger packet comes to a narrow
+28:58
+link We how to break this bigger package into smaller pieces that is called
+29:03
+fragmentation but in IPv6 we do not allow fragmentation that's the that is
+29:09
+something you need to pay attention okay so then some of you may ask oh uh if we
+29:17
+do not allow fragmentation then what if a big packet comes to
+29:24
+a narrow link which can accommodate only small packets
+29:29
+what can we do so in this case we need to modify the icmp protocol
+29:38
+correspondingly okay in icmp protocol we need to add one more type
+29:45
+okay with one more code saying oh this packet is too big
+29:50
+okay now in this case if a pack is too big then this package will this uh um
+29:56
+package will be dropped and the Pat the error message will be sent back to the source and then the source Will based on
+30:03
+that will adjust the size of this packing and send a smaller one okay so that's how it works
+30:11
+um for IPv6 datagram format let's look at this together so basically each row is
+30:19
+32 bits which is four bytes
+30:25
+okay um and you can see
+30:35
+so this this will take four rows
+30:41
+this will take four rows
+30:47
+okay now you can see firstly we have the version number this shows V6 or V4 okay
+30:55
+now of course here it will be V4 V6 sorry and then we also have priority
+31:01
+priorities used to identify um uh priority among the datagrams in
+31:08
+the flow okay and we will also have the flow label although the concept of flow
+31:13
+is not well defined yet okay and then we will have the payload lens okay this is
+31:22
+the length of the payload pay attention which means the data the length of the data then this is the
+31:30
+next header next header basically means uh the upper layer protocol for the data
+31:36
+for example is our player TCP or UDP okay or even maybe icmp
+31:43
+and this is the Hop limit hop limit is similar to TTL and then we will have four rows of
+31:51
+source address which is which has a 128 bits and four rows of uh destination
+31:58
+address okay so you can say in total we have one two three sorry one two plus
+32:06
+eight so in total we have 10 rows
+32:11
+and we know each row is four bytes
+32:18
+so that is in total 40 bytes of data okay for device of data or 40
+32:26
+bytes of hydro we should say okay so now pay attention let's review all the
+32:31
+headers we have learned okay so for UDP we know the header length is uh it buys
+32:38
+for TCP the Headlands is about 20 bytes or 20 plus bytes
+32:44
+IP Windows about 20 bytes okay ipv4 IPv6
+32:50
+is about 4 device okay and there are some other changes from
+32:57
+ipv4 for example checksum is removed entirely to reduce the processing time
+33:04
+at each hop because we know for UDP and TCP they
+33:09
+have the checksum already so now we remove checksum at the network layer and
+33:14
+options are allowed but it is outside of the header it is indicated by The Nest
+33:21
+header field so if we have in the next header field if we have an indicator see
+33:27
+there is option then this option will will not be included in within the
+33:33
+header okay um and as I said as I said because we have a new version of I IP then we also
+33:42
+need a new version of icmp okay um so the additional message type may be
+33:50
+added such as package to big okay so those are uh the major changes
+33:57
+from ipv4 to V6 um but they're when we upgrade to IPv6
+34:04
+there is a problem we need to we need to address so the problem is basically me
+34:10
+is basically uh that we cannot we cannot upgrade all the routers
+34:17
+simultaneously that means we cannot say oh okay today
+34:23
+I'm going to shut down the entire internet and I will upgrade the router all
+34:30
+together can we do that we cannot so for the current Internet we cannot afford
+34:37
+such kind of flag dates okay then the problem becomes
+34:43
+um how could this network operate with a mixed ipv4 and V6 launchers so some
+34:49
+routers are able to read ipv4 packets some are
+34:54
+able to read ipvc vouchers so what can we do okay if a packet is traveling in
+35:02
+such kind of mixed routers then uh what can I do okay so then people began to
+35:07
+think um a very obviously very smart way okay it's called tunneling tunneling
+35:13
+basically means uh the IPv6 datagram is carried as the payload in the ipv4
+35:24
+datagram among ipv4 routers Okay so
+35:30
+usually usually for example IPv6 vouchers uh can still read itv4 packets
+35:39
+so um because IPv6 routers are more advanced
+35:45
+right so we can we can say okay you can backwardly accomplish those
+35:51
+um order format of packets but it's hard it's very hard for ipv4 routers to
+35:59
+understand the new package the IPv6 package okay so then in this case as I
+36:05
+said what we do is we basically incorporate
+36:11
+in we basically reported this this is this is actually our IPv6
+36:21
+so this is the IPv6 datagram it is put into an ipv4 datagram to view it as the
+36:30
+payload ipv4 payload okay then in addition to that we are
+36:35
+adding the ipv4 headers and ipv4 Source address destination address then this
+36:42
+IPv6 datagram is able to travel through
+36:48
+the old routers okay um so of course you can see in the IPv6
+36:55
+because this is this IPv6 Instagram is a complete dead form so you still have
+37:01
+IPv6 header fails uh the source Station address and also the udptcp payload
+37:07
+within this IPv6 datagram okay any questions so far
+37:16
+all right so let's look at this uh this view okay this is the tunneling
+37:23
+and we have those uh new routers IPv6 launchers and we also have ipv4
+37:32
+routers okay as we said if we have for example
+37:38
+um so you can you can view this as a tunnel okay you you can view those ipv4
+37:44
+routers as a Time Tunnel connecting those IPv6 launchers then if we have a
+37:51
+datagram from a for example the source is a destination is f
+37:56
+uh it is from one V6 router to another V6 router
+38:02
+okay so then we it might is traveling from A to B we know it is still a V6 uh
+38:09
+datagram then when it is traveling to
+38:14
+um to router C okay we know router C is the V4 router so then we have to you can see
+38:22
+we have to wrap this IPv6 datagram with a V4 uh headers okay with the V4
+38:32
+header so we basically added the source as B destination as e okay and then
+38:40
+this becomes a V4 package so it can travel through C and D finally it will
+38:46
+arrive at e okay when it arrived at e then e can remove the V4 header and take
+38:53
+out the V6 datagram and then it can continue travel to other V6
+38:59
+um routers okay so this is the entire process

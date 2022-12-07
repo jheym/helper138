@@ -1,0 +1,612 @@
+0:01
+each layer okay then you will understand how the entire thing works we are going
+0:08
+to talk about uh the network security okay security is actually uh now a very
+0:14
+important aspect in networking and we will not go deep into the security but
+0:20
+we will uh we will only introduce some of the basic concepts very common attack
+0:26
+types things like that if you want to know more about security
+0:32
+um you uh and we later in this class we will still uh when we introduce some of
+0:37
+the applications or some of the protocols we will still talk about
+0:43
+security if they are related but anyway in this class the major focus
+0:49
+is not security so if you are really interested in this topic then you should
+0:55
+take 154 the security class okay all right so let's see
+1:04
+so basically uh for network security we are talking about the attack and defense
+1:10
+most of the time okay um in the network security field we we
+1:16
+are really interested in how the bad guys uh can attack the computer networks how
+1:24
+can they achieve the attack the tax okay and then how we can defend the network
+1:29
+attacks against this uh the networks against the net attacks basically we
+1:35
+always have attackers and Defenders usually most of the Enterprise networks
+1:40
+have dedicated groups or teams security teams to
+1:45
+work uh against the attackers basically they will deploy some security sensors
+1:51
+some of the defending tools like firewalls detection tools so they they
+1:59
+can protect the network better okay so this is a what what will happen What
+2:04
+happens in the Enterprise Networks and then people also didn't also think about
+2:09
+how to design the architecture that are immune to a text this is actually I
+2:15
+would say um a topic that will be there forever okay
+2:21
+so it's really hard it's really hard to design an architecture a network
+2:27
+architecture that are immune to our text based on especially because we are building this network this internet
+2:34
+without Security in mind so you can think about it there are a lot of Legacy
+2:39
+issues right so we designed the network in this way without secreting in mind and now if you want to completely change
+2:46
+the architecture to make it immune to our taxes so I would say it's very very challenging it's very hard okay
+2:53
+um so originally people really don't think about security they just when we when we first saw
+3:00
+Vision the internet uh people just think this is a a group of mutually trusted
+3:06
+users attached to a transparent Network this is really if you you stand at this
+3:12
+point right now you will see oh okay this version is really innocent right it's really a naive but um
+3:21
+at that time when network was firstly designed people do things like that okay
+3:26
+until until some naughty high school students began to do something back to
+3:32
+the network and then people realize oh okay this kind of vacation actions can
+3:38
+really really um lead to some disasters in networking
+3:43
+okay so then the Internet Protocol designers are now playing the catch-up games
+3:49
+basically we want to improve this protocol in this way in that way to make
+3:55
+the networking more secure okay more secure but still as I said it's it's
+4:00
+very challenging okay that's why the cyber security right now is actually a
+4:05
+very Hot Topic in the research area okay very hot topics
+4:10
+um and if uh if you have some background in security when you are looking for a
+4:16
+job you definitely stand out from the others okay so um some of you may may ask that if we
+4:25
+consider security where should we consider security we learned the five layers right five Internet Protocol
+4:32
+stack layers um we have application near transport layer Network layer link layer physical
+4:39
+layer then where should we put security as I mentioned this is actually a
+4:44
+drawback or layer the layer kind of architecture right so security does not fit to one specific layer okay so
+4:54
+security must be considered in all different layers we need all layers from
+4:59
+application layer to the physical layer so this is something you have to keep in
+5:04
+mind foreign what is the goal of the bad guys
+5:12
+okay basically their goal is to put the malware into the hose here the horse
+5:19
+with me all the different Computing devices like computers iPads tablets right so mobile phones all
+5:28
+those kind of things so put malware into the host via internet
+5:33
+okay this is a this is basically the goal of the attackers okay so the
+5:41
+malware can actually get into house in different ways for example they can get into the house in virus
+5:48
+or worn so what what are those virus is basically no matter it's a virus or one
+5:56
+we all know this is just a program right so virus and worm are just a piece of
+6:01
+code okay but they have different they have difference okay the virus
+6:08
+um basically can do self-replicating infection by receiving and executing the object okay so what
+6:16
+does this mean this means usually for example when you see a virus when you um
+6:22
+usually but this virus I really hidden in some kind of software right in
+6:28
+some kind of software or other files so it is usually
+6:35
+hidden and when I say hey I mean you cannot tell this is a virus by look just
+6:41
+looking at this look at this file okay so for example sometimes you may receive an email and the email saying hey uh
+6:50
+please click on that attachment I have some important files for you things like
+6:55
+that and once you click on that then this virus this is making this
+7:01
+attachment may contain the virus and then these virus may start the self-replicating process okay and you
+7:09
+can see in this process in this process other person or other people's actions
+7:17
+are very important okay if you do not click on this button
+7:22
+if you do need do not click on this attachment then wires can do nothing but if you click on this attachment then
+7:29
+the virus can start the self-replicity so that means the user or the internet
+7:35
+user innocent user's interaction is actually very important for the
+7:41
+self-replicating a virus okay but for warm warm is different okay warm
+7:49
+can do self-replicating infection by passively receiving the object that gets
+7:55
+itself executed in this process we do not need any actions from the users we
+8:02
+do not need any action from the innocent healer that's something you need to keep in mind okay
+8:08
+there are actually a lot of different types of worms some are very famous I
+8:14
+remember when I was still in China some um there there was one worm I cannot
+8:20
+remember them but I I deeply remember the how the computer behave after it is
+8:28
+infected so it's very interesting when the computer was infected then
+8:33
+everything is gone and the computer just has just display uh
+8:40
+a panda just play a panda there um so
+8:46
+um I can't describe this very accurately but uh panda is doing something there on
+8:52
+the on the computer so nothing else is displayed on the computer and it doesn't react to any of the actions from the
+9:00
+users um for this kind of warm so it it's only
+9:05
+uses it only uses uh it basically it will
+9:11
+only take advantage of the vulnerabilities on the computer okay it
+9:17
+doesn't need any actions from uh from the from the user okay so that's the
+9:23
+difference between warm and virus I may ask you the difference in the test
+9:29
+okay there is another type of malware called spyware spyware is actually very
+9:35
+useful and very um obviously very scary okay so spyware
+9:42
+can record the case jokes the websites visited um and basically all the actions that
+9:51
+you have already taken on the machine and then upload those information to some collection site so you think about
+9:57
+this if you type in a website like a bank a bank like chase.com okay and then
+10:06
+you begin to type in some username and password then this
+10:12
+kind of spiral is able to remember what website you have visited and what
+10:18
+letters you have typed into so then of course we can know the username and
+10:24
+password right so that is a harmful to the users okay
+10:30
+um so that is another type so some of you may ask what can they do
+10:37
+what can the attackers do if they get the house infected no matter using
+10:44
+Wireless or warm so what can they do so they can do a lot of things if they
+10:52
+compromise a machine okay you think about this one thing is as I said
+10:57
+probably they can install some spyware to monitor what you have already done
+11:03
+okay so they can steal your credentials that's one thing another thing is they
+11:09
+can control your machine right so actually in fact your machine they can
+11:16
+um so they can work as like administrator they they may say if so
+11:22
+for example if in if your motion is a Linux system then they can type in some commands Okay they can type in some
+11:29
+commands um then ask the machine to execute okay so for example they can send the very
+11:37
+important files back to the collection site back to the attackers or especially
+11:44
+if this machine is a very important machine like if this she is the
+11:49
+workstation used by a CEO of a company right so then this CEO's machine may
+11:56
+have a lot of uh important files like Financial files or other type of files
+12:03
+then attackers are able to to collect those information to uh to have some
+12:11
+Financial gains those kind of things right uh and we can they can also do other things okay for example you may
+12:18
+say oh my machine does not have this kind of a very important
+12:23
+um in files or information so I don't need to care about this you still need to care about this
+12:29
+because um these attackers May May control your machine and use your
+12:36
+machine to do something okay so for example even they can use your CPUs your
+12:43
+Computing resources okay to do something back or they can control your machine to
+12:49
+get your machine enrolled in the botnet so what is a botnet bottleneck means a
+12:54
+net worth of bots so a network of sleeves basically your machine is like a
+13:00
+sleeve or a bot that can be used for a lot of things like spam like Adidas
+13:06
+attacks okay so for example sending out spam emails or conducting DDOS attacks
+13:13
+so probably you do not understand what is DDOS we are going to introduce this in this slide so before I introduce DDOS
+13:21
+details sorry details means distributed foreign
+13:31
+distributive denial service that is DDOS okay before I introduce the distributed
+13:39
+denial Services let's first we talk about the denial service okay only does
+13:45
+so what is the noun service attack uh basically the now service means that
+13:50
+attackers make the resources resources here with me the server the Computing
+13:56
+resources the bandwidth making these resources and available to
+14:02
+legitimate traffic by by overwhelming resource with Focus traffic
+14:08
+so what does this mean this means so for example this is a server right so
+14:15
+this target here is a server when we see a server we mean the server is serving a
+14:22
+number of clients okay so for example you think about the Google web server so it is serving the
+14:30
+clients all over the world or you think about the sac State's web server it is serving all the Sac State
+14:38
+faculty and staff and students right so those servers are serving the clients
+14:46
+okay and then we want to if this is serving the clients we want to make sure the service is available to everybody
+14:54
+okay it's available to everybody then but one day if the server the the
+15:00
+service cannot be available to someone then this is problematic okay for
+15:05
+example if you one day you want to visit the website for Sac State you cannot you
+15:10
+cannot visit it then you you will feel bad right or if one day you cannot use Google then you will feel frustrated so
+15:18
+that's that's why we want to make the service available to everybody so what's the the attacker will do in
+15:25
+the denial service attack is firstly it will select a Target
+15:31
+okay then the attackers will break into the house
+15:37
+around the network okay so for example you can say those ones are all
+15:44
+compromised by the attackers now these computers becomes
+15:50
+the Bots It all becomes the sleeves so they will
+15:55
+basically follow all the commands by the master the master here is uh is a machine
+16:02
+controlled by the attacker okay so after that after that then the
+16:10
+attacker will send the package to the target from the compromise house so you
+16:16
+can say there are so many computers controlled by the attacker they can send
+16:23
+packets to the Target at the same time okay simultaneously can we can do this
+16:28
+at the same time then in this case the server does not know the server pay
+16:35
+attention the server does not know that this request this packets are from
+16:41
+malicious machines the server will just treat them as legitimate users innocent
+16:47
+users okay then the server will try to serve all these machines or to to get
+16:56
+respect to respond to all those requests okay
+17:02
+then in this case as you can see because the server is too busy with those
+17:08
+malicious requests how what if if there is one innocent user who also want to
+17:16
+get service from the server could the server still reply back the server
+17:22
+cannot okay the server does not have the capacity to reply back to the client
+17:31
+okay so that's that's that means the server is actually denying denying to
+17:39
+serve the client that's why we call this as denial or service attack
+17:44
+does this make sense so it's like for example if I'm uh I'm
+17:50
+having office hours okay I have office hours to all the students in our class
+17:56
+if one day okay if one day let's say we have some bad guy let's see Alex is a
+18:03
+is the bad guy who controlled most of our students in
+18:09
+this class Alex yes sorry for using you as an
+18:14
+example okay um so let's say um
+18:24
+um so let's say Alex Now controls most of the students in our class and he he
+18:30
+sent uh this this bad students to my office hours and each student will I
+18:38
+mean they all stay there for very very long time so then I'm fully occupied by
+18:43
+these bad students right then in this case if we have a good student let's see
+18:50
+uh Aaron comes in Ira is a good student so he wants to see me to get help so can
+18:57
+I still help Aaron I cannot right so this is the denial service to
+19:04
+Aaron and all the other students actually okay
+19:11
+um so that's what we call as denial service attack so actually what I I'm describing here
+19:19
+is a you can you can view it as a distributed uh denial service because
+19:25
+you can see all those requests are distributed into different machines
+19:33
+okay into different machines this is already distributed in our service attack so some of you may think that
+19:39
+what is the now service attack in our service attack is uh basically what we
+19:45
+mean is a for example if we have Alex again as the bad guy so Alex come to my
+19:51
+office hour and ask me uh millions of questions okay
+19:57
+so then I'm too busy with Alex I have to answer all his questions then in this
+20:04
+case in this case I cannot serve anybody else right so so basically the attack
+20:09
+the attack is from Alex itself only one machine is sending a lot of requests
+20:16
+okay that is the now service attack but for denial of service attack I would say it's it's kind of easy to block to to
+20:23
+prevent or to uh to address this issue for example if I know Alex is is a bad
+20:30
+guy then I can simply say oh I recognize you you are you are the bad guy I I won't let you come
+20:37
+to my office hour okay it's very easy to plug
+20:42
+um similarly if we say one machine if we see one machine is making a lot more requests to the server then we can
+20:50
+simply block that machine because we can easily we can easily tell the IP address
+20:55
+of that machine okay we can just block the track traffic from this machine so it's very easy
+21:01
+but for distribution uh denial Service as you can see because the traffic is
+21:06
+coming from all different users okay although they are all malicious users
+21:12
+but they are coming from all different IP addresses How can I block them we cannot because it's very
+21:19
+hard to tell which ones are innocent which ones are not innocent okay which
+21:24
+ones are malicious it's very hard to tell that's why distributed denial service attack is actually much harder
+21:31
+to prevent than denial service attack and
+21:36
+in the test I may ask you what is the denial service attack okay or what is a distributed now
+21:43
+service attack so you should know um the definition here okay
+21:51
+the next question the next topic is about packet sniffing so what is packing
+21:56
+sniffy Pakistani means if we have two computers talking to each other
+22:03
+okay and these two computers they need to use some kind of uh media right or
+22:09
+sometimes men or many times they have to use like broadcast media like uh the
+22:14
+shared Ethernet or the wireless network okay for example when we use Wi-Fi when
+22:20
+a is sending some information to basically everybody in this network can
+22:28
+receive the package from a so it's called broadcasting media okay then in
+22:34
+this case in this case if we have some bad guy here like C
+22:40
+which can record all the packets passing by
+22:46
+okay that is a uh that that will generate some negative impacts so what
+22:53
+does this mean you can think about this the bad guy C if it can listen to all
+23:00
+the package then it is able to capture all the information inside the package
+23:05
+right for example here if B is sending a package to a The Source IP address is B
+23:13
+destination IP address is a and the payload payload contains some input important
+23:21
+information usually okay for example the payload may include the password okay so some of you may think
+23:28
+how could the password be included right or
+23:34
+are the password encrypted let me tell you the truth
+23:39
+many times for many applications actually the passwords are passed or are
+23:47
+sent out in plain text you cannot imagine this many of the
+23:53
+times when you look at a package you can easily find out the passwords okay
+23:59
+that's very important then if C is able to find out the
+24:04
+password then C can do a lot of things right if a is the server like let's see
+24:11
+a a bank or some other website then C can easily use the password
+24:16
+of B to sign in this webpage to basically do anything she wants
+24:24
+okay so that's why Tech sniffing is actually very important
+24:30
+um and as I said not all the applications encrypt the data no many
+24:37
+many of the applications simply did not encrypt the data okay that's very important that's actually why in one of
+24:45
+my 153 plus some students did a course project
+24:51
+to use the Wi-Fi okay they just go to Starbucks or those kind of public Wi-Fi
+24:57
+to set up a fake Wi-Fi okay uh this week I Wi-Fi is free to
+25:06
+everybody so if you connect to that okay if you connect to that then that
+25:12
+um Wi-Fi will basically collect all the payloads all the pack is going through
+25:17
+then in this case they are able to look into the confidential information
+25:23
+contained in this uh packets so that's a that's my very interesting thing so some
+25:30
+of you may think oh the proximity is mainly used for
+25:35
+um malicious uh intent I would say no sometimes the the specs sniffing can
+25:42
+also be used for some good uses okay so or at least it's neutral okay it can
+25:49
+be for gold or it can be for bad okay it's packaged sniffing legal it depends
+25:57
+okay depends so if you are using let's so what I'm going to introduce uh right
+26:03
+now is actually the Wireshark software and you are actually going to use software shock to do a lab
+26:10
+um in our class the Wireshark software is a packet sniffer okay it's a package
+26:18
+name for it is it is uh it's installed on your machine okay you can install it
+26:23
+on your machine or some other people's motion if they allow you to do so then
+26:29
+if you enable capturing the packets all the pack is going through
+26:36
+all the pack is coming to a machine or going out your from your machine will be
+26:41
+captured by Workshop okay now you are actually sniffing uh to pack sniffing on
+26:47
+your own machine so obviously this is legal okay this is of course legal but sometimes if you want to do packing
+26:54
+sniffing on some other machines um especially for those big companies uh
+27:01
+that may not be legal okay that's the difference and later you are going to learn more
+27:08
+about my shock okay so basically why in my shock you are able to capture uh most of the all
+27:16
+the packets okay and then you can see especially for example if you connect to
+27:22
+a website uh or if you send out an email so all the traffic are captured and you
+27:28
+are able to see uh what is the IP address the source IP address doesn't IP address what is the phone number used so
+27:36
+what are the payloads um and you can even see the protocols used at each layer and later as I said
+27:43
+in the Wireshark lab you are going to learn more about this tool okay so the last one we are going to
+27:50
+introduce in our class is uh IPS spoofing so what does this mean IP spoofing
+27:57
+basically means send in packet with Force Source address
+28:04
+okay so this for example if a and b again are
+28:10
+talking to each other okay now b c is the bad guy
+28:16
+C can pretend to be a b okay so you can
+28:22
+pretend to be B and then send a package to a okay here you can see it is saying
+28:29
+the source I Source address is B the destination address is a and it's sending some payload then what a reply
+28:36
+when a reply a will directly reply to the source okay what our source is put
+28:42
+there it will reply to this source so a we are simply reply to
+28:48
+see directly okay okay to say directly because say is now
+28:56
+using pretending to BB using this IP address right so then any of your think
+29:01
+C is uh the um say is the sauce Source a will reply
+29:08
+back to C okay so then all the basically C is able to capture the package to be
+29:15
+um or we can say hijack the package to be okay so most of the time most of the
+29:23
+time you may see why do we do this why do why does c do this why does c do the
+29:28
+my piece moving is like pretending to be someone else
+29:34
+okay so basically if C pretends to be B then C can do a lot of things in the
+29:40
+name of B okay many many times and many times IPS
+29:45
+buffing can be used together with packets packet sniffing how can we do
+29:51
+that so if you look at this slide again say can basically if a is talking to B
+29:58
+Okay C can basically listen to their conversation and then find then capture
+30:04
+these packets okay capture this package and see we all know what is the payload Etc
+30:12
+so especially for example if you see if a is asking for some information from B
+30:19
+to authenticate B okay it's like for example what is your
+30:24
+mother's maiden name let's see although in networking uh this usually this is
+30:30
+another question right but we I think I want to make make your uh clear about how this works so let's just use this
+30:37
+example if a is asking maybe what is the middle uh the your mother's maiden name
+30:43
+okay only B knows the answer C does not know right but what a c can do is see
+30:51
+listening to their conversation and then see basically get this package
+30:58
+in this package B is telling a what is the middle name so let's say the middle
+31:03
+name is X okay then now C note oh okay B's mother
+31:10
+has a maiden name of ads then C can use this
+31:17
+X okay to answer the question of a
+31:22
+a question from a if C is doing this much faster than b
+31:28
+okay then a will basically accept the first the first packet
+31:33
+coming to a and then of course here see we also pretend to be
+31:39
+B okay then Aerials think if you think C is B okay maybe I'll think oh I'm still
+31:47
+talking to B and then a will reply to C and C oh okay you are authenticated then
+31:53
+now what do you want to do okay then say Oh say like okay let me withdraw 1000
+31:58
+bucks okay then C can withdraw money from uh B's account
+32:03
+so that is what will happen um so what I'm talking about now is actually called The Man in the middle
+32:10
+attack
+32:17
+okay MIM nine in the middle attack basically
+32:22
+basically C is the mat in the middle C is able to do a lot of bad things by
+32:31
+firstly Listening to A and B's conversation and then pretending to be B
+32:37
+uh to get authenticated and then talk today okay so the my middle mind the middle
+32:44
+attack is a very very common in security and it's actually very challenging uh
+32:51
+type of attack that that can happen in very in very different scenarios so a
+32:59
+lot of research are working on how to prevent this kind of attacks okay
+33:05
+uh that's all about the security Parts I think we are done with chapter one

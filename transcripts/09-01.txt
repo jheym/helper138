@@ -1,0 +1,616 @@
+0:03
+transmission delay which is actually the time you spent to push the data to push
+0:10
+the data out to the link it's like you have water here in the water tank and
+0:16
+then the water takes time to flow into the link to completely follow into the
+0:22
+link okay into the water pipe so it's the same thing so for 1.3 we will introduce Network
+0:30
+core can you still record what is in our core
+0:37
+are the data centers in our core are the servers in the network core
+0:43
+so the network record is just just to the routers okay so
+0:49
+um it's basically a match of internet interconnecting routers like this okay
+0:55
+and um so basically what the function of the
+1:02
+network call is to forward the package from one router to another and then to
+1:07
+another and then to another and finally it will arrive at the destination okay
+1:13
+so that is the function for Network call um each packet is transmitted at the
+1:18
+four link capacity um so
+1:24
+then some of you may ask how can we get the packets so we generally
+1:30
+um later you will learn uh when we send something out this something is called
+1:36
+message after the application layer okay for example email message HTTP request
+1:41
+message okay it's called a message and then when it goes to a layer below like
+1:48
+the transport layer we will we have to break this message into smaller pieces which are called
+1:56
+packets okay of course are different later they have different names sometimes they'll cause the datagram
+2:02
+sometimes they are called packets okay sometimes they are called frames uh and
+2:07
+for now we will just call them packets but later uh we you will learn the names
+2:14
+at each layer okay so here again we want to talk about the
+2:20
+Lor thing okay so pack a switch
+2:25
+um package which include the ruptures and the um switches so here we are we talk about
+2:33
+routers for now okay the functionality for pack switch is the
+2:39
+package switching we call it package switching okay and it use it use some
+2:44
+method or mechanism called store and forward so what is Stone forward
+2:49
+let's look at this example here in this example we have three packets okay uh
+2:55
+one two three and you can see uh we will send the package we will send the data
+3:01
+to the link okay and then they have arrived at the router
+3:08
+so Stone forward means the entire package must arrive at the
+3:16
+router before it can be transmitted onto next link
+3:22
+okay so for example if you look at the packet of one half of the packet has already been sent
+3:29
+had already been delivered to the router okay and the other half is still here at the computer
+3:35
+now in this case the router cannot send this half onto the link because this
+3:43
+packet is not complete yet okay it will wait until the entire packet is clicked
+3:50
+is is complete and then send the data to this link
+3:55
+okay so this is called store and forward why do we need to discuss Stone forward
+4:02
+because we need to understand the transmission delay again okay do you
+4:09
+still remember transmission delay I told you here right I said is the time we use
+4:17
+to push the data to the link okay push the data out to
+4:23
+the name and you can think about this in this example in this example okay
+4:30
+so of course at the computer side firstly we need to put this push the
+4:35
+data out okay let's assume again that the package
+4:40
+is lbs okay now how much time and also the
+4:46
+bandwidth of the transmission rate for the first link is our okay
+4:52
+R BTS RBS per second then let me ask you the question how much time is needed
+5:02
+to push the data to push one package out to to the link
+5:10
+can tell me anybody want to a gas or I will try
+5:20
+how much time is needed to push one package
+5:25
+to the knee Kyle and uh hey Kyle said uh uh L over r
+5:35
+that is correct excellent so yes the time we need it here we can go to dt1
+5:43
+transmission delay 1 equals 2 L over r okay
+5:49
+and then those data will flow flow flow and then come to the launcher
+5:57
+so again the router will and wait until the entire packet is complete and then
+6:04
+push data out again okay so let me ask you a question do we
+6:10
+have transmission delay at the router
+6:15
+the way how transmission delay at the router that means do we need to spend some time
+6:22
+pushing the data out again from the router
+6:28
+yes because the data now the package is arrived at the router right we also need
+6:33
+to push it out so yes it still takes time to push out again it's like the
+6:39
+water flows from one tank to another tank okay it needs to flow off again so then
+6:46
+the time spent here can you tell me the time spent here equal to what
+6:51
+dt2 equal to what so that is L over R again why because
+6:58
+the package size is still l okay and the link the second link also
+7:05
+has a bandwidth of R so that's why it's l over R again okay
+7:11
+and then finally the data now arrived at the computer okay at the destination
+7:17
+if you consider the entire process if we do not consider any other delays
+7:23
+whatever okay we only consider the transmission delay we only consider the time we spent on pushing the data out
+7:30
+how much time in total did we spend on pushing the data out to
+7:37
+the link so it's just a dt1 plus dt2 right okay
+7:43
+that's great if you look at the example on the right one hop numerical example
+7:49
+in example L equals 7 0.5 Mbps MBS and R equals to 1.5 Mbps
+7:58
+so then Lor equal to 5. that means for
+8:04
+one Hub transmission delay that is uh five seconds okay so what what does one
+8:10
+hop mean one hop means here you can say uh from from here to here is one half from
+8:18
+here to here is another half okay um then in this example in total we say
+8:25
+okay the DT equals to d t one plus dt2
+8:31
+can you tell me the total number foreign
+8:36
+that equals 2 actually 10 seconds
+8:43
+okay so that equal to second in this example that is the transmission delay
+8:48
+we spent okay so the reason we have dt2 is because
+8:55
+of these store and forward mechanism okay any questions
+9:06
+all right so actually there are many other types of delays okay in this one
+9:13
+we only talk about uh some some of them and later when we talk about the
+9:18
+performance of the network I will introduce more okay for now let's consider another type of delay that is
+9:26
+queuing delay so what is you think about this when the pack is
+9:32
+arrive at the barometer the router needs some time to work on those packets for
+9:37
+example it may check the headers let me check the IP address it may
+9:44
+do some error checking Etc okay it takes time for the router to deal with this
+9:50
+package that means the router may be slow but the incoming
+9:57
+rate can be fast okay that means that there
+10:02
+there are more and more packets coming in so those packets cannot be dealt with
+10:09
+quickly now in this case they will be queued in the router and waiting to be
+10:15
+sent out okay so that is the queuing delay it's like it's just like uh when you go
+10:22
+to my office hours okay for example I need to spend time
+10:28
+um students okay on each student and then you that if there are so many students
+10:35
+coming in then this you don't have to be queue there okay that is the queuing delay
+10:41
+um currently usually indicates the network in the launcher at least the router is very busy
+10:48
+okay indicates the launcher is busy that's further indicates the network is
+10:53
+probably congested okay it's probably congested um but this is uh this is a
+11:02
+not the worst scenario okay even worse is sometimes the round should get too busy
+11:09
+okay uh and the router as you can see the launcher needs in some place to
+11:16
+store those um those packets so that is called the buffer
+11:22
+okay each router has a buffer to store those cute packets and sometimes the buffer is a full if
+11:29
+the buffer is a 4 and if there are still incoming packets what will happen
+11:37
+the the router will say oh I cannot hold more packets I cannot accomplish more so
+11:43
+I have to drop you okay then in this case we will have
+11:49
+data loss okay packet loss the package can be dropped if the memory
+11:55
+or buffer fills up okay it's just like when you go to my office hours I say oh
+12:01
+I can my my office can only outcome the 10 students okay if you are the 11th one
+12:06
+if you come in then I'll just kick you out okay so that is why the loss happens
+12:12
+in the test I may ask you
+12:17
+uh what are the reasons for queuing delay and what are the reasons for loss
+12:24
+okay uh you can see the reason for Q delay is because the incoming rate is much faster
+12:31
+than uploading rate Okay the reason that the loss can happen is because the memory or the buffer of
+12:38
+the voucher is for okay so then let's continue to discuss the two Network core functionalities
+12:46
+so the network code usually have two functions one is routing another one forwarding routine means determine the
+12:54
+source to destination routes taken by the packets okay um
+13:00
+the forwarding means move the packets from the wrong stress input to appropriate output okay so you may say
+13:09
+what are the differences what are the difference between routing and forwarding it is very different
+13:17
+um let's use the analogy of travel again okay so if you travel from New York to
+13:26
+Chicago sorry yeah sorry and if you travel from let's say Sacramento
+13:34
+okay to New York
+13:40
+okay and if this is Chicago
+13:48
+and if this is L A okay so you may decide to travel from Chicago
+13:55
+to New York or you want to travel from LA to New York okay so these are the
+14:03
+different rocks different ones when you choose the rubs that is the
+14:10
+routine okay for wording is like when you arrive at Chicago
+14:17
+okay she covered me how many incoming links and outgoing links to other cities okay
+14:23
+so when you arrived at Chicago Chicago need to decide oh okay so you need to go
+14:29
+to a biscuit okay in order to go to New York
+14:34
+so this is like forward forwarding you from the input ports to the output port
+14:41
+took to the appropriate output port and you may ask how could we do the
+14:47
+forwarding okay so routine is like determining the route okay foreign is like uh forward
+14:56
+the the packet from the incoming Port input port
+15:02
+to the appropriate output cost does this make sense it's like when you
+15:08
+arrive at Chicago Chicago will need to determine oh there are so many gates okay these are all the gates
+15:16
+foreign for you to to board again to fly again
+15:24
+how can we determine the route right who will determine the route the routing algorithm will determine the route and
+15:31
+who how can we determine the forwarding how can we do the forwarding okay I haven't talked about that part yet so
+15:38
+when we do the forwarding here for this example analogy you know okay I want to forward this person to this gate okay
+15:47
+how do we determine that uh in in networking it's similar things in networking we have something called the
+15:53
+local forwarding table local foreign people will check the header value of
+15:58
+each packet okay so the header value usually contains for example the IP address later we are going to talk more
+16:03
+about that but for now you only need to know oh okay each packet may have a header value
+16:09
+and then the router will check the header value to decide the output link
+16:15
+for example this one is zero one one so zero one one means oh I need to forward
+16:20
+this package to up output link two that means this one
+16:25
+okay so that is how the forwarding is done and some of you may ask uh then how
+16:31
+can we determine this Local 4 on the table that is a great question so determining
+16:38
+local foreign table we have to use routing Amazon the
+16:43
+routing algorithm the router will basically run the wrong key algorithm to determine the local forwarding table and
+16:51
+then the router will follow this local community board to do the forwarding okay answer for how we will discuss this
+17:00
+later in the network layer okay in the one two three four probably the fourth
+17:05
+capture okay we will determine uh the how we can run rough calcium and then
+17:11
+determine the local following table okay next the last discuss another type of
+17:17
+core okay we just talk about the packet switching after there is another type of
+17:24
+Network code which is called circuit switching okay
+17:30
+so what is circuit switching um circuit switching is very special
+17:35
+okay for now let's say you have destination you have computer a and computer B they want to communicate okay
+17:44
+surface which is like reserved around for them
+17:49
+okay Reserve are right for them for example you can see now each link we have four links now okay this link
+17:56
+this is called a link and each link has a full circuit as you can see circuit
+18:01
+one two three and four
+18:06
+okay so each link has a four third circuits
+18:11
+if a wants to talk to B what we can do is we reserve
+18:19
+this link sorry this circuit and
+18:24
+this circuit so we reserve these two circuits for the
+18:30
+communication between A and B nobody else can use it only A and B can use
+18:35
+this to communicate so it's like telephone Network okay it's uh that means it's dedicated
+18:43
+resource okay and there's no sharing it has a certain like performance the
+18:49
+performance is guaranteed because nobody else is competing with you okay
+18:54
+you can use this this uh this link uh this circuit
+18:59
+um uh if you want okay and pay attention
+19:05
+because no sharing happens okay so this surface segment May idle may get idle if
+19:13
+no one is using it if a is not using this circuit okay nobody else can use it
+19:20
+so then the circuit is is it becomes idle okay so this is commonly used in traditional
+19:27
+telephony networks uh it is not used very often now okay it's not usable now
+19:34
+it's all like also time design any questions
+19:43
+okay so pay attention again circuits which is like reserved okay reserved
+19:50
+resources dedicated resources okay uh but when we see reserved or dedicated
+19:56
+that doesn't mean uh A and B will will take this circuit forever
+20:03
+okay no no it's not like that okay it's just the mains it's just the means
+20:10
+um uh this uh this this this uh this
+20:16
+circuit may be reserved for example for a certain time so between this for
+20:22
+example this is a second nobody else can use it okay between this second this is
+20:27
+a reserved for end okay or it can be um reserved in some other way for
+20:33
+example uh as as here we will see it can be frequency different okay so let's
+20:38
+talk about two ways for reserving Huawei is called free consideration
+20:49
+okay let's see if we have four users and then we we have only one channel how
+20:56
+can we allow for users to communicate at the same time if they all want to use this channel
+21:03
+what we can do is we divide the this entire channel into different frequencies okay then each user will use
+21:11
+its own uh frequency okay that's mommy another way is we do
+21:20
+time limit so time DNA basically means oh I can divide the time and
+21:28
+um so at the for example if each each uh bar here is just one second so then the
+21:36
+blue user can use this many seconds okay first seconds uh fifth second it's like that okay the
+21:43
+green users can do this okay it is reserved in that second for
+21:50
+the blue users of reusers okay nobody else can use that does this make sense
+21:57
+this is time table time with emitter might flexing and
+22:04
+frequency dividend might collection okay um let me give you an analogy
+22:11
+when you drive on the road so you may have one rope and we have so
+22:18
+many different types of cars driving on the road right foreign is like oh I have this many cars
+22:28
+there's many different uh types then I can divide this road into different
+22:34
+lengths different lens
+22:40
+okay for example I may have buses
+22:46
+on this line and small cars on this line and trucks
+22:52
+I'm listening okay they can only drive on their own land they cannot use others
+22:59
+lens okay that is the frequency given time remainder is like
+23:05
+okay I have only one Road okay so the first hour
+23:16
+for the first hour only buses can drive okay buses can be here for the entire
+23:23
+life can can use any any um we have no lens now okay
+23:31
+so the bus can drive in whatever way it is like it likes okay so the second
+23:38
+hour we will have smaller cuts to drive on the road nobody else can use this room
+23:45
+and the third hour only trucks
+23:52
+only trucks can drive on the road nobody else can use that so it's like that and
+23:58
+of course the fourth algorithm will help us again fifth we'll have cards again okay any questions
+24:10
+okay Okay so then for circuit switching and packaging
+24:16
+we know they are different package switching we do not do any reservation which is not dedicated resources if you
+24:23
+want to send something you can go ahead to send it but we cannot guarantee the resources are available for you
+24:31
+okay for circuit switching we will guarantee you have resources okay which
+24:37
+way is better okay which way is better the conclusion is
+24:43
+packing switching allows more users to use the network
+24:48
+okay um how do we know that we can do some
+24:53
+calculation okay now we assume we have a link that is one Mbps one m means one
+25:02
+mega bits per second okay so this is the benefit of the link
+25:08
+that's basically equals to 1000 kb per
+25:15
+second right one Mega beats equal to one thousand KB
+25:21
+then um we assume
+25:26
+if the user is active active means it wants to communicate it
+25:31
+wants to transmit data then this user
+25:37
+will use 100 kb per second okay
+25:43
+and also for every user the average time for it to be active is
+25:50
+just 10 percent of the time okay it's not always working right it's it will
+25:56
+works only for 10 of the time okay
+26:01
+um then in this case let's do some calculation if we are using circuit switching how
+26:09
+many users can be accommodate you think about this for circuit switching we need to reserve the
+26:18
+resource for the users so how many how many users can be accommodate
+26:27
+so basically we have in total 1000 kb per second this is the Total
+26:34
+Resource we have right and each one each user want to use
+26:40
+100 PB per second
+26:46
+that means we can accommodate at most 10 users
+26:52
+right so it's like you have 1 000 airports each person
+26:58
+wants to get 100 airports so how many people can you can you can give airport
+27:03
+you can give only 10 people okay so it's like that
+27:09
+very simple very straightforward but how about pack is switching
+27:15
+for package switching how many users cannot complete
+27:21
+okay so here we give an example if we have 35 users
+27:28
+if we have 35 users keep in mind again those 35 users are
+27:35
+not always working each user will only be active for 10 percent of time
+27:42
+okay and again if they are all working of
+27:47
+course we cannot we cannot accommodate that many users right as long as there are less there are 10
+27:54
+or less users being active then we are good okay because we can accommodate and most
+28:01
+10 users at the same time then you may want to calculate
+28:06
+what is the probability for more than 10 users being active at the same time
+28:14
+because if this probability is very big very high
+28:19
+that means it's not good because there are always more than 10
+28:24
+million for example there are always modern users being active then
+28:29
+then um there are some users who cannot use the resources right but if the
+28:35
+probability is a very low that's a good thing okay
+28:41
+actually if you do the calculation the probability for 10 users being active at
+28:48
+the same time is less than 0.0004 it's a very small probability
+28:56
+okay that means it's a good thing okay that means we can actually accompany
+29:03
+a lot of users because not many will be active at the same time
+29:09
+okay so some of you may ask how do you how did we get this value this value is calculated using the
+29:18
+probability Theory so basically for example if we have 11 users being active
+29:24
+at the same time the probability is a month 35
+29:30
+we randomly choose 11. okay and for the 11 users sorry
+29:40
+the 11 users we want them to be active at the same
+29:46
+time this is a 0.1 to the power 11. times
+29:52
+for all the others they have to be silent okay so that is 0.9
+29:58
+times all the others means the remaining 24 users
+30:04
+okay Plus if we have 12 users
+30:11
+being active at the same time so that is 35 we choose Tau randomly and then
+30:19
+0.1 to the power of 12 times 0.9 to the
+30:25
+power 23 because 23 also need to be silent plus C
+30:31
+35 which was 13 0.1 13 0.9
+30:37
+[Music] uh 22 plus continue until you are done
+30:44
+with all 35 users okay that's how we get the probability
+30:50
+so for this class you do not need to understand or remember this one no need
+30:56
+okay no need to remember the formula okay this is just to to uh show you how
+31:03
+we get the probability so the takeaway message
+31:08
+take away message is pack your switching can accommodate much
+31:15
+more users than circuit switching as you can imagine okay
+31:20
+but is package switching uh a slam dunk
+31:26
+winner okay we will say not naturally but most of the time packs which is better than
+31:33
+circuit switching okay package switching is great for birthday data
+31:40
+um so for example uh if you want to send a lot
+31:46
+of data the video data for example a lot of data I mean in a very short period
+31:51
+okay then package switching is is of course much better because you don't need to reserve things for others you
+31:59
+only need to utilize the resource as much as possible okay and it's very simple there is no
+32:06
+core setup for circuit switch if you want to share data you want to transmit
+32:12
+it and you have to set up a call first okay
+32:18
+um but the the the the down Point okay the
+32:23
+drawback of the package meeting is that you may experience the packet delay and loss because of the excessive congestion
+32:31
+you can imagine if a lot of users they all want to transmit data out then the network is too busy then in this case we
+32:38
+may experience the packet loss and delay okay um so in this case we may want to
+32:44
+address that issue what if packet is delayed what if a packet is lost so we
+32:50
+may need some protocols to address that issue um the protocols is called reliable data
+32:56
+transfer protocol okay and we may also need to do some congestion control to avoid a lot of users
+33:04
+overwhelming the network at the same time okay so that is congestion control
+33:10
+uh so then the question becomes oh how can we
+33:15
+accommodate more users while we can steal uh guarantee the performance okay
+33:23
+this is like the circle like Behavior how to provide circular Behavior which
+33:29
+means guarantee the performance while we can still accommodate more users
+33:35
+uh unfortunately this is steel and unsolved problem okay
+33:42
+uh the the researchers are still working really hard to address this problem
+33:49
+okay um so that's all about the package meeting and the circus meeting

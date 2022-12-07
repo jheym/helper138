@@ -1,0 +1,788 @@
+0:02
+foreign it talks about the major application of
+0:10
+email and basically we will discuss some of the protocols like smgp pop through
+0:17
+IMAP and we will show you how the email works okay some of you may think oh okay
+0:24
+when I send an email to somebody else then the email is going from my computer
+0:32
+directly to the other computer is this true that is not true okay that is not
+0:38
+correct actually there are something in between between your computer and the
+0:44
+other computer okay so let's see what is happening what is the entire process for sending email firstly for email you
+0:51
+should know there are three major components you have user agent user agent means
+0:58
+those um mail also known as a mail reader okay so for example Outlook maybe the user
+1:06
+agent the iPhone mail client may be the user agent the user agent is the one you used to read emails compose emails send
+1:15
+emails Etc okay so that is the software or the application you use to do those
+1:24
+kind of composing editing reading things okay so that is the user agent that is a
+1:29
+one very important component this one this user agent is similar to
+1:35
+the wire of to the web browser in web service okay and then the second
+1:43
+component is mail server so mail server are the ones to help you send email out
+1:51
+and the mail service will exchange emails later I will show you the entire process then you will know how the mail
+1:58
+server work okay so basically on mail server on each meal server you can see
+2:04
+there is a outgoing message queue and also a user mailbox
+2:10
+okay so the ongoing message queue is basically a queue
+2:16
+coding all the outgoing emails so those emails may all be sent out one by one
+2:22
+okay and then the user email box is uh is just like your mailbox at home right
+2:30
+so so the poster Postman will send those mails into the mailbox so you use those
+2:38
+user mailbox to receive mails okay so to receive emails usually each account has
+2:46
+a one mailbox okay so then those mail server will assign the emails to each
+2:54
+user okay so that is the two things with the email server okay
+3:00
+and again those are just machines okay user agents is on a computer and mail
+3:06
+server is just a one machine um in addition to those we also need
+3:11
+some protocol to help them understand each other okay the protocol we use is
+3:18
+called simple mail transfer protocol okay so those are the three major
+3:26
+components for email and now let's look at
+3:32
+now let's look at the mail server okay the mail server as I mentioned contains
+3:39
+the mailbox a message queue okay and also it will implement the SMTP
+3:46
+protocol so the mailbox basically contains the incoming messages for user the message
+3:52
+queue will have outgoing messages okay the SMTP protocol is between the
+4:01
+mail servers okay or sometimes between the user agent and the mail server okay
+4:07
+so basically in this SMTP protocol we also have client and server client is
+4:14
+the one sending mail out okay and the server is the one receiving the mails
+4:21
+okay so that's how we classify the clients and servers
+4:27
+then for SMTP for SMTP SMTP is a protocol and application layer
+4:35
+if you still remember the five layer
+4:51
+okay if you still remember to have five layers we have application here transport layer Network layer data link
+4:57
+layer and also the physical layer so add application layer we know we learned the protocol step right we said for each
+5:05
+layer we need some protocols okay for application layer if if you still if you
+5:12
+recall what we have learned in the web service okay application layer the web
+5:17
+service is using HTTP do you remember
+5:22
+and transportally as we said it will use usually it will use TCP because TCP is
+5:28
+reliable right so that is for web service then how about for email
+5:37
+for email pay attention the application layer is using SMTP
+5:48
+of course later we will learn there are actually some more protocols for example popular IMAP they
+5:56
+are all the protocols used for email but here the most commonly used one is SMTP let's discuss this first okay
+6:02
+application layer we can use SMTP and then transport layer
+6:08
+what kind of protocol should we use should we use TCP or UDP
+6:15
+the answer is a TCP why because TCP is
+6:21
+reliable for email service of course we cannot afford losing data right so that's why we are
+6:28
+using TCP okay all right and also based on what we have learned
+6:35
+from the sake programming assignment we know those applications will when they are
+6:41
+um communicating they are the Motions are actually listening to a port right
+6:46
+so for example the server we are listening to a port and the client will also use a port to connect with the
+6:53
+server so then for web service we know the port used is 80. that means the server is listening to
+7:00
+Port 80 okay of course we do not limit the port used by the client the client
+7:06
+can use like a random Port okay but server will always web server will always listen to Quality
+7:12
+for email is similar okay the email server will always listen to Port 25.
+7:22
+okay 425 the client client can use other phone numbers that
+7:28
+is also fine okay and uh for SMTP it's using direct
+7:34
+transfer which means if the SMTP is used between two servers okay two servers
+7:40
+then the sending server will communicate directly with the receiving server okay and also there are three phases of
+7:47
+transfer the first phase because it is using TCP
+7:52
+okay so firstly we know if you it is using TCP it must establish a connection
+7:58
+first okay before the data exchange they must firstly establish a connection the
+8:04
+connection is like establish a pipe between these two machines okay so that
+8:09
+is the handshaking's phase so this is a four
+8:18
+foreign okay handshake is used to establish TCP
+8:25
+connection after the connection is established then they can transfer messages they can exchange the messages
+8:32
+okay finally after everything is done we will close this uh connection okay so
+8:39
+those are the three phases of transfer and then for the interaction uh basically they will use commands and
+8:47
+response all those commands and responses are in Oscar code so it's it's a it can be understood by human being
+8:54
+okay it's just like HTTP do you remember in HTTP we have the request message
+8:59
+which contains get Etc okay and we also have the response message which contains the status code
+9:06
+and all those phrases it's similar for SMTP is the same thing we will have
+9:12
+requests or commands and then we will have response from the server so the
+9:18
+server will respond with some status code and also phrase explain explaining the status code okay uh those are all
+9:26
+the information you need to know now let's look at an example this example will show you how the email is
+9:34
+really so how this how the process is for for
+9:40
+the email okay so firstly we have a center Alice
+9:47
+and we also have a receiver robot okay
+9:52
+now we are just looking at one way okay Alice is sending a message to Bob
+9:57
+so the first step Alex will need to use the user agent
+10:03
+to compose a message to Bob at some school.edu
+10:08
+okay and then Alice is a user agent will send this message to her mail server
+10:15
+the message is placed in the message queue so basically
+10:21
+this message is put here in the message queue
+10:27
+then the client side of SMTP which means client-side which means here because
+10:33
+Alice is sending right so that means L is email server is the client side so Alice mail server
+10:41
+will need to open a TCP connection with Bob's mail server
+10:46
+okay and say hey can I connect with you I have something for you okay and Bob's
+10:52
+mail server say sure let's connect and then they establish a connection after that after that the SMTP client which is
+11:01
+the analysis mail server we all sent the message over this TCP
+11:07
+connection and put it into the mailbox for Bob
+11:17
+so this can be Bob's mailbox okay So eventually eventually Bob will invoke
+11:26
+his user agent which can be outlooked for example to read the message okay
+11:31
+probably I'll see hey do I have any messages that the mail server girl say
+11:36
+yes there is one incoming message to you okay this is sent to Bob that is the
+11:42
+entire process okay here in this process
+11:48
+the Alice may use SMTP
+11:53
+to connect to Alice's mail server and Bob
+11:58
+Bob's mail server and Alice mail server may also connect with each other using
+12:04
+SMTP okay the protocol used between
+12:09
+Alice melson and Bob's Master is also SMTP the protocol between both male
+12:15
+server and Bob's user agents um is not SMTP we'll we will explain
+12:20
+this later why okay so currently you need to know okay SMTP is you can be
+12:26
+used between LS user agent and lsnl server and also
+12:32
+um Alice's mail server and Bob's mail sir okay so those are the
+12:39
+things you need to know first now let's look at the SMP interaction okay pay attention this is SMTP
+12:48
+interaction which means this can happen between
+12:53
+Alice user agent and Alice's may also work or between Alice email server and
+13:01
+Bob's mail server okay so this is an SMTP protocol this
+13:06
+can be used between two machines okay so now let's look at the uh the entire
+13:14
+introduction okay so firstly s represents server
+13:21
+C represent light
+13:28
+okay the server person is saying 220 hamburg.edu this is like a
+13:36
+self-introduction or the 220 is the response code and it is introducing
+13:42
+itself say hey I'm hamburger.edu okay the client will say hello to be polite
+13:49
+right say hello this is uh Crips Dot from so it is basically introduced it itself
+13:56
+the client is introduced himself okay and then those server will reply with
+14:02
+250 again this is the status quo so the server girl say hello pretty stuff from
+14:09
+pleased to meet you okay then the client will say hey I have
+14:14
+one mail okay this mail is from
+14:20
+Alice at prep stuff run okay and pay attention pay attention here
+14:25
+hello h-e-l-o and mail from are all commands they are commands used for SMTP
+14:33
+Direction it's just like the get in the web service in the HTTP request
+14:41
+message okay this this is something you cannot change so some of you may think oh there's a typo in hello no this is
+14:49
+how we write it okay hello it's hel it's not h-e-l-l okay
+14:54
+and then after that the server say um okay let me check the sender's email
+15:02
+address Alice at crypto from seems okay so it sends it says the sender is fine
+15:07
+okay sender okay then the client will say okay let me
+15:12
+tell you who is the recipient who is the receiver so this receiving email address
+15:19
+should be Bob at hamburger.edu so rcpt 2
+15:24
+receipt 2 is is another command telling the receiving email address okay then
+15:33
+the server reply with 250 Bob hamburger.edu resume okay so basically
+15:39
+it's checking the receiver's email address and see everything is fine after that after that the client will say data
+15:47
+so what does this mean this is another command data means I'm
+15:53
+ready to input the data the data for the message okay then the server will say
+15:59
+please enter your your mail okay and the mail with a DOT or a period on
+16:07
+the line by itself okay so that means what that means okay you can start enter the email
+16:13
+but how do I know um which is the end of your
+16:19
+email right so you can denote the end of email with a single period online by the
+16:25
+by itself then the client will say okay let me type in the data okay data is
+16:42
+okay this is the message content data is do you like catch up
+16:48
+how about pickups okay that's that is the message content after that
+16:54
+it use one single Dot or one period on a
+17:01
+line by itself to denote this is the end of the message
+17:12
+okay so then the server can see okay the message is accepted for delivery
+17:19
+then the client say okay I'm done so client can quit the server will say
+17:26
+221 hamburg.edu Closing Connection so this means okay this entire session stuff okay usually here if the client
+17:35
+has another mail okay if the client has another male then
+17:40
+client will directly say mail from again here
+17:50
+received two data so it can continue before it quits
+17:56
+okay if it has another email for that mail server if nothing else then it just
+18:02
+quit um so you can see uh this can be this can it can continue for more than one
+18:09
+email okay so this is the entire process okay we you can actually try this at
+18:16
+home okay you can try to talk to a email server
+18:23
+um so let me give you a demo right now so in this demo I'm going to give you a
+18:30
+demo in this demo okay I'm talking to a server directly so the
+18:36
+server is
+18:44
+this is the receiving server as you can see here um
+18:49
+smtp.csus.edu I'm going to talk to this server directly okay
+18:55
+and when I'm talking to this server directly foreign
+19:05
+here to connect to that server directly
+19:11
+with telnet
+19:17
+okay with the telnet and and here as you can see I bypass
+19:25
+this entire thing I bypass the client user agents and also
+19:31
+the client mail server okay that means I don't want to go through the
+19:37
+authentication because if you are using uh the user agent at the center side you
+19:43
+have to firstly log into something right and then talk to the mail server Alice
+19:48
+Sanders mail server okay and then the center may also revealed talk to receive resume server but here in the demo I
+19:56
+want to show you I can actually bypass the sender's mail server and directly
+20:02
+talk to the receivers mail server to send a message to the receiver
+20:08
+okay and then I can show you um I can indeed receive a message okay
+20:15
+in my email address in my Xiao y a n dot
+20:20
+dot sign in your email address okay that is the content for the demonstration let
+20:25
+me show you that okay so this is my terminal this is my
+20:31
+mailbox currently I have one just one email there now I want to demo you
+20:37
+the process okay let me tell nuts
+20:43
+to SMTP
+20:53
+and pay attention pay attention I have already used the VPN to connect back to campus network if you do not connect
+21:00
+back to campus Network currently it does not the campus network will block you it does
+21:06
+not allow you to talk to the server directly I believe this is a full security reason okay
+21:11
+and now I'm trying to talk to smtp.csus.edu at 25
+21:18
+yes you can use Global protect to connect okay and then you can see I'm now connected
+21:27
+to that machine okay to that machine so what I can do next to remember the first
+21:32
+uh you can see firstly it says 220
+21:38
+smtp.sexlink.csus.edu this is the self introduction this is the 220 hamburger.edu part so it is introducing
+21:45
+self it says okay the real name for me is actually
+21:50
+smtp.stacklink.csus.edu okay so then the next thing I need to do is I need to be
+21:58
+um polite I say hello this is gmail.com I pretend to be gmail.com as you can
+22:04
+pretend to be something else okay I pretend to be gmail.com
+22:10
+and this hello I'm using capital letter but actually you can use lowercase it doesn't matter okay but I just want to
+22:16
+distinguish the commands with the other uh information here and you can see the server is seen hello
+22:23
+back okay let's see hello back and then I say mail from I have a mail from
+22:36
+x-i-a-o-y-a-n20060 gmail.com this is my personal email address okay
+22:43
+pay attention I didn't sign into gmail.com I'm just pretending I'm I'm this in this
+22:50
+Gmail address but I didn't really sign into Gmail and then the sender said that the server
+22:58
+respond with Center Okay so and he said it's okay then I can see receipt to I
+23:06
+want to send an email to xiaoyan Dawson at csus.tvu
+23:12
+okay and then it checks the recipient email
+23:18
+address and say this is okay the next thing I'm gonna do is say okay I have
+23:24
+some I'm ready to input data okay then the server say okay start the
+23:29
+email in the mail input end with uh this single Dot
+23:35
+on one line by itself so then I began to type in my
+23:40
+data subject test okay
+23:46
+this is just a test message okay
+23:53
+okay and you can see it is cute for delivery
+23:58
+okay I want to check my email address and see if I receive that sometimes because this
+24:04
+is sent this is sent through uh it's not directly through the uh
+24:11
+original way it may goes to like junk you see this
+24:18
+okay this is actually the junk mail
+24:23
+this is the meal I received okay so and this close recipient but you can see
+24:29
+this is the test this is just a test message okay so I can delete this
+24:35
+if you have other emails you can directly continue say mail
+24:40
+from ah let's say
+24:51
+about what whatever.org okay
+24:57
+and then you can do receipt two
+25:08
+okay and then you can see I'm ready to input data
+25:14
+I can see subject mutation
+25:23
+okay foreign
+25:32
+house
+25:43
+okay then we'll end this message it is cute for delivery again
+25:53
+not sure if comes in see you can see each other
+26:00
+as you can see this email is also received okay although it's marked at
+26:06
+junk okay but you can see I can indeed directly talk to the mail to the mail
+26:13
+server exact state dot edu okay so the reason is marked as
+26:18
+junk is because my user agent is actually deploying some
+26:23
+of the filtering mechanism to filter those messages that are suspicious okay
+26:31
+so that is what I want to demo as we mentioned here it is directly
+26:38
+connecting to the receiver's mail server it didn't go through the demo in a demo
+26:44
+we didn't go through the sender's mail server that means we didn't do any authentication okay that will create a
+26:52
+security problem as you can see just now I can I can use Biden's mail server I
+26:58
+can so find those email address I can use anybody email address I can use your
+27:03
+professor's email mail email address or your friend email address or anybody
+27:09
+else email address so you can pretend to be anybody that is called emails booking okay email
+27:17
+supporting when you can pretend to be anybody then you can do a lot of bad things for example you can include a
+27:25
+link in that email and say hey you need to change your
+27:31
+password asking you to connect click on that link
+27:37
+and to change the password but actually that link may be a phishing website
+27:44
+okay it may direct you to some fake website for example to your
+27:51
+bank to chase.com and then you type in your username password then they
+27:56
+directly connect collected connect collect your username and password then they can use your username and password
+28:03
+later to sign into your bank account and withdraw the money okay so you can imagine what kind of
+28:09
+things can happen that's why in my class I always tell my students
+28:15
+when you receive an email from somebody no matter how how much you trust this
+28:22
+person or you trust this email address do not directly click on that link provided in
+28:30
+the email okay try to type the link on your own
+28:35
+okay type the URL on your own in the web browser and then click the use the the
+28:41
+then and you can change the password what do do something else okay
+28:46
+because you never know you never know they may just provide like for Amazon for example amazon.com they can see
+28:53
+Amazon um a.com you you may not notice this one
+28:58
+actual letter in that okay but it may direct you to some fishing website and
+29:03
+sometimes this link may direct you to download some children horse onto your
+29:08
+machine okay that's also possible so pay attention to that that is a One Secured
+29:13
+challenge actually okay um so here in this uh this is this is a
+29:20
+screenshot basically shows shows you the entire process we have just demoed if
+29:26
+you are interested you can do this on your own okay you can see if you can receive the email and this is what I did
+29:34
+you can use any fake email address it doesn't need to be legitimate email address okay but if it is a legitimate
+29:41
+email address then um it can be useful for email spoofing okay
+29:46
+some final words about SMTP SMTP use persistent connection do you
+29:54
+still remember the persistent HTTP and non-person hdp when we talk about the
+29:59
+web service right persistent GTP allows you to send
+30:05
+multiple objects in one connection okay
+30:11
+um and non-president HTTP does not allow you to do that you you can only send a one object in one connection
+30:18
+okay so as MTP is using Precision connection that's why as you can see in
+30:24
+the demo I can send two emails in one TCP connection and after that I can
+30:30
+close the connection right so SMTP requires the message to be asked we all
+30:36
+know that and we know that it also uses a single period to determine the end of
+30:42
+message okay so if you compare this with HTTP HTTP is using a pony protocol SM is
+30:51
+used in printing protocol which means foreign
+31:03
+from the server okay and smtpu is a pushing protocol which
+31:08
+means it's actually the silver pushing uh oh sorry it's actually
+31:15
+um the the client side is pushing the mail to the server side okay as you can see
+31:22
+here you can see here Alice is our user agent is pushing to at
+31:29
+least mail server and my Alice mail server is pushing to Bob's mail server
+31:34
+so these are all pushing that's why we call SMTP is a pushing protocol for web service basically the
+31:42
+final Firefox the client will poor or request a web page from the server
+31:49
+it's different direction okay so pay attention to that in the test I may ask you is HTTP a cooling protocol pushing
+31:57
+protocol okay and they both have the Oscar command and
+32:04
+response interaction the stats codes okay uh in HTTP each object is encapsulating its own response message
+32:10
+and the SMTP multiple objects can be sent in multiple
+32:17
+multipart messages okay and this is the message format you may
+32:22
+have the header and body we know the header lines are usually true from and
+32:28
+subject okay a position these are different from the commands these are different from
+32:35
+the mail from 360 commands Okay these are just the header lines showing the message okay the body is in Oscar code
+32:43
+ask the characters okay so that is uh that is the
+32:49
+um SMTP and pay attention as we said
+32:55
+this is a pushing protocol this is a pushing protocol but between these two can we push
+33:03
+we cannot okay between these two we cannot push the reason is because
+33:09
+when we push we will need to make sure the other side is always on okay for
+33:16
+example when Alice is pushing this Sandra's mail server is always on
+33:22
+so that's why he she can push and when cellular muscle is pushing the
+33:27
+receiver's mail server is always on that's why she can push this machine can push okay but when
+33:39
+when the receiver's mail server wants to push a message to the user agent can we
+33:44
+push we cannot because the user agent may not be always on
+33:49
+it may be off if it's off then the receiver's mail server has to try again again and again it's a list of resource
+33:56
+it's like if the person Personnel is trying to deliver a package for you and you need to sign
+34:02
+Okay then if you are not at home then they have to try again again so apparently that's not a good idea a
+34:09
+better idea is okay do not push let's pull so how do we pull
+34:15
+it's basically the user agents will connect with the mail server
+34:23
+and ask do I have any messages when this user agent is on it will ask do I have
+34:29
+any messages that if yes then the receivers may also will give send this
+34:35
+message to the user agent okay that's the reason why we cannot use SMTP
+34:45
+because SMTP is a pushing protocol so we cannot use pushing protocol between these two we cannot use a push in
+34:53
+protocol between the receiver's mail server and the receiver's user agent
+34:58
+okay then you may answer them what can I use pay attention you can see between these
+35:05
+two between the centers your region the center smell server we can use sntp because this may Observer Alice's email
+35:13
+server is always on so you can push okay and then between these two we can
+35:19
+also use SMTP because the Bob's email server is is always on that's why you can push
+35:24
+okay here we cannot push because the
+35:30
+client may not be there okay we don't want to try again again again then here what we can use between the
+35:37
+receivers mail server and the receivers user agent um is something called mail access
+35:43
+protocols so male access protocols basically means the user the receiver's user agent can
+35:54
+check with the receiver's mail server and ask hey do I have do you have a email for me okay if there is a email
+36:02
+for the receiver then the the mail server receivers may also will send this
+36:07
+email to the user agent okay um so there are several different types
+36:13
+of male access protocols okay the first one pop
+36:19
+full name is post office protocol emergency forward second type is called
+36:25
+internet mail access protocol IMAP okay this is a very commonly used right map
+36:31
+is a very commonly used the third type is the one Rams Dimension http okay we
+36:37
+can use HTTP why because HTTP is a pulling protocol so let's look at each
+36:43
+one for pop okay for pop through we may have authentication uh sorry
+36:49
+authorization phase in authorization phase basically what we do is to
+36:54
+authorize authenticate the user and authorize it okay so for example the
+37:00
+server will say Okay server is ready okay and then the clientele will say okay my username is Bob the server check
+37:07
+it say okay and client will say the password is hungry
+37:13
+okay uh then let's check again say okay that's the the username and
+37:18
+password are correct and then uh the user can successfully log on okay and
+37:24
+the transaction phase um the the user
+37:29
+and this around the client will basically check the content of the email okay so firstly the client can say list
+37:35
+okay means could you please list the emails for me okay then the server will
+37:40
+reply with 1 4 98 2 9 1 9 12. so those
+37:46
+are the emails that are available to this user and then with a single period this
+37:52
+denotes the end of the list after that the client will say oh you filled the email one place okay then
+37:59
+third reversing in a mess with one content with a single period as the end of this message so this client can say
+38:07
+okay delete one okay then clients will see it then we'll shoot you uh here the server will send
+38:16
+in the message to content okay with a single period Then client will say
+38:21
+delayed to line us equate and then the server say okay so this is the entire
+38:27
+process then in this process we can see uh how the client is authenticated and
+38:33
+how um uh emails are retrieved by the client
+38:39
+okay so this is the pop third uh for popular what what we just look at is actually
+38:47
+called the download and delete mode download and delete means uh we download
+38:52
+the email to the user agent and we delete this from the server as you can see here it's
+39:00
+deleted from the server so in this case if you want to change the client and you
+39:06
+want to retrieve the message again you cannot because of the the messages are already deleted from the server okay and
+39:13
+property can also enable a second Mode called download and okay found that cap
+39:18
+means we download the message okay and we also keep these messages still on the
+39:25
+server on the email server then in this case if you change it to a different client for example you change to a from
+39:33
+your phone to your laptop or whatever you change the different clients then you are still able to download and
+39:40
+access those emails because they are still there okay and pay attention
+39:45
+popular is stateless stateless means it doesn't remember
+39:51
+the status of the previous client requests okay so it's stateless
+40:00
+then for IMAP IMAP is much more complicated okay
+40:06
+so basically for IMAP it will keep all the messages in one place and the server
+40:12
+side okay and this aligns allows the user to organize the messages in folders
+40:18
+and also very interestingly IMAP is uh is not a stateless protocol it actually
+40:25
+remembers the user State across different sessions okay that means for
+40:30
+example we all know if you're using succeed emails sometimes you create a
+40:36
+new folder for organization right in the in the uh in Outlook or in the in the
+40:44
+web page directly then in this case in this case um if you log off the next time when you
+40:52
+log in again the folder that's still there okay that's because IMAP is used as the retrieving protocol okay and this
+41:01
+also permits a user agent to obtain the comp components of the messages
+41:06
+okay so that is the IMAP uh now uh the last thing let's look at is the
+41:13
+web-based email okay um some of you may say oh I didn't use
+41:19
+any user agent I just use a web browser for example I use email uh Gmail for
+41:26
+example okay then in this case what you use is actually the protocol between your client and your mail server is
+41:35
+actually the http okay for example may use Gmail web-based
+41:41
+Gmail this is using HTTP to send message out and also you are using HTTP to to
+41:50
+retrieve to retrieve the emails okay that is it that is the um
+41:57
+web-based email but between the servers between the servers pay attention you
+42:02
+are still using SMTP okay you cannot use HTTP because there
+42:08
+are email servers did not run web service clients so let's summarize what kind of
+42:14
+protocols can be used between the centers user agent and the centers may
+42:20
+also between the century muscle around the receiver's mail server and also between the receiver's email server and
+42:26
+the receiver to digits so water can be used what can be used between the
+42:32
+sender's user agent senders mail server SMTP
+42:38
+okay so can we use anything else here nothing else right we cannot use
+42:45
+anything else we cannot of course we cannot use use pop or IMAP right because those are just for male access to
+42:52
+retrieve the emails it's not worth any emails okay okay now look at the senders mail server
+42:59
+and the sender a receiver with mail server between them what kind of protocols can we use only SMTP can we
+43:07
+use anything else HTTP pop IMAP no okay
+43:12
+so how about we turn the receiver email server and the receiver's user agent
+43:18
+in addition to http we can also use pop
+43:24
+and IMAP so this will be a test problem
+43:30
+I will ask you in a test I will ask you what kind of protocols can be used
+43:35
+between for example the sender's user agent and senders muscle
+43:40
+okay so I may say oh I can use HTTP between the sender's mail server and the
+43:46
+receivers mess over is this correct or wrong all right okay so that's everything
+43:54
+about email we are continue to talk about

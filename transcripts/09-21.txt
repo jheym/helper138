@@ -1,0 +1,626 @@
+0:03
+if the server or client crashes their views of state may be inconsistent okay
+0:09
+so that's the main thing that's why we want the protocol to be as simple as possible okay
+0:16
+so uh any questions so far
+0:23
+okay all right so now let's talk about the two types of HTTP one type is called
+0:30
+non-persistent either type is persistent so what are their difference
+0:36
+um for non-persistent http each time when we establish a TCP
+0:44
+connection we can send at most one object
+0:50
+okay and then we have to close the connection that means if this web page has multiple
+0:57
+objects let's say 10 objects okay then each time we can only get one
+1:07
+object and we have to make 10 Connections in order to get that 10
+1:13
+objects okay it's like when you call your mom
+1:18
+say uh you want to request something for lunch okay uh you say every time you
+1:26
+make a phone call you can only request for one object the first time you call
+1:31
+your mom and say Mom can I have an egg okay then you
+1:37
+uh you you you you you you should drop the phone call okay and then the second time you make a phone call again and say
+1:44
+Mom can I have a box of milk okay then the phone call is over and then third time we want to request to
+1:51
+for example then you will see Mom you may make a phone call again say Mom can I have an apple
+1:56
+okay so for our every object you have to make a connection okay
+2:02
+persistent HTTP is different in personal HTTP multiple objects can be
+2:09
+sent over a single TCP connection between client and server okay
+2:15
+so that means if you have a web page that contains multiple objects okay you
+2:23
+don't you do not need to make multiple connections you only need to make one connection and then you will get a
+2:30
+multiple objects for example it's like you call your mom and say Mom can I have a neck uh and box a box of milk and an
+2:39
+apple so you request for them together and then your mom will deliver all those things together to you okay so it's like
+2:45
+that uh let's look at an example of the non-processing hcp question so far
+2:57
+okay so now let's say this user is requesting
+3:03
+for this web page okay this is the URL and this web page
+3:10
+you can see this home.index is the base
+3:18
+HTML file okay this file
+3:23
+contains or refers to 10 jpeg images Okay can it contains not only the test
+3:30
+but also refers to 10 jpeg images so as you can imagine now we have actually in
+3:37
+total we have 11 objects the index file itself and 10 other images okay so then at the very
+3:46
+beginning the HTTP client initiates the TCP connection to the HTTP server
+3:52
+at some school.edu on Port 80.
+3:58
+paying attention uh here the client has to initiate the
+4:05
+TCP connection first okay then the server add host some school.edu
+4:13
+is waiting for the TCP connection at Port 80. so the server is constantly checking Port 80 and see if there is
+4:20
+incoming request now we have I'm Inc incoming requests then the server will
+4:25
+accept the connection and notify the client to say yes let's connect okay
+4:30
+then the clientele will say oh okay uh the connection is established so the
+4:36
+client can now send the HTTP request message to say hey I want to get this
+4:41
+home.index web page okay so this request is pushed into the
+4:49
+socket do you remember the socket the socket is like a door between the
+4:54
+application layer and the transporter layer right so um so then this required message is
+5:01
+pushed into the transport layer okay then further the transporter layer and the layers below will take care of this
+5:08
+request message right so the message indicates that client the
+5:14
+client wants object some Department slash home.index okay now the server
+5:20
+receives the request message and then the server say oh okay I need to prepare for uh for the response okay
+5:29
+so then the several forms a response message containing the requested object
+5:34
+which is the index file and sends a message into the socket
+5:40
+again the server side it needs to push push the message into
+5:46
+the socket you remember this is application layer transport
+5:52
+layer okay between application layer there is something called socket
+5:59
+Right add to the client sign at the book and the server side they both have a socket right so then the server push
+6:06
+this response message through the socket and then this message is sent to the
+6:12
+client okay after that the HTTP server say oh okay I'm done with my job so it
+6:19
+will close the TCP connection pay attention so far we only sent out
+6:26
+one object which is the index
+6:31
+um the index file the home.index file okay
+6:37
+uh and the index file still refers to 10 more jpeg objects we haven't sent those
+6:45
+jpeg objects yet okay so now the HTTP client received the response message
+6:51
+containing the atmf file it will displace the HTML and then it will also
+6:57
+pass the HTML and find okay in addition to this HTML file it also refers to 10
+7:06
+jpeg objects okay then with this information
+7:12
+what the client will do is go back to Step One repeat each step from one to five
+7:21
+in order to get the 10 jpeg objects okay
+7:27
+so um now let's look at the response time
+7:32
+okay let's look at the response time firstly let's define
+7:38
+this rtt do you still remember rtt I think I mentioned this before round
+7:44
+trip time okay your level will discuss
+7:50
+response time we mean the the round trip time okay round trip time means the time
+7:57
+for a small package to travel from client to server and then back so you're
+8:04
+at the back it's not the package coming back it's the response coming back okay how about the response time
+8:11
+which means if we want to get all those objects the one etm file and the 10
+8:18
+reference the JPEG files if we get this full web page downloaded
+8:25
+then how much time how much time do we need
+8:31
+okay so before we end we we go go further to discuss that let's first
+8:38
+discuss one definition that is called rtt a
+8:49
+okay this is the time for small package to travel from client to server and then
+8:56
+back this is a like one RTG it's like when you write a letter to your friend
+9:02
+in New York and then your your friend is replying you a letter okay then finally
+9:08
+you receive the reply letter this is a round trip time okay
+9:15
+so as you can see as you can see in one H in the non-person HTTP okay we need to
+9:22
+we firstly need one rtt to initiate the TCP connection so the first one this one
+9:29
+is for making the connection it's like for you make a phone call with your mouth okay so can I talk with you the
+9:37
+server say yes sure let's talk this is one rtt okay after that
+9:43
+after that we need another rtk to make the request for the web page right for
+9:49
+the HTML file so then the server will see the client will see
+9:57
+hey can I get this index file the server will say sure you can
+10:05
+this is another rtt right one rtt after that the server will in of course in
+10:13
+that um in that response message several will also sent out the data for the ATM file
+10:21
+right you you may imagine this is a this is a file it takes time to transmit
+10:27
+okay so then we can see we need a little bit time here to
+10:33
+transmit this object okay to transmit this object then in total how much height we need
+10:41
+for sending one object if you look at that okay in total we are we need
+10:49
+2 rtt plus the file transmission time
+10:54
+pay attention this is just for the HTML file okay
+11:00
+but we still have 10 objects to images right to 10 jpeg images to transfer okay
+11:08
+and pay attention for non-person http we need
+11:16
+this much time for each object because every time we need to make a new code we
+11:22
+need to make a new connection okay so that means for image one you
+11:27
+need two rtt plus file transmission time for email two you need
+11:32
+one or two rtt plus file transmission type so then if you have n objects in total
+11:42
+foreign objects are the same size but usually
+11:50
+they are not the same size okay let's assume they are the same size
+11:59
+okay then the total time
+12:06
+total time needed equals to
+12:19
+okay equals to n times 2 rtt plus the
+12:25
+file transmission time okay or you can see if they are not the
+12:30
+same size you can say 2 and rtt plus the file transmission time for all the
+12:37
+objects that's also fine okay any questions here
+12:49
+no questions okay the hot rod persistent http
+12:55
+for percent HTTP we know the server the server we'll leave the connection open
+13:03
+after sending the response okay that means that after the server sending the HTML file it will not close the
+13:11
+connection okay here for the client still want to get more objects the client can make
+13:17
+requests again okay the client can make a request again
+13:22
+so that in this case in this case if we think about the transmission time the
+13:29
+total time needed okay so then foreign
+13:42
+Ty
+13:48
+how many are how many connections do we need to make for all the objects
+13:55
+think about this how many connections do we need to make for all the objects
+14:02
+we need only one right we need only one connection
+14:11
+equal one rtt for making connections plus after that you can transmit
+14:19
+multiple files right you can request and uh the client can request for multiple
+14:27
+objects and for each object again we need one rtt plus the file transmission
+14:32
+type right so now if we consider we have n objects the total time equals to rtt
+14:40
+rtt means for connection
+14:48
+so this rtt first rtt is for making TCP connection
+15:09
+the the second part is the rtt plus ftt this is the time needed
+15:16
+for the client to make a request to the server and also for the server to
+15:22
+respond and transmitted object okay if we have n objects then of course we need
+15:29
+n times uh rtt Plus ftt okay so this is the total Time for
+15:35
+persistent http so if you think about it if you compare this with the non-presidentiality we
+15:43
+basically save time for the TCP connection
+15:49
+okay so here you can see
+15:54
+every time we need to rtt but for percent HTTP we only need one
+16:00
+rtt as a verb again okay it's like for nine percent GDP
+16:06
+every time you need to call your mom okay uh when you need a new object so
+16:11
+then you need the time to make the phone call that is the extra compared to persistently CP as I said we made an
+16:19
+assumption that is these objects are the same size then you can do you can use this function okay
+16:25
+but if these objects are not the same size then the f t t will be different
+16:31
+for each object so one object may take an hour another object may use only five
+16:36
+seconds okay then in that case you cannot do a simple like and times something okay
+16:43
+then you will use uh you can see all the file transmission type for all the
+16:49
+objects okay uh then you do not do this kind of multiplication
+16:54
+uh oh one more thing I want to mention is that for none percentage GDP okay
+17:01
+usually the browser the browser can make parallel TCP connections to fetch the
+17:10
+reference objects okay so if it has 10 objects it can open 10 TCP connections
+17:16
+it's like you can open 10 uh tabs in the browser to request for for the object
+17:24
+okay the next thing I'm going to discuss is about the request and the response
+17:31
+message format Okay so we talk about the request message then how do we really make a request okay
+17:40
+um basically for the request message you can see uh the left part this part is a
+17:47
+is the is a one request message example okay so for the request message it is written
+17:54
+in Oscar it is human readable okay then there is
+17:59
+one line called request line this request request line is usually composed
+18:05
+of some commands let's get post or hat we will discuss
+18:10
+the other commands later okay but the first one I need to know is the get this is one command okay then after the test
+18:18
+you want to tell what things you want to get you tell the server
+18:25
+I want to get this index.etml object
+18:30
+okay if you want to get something else you can also specify it here so this is
+18:36
+a get and after that after that you need to specify your foreign here in this
+18:43
+example it is HTTP 1.1 after that you need to add a calorie
+18:49
+return and align fader slash on slash n to indicate this is the end of the get
+18:56
+line of the request line okay after that after the request line
+19:01
+we have a number of header lines okay those header lines includes including
+19:09
+information about this request okay so for example
+19:16
+this host is about the server so which what is the server you are making
+19:23
+requests from okay and you are making requests too so is this the this is then this is usually
+19:31
+the web server where you you put the hostname okay then the user agent
+19:36
+is what kind of client client program you are using for example this is this client is used in Firefox okay
+19:44
+so then those ones those accept things are talking about
+19:51
+the uh language the encoding method Etc so those those information okay
+19:59
+foreign means this is a persistent http
+20:07
+okay which means this connection will keep alive for 115 seconds probably okay
+20:15
+I don't know the units but most likely seconds okay and then
+20:21
+connection this is seeing again this is a persistent HTTP okay after that we add
+20:28
+a line region category term to indicate this is the end of the header lines so
+20:34
+this is the format of the request message I have given you the one shot lab
+20:41
+the worship lab includes um
+20:47
+uh it includes uh some basic operations okay and you will need to look into
+20:56
+those packets so one of the message you will look into is the HTTP request
+21:01
+message and you you are going to see exactly the same thing as you see here okay
+21:07
+um exactly the same thing I don't mean the information inside I mean this format is
+21:13
+exactly the same okay and if you look at this uh General
+21:19
+format again so how do we represent this because when we send this request
+21:25
+message this request message is basically a bunch of zeros and ones right then how do we represent that in
+21:31
+reality so we first method here
+21:39
+we put a get or some other commands here okay and then this is the URL
+21:45
+what else can be foreign
+22:01
+PNG okay that's also fine and the word number
+22:09
+can be HTTP 1.1 or 1.0 so basically you can see I'm I'm mapping that to here
+22:17
+okay after that you can see you have cut return and line fader slash R selection okay and after that
+22:25
+the second row the second row is you have the header field name the header
+22:30
+can be host it can be uh accept Etc okay then you have the header for
+22:37
+each header you have the value for each field you have the value and then you have category trendline fader okay
+22:43
+finally after all these are done you have another card return and line
+22:49
+failure to indicate this is the end of the HTTP request message okay and then you have the entity body
+22:58
+okay the antenna body uh sometimes or some data okay that you need to upload
+23:04
+to the server okay sometimes it's empty sometimes it may not be empty
+23:11
+and
+23:16
+okay so I mentioned get is one method there are
+23:25
+also other methods like post URL okay
+23:30
+and hats and more okay let's first look at the post method what is post
+23:35
+so the web page often often includes some form input so this this input uh
+23:42
+will need to be filled by the client okay so the client will need to upload
+23:48
+this input to the server usually this is done in the entity body so in this case we can use the post
+23:57
+method okay or we can also use the URL method the
+24:03
+URL methods is actually still is is although it's called UIL method but
+24:09
+still it's using the get in the master field so here I mean the method here is
+24:15
+still using get the difference is okay the difference is
+24:21
+if we are using like a regular get okay if you're using a regular get
+24:27
+method for example if you want if you're doing a Google search you want you want to search for monkey and another okay
+24:35
+then usually what you have to you have to do is you upload your monkey and
+24:41
+bananas keyword in the entity body okay in the entity body
+24:48
+that is you when you are using a regular get method okay but if you want to use
+24:55
+URL method now what you will do is you can still use get okay
+25:00
+you still use get but you will upload the keywords directly
+25:06
+in the URL okay so for example here you can see
+25:12
+this is the URL you will put in the uh in the UIL field so you can see the
+25:19
+keywords monkey and the banana is actually already included in the URL
+25:25
+itself so in this case you don't need to upload it into the entity body field
+25:31
+okay there is one question is this HTTP
+25:36
+request being sent during the first rtt or the second rtt that's this is a good
+25:42
+question so let's quickly review this again
+25:49
+the first rtt is for making TCP connection connection is for making the
+25:55
+phone call like phone call to your mom right so it's just saying hey can I connect with you the server say yes sure
+26:02
+let's connect that's that's the only thing they do in this rtt they do not
+26:07
+make any requests for objects okay so that in the second rtt after the
+26:13
+connection is is a is made is established then in a second rtt the
+26:18
+client will say hey can I get a web page it is making a HTTP request in the
+26:25
+second rtt okay so in this case I will say most of the
+26:31
+time most of the time we are making ATP quests in the second RTP
+26:38
+that this answer a question
+26:44
+okay good that's a good question
+26:50
+um we just mentioned the post method the URL method okay these methods are for
+26:56
+uploading uploading the form input okay you can use posts or you can use the URL
+27:03
+and there are some other methods in both HTTP 1.0 and 180 1.1
+27:10
+so for example for 1.0 we have get method post method and also
+27:16
+had method so this is where this method is very
+27:23
+interesting this one is asking the server to leave
+27:28
+the requested object out of response okay that means for example
+27:36
+um you are you you are the client is making a request of our
+27:42
+image okay the image may be huge maybe big right and then several very response
+27:47
+usually irregular get methods the server will respond with a
+27:53
+the object right and say hey this is the image here it is I'll send it to you so
+27:59
+then this image is transmitted to the client
+28:05
+okay of course it will take a very long time if especially if this is a large
+28:11
+object but we've had a method it is still asking the server about this
+28:18
+object and the server will still respond but the server will respond with all the
+28:25
+other information except the object the object is not included in
+28:30
+the response that means all the information are sent back but the image itself is not sent back
+28:37
+so then you may ask why do we use that why do we use a hat
+28:43
+okay most of the time most of the time this has is usually for like for example for testing debugging uh to to say if
+28:51
+this object is is available on the server okay but the object is not it
+28:57
+does not need to be really sent back to the client okay that is the purpose for
+29:02
+help and then for ATP 1.1 we have uh two more
+29:10
+uh so one is put put is to upload the files in entity body to the path
+29:16
+specified in the URL field this is also for uploading information another method
+29:22
+is delete delete is a delay to the file specified in the UIL field okay so those
+29:27
+are the methods used in um HTTP 1.1 and 1.0 any questions
+29:40
+okay um so for the response message as you
+29:45
+can see for the response message uh one line the first line is this the stance line
+29:52
+first line Stateline so it will indicate that version of HTTP and with a status
+29:58
+quo [Music] so this 200 is the status code
+30:05
+it means okay it means everything is fine the the
+30:11
+image the or the object you are requesting is available okay and I'm
+30:17
+going to send it to you that basically it's many okay so then you can see later after this status line you can see a
+30:25
+number of header lines so in the headlines again we have some information like a date
+30:32
+date is the response date and time okay server what is the server Apache
+30:39
+server in this case last modified this is very important foreign
+30:46
+date and time for the object this means this object was last modified
+30:54
+in 2007. okay and this is very important
+30:59
+information later I'll tell you why okay for now you don't need to know after that now you can see e-tag accept ranges
+31:07
+content length Etc and then you can see keep alive again this indicates this is
+31:12
+a HTTP processing http time out equal to 10 Max equal to 100 so
+31:20
+your latest means okay after I'm done with this object I'll wait for 10 more
+31:26
+seconds okay I'll keep this uh uh connection open for 10 more seconds
+31:32
+and within this 10 more seconds you can if you if I receive more requests I will
+31:37
+respond if I do not receive more requests then I will end this session
+31:43
+and this this will time out okay but I want to be alarmed forever
+31:50
+okay so this connection can only be open for 100 seconds for example okay that
+31:57
+means no matter if you have more requests I don't care after 100 seconds I will
+32:03
+close this connection okay this is also for protection uh for protecting the
+32:08
+server because we don't want the server to be occupied by a client forever okay because we know if we make
+32:17
+this open to the client forever then we can easily the server can easily suffer
+32:22
+from the detox attack Etc okay and then again connection is means this is a
+32:30
+non-president HTTP okay so content type and then all the data
+32:36
+will be sent after that so the data here means uh those uh
+32:42
+requested HTML files or images Etc so they are included here
+32:48
+so these are some of the other status codes okay we just mentioned to handle
+32:54
+okay and you can also have three one four four four four four uh for for 400 bad
+33:01
+requests and also four for Four Points a very common one you see it's a lot of times and you can also have 505 okay so
+33:10
+these are the sample codes for the HTTP response you can actually try telnet try
+33:17
+HTTP on your first self uh so basically what you do is you just
+33:24
+um try to tell that to the web server okay tell net to one web server uh
+33:31
+basically uh it's like you are talking to that web server directly okay not go
+33:37
+not through the web browser but through the uh terminal okay through the
+33:43
+terminal you directly talk to that machine for example you can open a TCP connection to Port 80 at
+33:51
+cis.poly.edu of course you can do csus.edu okay you can connect to Port 80
+33:58
+to csus.edu or even other servers okay just try your favorite web servers and
+34:05
+then you can type in a get message a get message to requests for a
+34:12
+um for uh object okay it can be a web page it can be an image or PDF whatever
+34:18
+you like okay then you can look at the response message uh sent by the ATP server okay so I did
+34:27
+some tests for you okay so you can see here
+34:32
+here what I'm trying to do is I'm trying to connect I'm using telnet trying to
+34:39
+connect to cs.umass gaia.cs.umass.edu
+34:46
+okay at Port 80. 480 is the phone number for web service
+34:53
+we have mentioned this from many times right basically at the server side pay
+34:59
+attention at the server side the server is opening this support 80.
+35:04
+it's like a door it's opening this door and then the server will constantly check this port and see if there there
+35:12
+are any incoming requests okay the client side does not need to use 80
+35:19
+because 80 is a forward server okay client-side also need to have a door
+35:24
+open in order to communicate with

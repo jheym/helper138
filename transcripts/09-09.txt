@@ -1,0 +1,776 @@
+0:04
+is this all clear
+0:12
+okay good thanks so that's the choice drugs program as I
+0:19
+said later we are going to uh we will see how this is implementing icmp but uh
+0:26
+but this this is generally the design okay the design of this uh this uh
+0:32
+um program and then you can see how the international internet delay
+0:38
+um look like in reality okay and for packing loss I think we can skip
+0:45
+this part because we mentioned the packet loss happens because
+0:51
+the buffer of the router is full okay so this is the only thing you need to know
+0:56
+we have to drop this uh the incoming package when the buffer is a full that's how packet loss
+1:03
+happens okay and this may again be the uh test question
+1:09
+then the next thing we are going to look at is the throughput okay
+1:14
+so throughput in general this uh the definition is the rate at which these
+1:20
+are transferred between the sender and the receiver okay of course we may have instantaneous
+1:27
+throughput okay which means the read at a given point in time okay and we may
+1:33
+also have the average throughput for example you you can calculate within one hour
+1:40
+okay how many how much how many bits are sent from this sender to the receiver
+1:48
+okay then we can calculate that Our Roots output okay and then the
+1:53
+instantaneous uh throughput may be very high at one point but maybe low at the
+1:59
+other point the average throughput is like it's a it's usually
+2:04
+um fixed okay um then but the throughput is also
+2:11
+determined by the link okay is determined by the length so for
+2:18
+example now if we have a sender and receiver
+2:23
+okay a center of the receiver then the sender wants to send some beats
+2:30
+to the receiver and this package the package may have to go through a number
+2:35
+of links okay you can see in the middle is actually a router okay and then we
+2:40
+may have the link at the left Link at the right okay so this these links may
+2:46
+have different capacities do you remember do you remember we learned this before we talked about different type of
+2:53
+links before right we have fibers which may have a very high link capacity we
+2:59
+have Wi-Fi or even mobile network which may have a very low link capacity
+3:07
+okay so it's different then how can we determine the hourly
+3:13
+throughput in this case or the effective algorithm throughput okay so now you can
+3:20
+imagine now you can imagine these two links are like the pipes carrying the
+3:26
+water okay the left pipe has a one rate the second second the
+3:34
+right pipe has another rate so what that means one pipe may be very very narrow
+3:39
+it carries the water and the water can flow very very slowly
+3:46
+but the other pipe may be very wide okay then the water can flow very fast
+3:54
+Okay then if this is a P1 pipe one this is P2 and the window P1 is very very
+4:03
+narrow P2 is very wide so let me ask you a question
+4:08
+the speed of this water flow from the computer A to B
+4:15
+so the flow the speed of this water flow is determined
+4:22
+by by P1 or P2 if P1 is very narrow P2 is very wide
+4:34
+let me repeat the question again if P1 is very narrow P2 is very wide
+4:39
+then the speed of the water flow between A and B is determined by P1 or P2
+4:49
+P1 great excellent I I also say the answers from the chat yes it is actually
+4:56
+determined by P1 by the one which has the smaller
+5:04
+um read or the smaller throughput right so this is exactly the same thing
+5:11
+in the networking in the networking if we have a link which has a small bandwidth and another link which has a
+5:18
+higher bandwidth okay then the effective throughput is actually determined by the
+5:26
+one with smaller bandwidth okay
+5:31
+question answer question is that the same as download speed you I think you are mentioning uh the throughput
+5:40
+um you also said bandwidth so throughput here equals to
+5:45
+um is like um is how many bits we can carry of
+5:51
+course the downloading speed the downloading speed can be measured by the throughput okay but I do not see they
+5:58
+are exactly the same because we also have uploading speed right okay
+6:04
+um so bandwidth bandwidth bandwidth is uh very related to throughput okay but
+6:13
+as you can see here when we see bandwidth we we mean the bandwidth for specific link for example for P1 we may
+6:20
+have a benefit of RS for P2 we may have bandwidth of RC
+6:26
+okay but the throughput is actually determined by the one with the the one
+6:33
+the smaller parameter I would say okay the smaller bandwidth
+6:38
+is this clear to everybody
+6:43
+okay good so then now you can look at this example in this example if RS is smaller than RC
+6:52
+okay RS is uh is the capacity being capacity or the bandwidth
+6:58
+foreign the left link and RC is for the right link so then in this case
+7:07
+sorry in this case what is the average n through end-to-end throughput or the
+7:12
+effective end-to-end throughput that is RS okay how about if RS is bigger than
+7:19
+RC when RS is bigger than RC
+7:24
+in this case then what is the average end to end through to order the
+7:30
+effective entry throughput excellent you are all choosing the smaller one okay some of you may think
+7:37
+oh the bigger one is on the left then probably it can be faster no even I mean
+7:44
+if you again imagine if this is water even the left side we can flow in the
+7:50
+water very fast okay but when it comes down to a narrower pipe
+7:56
+the water speed has to slow down has to decrease that's why
+8:02
+again the effective end-to-end throughput is still determined by the
+8:07
+smaller one okay that's why it's RC excellent so then we can say
+8:14
+um those ones like rsrc the smaller one is or the smallest one is actually
+8:20
+called the boat neck bottleneck link okay which means
+8:27
+um the link on the end to end path that constraints the end-to-end throughput
+8:34
+okay with this bottleneck link usually has the smallest link capacity or the
+8:42
+smallest bandwidth okay so that's why uh when you think
+8:47
+about uh for example when you are talking to another computer while your computer is talking to another computer
+8:53
+far away you can never predict what happens in between right so there may be one Link
+8:59
+in between okay with that constraints the end-to-end throughput okay then in this
+9:05
+case it may um affect your network okay but the good
+9:11
+thing the good thing is that we have we also have the rocking algorithm okay that our routing
+9:18
+algorithm is going to matter the delays between two hops okay like between two routers
+9:24
+if this link is not fast enough if this link has a very very long delay okay
+9:31
+then the router routing algorithm will will try to roll out this uh delay roll
+9:39
+out to this link okay it will not include this link into the path that's how we can mitigate this problem okay
+9:50
+um this is another scenario in this scenario you can see we have about 10 connections okay between
+9:58
+these 10 computers and these 10 computers can help out 10 connections
+10:04
+and then you can see for each path
+10:10
+each path is each part includes basically three segments so the first segments the first
+10:17
+link okay it has RS the second link
+10:25
+okay the second link is actually determined by what by the total number of links
+10:33
+okay so we know in total this is our the bandwidth is R but this is shared by by
+10:40
+10 paths okay so that's why by 10 links that's why actually each one each link
+10:48
+can only get a tenth of work okay and then third portion we have we
+10:55
+have RC then in this case in this case if I ask you what is the effective end-to-end
+11:02
+throughput between a and b so what would be the answer
+11:08
+what do you think what is the effective end-to-end throughput between a and b
+11:17
+again again we know one thing for sure we need to choose the smallest one right
+11:24
+we need to choose the smallest one among these two because the smallest one is
+11:29
+the botnet link okay the bottleneck link so that's why actually the average or the effective
+11:37
+end to end throughput is the minimum of RC RS and R Overton whichever is the
+11:45
+smallest okay then that one will become the effective end-to-end robot
+11:52
+what about throughputs between routers okay if we come back to this
+11:59
+to this um slide so
+12:05
+actually this is uh this uh the the computer A and B are connected
+12:12
+uh we uh are connected by those vouchers okay so when we say we want to find the
+12:19
+smallest one okay that means uh those links are actually divided by the
+12:25
+routers so now for example if we have computer a foreign
+12:35
+so for example
+12:44
+okay so then you can see if we have
+12:58
+so if these are the links the link capacity between a and uh
+13:07
+R1 R1 and r2r201 R3 and utterance B then
+13:13
+you can see a mod can you tell me what is the effective end-to-end throughput
+13:19
+on this path first one is 10 second one is the five third one is 20 BPS the last one is 100
+13:27
+BPS so what is the
+13:32
+effective and to end the robot between A and B can you tell me in this
+13:40
+example now choosing five that's correct if you want to say for example what is the
+13:45
+effective N20 slope would be turned R1 and R3 then I would say
+13:51
+between R1 and R3 we have 5 and 20. so I would say 5 is
+14:00
+the one okay but usually we we will look at only the end to end which means computer to computer
+14:06
+okay from A to B yes that's something that can be manually assigned by the
+14:13
+router or the router automatically assigning those links
+14:18
+um no that is not determined by the router okay that is actually determined
+14:25
+by the infrastructure so for example if this this is if a is
+14:32
+your home computer okay then you are connecting to your router using
+14:39
+something and this can be
+14:46
+this can be Wi-Fi this can be
+14:54
+internet if you are using a cable okay so then because you are using different
+15:00
+ways to connect to the router then the speed is different the ethernet is probably much faster than the Wi-Fi
+15:07
+okay the internet has the that link that cable has much higher capacity or more
+15:14
+higher bandwidth do this make sense then between R1 and R2
+15:21
+depending on what internet service provider you are using probably you are
+15:27
+using Comcast and atnt may claim say hey there we are providing fiber then if
+15:35
+they are providing fiber then their their link bandwidth is much higher than the ones from Comcast
+15:42
+okay so it really depends on what kind of links do you use to connect those
+15:49
+ruptures or the computers okay those are all great questions so then
+15:54
+you can see it has nothing to do with the routers it's basically purely uh
+15:59
+related to the link types if it is in the test I give you some
+16:06
+questions like this I hope you know how to calculate the
+16:11
+end-to-end throughput actually you don't need to do any calculation just through the smallest one but still in a in a
+16:18
+test in the previous exams I still saw a lot of students doing calculations okay
+16:25
+so for example if I if for this example if I ask you what is the average throughput between a and b
+16:31
+okay you know what many students would do 10 plus 5 plus 20 plus 100 divided by
+16:38
+four that is something you should definitely avoid okay it's not calculated in that
+16:45
+way it's actually just um determined by the smallest one
+16:52
+okay pay attention to that unless this continue to discuss the
+16:57
+protocol layers okay so
+17:03
+um I have been mentioning this layer thing for a long time okay I mentioned this
+17:09
+again again but why do we have protocol leaders what does this mean okay so if
+17:14
+you think about the networking the networks are actually very complex okay
+17:20
+it has a lot of different components and pieces you think about this we have the
+17:25
+the host the links and we turn the links so we have we have the routers the
+17:30
+switches and we may also have different applications you are running email you
+17:36
+are using web service you are using file transferring right and then we also have
+17:42
+different protocols okay we know those are like rules to follow all the standards
+17:48
+um to control uh the different components and we also have the hardware
+17:53
+the software so how how can we you can see these are
+17:58
+different pieces here and there scattered right so how can we combine or integrate these different
+18:06
+pieces to make it work in just one internet okay this is actually a very challenging
+18:13
+problem right a very challenging problem then the question is is there any hope
+18:19
+of organizing the structural Network okay or at least the one we discuss something
+18:26
+for example we just discuss application or when we discuss a protocol what are
+18:32
+we referring to okay so so we we at least have some
+18:37
+Foundation or some kind of framework for us to to start the discussion so that is
+18:43
+actually the problem for networking okay that's why uh graduate people
+18:51
+um propose one uh model called OSI model OKAY Open
+18:58
+System interconnection model which contains seven layers the seven layers
+19:03
+are actually uh uh it's uh it's like an analogy to The Postal Service
+19:11
+okay so let's look at the Postal Service uh when you write a letter to a foreign
+19:17
+country for example okay so for first level course you need to write this 20 Page Letter
+19:23
+if I'm writing let's see a letter to my friend in China okay I may write in
+19:29
+English but he or she can only understand Chinese okay when you are writing a 20-page
+19:36
+letter this is like application layer the first thing you need to do but this letter has to be translated
+19:43
+so the receiver can read it this is what we call as presentation layer then when
+19:50
+it comes down we need to ensure the recipient can indeed receive the letter
+19:56
+okay how can we make sure he or she receives this okay we need to
+20:01
+establish some kind of session okay so that's the session layer then down below
+20:07
+okay down below one way when we have this like this 20 Page Letter
+20:12
+okay we need to separate and number of the pages why because sometimes for example uh
+20:21
+the Postal Service may not be able to carry a huge letter a long letter 20
+20:26
+pages right so you make you may only be able to send just one or two pages per
+20:32
+letter right so that's why you have to separate it into smaller pieces and then
+20:38
+maybe deliver it deliver you for example if we separate these 20 pages into uh in
+20:45
+20 pages into uh 10 different pieces so each piece has 20 has two pages okay
+20:52
+then those those 10 pieces will be sent out individually
+20:59
+okay individually so then this layer is called transport layer we separate and
+21:04
+number the pages okay um and we also need to make sure what if
+21:09
+some of the pieces are um lost what should we do how can we recover okay
+21:15
+this is also done as transport layer then down below is the network layer
+21:21
+Network layer basically means uh the Postal Center is sorting the letters by the zip code to Route them closer to the
+21:28
+destination so what is the shortest path from uh from you to your friend okay
+21:33
+that's the network layer and then one layer below is the local postal office
+21:39
+need to determine which vehicles are used to deliver the Legends okay
+21:44
+eventually we have the physical layer the physical layer is to
+21:50
+um is to carry the letter between different stations to to do delivery
+21:55
+using uh the the physical tracks the planes the real uh reels or the uh cars
+22:04
+okay so then that is a as the lowest layer we need to determine how we can
+22:10
+carry this letter between your place to post the first post office and from the
+22:16
+first person to the second puzzle second possible to the last one okay so it's uh
+22:22
+it's like that so this is how the analogy is done that's how the seven
+22:27
+layers are um extracted okay so the examinators are
+22:32
+application presentation session transport network data link and physical layer so if you want to remember these
+22:39
+seven years you can remember this all people seem to need data processing so you can look at the first letter okay
+22:47
+why do we need to uh have this kind of a layer okay um or is there a uh is there another
+22:54
+analogy for the layering so actually the error travel is a very good analogy for
+23:00
+the layering um if you think about the air travel usually you need to do the uh ticketing
+23:06
+right take it you you buy the ticket and then the next thing is you you need
+23:13
+to check in your bag and you go to the gates and then the plane take off then
+23:19
+the plane will do the routing and finally the plane arrives at this destination then we will have landing
+23:26
+and then gate you need to go to the Gates Again you need to claim the baggage uh usually we don't don't do
+23:34
+complaining that take it right but anyway um so you can see it's like a layer kind
+23:40
+of thing right here so why do we do this kind of layering
+23:48
+you think about this uh one one very important benefits okay one very
+23:55
+important benefit is the layering is providing a kind of
+24:00
+service to the other layers okay so for example for example
+24:06
+um the let's say the gates okay the guess is
+24:13
+like uh it's like providing service to the baggage part okay so that means okay
+24:19
+uh I need to I need to uh for example if one day you want to change your ticket
+24:24
+okay or if one day once you say um you want to
+24:30
+uh yes you want to change the ticket you you want to change the destination do you need to like worry about if the
+24:39
+airport has already uh processed your gate correctly so you don't need to
+24:44
+worry about that right so the gate itself is providing the service to the app layers select that okay
+24:52
+um and also you don't need to once your bag is clean is checked in you don't need to worry about the case also so
+24:58
+it's like that um basically one layer will provide a service to the other layers and these
+25:04
+layers are actually kind of isolated from each other um I should not say isolated but they
+25:10
+are independent from each other okay so if one layer is changed so for example
+25:15
+one day if we want to change um a routine of airplane we say okay we
+25:21
+don't want the plane to go through um Los Angeles you want to to go through
+25:27
+Chicago then it doesn't change it this routine changing doesn't change your
+25:33
+ticket okay uh your tickets the destination is still the same The Source
+25:38
+uh is still the same okay so it's like that um
+25:44
+so this is a the lettering that's that is actually one very important benefit I hope you understand
+25:50
+um another another um benefit is uh we as we said the computer networking is actually a very
+25:57
+complex system if we want to explicitly mention something or referring to
+26:03
+something okay then we need to um have something to refer to okay we
+26:09
+need to have some kind of a framework or reference model to identify the
+26:16
+different pieces different components in the networking okay so that's why we
+26:21
+need such kind of really uh layering okay so for example we can see when we talk about the email applications we met
+26:28
+when we talk about the service web services the web pages the web browsers
+26:34
+Etc you can say oh this is a application letter thing okay but when we talk about
+26:40
+the let's say reliable data transfer um when we talk about the sockets
+26:48
+then we should know oh okay that that belongs to the transporter layer similarly when we talk about the routine
+26:54
+algorithm um then we need to we we say oh okay this belongs to the
+27:00
+um uh the network layer okay so it's like that that's uh that's uh why we we
+27:06
+uh it's very important to have a explicit structure uh for
+27:12
+um reference okay uh the second thing we have mentioned the Hassan benefits is that we need to
+27:19
+help this kind of modularization this is very easy for
+27:24
+um for maintenance and for updating of the system why because if you want to
+27:30
+change the implementation of one layer it doesn't affect the other layers okay you don't need to change the other
+27:37
+layers implementation correspondingly that is the benefits uh but there is one
+27:43
+question for you to consider is the layering considered harmful
+27:48
+is this a 100 good thing is there any drawbacks for layering
+27:56
+can you think of any if you can you can type in the chat
+28:07
+you all think later is 100 good there might be counts yes
+28:14
+yes there might be consider them what are the potential accounts you can think of
+28:24
+too cohesive okay yeah good point
+28:30
+must be same standard right right okay
+28:37
+so I I think uh what you mean is uh within a layer we need to have the same
+28:43
+standard right
+28:48
+uh those are all good points very good so let me give you some hints if you
+28:54
+think about the layering uh the good thing is oh okay when we
+28:59
+refer to something we can always find a layer to to refer to right but the the
+29:06
+drawback is that also means if you want to refer to
+29:11
+something okay if you have something you want to refer to then you must put it into a layer okay you must put it into a
+29:19
+layer in order to refer to that okay so by you if you think about some
+29:25
+of the new features or new things we we consider in networking for example
+29:31
+when network was firstly uh designed nobody considered about security okay
+29:37
+security no layer is dealing with security there is no security layer right then we may
+29:44
+implement but now security becomes a problem when we implement this how which
+29:49
+layer should we put security okay should we put this to application
+29:55
+layer to transport layer or network layer you see that it fits over but
+30:01
+I mean it doesn't belong to any of these layers okay that is the actually the um
+30:08
+obviously the drawbacks or the counts uh of the layering thing okay that means if
+30:15
+you have some new components coming up due to the development of Technology you
+30:20
+need to you need to fit this new component into a specific layer but
+30:26
+sometimes this might be very difficult okay that's one thing you can you can
+30:31
+think about all right any any questions
+30:39
+okay so we talk about the seven layers of OSI
+30:44
+model but the question is in Internet do we really implemented those seven years
+30:51
+do we really have all those seven layers application presentation session
+30:58
+transport Network link physical do we have all those layers the answer is no
+31:04
+actually in real internet we only have uh I'll see in the internet protocols
+31:11
+that we have about five layers we have only five layers purely okay so for
+31:16
+example we have uh we have application layer transport layer Network layer link
+31:22
+layer physical layer as shown on the slide but we do not have the
+31:28
+presentation layer and the session layer
+31:41
+so these two layers are missing actually
+31:48
+again this may become a test problem I may ask you in the test what are the two
+31:53
+layers missing in the Internet Protocol stack okay
+31:58
+good question why are they missing why are they missing because in the in
+32:05
+the implementation okay during the implementation they found these two layers are sometimes optional and not
+32:12
+really necessary for the for the protocol for for the implementation okay
+32:19
+so gradually then people um think okay when if we if we want to
+32:25
+do if we want to implement some of the functionalities of presentation and session we can directly put them into
+32:32
+the application layer okay so that's why uh I mean it's it's
+32:38
+kind of a uh design uh design kind of thing so
+32:44
+that's the main reason why we do not all the information implementation kind of thing that's why we do not really have
+32:51
+these two layers uh in the Internet Protocol set okay
+32:56
+uh so basically gradually people realize okay if we have one message okay we can
+33:03
+break it into smaller pieces then there's some Breaking part is done as a
+33:08
+transport layer okay if you do not have any need I will doing uh translation
+33:13
+okay and you need a session because transport layer is also uh it's kind of
+33:19
+establishing a connection so some of the functionalities are kind of duplicate in
+33:24
+the other layers okay um so that's the main reason and now you
+33:30
+can say for the application layer the application layer is meaning to support the network applications as we said we
+33:38
+may have different applications and for each type of application it may use a specific
+33:46
+protocol okay for example FTP here is for trial file transfer file transfer
+33:53
+protocol this is the meaning for the file transferring service okay the SMTP SMTP
+34:02
+is a simple mail transfer protocol this is used for email service and HTTP you
+34:08
+are probably very familiar with the right so HTTP is used for web service
+34:13
+okay so you can see different application use different protocols
+34:19
+and then at transport layer we also have two types of protocols one type of TCP
+34:25
+the other type is UDP okay so TCP and udpr
+34:30
+um a very different and we're going to deal uh we are going to spend quite some time discussing these two type of TC uh
+34:38
+protocols so this is mainly dealing with the process to process data transfer
+34:44
+probably you for now you do not have the ideal process yet okay we are going to
+34:50
+screen more about this but anyway you need to know okay we have at least two type of protocols that
+34:55
+transporter layer the network layer we also have different protocols we have at
+35:01
+least we have IP protocol IP is used to determine for example the IP address how
+35:08
+is how IP address is uh is uh defined okay and we also have the
+35:16
+different routing protocols for networking okay we are going to discuss more about that the link layer we have
+35:22
+the ethernet which is for usually for the cable network okay and we also also
+35:29
+have the wireless now 80211 like Wi-Fi for wireless network so these are also
+35:36
+different tools of course there are more okay um like Bluetooth mobile networks
+35:43
+and then physically physically is basically the piece on The Wire the
+35:48
+zeros and the ones okay and if you if you look at this if we do not if we
+35:53
+ignore the physical layer okay if you look at the upper four layers
+35:58
+each layer has some protocols okay reside in that layer that's why we
+36:06
+call this as Internet Protocol stack okay and in the future also in the test
+36:12
+I may give you an application so for example I may say okay for HTTP that's
+36:18
+the application now what is the protocol used at the application layer you know it is HTTP right for web service and
+36:26
+then what is the protocol used for transport layer you can see this is uh this may be TCP okay and then what is
+36:32
+the protocol as the narrow player and say this is IP and what is the protocol nuclear this may be ethernet maybe Wi-Fi
+36:39
+okay so as you can see in order to support
+36:44
+foreign service okay
+36:49
+we need a a bunch of protocols actually okay from application layer to the link
+36:55
+layer so HTTP TCP IP or 80211 okay then
+37:02
+this is uh this is how the Internet Protocol stack is used to support this
+37:09
+map service okay that is the general idea for Internet Protocol stack
+37:16
+um and then you may you may ask so how about the other two layers in the OSI
+37:21
+model the presentation layer and the session layer okay so pay attention that again
+37:28
+reference model is just for reference it's like a framework but the protocol stack is a is the reality is what we use
+37:37
+in reality is for the real implementation okay so if you want to uh do some kind some
+37:45
+functionalities from the presentation layer and session layer okay so you may
+37:51
+do it in the application layer uh so for example if you want to do some encryption or comprehension compression
+37:58
+okay or do some machine specific conversions then in this case it's like
+38:04
+to interpret the meaning of the data right so then we can have some
+38:11
+functionalities implemented in the application layer okay uh to complete
+38:17
+those functions for example we all know that when you develop some application you can
+38:23
+call some encryption library right to do the encryption decryption so it's it's
+38:29
+like that and then for session layer session layer is used you usually used for a
+38:36
+synchronization uh checkpointing the recovery of data exchange okay so this
+38:42
+is uh obviously this part is um is uh actually implemented in the transporter
+38:49
+layer and the um yeah mainly the transporter layer actually for a data reliable data
+38:57
+transfer okay and of course the error checking those kind of thing uh
+39:03
+synchronization kind of thing is actually done at the link layer also okay different layer
+39:10
+they all have this kind of functionalities um okay so and again pay attention these
+39:17
+two layers are missing questions so far
+39:24
+whose hand are those handled by the application layer
+39:29
+or by the end systems uh so as I mentioned uh pay attention let's that
+39:35
+there is some very important thing I want to discuss here so we are talking about the Internet
+39:41
+Protocol stack here okay and the application layer
+39:47
+when we talk about the apple and the system you you may you should ask yourself what kind of what which layers
+39:54
+which layers are included in the end systems when we see the end system we
+40:00
+basically mean the devices right the um
+40:05
+computers the mobile phones Etc actually in reality the end system those
+40:12
+devices contain all the layers from application layer to
+40:18
+transport layer to network layer to link layer to physically all the layers are included in the end systems okay
+40:25
+because as you can you can think about on your computer we have the applications right we have the emails
+40:32
+the web browsers and then those messages messages need to be sent need to go
+40:38
+through the transport layer Network learning layer and I I'll explain more and you have a better idea about how
+40:45
+this happened but anyway the Ender system can hear all this okay
+40:50
+but the routers the routers have only had have only
+40:57
+three layers the routers have only up to network
+41:02
+clear the physical layer link layer Network layer okay that is uh for the router so when we talk about uh where is
+41:12
+uh the application the presentation layer functionality implemented we can see this is implementing application
+41:19
+layer okay then that means the application layer basically means it's most likely in an assistant
+41:26
+okay because routers do not have application here but for the session layer it's different
+41:32
+a second layer um the functionality is defined are like synchronization checkpointing recovery
+41:39
+of data exchange Etc then for those functionalities those are implemented in
+41:45
+multiple layers okay for example synchronization can be done at nuclear then link layer basically means uh it
+41:54
+may be in the in the systems and it may be in the routers does this make sense
+42:01
+okay yeah so so it's a like like it's an assistant and the
+42:07
+the uh the layer stack and the protocol stack is like two different uh Concepts
+42:14
+okay so we need to clarify that okay all right so that

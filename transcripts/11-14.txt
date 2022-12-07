@@ -1,0 +1,594 @@
+0:03
+let's continue to discuss the royalty in the real internet so what we have
+0:08
+learned are just the principles the like the basics for working hours but what
+0:14
+are really used in the internet we need to look at that okay so firstly firstly
+0:22
+uh the intro astronaut routine is also known as the inter interior Gateway
+0:29
+protocols okay IDP and the most common most commonly used
+0:36
+inter intro in astrological intro which means within this is okay
+0:42
+the most commonly used are ospf open shorted path first
+0:48
+igrp interrogate with routing protocol so in our class we only introduce the
+0:54
+first one ospf okay so ospf is opens publicly available it uses
+1:03
+an Institute algorithm okay um
+1:09
+and we all know that the topology need to be known as at each node okay the
+1:15
+Poly map is known as each node and we need to also do the package dissemination to tell to update all the
+1:22
+all the notes about the map okay and we also need to do the computation based on
+1:27
+the die construct algorithm okay and this ospf is actually also
+1:34
+hierarchical okay let's see for example we have this uh these are the back
+1:40
+boundary voucher this is connected to the internet okay these are the backbone
+1:45
+launchers and we also have the uh area border router so here we can see we have
+1:50
+different areas okay these are the internal routers and
+1:56
+then these are the area border routers these are the backbone launchers and
+2:02
+Boundary routers so we actually you can see this is a also hierarchical
+2:08
+okay the link State advertisement is is um download only with inner area Okay so
+2:15
+for example when we do the broadcasting sorry not working when we do um the link State algorithm we will look
+2:22
+at only this specific area okay and each note has detailed area topology
+2:29
+and then we also have the area border routers which summarize distance to the
+2:35
+to the Nets in own area and also other words is to other every body routers so
+2:41
+we also have the background backbone launchers which run ospf
+2:48
+within the backbone okay so um basically you can see the routine
+2:56
+album is actually run within each area and also within the backbone okay to
+3:02
+make the decision uh this that is the intro as routine for
+3:07
+inter as routine okay we call it BJP the full name is border
+3:14
+Gateway protocol okay so this is the internet
+3:20
+do you remember we said for internet routine exam it actually has a two
+3:26
+functionalities the first functionality is to learn the reachability information you remember I said if we are if I want
+3:35
+to send some letter or something to some other classes we need to learn the reachability information how should we
+3:42
+go through class one class three plus four or class two class one plus plus
+3:47
+five okay so we need to learn the reachability information as number one number two is after we learn this
+3:54
+reachability information we need to propagate that to all the people in our
+4:00
+class right so two functionalities similarly for bgp it's the same thing okay for bdp
+4:08
+may have ebgp and ibgp so the purpose for evgp is to obtain the
+4:17
+subnetic reachability information from the neighboring ES okay then after we learn the reusability
+4:26
+information we will need to use ibjp to propagate the reachability information
+4:32
+to all the as internal routers so optional learn the
+4:38
+visibility information come back tell everybody in our class it's like that
+4:44
+okay so that is ibgp um and then we need to determine the good routes to other networks based on
+4:50
+reachable information and the policy okay so this allows the subnet to
+4:56
+advertise its existence to the rest of the internet say I'm here okay now let's
+5:01
+look at the example for bgp session uh we have
+5:09
+we have two bdp routers exchanging the video messages so we need to advertise the parts to different destination
+5:16
+Network prefixes okay prefix I hope you still remember okay uh basically for IP address we know
+5:24
+it has prefix right we when we do the advertisement we need
+5:29
+that we tell others say hey if you have a letter going to California please send
+5:34
+it to me so we do this using IP address so we do slash 24 for example IP address
+5:41
+one two three four slash 24 24 the first 24 bits
+5:47
+I used for uh for um uh Network prefix okay so it's
+5:55
+like that of course you can change this 24 number 24 to some other numbers okay
+6:01
+so for example one bs3 and vertices are
+6:07
+prefix to as1 as3 promises it will forward the
+6:13
+datagram toward that prefix means when S3 is saying say hey if you have any
+6:19
+letter to California please forward to me basically Esther is making a promise if
+6:26
+you have a letter to California I will definitely forward that to California okay
+6:32
+and of course Esther will also aggregate the prefix in advertisement for example
+6:37
+if we have California and also um maybe Seattle okay it's not I mean I
+6:45
+mean circle is not a state but sometimes we do aggregation like that okay so if
+6:51
+you have any letter of going to California or Seattle give it to me okay so it's like like that so S3 can
+6:58
+aggregate the prefix in this advertisement and then okay we will use epgp session
+7:06
+between third a and 1C okay so as through will send this
+7:14
+reachability information to as1 by using e bgp because we know ebdp is
+7:22
+used to learn which stability information okay and then once say we
+7:27
+are then use the ibdp sessions to broadcast this info to send this
+7:33
+information or project this information to all the routers Within as1
+7:41
+okay then now one you can see one thing for
+7:47
+example can use the ibgp to distribute the the new prefix into all the routers
+7:54
+and 1B can then re-advertise the new reachability information to as2
+8:01
+through another ebgp session okay and similarly the 2A will do a ibap
+8:11
+session to propagate this information to all the routers Within as2 okay so this is the entire process you
+8:18
+can see we use EBT to learn the reachability information and then use ibdp to tell everybody within that yes
+8:26
+okay so then the path um so the adult type prefix include the bdp
+8:33
+attributes it includes um the prefix plus the attributes
+8:39
+okay so you may ask prefix if we understand this IP IP address prefixing and what are the attributes so there are
+8:46
+two very important attributes the first attribute is called as path aspath basically contains the as through which
+8:54
+prefix AdWords unit had passed so for example if on this part on this path we have passed the as67 as 17 then all
+9:04
+those as will be written on this okay this is the as we have go through for
+9:12
+this path okay and then the next the the the the second attribute is the next hop
+9:18
+next hub indicates the specific internal as router to next hub yes okay it's
+9:25
+basically telling this next hop information okay those Gateway vouchers
+9:31
+internal s routers um
+9:37
+so another thing you need to pay attention is the Gateway launcher receiving route
+9:43
+at Route advertisement uses some import policy to accept or decline okay and
+9:50
+when we make the decision about the routinalism we actually care a lot about the policy okay we call it policy based
+9:58
+routing so what does this mean this means this means policy is number
+10:04
+one important thing we need to consider when we determine the routing of the
+10:10
+routes in reality okay so it's not as of what you have already thought you may
+10:16
+even thought you may think oh four or a few of them as long as we can find the least cost path then we are fine but
+10:22
+that's not true okay in reality policy is the most important thing because
+10:29
+sometimes for example the isps may have competitions they may want they may
+10:34
+don't want to disclose some information to each other then for example even if
+10:40
+they know some shortest path they don't want to tell the other company that they have the shortest time okay or between
+10:47
+countries between um between different areas there are
+10:53
+also these kind of things so policy is always number one thing to consider when
+10:58
+you decide the best route and the next thing is to choose the shortest es path
+11:06
+okay the shot is a s path that means determine the a s path is actually more
+11:13
+important because um because as we can we can think about
+11:18
+this uh each path is more cost point right a s is more cost growing it's a
+11:24
+it's covering a larger area Okay so for example it's like if we want to make
+11:30
+this if we want to send a letter to somebody in another class we need to firstly determine which classes we need
+11:37
+to go go through which buildings we need to go through right because that is more
+11:42
+important and when you come to when you need to determine how to forward it
+11:49
+within a s that's not as important as the internet yes okay because the the
+11:57
+time Etc or the cost can be that can be saved
+12:02
+is is actually very small compared to the time or cost that you can see
+12:08
+um with me between the yes okay so then that's why the second thing is actually
+12:15
+the as path the third thing is the nest hop router so how you can how you can
+12:22
+find the closest Network router okay so this is actually VTE not es then we
+12:30
+consider some additional criteria so those are all the information for you
+12:36
+need to consider all the priorities you need to consider when we choose the best routes so you may you may think you may
+12:43
+ask uh why do um why does the bgp routing policy
+12:48
+matters okay why does the policy matters even more than performance sometimes
+12:54
+let's look an example here here A B and C are the provider networks okay X
+13:05
+w and y are customers so x w and y are
+13:11
+just no more users ABC are service providers like at T Comcast okay and as
+13:18
+you can see X is dual homes which means it belongs to both B and C it gets
+13:26
+services from both B and C okay so if your ex
+13:32
+if you are X will you let me uh or say no that
+13:40
+um you can reach the other party y or X
+13:47
+okay so X we are not l x we are not let B know that B can reach C through X
+13:57
+okay we know although there is a path between B and C here but X will not tell B about this path
+14:05
+why because if x help B about this path then we can assume the traffic from B
+14:13
+will be directed some of the traffic will be directed to X and then to C okay
+14:19
+so then X becomes a also a service provider right not service provider but
+14:26
+it's also excuse me it's also providing the
+14:31
+service for B but X is just a customer X is
+14:37
+paying to be for the service but it actually do not get does not get any pay
+14:43
+from B right so that's why X actually we are not advertised to be this route to C
+14:52
+okay that's one example another example is you can say a advertise the path aw
+15:02
+to B okay so a is basically telling B say hey
+15:07
+if you want to root W you can go through me and B will advertise the baw path
+15:15
+to X because X is a this customer so B will
+15:20
+say oh if you want to reach W you can go through me BAC okay but should be advert
+15:28
+height b a w path to C foreign
+15:37
+no way because what because BNC they are very likely competitors right at least the b
+15:45
+gets no revenue from C okay so b gets no revenue for routing
+15:53
+say b a w okay because C is not B's customer
+16:01
+okay um that's why we will not tell C about the
+16:09
+existence of this path okay if if B tells C then C will very likely direct
+16:15
+some traffic to baw okay so then in this case b will force C
+16:22
+to only route to W through a okay only right to W through a and
+16:31
+um because B wants to Route only two or from its own customers okay unless it
+16:38
+has two some of you may ask oh if one service provider does not pro does not
+16:44
+um advertise a path to the other service provider what if they are isolated what
+16:50
+if two two service providers are isolated and then they cannot reach each other
+16:56
+uh so you do you do not need to worry about this as we mentioned
+17:01
+if they are isolated okay then they must firstly cooperate
+17:07
+okay then they must firstly cooperate to make this internet work and then they
+17:13
+think about oh should I advertise this additional path or not
+17:19
+okay so at least this will make this internet work but from these examples you will say oh
+17:25
+policy do matter sometimes okay policy means here basically means
+17:32
+um should I advertise this path or not should I let my competitor know about
+17:37
+this or not okay so I think this is just one example okay and there are more
+17:42
+things to consider for example uh there may be some things among countries okay
+17:48
+you also need to consider that so um then
+17:54
+if you look at the inter and enter as routine okay so for intra as policy wise
+18:01
+policy wise for intern is the admin wants control over how is traffic
+18:08
+uh routed who robs the Recently is Network
+18:13
+okay so that's why we actually for interests we really need to consider
+18:19
+policy okay for intro as intro as because this
+18:24
+we have have only one admin okay it belongs to One Network so no policy
+18:30
+decision is needed no we do not need to consider any policy for intro as
+18:37
+uh if you consider the scale okay the hierarchical routine saves the
+18:42
+table size reduce reduce the update traffic okay because when we have hierarchical
+18:51
+routine we can do the routing within a small region we don't need to do the rocking uh for the entire network then
+18:59
+this can for sure see this table size okay performance wise for intro as it can
+19:06
+focus on only performance because it doesn't need to consider policy but for
+19:12
+enter es okay we need to follow uh for we need to firstly focus on policy and
+19:19
+then think about performance so policies May dominate over the performance okay
+19:25
+so those are the differences between ensure and interest rapping
+19:32
+so the last thing in this chapter is about broadcast in multicast and we we
+19:39
+will only talk about the broadcasting okay so what is broadcasting we have
+19:44
+mentioned before uh actually when we talk about the um for example DHCP okay we used
+19:51
+broadcasting so broadcasting basically means deliver the package from the source to all the other nodes
+19:59
+okay um and you can see because we want to deliver the package to all other nodes
+20:06
+we for sure we we will need to do some duplication right so you can say one way
+20:12
+to do the duplication is to do the duplication as a source so for example if R1 want to send all the package the
+20:21
+package to all the other nodes r2r3 and R4 then at R1 we can duplicate this
+20:28
+packet for three times and let's send this this through
+20:33
+duplications to uh R2 after right now four this is one way the other way is we
+20:39
+do a a network duplication that means so for example R1
+20:46
+uh we'll send it to R2 okay then R2 can duplicate and then send
+20:52
+it to R3 and R4 okay but actually for this kind of uh in
+20:59
+our duplication we have some problems the problem is that we may have flooding
+21:04
+happening you think about this so for example R1 send it to R2
+21:10
+okay R2 receives this wheel and the art will send this to R3 and R4 okay when R3
+21:19
+receives this after we will think oh okay I need to forward it to our
+21:24
+neighbor so Arthur will send it to R2 and also R4 okay similarly R4 will send it to R2 and
+21:33
+R3 okay then R2 will also think oh okay I
+21:39
+received two more packets one from author another one from R4 so R2 will
+21:46
+continue to broadcast again so it's never stop okay it never stops that's the problem
+21:52
+this for this problem we call it flooding okay to resolve this problem one way is
+21:58
+that we can do controlled flooding control variety basically means the node only broadcast the packets if it hasn't
+22:07
+broadcast the same package before okay for example if R2 receives this package
+22:14
+again from author and R4 the R2 will check and say oh okay I have already
+22:19
+broadcasted this package before so I don't need to broadcast it again so that
+22:25
+is uh how we do controlled flooding although control flooding is is effective but still you can see there
+22:32
+there is some actual work right so there is some redundant work for example uh
+22:38
+when R2 flooded to I mean send it to R3 and R4 author is sending to R4
+22:46
+okay and Alpha is sending it to author and they both sent the package to R2 so
+22:53
+those work are not necessary anymore why because author and Alpha have already
+23:00
+received a copy from R2 okay so as you can see
+23:06
+as again although controlled flooding can control the flooding but still we
+23:12
+have already done some redundant work okay so then people begin to think oh what is
+23:19
+a better way to do the broadcasting so a battery is using spanning tree
+23:26
+you feel spanning tree then no redundant packets can be received by any node okay
+23:32
+so what is a spanning tree for example now we have already constructed to uh
+23:38
+constructed one spanning tree okay if you follow this uh
+23:43
+both lines okay so this is a network and the Border
+23:50
+Lines has formed a monitoring okay and now if the broadcast is
+23:58
+initially at it at a that means if a is the source okay a can then send this
+24:05
+package following the spanning tree so that means a will send it to save
+24:11
+and also to be okay so see we are forwarded to F and E
+24:19
+but say we are not send it to B why because this link is not part of the
+24:27
+spanning tree okay and then B we are forward to D
+24:33
+again B will not send it to C because this is not part of the stem Spanish BC
+24:40
+is not part of the Spanish tree okay and when D received this D will 40 is
+24:46
+only 2G they will not forward this to e because
+24:51
+the link d e is not on the Spanish tree okay similarly when F and E receives the
+24:59
+packet they will stop there they will not forward the package to each other because the link between F and E is not
+25:07
+part of the spanning tree that is the broadcast initiative at a if
+25:13
+the broadcast is initiated at D we do the same thing okay we follow spanning
+25:19
+tree send it to the neighbors B and G not here and B will afford it to a
+25:27
+area forward to C and CVO forwarding to F and e but not too big
+25:34
+okay F and E will not send to each other okay so as you can see we only follow
+25:41
+the spanning tree to forward the package then in this case we will not have any
+25:47
+flooding and we don't need to worry about redundant package received by the node okay
+25:53
+and then you may ask how can we create a Spanish tree okay here we are using a
+26:00
+spanning tree directly but how can we create a spanning tree so
+26:07
+it's actually very easy first you need to choose a center node
+26:12
+and then each node each other node will send a unique const join message to to
+26:20
+the center node okay as you can see because this is unicast John message this is
+26:27
+assume we assume this message is sent to the center node but the message will be
+26:33
+forwarded okay trying to be forwarded to the to the center node however the message is
+26:39
+forwarded until it arrives at a note already belonging to the spanning tree
+26:45
+if it already if that nose already belongs to a spanning tree then we don't need to forward again
+26:52
+okay so you are probably still a little bit confused but let's look at an example then you will get that
+26:58
+in this example can we choose a center of E
+27:04
+okay Central we and then any node okay let's start with f f will send a uni cost draw a message
+27:14
+to the center node which is e okay you say hey can I join you email say yes for
+27:20
+sure you can join me okay then now um
+27:26
+e become part I have to become part of the Spanish tree okay then the other
+27:33
+another node let's see again any other note okay let's see now B is trying to
+27:38
+join e okay B is trying to join e b will send a message to e and this message is
+27:46
+forwarded to D first and then D for this match is 3.
+27:53
+okay um so finally they reach the E and then
+27:58
+B d and d e become part of the Spanish
+28:04
+okay next one maybe a is trying to join a will say hey can I join you
+28:11
+okay so anyway I'll send the message okay of course a can send the message to
+28:19
+C okay and then C Will C can reach e in
+28:24
+any enemy okay but a may also send the message to b here in this example it is
+28:30
+sending the message to b and the B is already part of the spanning trip so should we forward the message again we
+28:36
+do not need okay then a is now part of the spanning tree we continue and you
+28:43
+can see C is asking to join and c is now part of the expanding tree and G is
+28:49
+asking to join and G reaches D so D is already part of the expanding tree so we
+28:55
+can stop then here now we have one constructed
+29:00
+spanning tree okay and pay attention the spending tree may
+29:06
+be very different if you for if you follow different orders or even if you
+29:12
+follow the same order sometimes because you make different decisions uh for forwarding then the Spanish tree
+29:19
+can be totally different for example even if we do we do the same let's say okay here I have a
+29:26
+B C d j
+29:32
+still we have E and F
+29:44
+okay we are looking at the same structure
+29:56
+foreign and now let's follow the same order let's see
+30:01
+um sorry let's follow the same order and see we
+30:07
+can generate this a different spanning tree okay
+30:13
+firstly let's see firstly uh let's see still do F okay F will join e
+30:21
+doing this okay the second one we can do B and we can do something else okay of
+30:28
+course we can do something else you don't need to to be but here I just want to show you even if you follow the same
+30:34
+order sometimes you can construct a totally different spanning tree okay so then B mail say okay can I join you
+30:41
+this message this message may be forwarded to D maybe 40 to a maybe
+30:47
+forward it to C because B has three neighbors okay let's assume now D is for
+30:53
+this message to C okay and same here for this message to
+30:59
+to e right or see me forward this message to F or even a
+31:04
+okay so let's assume now maybe C had forward this message to F
+31:10
+okay then now f is already part of the spanning tree so it doesn't need to continue anymore now b c f e are part of
+31:19
+the Spanish tree okay then the next one may be uh let's say a is trying to join
+31:26
+AMA for this message to either B or C because it has two neighbors so a for
+31:32
+example now we make a different decision a is trying to send this to c because C
+31:37
+is already part of the spanning tree okay so now we have uh we have a joining the this this tree
+31:46
+okay then the next one uh let's say maybe um maybe D is trying to join okay if D
+31:55
+is trying to join D can either join from uh the consonants message to e or B or g
+32:03
+whatever way okay so let's say maybe these for only these two e
+32:08
+okay of course it can also afford this to be okay so now D is a part and then J
+32:17
+for this 2D and then because D is the only neighbor for G so now you can see
+32:24
+the the Spanish entry we constructed is very different from the one constructed
+32:29
+in the slides before okay although they are different but
+32:35
+this this they are all spanning trees and they can all complete the task of
+32:41
+broadcasting without redundant packets okay so keep this in mind
+32:47
+spanning tree is not unique okay it's not unique you may have very different answers even for the same
+32:54
+network structure so this is all about this chapter we are
+33:01
+done with chapter four

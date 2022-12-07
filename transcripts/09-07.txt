@@ -1,0 +1,800 @@
+0:03
+all right so the next thing I'm going to discuss is about a network uh structure
+0:08
+or we say internet structure okay so we mentioned at the very first I mean the
+0:16
+second class we've discussed or the third class act so when we do the discussion I asked what is network and
+0:22
+most of USA Network is a combination of nodes and links okay so basically we
+0:29
+know okay we have a number of devices and we need to connect them together but the question is
+0:36
+the question is how can we connect those devices together throughout the study we have we have
+0:43
+done so far you learned that it is not possible to connect every device to the
+0:51
+other device directly with one cable you imagine this this is this the scalability is is a really bad okay so
+1:00
+that's why that's why instead of connecting those devices directly with
+1:06
+cables okay we usually we need something called Network code the routers in
+1:12
+between right routers in return to connect those devices so basically we
+1:18
+have access Networks okay access now works means the
+1:23
+institutional Network the residential Network the mobile networks okay so
+1:29
+those devices will access Internet through the access networks so those
+1:34
+devices will need to be connected to the access networks first and then the
+1:39
+access networks are connected to the routers to the internet core okay
+1:47
+and we can see we can also support those access networks sometimes we also call them access isps okay so uh I shouldn't
+1:56
+say this I should say the access is access internet service providers SP or
+2:03
+internet service providers like Comcast atnt they are all internet service providers so those access isps basically
+2:12
+provide those access networks for you to connect okay
+2:18
+so that's why we also have residential ISP company ISP University ISP okay so
+2:26
+then the question becomes oh we have those excess isps how can we connect
+2:31
+them together okay because if you do not connect them together they are still isolated
+2:38
+it's still it cannot be called as Internet okay so then we need to connect
+2:44
+them together how can we connect them together let's look at an example
+2:49
+so the question is given millions of access isps how to connect them together
+2:56
+we can imagine how many access isps we have right so your home network can
+3:02
+become Access Network your company Network University Network they are all
+3:07
+access networks okay how can we connect them together can we do this
+3:14
+can we connect each ISP to every other access ISD
+3:19
+select this what do you think
+3:27
+how to set a weekend but not a good idea what do you think what do others think
+3:34
+is this a good idea connect each one probably didn't see this clearly let's see connect each one
+3:41
+with every other this can this we can do this right it's
+3:48
+like we connect it's similar actually to the question we discussed before regarding devices we can of course
+3:55
+connect each device with with every other device but it's not scalable
+4:01
+okay okay so you all agree that this is not a good idea
+4:07
+it's the same thing here in this in this question okay if we connect each access
+4:12
+ISP to every other it says IP ISP this
+4:18
+does not scale why if you think about this if we have n
+4:29
+if we have any networks or an access networks okay so then
+4:35
+when we connected the first one with every other one we need to make n minus
+4:40
+one connections right then for the second one
+4:48
+for the second one we need to connect to every other
+4:53
+Excel Network we need to make another uh minus two connections because it is
+4:59
+the second one is already connected to the first one okay so that's why it's a minus two
+5:05
+then the third one and minus three the fourth one
+5:11
+and minus four so we'll continue until we only need to make one connection so
+5:17
+this is the number of connections we need to make if you have learned how to
+5:22
+calculate this okay this basically equal to one plus
+5:29
+a minus one this one plus this one
+5:37
+time the number the number the total number is n minus 1 divided by two
+5:44
+so this is basically n times n minus one divided by two so you can see
+5:54
+okay so this is okay so that's why you can see the
+6:01
+complexity is actually o big N2
+6:06
+okay all big and square then this doesn't scale that's why this is not a good idea that's why we want to use
+6:15
+something in the middle to connect every Access Network okay so
+6:20
+now what is in the middle if what we put in the middle is called the ISP Global IST which can provide a
+6:29
+number of routers okay but can we have one Global ISP
+6:36
+apparently no why because
+6:43
+we may have competitors okay
+6:48
+you may have competitors
+6:54
+Jim said okay no problem James please go ahead to
+7:01
+reconnect and rejoin if you need okay sorry for interrupting
+7:07
+um so as we said we cannot have one Global SP we may have competitors then
+7:13
+the competitors here means we have a number of isps and we may have iSpa ispb
+7:19
+ispc okay or even more so it's like we have Comcast ATT so this is
+7:29
+this is within one country of course between the countries we may also have other competitors right so it's like in
+7:36
+China we also have other uh SP providers okay so then
+7:43
+now we have ice piece so you can see all the access networks are connected to ISP
+7:48
+to the isps but we still need to connect those isps together if they are not
+7:54
+connected together then again this internet is is not an internet right it's not connected
+8:00
+so then we will connect them using some peering links okay and on top of this okay we may have
+8:08
+some internet exchange points okay it's still used to connect those
+8:14
+um those isps okay the functionality is basically the same as the peer links okay
+8:23
+and then we may also have some Regional networks the regional networks can
+8:29
+connect those access networks and then be connected to the global isps or
+8:34
+connect to the to the isps okay on top of that we may also have some other
+8:41
+content provider Network so what are those uh basically some big companies
+8:46
+like Google you think about this like Google Microsoft especially for those
+8:52
+um video providers like YouTube right so they do not want to use
+8:59
+the services from the internet service providers why because they need to pay a
+9:05
+lot of money so some of those big companies they may run their own network
+9:11
+they may want to bring the services closer to the users okay so the users
+9:18
+can get faster speed you can access their resources faster like downloading videos faster like that so those those
+9:26
+Networks established by those big companies are called the content provider Network okay
+9:33
+later when we talk about the video applications we are going to discuss more about this
+9:38
+but now you can see you can see the structure okay the structure of Internet is basically a network of networks we
+9:47
+have a bunch of excess ice piece and then on top of that
+9:52
+we have Regional isps which may connect to the access isps and then we have some
+9:58
+Tier 1 isps and also the content provider networks so those all these things are connected
+10:06
+with each other okay they are interconnected so that's like the structure of the internet okay
+10:13
+any questions so far I XP
+10:27
+okay XP is internet exchange point so as we have
+10:33
+learned here do you see okay so basically sometimes we use uh
+10:41
+those those links called periodics to connect the ISP together but sometimes we use
+10:46
+internet exchange points to connect those ISP together
+10:52
+okay any other questions
+11:00
+okay all right so then you can see uh this is a like the theorem or one example for
+11:08
+tier one ISP this is the network for Sprint and uh you may say the those red points
+11:16
+are called point of presence so those point of presents are very important so
+11:22
+they have routers to connect to the backbone Network and they also have the
+11:27
+routers connected to the customers and then they need those routers be connected to each other okay so to make
+11:35
+this entire network work all right so that's all about the network core any questions so far
+11:48
+okay so the next thing we are going to discuss is about uh the performance of
+11:54
+the networks including the delays the loss the throughput Etc
+11:59
+we have learned about some of the delays like transmission delay before but today
+12:05
+we are going to cover more delays and we may have some calculations we may have some
+12:12
+questions that may appear in the test so please pay attention to this section the first question is
+12:18
+how do the delay and loss occur so I have just actually I explained in
+12:25
+the review just now right when the package arrives okay when the packet arrival rate
+12:35
+exceeds the output link capacity that means the incoming speed is faster
+12:42
+than the outgoing speed then in this case we may have
+12:48
+we may have the package queued here in the router so if the incoming speed
+12:56
+is much faster than outgoing speed then we may have the
+13:01
+package queued in the router this is called queuing delay okay
+13:07
+then those are those packets have to be queued there waiting to be processed by
+13:12
+the router if this if I mean the the speed are even
+13:19
+faster the incoming speeds are even faster and finally the router run out of buffer
+13:28
+then the router will say I do not have enough space to hold you okay so I have to drop
+13:35
+here that is called the package drop okay this is how the loss happens okay it's
+13:44
+like if in my office hours Let's see if I can handle if if let's say in the physical office
+13:53
+hours my office can handle at most common animals that 10 students in my
+14:00
+office then if we have the 11th one tells one coming I will say oh sorry I
+14:06
+cannot accommodate more students right now okay so please please leave then that's like package drop okay
+14:14
+so as I said this may become a test question I may
+14:20
+ask you how could the queen delay happen you
+14:25
+know that's because the incoming speed is bigger than outgoing speed okay if I
+14:33
+ask how could the loss happen then that's because the buffer of the routers
+14:42
+are for okay
+14:48
+okay um there is a question in the chat how is that corrected when a package is
+14:53
+dropped this is a great question if a packet is dropped what will happen
+14:58
+next what should we do okay this is actually one major topic we are going to
+15:04
+discuss in the transportator about reliable data transfer okay there are
+15:10
+actually a very complicated mechanism to correct that okay so for example we may
+15:16
+notify the sender say hey the packet is lost I didn't receive that please resend
+15:22
+it okay so the sender May resend it so that is one mechanism that may be used to correct this okay I don't want to
+15:30
+dive deep into this topic because we are going to keep devote a lot of time to that topic but hopefully hopefully that
+15:37
+gives you a basic idea to that problem great question question uh any other
+15:43
+questions
+15:48
+okay great so then let's look at the the
+15:55
+packaging delay packet delay is actually a very
+16:00
+important part in networking you think about uh if I'm not sure if you have
+16:05
+used any of the functionality functionalities before for example when you're playing a network
+16:11
+sometimes it will show how much time it takes for
+16:17
+uh for a packet to um to arrive at the destination and then
+16:22
+come back right or sometimes we say oh the network is very fast the network is very slow and what does this mean
+16:28
+Network fast basically means um your packets or your data can arrive
+16:34
+at the destination very fast okay then
+16:40
+um network is very slow means your packet can arrive at the network very slowly
+16:46
+okay then pack a delay is actually one major component in this
+16:53
+in this um in this process okay
+16:59
+so then what are the what are the reasons for packet delay why do we have
+17:04
+a pack really we have learned one reason one reason is called transmission delay
+17:11
+okay why do we have transmission delay if your skill remember what we learned
+17:16
+transmission delay basically happens because
+17:22
+we may have a link okay the link is like water pipe then the data is like water
+17:28
+you have to push the data into the link so that is the transmission delay okay
+17:35
+and in addition to that we may also have a third other type of delays one type is
+17:43
+called noodle processingly so what is nodal processingly no the processing link is usually used
+17:50
+by the routers to check the bit errors to determine
+17:55
+which output link I should forward this package to okay usually the noodle
+18:01
+processing delay is very fast it's typically smaller than 10 seconds okay
+18:07
+then that's another processionally it happens within the router okay that's the second type
+18:14
+we talk about one type transmission delay another type is noodle processing delay the third type of delay is secure
+18:22
+delay currently I have also mentioned right so q a happens because you need to
+18:27
+wait at the launcher okay for transmission
+18:32
+okay because there are so many packets written there it's like in my office hours again okay this depends on the
+18:40
+congestion level of the router the community Lane may be very long maybe very short okay so it varies
+18:49
+M second season is a milliseconds
+18:54
+okay yeah and then
+19:01
+um that's the third type of delay the last type of delay is called propagation delay what is professionally propagation
+19:09
+delay is the time we spent from one stop for for example after the package enters
+19:16
+the this and enters the link from one stop and here it arrives at another stop that
+19:24
+is the propagation delay okay so some of you may ask what is the
+19:30
+difference between transmission delay and propagation delay let's think about this
+19:37
+if um you are moving from Sacramento to New York okay
+19:43
+then the first thing you need to do is you need to pack all your stuff onto a trunk okay you need to push all your all
+19:50
+your things onto the truck that's like the transmission deal you are moving things onto a truck and then after that you have to drive
+19:57
+your truck from Sacramento to New York it may take maybe months
+20:04
+okay maybe days maybe months so that time is called the propagation DeLay So
+20:09
+you see the difference between transmission delay and propagation delay transmission delay is like when you pack your stuff onto the truck okay and there
+20:17
+is also another um now let's see here there is a Formula
+20:22
+here the formula here you can see the transmission the other propagation delay and this is how to calculate the
+20:29
+transmission delay transmission element have learned it's actually related to the packet length and the link bandwidth
+20:37
+okay so if we want to send 100 bits out and if we know the
+20:45
+link pandemic is uh 20 let's see 20 bits per second then the transmission delay
+20:51
+will be 100 over 20 that's fine okay so that's the transmission delay
+20:56
+the propagation delay is actually related to two things one thing is the
+21:02
+length of the physical link how long how long is this link the second is the
+21:08
+propagation speed of the single law okay the signal propagation speed in the
+21:14
+medium so then the propagation delay is very simple it's D over s
+21:19
+okay the distance over speed I think I believe you have learned this before right
+21:26
+I mean physics in Facebook you have probably learned this
+21:32
+so they are very different there is an example here a better example to explain the difference between transmission
+21:38
+delay and propagation delay for example now if we View
+21:44
+this Caravan this tank Caravan as one packet
+21:54
+okay this is one packet this card ticket has 10 bits okay we have 10 cards each
+22:00
+card is one bit then when they pass through when they pass through this table
+22:06
+then it's like we are pushing data into the link okay so we may take we may take for
+22:14
+example uh 12 seconds to push every uh to push every car okay
+22:21
+12 seconds to push every car then in total we have 10 cards then we have 120
+22:29
+seconds okay so this is like the transmission delay this is how this is
+22:34
+when you push the cars or this Caravan this team ain't throw the booth okay but
+22:42
+after that we have after that between these two both to the next toe box we
+22:49
+have such a long distance that's 100 kilometers okay then this card this car Caroline
+22:55
+has to draw uh maybe drive for two hours or three
+23:01
+hours to arrive at the second tour bus okay so that is the propagation delay
+23:07
+you see the difference okay so the time spent here
+23:14
+is a transmission delay
+23:21
+to push every character the time spent on the road
+23:34
+is called propagation delay okay
+23:40
+so now I want you to do a um maybe let's let me finish this let me
+23:47
+finish this and I'll do a give you a question you you can work on okay
+23:52
+so uh let's talk about the community a little bit okay the cunile is related to
+23:59
+third things one thing is linked bandwidth second thing is the Packy length and third thing is the average
+24:06
+package arrival rate okay you can say that this this traffic is
+24:13
+defined by the traffic intensity okay which is equal which equals to L A over
+24:20
+r okay and as you can see if we have more package arrival
+24:26
+okay if we have if this is a very large if a is very large Okay then if this
+24:32
+becomes bigger and bigger then the traffic intensity becomes higher and higher when it arrives at around one
+24:39
+when it approaches one then the Q delay is increasing
+24:44
+sharply okay it's it is uh close to Infinity that is uh that is the relationship
+24:52
+between current delay and the traffic intensity so it's like when you drive on
+24:57
+the road okay if there is no car you can see there's no car then of course we do not
+25:02
+have a lot of community but if there are a lot of occurs if there are lots of
+25:08
+cars then we may experience the queen delay okay
+25:15
+so when the traffic intensity is very very high then you have to be stuck on
+25:20
+the road for a long time okay so now let me give you a question to work on
+25:45
+so we have computer A and B and we have vouchers in between we have our package which has this is
+25:51
+the packet
+26:06
+okay we have l equals to 100 bits
+26:12
+R1 equals to
+26:24
+beats per second R1 equals to 20 actually equal to 10 and
+26:30
+R3 equals to 50 BPS okay these are the link capacity for
+26:37
+each link okay
+26:56
+so the current delay is 0.5 seconds at each router
+27:09
+thank you
+27:29
+another processing delay is one second at each router
+27:34
+foreign
+27:51
+A and B is 100 kilometer
+27:56
+okay the speed signal processing to be a signal propagation speed
+28:03
+equals to 25 kilometer per second
+28:10
+now I want you to calculate the total delay
+28:16
+equals to what so if you look at this
+28:21
+this is a formula here
+28:26
+this is wrong okay this is not total this is this is not uh know that this is total
+28:32
+the total delay equals to personal processing delay plus q a
+28:38
+please pay attention delay is the currently happened as all the routers
+28:44
+plus the transmission delay plus the propagation delay
+28:51
+okay so can you calculate this I will do this together with you but
+28:58
+hopefully when you review this video when you review this video please do the calculations on your own
+29:05
+okay because this may become a test question
+29:11
+we may have this in the exams okay so now we know the total delay equals to
+29:19
+four type of delays the transmission delay
+29:24
+Plus propagation delay Plus
+29:30
+current delay
+29:35
+plus the nodal processing delay
+29:41
+okay so then what is the total transmission delay
+29:46
+pay attention the transmission didn't happen at which places
+29:52
+at a we have to push it out as this router we have we have to push it out
+29:58
+okay at the second round should we have push it out again okay so then finally at the destination
+30:05
+do we need to put it out we do not okay we do not need to push it out at the
+30:10
+destination so then basically the transmission dealing happens at third places
+30:16
+a round Row one and round to two Okay so then that means
+30:25
+this is L over R1 that's the time we spend at a
+30:32
+plus l or R2 plus L over r 3. that's the
+30:39
+total transmission delay okay then what is the propagation delay
+30:45
+propagation delay is total distance
+30:51
+over the speed okay plus what is the queue
+30:58
+because 0.5 seconds at each router now how many
+31:03
+routers do we have we have two routers so we have that means two times D QE
+31:15
+okay plus no double percent delay again we have two routers
+31:21
+so at each round another percent delay is one second so that's why we have two times D nodal
+31:30
+okay then that means the next thing you do is just simple
+31:35
+calculation right so 100 over 20
+31:40
+0 over 10 plus 100 over 50. plus distance 100 over 25
+31:49
+Plus 2 times 0.5
+31:56
+okay this is
+32:06
+okay so then total you can see this is a 17
+32:11
+Plus 7 this is 24.
+32:20
+17 plus 7 that is uh 24 seconds so I hope you can you really understand
+32:27
+this exercise okay because we are going to have a similar test problem in the
+32:33
+midterm or even final okay and then you may know you may want to
+32:39
+know how the delay really look like in real internet right so here in the
+32:45
+example we said oh okay the delay from A to B is 24 seconds but usually we do not
+32:50
+have that laundry that kind of long delay okay you already delays are very short
+32:57
+um actually there is a program called trace route which can provide the delay
+33:03
+measurement from the source to every router along the way towards the
+33:10
+destination okay um so this if you run this uh
+33:16
+program you are able to basically find out uh the delay from The Source
+33:23
+computer a to the first router the second router
+33:29
+the third voucher Etc and then finally to the destination B
+33:35
+okay so here is a how it looks like let's see let's first say how it will
+33:41
+look like and then we come back to see um uh to see um how this how this program
+33:48
+is designed okay so if you for example if you if this is the source computer
+33:55
+this is a and this is the destination B okay so then you can run a trace a route
+34:02
+program from A to B okay then you can see for each line for each row
+34:10
+here okay this this IP address is the IP address for
+34:17
+the first router along the way okay do you remember between A and B we have R
+34:22
+by R2 R3 L4 okay so from a to R1
+34:29
+so so basically this is c s j w is basically uh Gateway
+34:36
+it's probably a one round chart between A and B okay it's probably actually it's probably the first router along the way
+34:43
+okay and then you can see we provide three delay measurements from a kaya CTU
+34:51
+to this R1 router okay and the third delay environments are respectively One
+34:58
+MS one milliseconds one milliseconds and two milliseconds okay it's like through
+35:04
+twice three matters okay so then this means generally the time we
+35:10
+spend or the delay between a to the first router is about to one to two
+35:18
+milliseconds okay then from a to the the second line is about the second router
+35:24
+so from a to the second router is also around one two two uh milliseconds okay so then
+35:34
+from a to the third router is the third line so to the third router is about
+35:40
+five to six milliseconds so you can see the time is increasing
+35:47
+the time is increasing from us a small number to a bigger number that's because
+35:54
+the distance is longer and longer okay and you can also see interestingly here
+36:02
+so here you can see at the row seven the seventh row you can say from a to this
+36:09
+router um the time spent is about 22
+36:14
+milliseconds but then from a to the router at Indus
+36:20
+eight line okay in the eighth row then you can see the time is
+36:25
+significantly increased okay the time spent from a to that router is about 100
+36:32
+uh and five uh milliseconds so the time increase
+36:38
+significantly from about 22 to more than 100 why because most likely most likely
+36:46
+so there is a Trans Ocean leak a trans Oceanic link between these two routers
+36:52
+so that this link is super long that's why the delay is increased uh
+36:59
+significantly okay so and then you can see this will continue continue until
+37:07
+eventually this uh we we reached we reached the destination computer
+37:14
+okay we reached the destination and then then you can see the time here is
+37:21
+basically this the one-way time we spend from A to B this is not a round trip not
+37:27
+a round trip time this is a one-way time uh
+37:33
+I'm not sure if this is round trip or one way actually let's see let's see what is designed here
+37:40
+uh provide another one from sauce
+37:49
+between transmission oh okay sorry this is actually a round trip time okay this
+37:54
+is a round trip time that means from A to B and then from B to a okay the B
+38:00
+sent a response back to a and then this is a actually the round trip time
+38:06
+okay any questions
+38:11
+yeah he's asking is this the package is this package of Aging or circuit switching this is a package switching we
+38:18
+are talking about uh the internet okay so the circuit switching is now really
+38:24
+rarely used actually internet so when we talk about internet we are you we are
+38:30
+mainly referred to the package meeting which means the routers okay the router and switches
+38:35
+any other questions okay so that's how the face route
+38:42
+program works and and that's how the internet delays look like in reality
+38:49
+okay and then now we want to come back to a look at this uh program how this
+38:55
+program is designed how could this program provide the
+39:00
+round trip time or the time interval between the transmission and reply okay
+39:06
+so what happens is actually very interesting so every time
+39:11
+every time the computer a will send out
+39:16
+three packets okay you can see what you you may ask why do we send out three packets because
+39:23
+we want to measure three times so as you can see for every router we
+39:30
+measure three times because we want to know because one time sometimes may not be accurate right so we want to measure
+39:37
+multiple times to say like the average to to make sure uh the time can indeed
+39:44
+reflect the delays Okay so again
+39:50
+again so each time the round the computer a send out three packets and
+39:56
+this third package will reach firstly for example the first time these
+40:02
+three packets will reach computer router R1 okay and the interestingly the third
+40:08
+pack is all how some failed
+40:14
+the field is time to leave
+40:21
+we also call it TTL okay TTL is a very commonly used term in networking okay so
+40:29
+time to leave is one field in the packet okay in each packet each
+40:36
+packet uh has they all have a TTL field and for the first time the tkl field
+40:43
+is set to one what does this mean this means hey the
+40:52
+first three packets your time to leave is only one hop
+40:58
+okay that means when there's a third package arrive at router R1
+41:05
+okay R1 will directly minus one on the
+41:12
+current TTL so that means TTL minus 1 equal to 1
+41:20
+minus 1 equal to zero okay and then this router will check the TL and we'll see
+41:26
+oh this is zero okay that means what that means hate I'm sorry you through
+41:34
+you cannot live anymore because your time to leave is just one hop and now your TTL is zero so you cannot go
+41:42
+further you have to be dropped here okay that's how how R1 will react then
+41:49
+but but even these three packets die okay the R1 will still be very
+41:56
+responsible around will notify the parents of these three packets okay notify basically notify computer Aid say
+42:03
+hey I'm sorry you're through Pakistan okay so later on you will learn this is
+42:09
+actually uh done using some protocol for the icmp and then email finally received the
+42:17
+notification from Aaron saying those three packets died okay and then a we are write down the time
+42:26
+of receiving the response so then it will calculate
+42:32
+the time between the transmission of these three packets and the response
+42:38
+from R1 okay or all the time when it receives
+42:43
+the response from R1 so then this time interval is called the round trip time so a will write down that time that's
+42:50
+why you can see actually here you can see for the third package okay
+42:58
+you have three time intervals to write down okay this these are all recorded by computer Aid and the second time so
+43:06
+second time a will try again okay a will try I'll try to send out
+43:11
+three packets again the second time the TTL is set to two
+43:17
+okay set to two two means these packets can travel two hops so when they arrive
+43:25
+at R1 foreign
+43:36
+on the current TTL so equal to 2 minus y equal to 1. then this means the
+43:43
+uh TTL is not zero that means these three packets can still go forward okay
+43:48
+so then when they arrive and then this third practice arrive at R2 R2 will do
+44:00
+the current TTL which is one okay minus one equal to zero there are two will say
+44:08
+I'm sorry you have to you have to uh stop here okay I have to drop you then
+44:14
+again R2 will notify a about the dropping of these three packets so it
+44:20
+will write down the time uh of receiving the response and the time of
+44:25
+transmission will cost then calculate the time interval will be turned down okay that's how the delay is between a
+44:31
+to R2 is uh calculated so basically these three numbers okay then you can
+44:39
+imagine they can continue the next time anybody has to send out the third package again with TTL equal
+44:47
+to Third and then when it arrives at R1 with minus one TTL minus one then dtl
+44:54
+becomes two so it continues to R2 then t r 2 will do TTL minus one again make it
+45:01
+TTL into one okay then it will finally reach our third and then after will do
+45:07
+TTL minus one equals to zero okay so then after we'll drop the third package
+45:14
+and notify Anya will record the time interval and then that is the time for
+45:20
+this okay so then we continue and eventually the third package will arrive
+45:27
+at the destination okay then uh the choice routes program
+45:33
+will stop okay that's how it works any questions

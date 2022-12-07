@@ -1,0 +1,638 @@
+0:03
+so we have learned uh two models before client server model and P2P model we
+0:09
+talked about the web the email the DNS these applications are mainly using the
+0:15
+client server model okay for example for web we know we have a web service we
+0:21
+have the web clients the clients programs are usually the Firefox the web browser right so Safari Firefox Chrome
+0:29
+Etc then for email application we also know it is uh using email server and also email client
+0:37
+the email client may be outlook for example then for DS for DS
+0:43
+it also uses a cleanser model because we have the answer we're serving all the
+0:49
+clients okay so then those clients who want to know the IP address for certain
+0:58
+host name then they can just acquire it via server okay so those are all the
+1:03
+client server applications and the in 2.5 we are going to talk about the P2P
+1:10
+applications which is peer-to-peer applications okay it is using a P2P
+1:16
+architecture which means it has all the features we have discussed before
+1:22
+regarding the P2P for example there is no server no always one server okay and
+1:29
+those up those end systems can directly communicate with each other they don't
+1:34
+need to communicate with the server we know in client server model these applications must this clients must
+1:42
+communicate with the server right they cannot communicate with the clients okay
+1:47
+but if P2P is different and also those peers are intermittently
+1:55
+connected and they can change their IP addresses as many times as they want okay so the architecture is changing the
+2:04
+the structure of this network may change a lot so um this this is the phase this is the
+2:12
+one of the features of P2P okay it makes the management of P2P actually uh very
+2:18
+difficult okay so there are some examples of P2P application like
+2:24
+for example B torrent BitTorrent is used for file distribution some of you may
+2:29
+have used this before um and it's uh it's actually it's a very
+2:35
+sometimes it's very fast okay it's very fast food for downloading but later I'm
+2:40
+gonna talk more about this okay how would the speed current work uh one of the feature you probably noticed is
+2:47
+sometimes you may use this kind of P2P application you feel like your machine
+2:52
+slows down a lot okay so we will talk about why and a second application is
+3:01
+actually one application that is used to worry um often in China for video streaming
+3:09
+okay and also Skype is another application so those are the some of the examples we will mention
+3:16
+um some of them later okay before we start to talk about the P2
+3:21
+application one thing we want to discuss is what is the performance of the P2P okay
+3:30
+so when compared with the client server model um what is the difference okay what is the
+3:37
+difference between client server model and P2P model basically means for example for for this file distribution
+3:43
+okay the question is how much time should be used to
+3:52
+distribute the files okay from one server to amperes okay we want to
+3:59
+compare the performance of cleanser model and the P2P model and see which
+4:05
+one is uh um it has better performance okay it is more efficient okay
+4:12
+so now let's look at this example in this example we assume we assume the file size is f okay and
+4:22
+you can see this is one server it has multiple
+4:27
+clients okay a lot of clients and we have a file F okay file size f
+4:35
+which we want to distribute to every client okay distribute to every client
+4:41
+and if we are using client server model okay uh let's say firstly let's look at
+4:47
+some of the parameters so firstly this server has a upload capacity
+4:53
+upload capacity means upload speed okay and for each client
+5:01
+it has one upload capacity and one download capacity which means uploading
+5:07
+speed and downloading speed okay for each client it has a different uploading speed and downloading speed
+5:14
+okay so for example for the peer eye we can see the uploading speed is UI
+5:21
+downloading speed is Di okay this is these are all the parameters you need to know before we do
+5:27
+any calculation now let's look at the client server model
+5:34
+you think about this for client server model if we want to distribute this file to every client
+5:42
+that means every time one client make a
+5:47
+request the server needed to upload this file to the network once
+5:54
+okay that means if we have on clients if these alkalines make n requests
+6:01
+then this server needs to upload this file and times okay that means it needs
+6:09
+to upload and copies of this file okay so then let's see
+6:15
+we if we want to understand the time used for distribution then we first need
+6:22
+to think okay how much time do we need for uploading right because we need to upload this and copies
+6:29
+so if the file size is f okay then the time to upload one copy
+6:37
+for the server okay is F over u s
+6:43
+okay this is the time to upload one copy if we want to upload any copies
+6:49
+of course the time is just earn time n times F over us okay that is
+6:57
+the uploading time okay pay attention uploading time and then we need to think
+7:02
+about the downloading time so from downloading we know the downloading speed for each
+7:10
+peer SDI right so for d for for number one for P1 is D1 for peer two is D2 okay
+7:19
+so that means that means the downloading speed is different
+7:25
+for every machine okay for every client if we consider
+7:30
+the downloading time then download time for the first computer will be
+7:36
+foreign the second computer will be
+7:42
+F over D2
+7:48
+okay so for the PRI then the downloading time the time used for downloading is f
+7:53
+over d i to continue okay and now we understand
+8:00
+for uploading the servers uploading time in total is
+8:07
+uh F over us and the downloading time is f f over D1
+8:13
+for one F or d242 Etc okay so these things can happen this this
+8:19
+downloading and uploading can happen in parallel then that means if we consider the time
+8:27
+we use the for file distribution then we only need to consider the
+8:33
+maximum time among all of these times right so among all of these numbers we
+8:41
+choose the maximum one then that is the time we use it for
+8:46
+file distribution for distribute this file to an uh clients right so that
+8:53
+means okay the distribution time should be the
+9:01
+maximum of
+9:10
+NF over us foreign
+9:24
+so should it be that maximum of all these numbers okay
+9:29
+then for this for f over D1 F over D2 F over D3 Etc
+9:37
+okay if we want to choose the maximum Y is very easy we only need to choose
+9:44
+F over dmin right the m means the minimum client downloading rate
+9:52
+okay the minimum client downloading speed okay So eventually this formula
+9:58
+becomes this okay becomes okay I only need to choose
+10:04
+the maximum of LF over us and F over dmin okay F over D minimum so among
+10:12
+these two numbers I choose the bigger one then that's fine okay this is a client server model I hope you
+10:18
+understand uh the rationale behind okay foreign
+10:29
+for P2P model we also need to upload and download okay the difference is this
+10:36
+time at the server side do we need to upload
+10:41
+and copies we do not we only need to upload one copy why because those peers
+10:51
+can serve each other okay so for example this one copy is uploaded and maybe P1
+10:57
+maybe the um Pier One downloaded this copy okay all
+11:03
+downloaded part of this copy then Pier One can begin sharing this with other
+11:09
+peers okay it so the the server do not need to be responsible to upload and
+11:16
+copies okay then in this case we can say oh okay the server the uploading speed
+11:21
+is us so the time for uploading for the server is only
+11:27
+F or us okay and then after that those are uploading
+11:33
+the uploading of the peers and the downloading okay among the peers can
+11:39
+happen simultaneously so in this case we should consider the uploading speed of all the peers okay so for example
+11:46
+this is U1 this is YouTube
+11:53
+okay the uploading speed of all the peers okay for one piece U1 for second place
+12:01
+YouTube so then you think about uploading speed if we want to uh finally
+12:08
+download and copies then the server together with all the peers they need to
+12:13
+upload and copied okay so that means in total the
+12:19
+uploading time should be
+12:24
+we need to upload Pages we need to upload NF okay and copied but the uploading speed
+12:33
+uploading speed this time is not the US okay it's actually the U.S
+12:51
+okay the uploading speed is all of the uploading speed including the server and the client
+12:57
+because those peers will also upload so that means it's equal to
+13:04
+foreign
+13:10
+so this is the time we used for uploading okay so here you can see we need two uh
+13:18
+two numbers for time for uploading time one is the one copy from the
+13:25
+server okay that means the time used IS F or us
+13:30
+the second number is this one is the total uploading time for earned copies
+13:36
+okay and for downloading downloading no surprise it's very easy I've already won
+13:43
+and forward d2f already through okay we continue right and then if you
+13:49
+want to find the maximum downloading time then we just do F over D minimum
+13:55
+okay so now among these three numbers among these three numbers
+14:01
+F over us NF over us plus all the uploading speeds
+14:08
+of the clients or of the peers and then F over dmin among these three numbers we
+14:17
+need to choose the maximum okay we need to choose the maximum then I know
+14:23
+probably by now you still don't know what is the which one is better which one has a better efficiency okay which
+14:31
+one can be distributed file quickly and let's now compare the DP to p
+14:40
+the distribution distribution time using P2P method and the DCS distribution time
+14:47
+using com cleanser method okay let's compare these two how can we can
+14:53
+we compare let's look at this assumption in this assumption we have uploading
+15:00
+route U okay we're assuming all the clients do remember for the clients we have uis
+15:07
+right so all the clients will assume they have the same uploading speed which is you and we assume F over U is one
+15:15
+hour we are assuming the server's uploading speed is 10 times faster case 10 U and we also assume the
+15:23
+download this video is the minimum downwind speed is uh equal to or bigger
+15:29
+than the or greater than the uploading speed of the server so D Min is
+15:35
+equal to or greater than us okay then in this case in this case
+15:42
+how can we compare these two okay let me just write down
+15:48
+here
+16:10
+foreign
+16:33
+so those are the two numbers those are the two formulas we want to compare and
+16:38
+then we want to say okay the assumption
+16:45
+is that all your eyes equal to you
+17:08
+okay so those are all the assumptions okay now let's look at these two
+17:13
+formulas one and two okay foreign
+17:20
+one for one we know d m i n is greater than uh us right
+17:29
+so then
+17:38
+it is correct because DMI n is bigger D minimum is
+17:44
+bigger than us so we know F over d m and n is of course smaller or equal to f o u
+17:51
+s right so then of course this will be smaller or equal to
+18:00
+NF or us right so then you can see okay comparing
+18:05
+these two okay then F over DMI is smaller that
+18:14
+will cause for one
+18:29
+right for one DCS then we do not need to look at F over DM anymore we only need
+18:36
+to look at NF over us okay AC equals to
+18:45
+maximum of over 10 U because U is equal to 10U okay and currently you probably
+18:52
+do not understand why I change it to you later you will see okay
+18:57
+then for two what will we know if we compare these
+19:04
+two F or U S and F over dmin we already know the answer
+19:11
+right so for two then
+19:16
+we don't need to look at F over DMI anymore because
+19:21
+we know it is smaller than F or us
+19:28
+so we only need to compare this one and
+19:34
+thank you and this one
+19:40
+okay and if we change this into U
+19:49
+h
+19:56
+us Plus let's change us into 10 U
+20:03
+okay foreign
+20:14
+and then let's we know the sum of all the uis if all the uis are the same we
+20:21
+have n clients so that means we have earn you right so we're only to compare these two
+20:29
+okay and now how how can we compare okay let's see
+20:35
+for these two how can we compare if
+20:42
+okay
+20:48
+if n goes to Infinity
+20:54
+okay then in this case we can change
+21:01
+we can still keep F over 10 U but for the second formula this becomes
+21:09
+if n goes to Infinity pay attention if n Go to Infinity then we can ignore this
+21:15
+10 U right because n will become like a huge number right then tangyu doesn't
+21:21
+matter anymore so then this becomes foreign
+21:28
+this becomes F and F over n u okay then this equals to
+21:41
+okay then we'll only need to compare F or rectangle and F over U of course F
+21:47
+over U is bigger right so this then equals two F over U
+21:54
+okay and then if you compare this one
+21:59
+and this one and I have over 10U and an F over U so what are their difference
+22:05
+the difference is if n goes to Infinity
+22:18
+DCF DCS will go to Infinity
+22:24
+right because you can see and is going to infinity and F over 10 U
+22:30
+of cos is equal to Infinity but if n goes to Infinity
+22:36
+okay then the t d p to P actually equals to F over UF overview window is one hour
+22:45
+it's a constant number right it doesn't change anymore do you see the difference
+22:51
+okay so the five if we plot this okay into a
+22:56
+figure then you can say when n goes to Infinity
+23:02
+okay for client server model it is ink the
+23:07
+distribution time is increasing linearly okay that means the distribution time
+23:13
+we all goes to Infinity also but if angle to Infinity for P2P model
+23:21
+eventually eventually this will
+23:26
+be approximate to one hour it will be closer and closer to one hour okay but
+23:33
+it will never increase Beyond one hour do you see the difference okay the difference is the difference is
+23:41
+for client server model again client server model if the number of clients is
+23:47
+going bigger and bigger then the time distribution time is increasing linearly
+23:53
+then the distribution time will go to Infinity but if we have more and more
+24:00
+peers in P2P model okay then this doesn't affect the
+24:08
+distribution time too much because the decision time will finally be
+24:13
+approximate to one hour be approximate to a constant number okay so that is the
+24:21
+difference between client server model and P2P model so this is actually very intuitive if you if you think this if
+24:27
+you're using analogy for example if I'm a server and the students in our class are the
+24:34
+clients if what I I'm the only one serving the entire class then I of
+24:39
+course I cannot handle a class that is very big if we have a thousand students
+24:45
+how can I handle that right because all the requests are coming to me but if we are using P2P model which
+24:52
+means everybody is teaching each other so all the students can teach each other okay then when you are requesting for
+24:59
+service you are also providing service in this case it doesn't increase my
+25:04
+workload right so then the distribution time or the serving time okay the
+25:10
+service time is much much shorter compared to client server model okay
+25:16
+so for this part do not worry okay I know you you are probably overwhelmed
+25:22
+about this slide okay no test
+25:28
+on this slide okay but
+25:33
+I will have tests regarding this slide that means you don't need to know how we
+25:40
+finally do the calculation but you need to understand what is the rationale
+25:45
+behind and what is the takeaway message okay the takeaway message is for P2P
+25:52
+model the distribution time we'll become will be close close to a
+25:59
+constant number as the number of clients increasing or the number of peers increasing but for client server model
+26:05
+the distribution time will increase linearly as the number of clients increase okay so those are the uh
+26:14
+current conclusions you need to know okay so B current is one of the P2P file
+26:20
+distribution application probably you have used this before but you may not understand the mechanism
+26:27
+behind uTorrent it is a very smart design I would say so generally the file
+26:33
+is divided into the 256 KB chunks the peers in this torrent will send and
+26:41
+receive the file chunks they are exchanging the file chunks they basically serve each other when they are
+26:48
+also got service from each other so basically in BitTorrent we have one
+26:53
+server or we call it tracker this server is not the real server in the client
+27:00
+server model and not in that sense but it's just a one tracker this track
+27:06
+reveal tracks the peers participating in the torrent and then torrent is basically a group of
+27:12
+peers exchanging the file chunks so let's say if a new user arrives Alice
+27:19
+arrives then Alice will firstly obtain the list of peers from the tracker
+27:26
+and then starts exchanging the file chunks with appears in this torrent so
+27:32
+that is the general idea but when up here joining a torrent for
+27:38
+example when Alice firstly joined this torrent it has no chance but
+27:44
+it will accumulate them over time from other peers so Alice will gradually
+27:49
+collect more and more final chance of course this peer will also need to register with the tracker to get list
+27:56
+their own peers and connect to the subnetal appearance basically for those we call them as Neighbors
+28:03
+and they also need to pay attention when downloading the peer will upload the
+28:08
+chunks to other peers okay so it is getting service and is also providing
+28:13
+service to others so the pr makes change peers with whom it exchange chunks that means
+28:22
+Alice may decide to exchange chunks with ABC right now but later it may decide to
+28:28
+exchange chunks with the EFG so the peers the peer may decide to
+28:34
+change the peers with whom it is changed the chunks and also the peers may come
+28:40
+and go once up here gets the entire file it may have two options one option is
+28:48
+is it May be selfish and decide to live so I'm down I'm done with my file okay I
+28:55
+don't want to stay here to provide more service it's a selfish behavior but it's a it's one option that the speaker can
+29:03
+can do another option is it can stay in the storage and provide the service to
+29:11
+other peers those are the two options and one request importance
+29:18
+okay one requesting for chunks at any given time different periods have
+29:24
+different subsets of file chunks so that means that means for example at
+29:31
+this time the Alice will ask the peer and say hey I'm interested in this file
+29:37
+what kind of file chunks do you have at you at your site at least we'll ask this
+29:43
+question to each peer and then those cures will say for example let's see
+29:51
+here a pra may say oh I have one two three four
+29:58
+five let's see let's see if this file has a one two three four
+30:13
+let's say this one has a one two three four five chunks and a said I have uh
+30:19
+one two three four five and B said
+30:27
+he said I have two three and four she said
+30:35
+I have three four and five
+30:42
+D said I have two three and five so you can see at any given time different
+30:47
+peers may have different subsets oh this file chunks then uh purely Alice
+30:55
+will check with each pure what kind of uh what what uh file
+31:00
+chances they have then at least need to request for the chunks
+31:08
+and it's need to make requests to ABCD so pay attention there is one very
+31:14
+important principle here this may be a test problem Alice will
+31:21
+ask your question missing chunks from the peers it will follow a principle called rarest first what does this mean
+31:29
+for example if you look at a b c d okay A has one two three four
+31:34
+five B has two three four C has three four five D has two through five and in this case in this case you can
+31:41
+say two has multiple copies two is available on
+31:47
+a b and also d third is available on a b c and d four
+31:55
+is available on a b c and five is available on ACD but one is available
+32:03
+only on a so then one is the rarest piece then in
+32:11
+this case Alice will request the the rarest piece first that means Alice will
+32:17
+firstly contact a to get the chunk one
+32:24
+why because remember this is a P2P Network P2P means every peer can come
+32:31
+and go especially when a for example a already has one two three four five it gets all
+32:37
+the file right all the file chunks so Amy decide to leave if a leave then
+32:42
+nobody has the chunk of one then nobody can get the complete file
+32:49
+so that is the issue that's why Alice will need to request the rarest chunks
+32:54
+first okay pay attention to that this will appear on the test and then
+33:00
+when sending a chance let's send you the chunks B torrent has a very interesting
+33:06
+mechanism called tit for attack so what does this mean this means Alice sends
+33:11
+chunks to those four peers currently sending her chunks at the highest rate
+33:18
+so there are so many cheers right so many peers so Alice among these appears
+33:23
+Alice will say oh okay so these four these four peers are sending me the file
+33:30
+jumps at the higher street so they are the factors so I like this four so that
+33:35
+IO will also send them I'll be also sent them the
+33:42
+bottoms at my highest at the High Street so then it will choose the top four
+33:48
+peers then the other peers will be talked talked means the other peers
+33:54
+cannot receive file chunks from Alice Alice will just choose the best of work
+33:59
+and ignore the remaining say hey I don't want to become friends with you because you are not good enough so as we are not
+34:08
+sent the chunks to Alice to those peers so it will only choose the basketball of
+34:16
+course L is the best four may change so Alice will do re-evaluation of the top
+34:23
+four every 10 seconds and always choose the top four
+34:28
+then you may say um if so so you may say what if there are another Noob here coming out who is
+34:36
+really really fast right so you have to give opportunity to other peers also that's why every 30 seconds at least
+34:44
+randomly select another appear randomly select another appear from the group and
+34:50
+then start sending tabs if this peer is really good and Alice is not
+34:57
+disappointed then of course L is real optimistically and choke disappear and
+35:03
+say oh okay you are new but you're good enough you can join my top four then I we become friends I can send the
+35:10
+um the file trans to you but if of course if this appear is not good enough
+35:16
+then Alice will also talk this here and and refuse to communicate with this peer
+35:23
+so this is like the principle then following this principle you can see Alice can always
+35:30
+can always communicate with the best four um our cause and it may also become the
+35:37
+one of the best four for the for the other peers so let's see an example here we have Alice and we have Bob so Alice
+35:46
+optimistically and talksport Bob is new then Alice may become one of Bob's top
+35:55
+four providers so Bob is very happy Bob recipe and say okay I want to send you
+36:03
+at the highest rate also so number becomes one of Alice's
+36:08
+top four providers then at least of course will do the same right so that in this way you can see
+36:17
+teeth voltage ensures that each peer can find the better trading
+36:26
+partners and get the file faster okay so this is a I would say this is a why
+36:33
+I see a t-test t410 is a very smart mechanism okay so it ensures the peers
+36:40
+can always find their best Partners to to uh exchange file terms okay all right
+36:48
+okay pay attention this may appear on the test so in the test I made ask you
+36:54
+what is uh for example I may ask you what is the best basic mechanism for T4
+37:00
+touch or what is the effect of what you did for that okay so this is something
+37:05
+you need to pay attention foreign
+37:11
+so then the next product we are going to discuss is the video streaming and

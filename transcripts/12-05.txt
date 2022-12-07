@@ -1,0 +1,750 @@
+0:03
+okay so far we have discussed the fundamentals of security especially the principles for
+0:11
+cryptography and how cryptography can be used for authentication for integrity
+0:18
+for computationality ETC we have source examples in the email okay so we so for
+0:26
+example we know for computationality we need to firstly exchange the K right we
+0:33
+need to encrypt the k uh exchange encrypt the message with with the K and then we also need to
+0:40
+exchange the K with public K cryptography and for authentication and
+0:48
+message Integrity we also need to um uh calculate the hash of the message and
+0:55
+then encrypt this hash with the sender's
+1:01
+private key right so those are all those are the applications and we know how we
+1:07
+can use the cryptography in a proper way to
+1:15
+achieve the goal of confidentiality integrity and authentication so then for
+1:22
+the remaining sections in this chapter we will continue introducing how the
+1:29
+fundamentals can be applied to different layers of
+1:36
+networking okay and how the security is deployed in networking so the first
+1:41
+example let's say is the TLs so TRS is called transport layer
+1:48
+security although it is called transport layer security but is actually a
+1:54
+security protocol that is widely deployed above the transport layer it is
+2:00
+actually deployed in application layer and later we are going to see this okay
+2:05
+um tis probably you are not very familiar with this but if you check your
+2:11
+web browser especially if you are visiting some let's see Banks okay then
+2:18
+for example type in chase.com okay and then you will see
+2:24
+um beside the URL you will see a small icon of lock so that lock icon actually
+2:31
+indicates this is using the TLs okay so TRS is widely supported by almost all
+2:39
+browsers um and then the communication with the web
+2:45
+server is actually using the protocol of https okay the port number and the web
+2:52
+server side is support 443 it's not a port 80 anymore Port 80
+2:59
+is just for regular HTTP but if you are using https then the port number is
+3:05
+going to be Port 443 okay um so TRS is able to provide
+3:12
+confidentiality integrity and Authentication how is this done
+3:19
+competition entity is done through symmetric encryption Integrity is
+3:25
+achieved through cryptographic hashing and authentication is down
+3:31
+through public key cryptography okay so actually the early version of tis is
+3:39
+called secure circuit layer and we we have discussed this before right and TRS is
+3:46
+the newest version okay so generally TS provides an API that any
+3:55
+application can use so you can look at this figure this shows the HTTP view of TRS
+4:03
+so for example let's see originally we are very familiar with this
+4:09
+the application layer we use HTTP transportally reviews TCP and networking applicants IP right so we are already
+4:17
+very familiar with this protocol stack if we want to deploy TLS as we mentioned
+4:25
+many times before you cannot deploy TRS in transport layer
+4:31
+so we have to we have to deploy this at application layer okay there is a
+4:37
+description the application layer and transport layer so you can see that's why chaos is here and this is using TCP
+4:46
+if we are using UDP then you leave it deploy quic which also incorporates TLS
+4:54
+okay between the application layer and transport layer
+4:59
+so generally for TLS it provides a sign
+5:04
+for switch which means it provides a number of algorithms that can be used
+5:11
+for different purposes such as K generation encryption Mac and digital
+5:17
+signature here Mac is the math message authentication code is not the MAC
+5:23
+address okay pay attention to that and uh tips as 1.3 it's actually
+5:32
+um replacing the TRS 1.2 okay and these are the features of TLS it has a it is a
+5:40
+more strict I would say than the TLC 1.2 for example it requires the DH for
+5:48
+exchange okay rather than using either DH or RSA
+5:55
+so so in this case th is required okay this is not optional so things like that
+6:01
+so you can see these are the some of the features um if you look at the TLs 1.3 so it's a
+6:10
+very straightforward generally the client will say hello first basically in
+6:16
+the Hello message the client will tell the server which Cipher switch
+6:24
+are supported by the client and it will also indicate the K
+6:32
+government protocol the parameters Etc okay
+6:38
+it guesses those uh information and then the server will reply with another Hello
+6:45
+message the server will provide the selected design for Suite say hey the
+6:51
+client says I have this this um algorithm are available but this
+6:57
+protocol supported okay and then TRS the server will just reply say Hey Okay I
+7:04
+want to choose this Cipro Suite to for the further communication is like that
+7:09
+and most importantly most importantly the server will also provide a server
+7:17
+signed certificate we have learned that the certificate will contain the public key of the
+7:26
+server okay to prove okay this is indeed from this server this is for authentication
+7:33
+purpose right we learned this before okay and in addition to that the server will also provide the
+7:40
+parameters the key agreements protocol those kind of things So eventually the client will check the
+7:48
+certificate of the server to prove this is indeed from the correct server okay
+7:55
+the server is not fake and it will generate the K and then finally it can
+8:00
+now make application requests like https get message for example so this is the
+8:05
+handshake process okay so that is one example PLS
+8:12
+we know it is between application layer and the transport layer
+8:18
+so the next example is ipsec ipsec is actually a protocol in the network layer
+8:25
+let's take a look at this so you may think what is ipsec used for
+8:32
+so ipsec is used for VPN you may have already heard about APN before you may
+8:38
+have already used the VPN before right I I guess many of you have used VPN
+8:44
+especially during pandemic so VPN means virtual program Network it provides
+8:51
+provides like a tunnel between your computer and let's say if you are
+8:59
+connecting to the camps Network it provides a tunnel between your computer and the
+9:05
+um uh campus Network so it's like you are connected to the campus Network directly
+9:12
+in a very securing so that's why we call it why uh virtual private Network so
+9:18
+then the protocol uh behind is actually ipsec okay so ip72
+9:26
+certified four requirements the first one is confidentiality
+9:32
+which means we want to hide the contents of the package the second requirement is
+9:39
+the content authentication we have learned this before right content authentication means Integrity is the
+9:46
+package change replaced or fact we want to make sure it is not change replaced
+9:51
+or fake the third requirement of a VPN is arranging authentication which means we
+10:00
+also call it Source authentication right so which means is the sender
+10:06
+is the real sender lying about its identity is this really from the sender
+10:13
+right so this is also important the last requirement is NT replay we know replay
+10:20
+attack can be very easy right so the bad guy can replay a package sent by the
+10:27
+others we want to make sure this will not happen to the communication between the center and the receiver okay so
+10:35
+those are the four requirements we want to satisfy for VPN and then this is the
+10:41
+guideline for IP Circle okay so then how can we achieve
+10:48
+confidentiality no surprise encryption we have already talked about encryption right so uh we
+10:56
+have discussed multiple um encryption algorithms so in VPN
+11:02
+triple Des is used um and of course we all know that to do
+11:08
+encryption we need a key right but this K must be exchanged firstly between the
+11:17
+center and the receiver that's why we need some protocol called internet K
+11:22
+exchange protocol
+11:32
+okay so which is also called as Ike therefore Integrity the content
+11:40
+Integrity is given through the hash function we have learned about the different hash
+11:48
+functions right and the half function can also be K hash function which is
+11:54
+hmac so for example usually what we do is we directly do hash our data right
+12:03
+but in K the hash function um we can we can do something like this
+12:10
+so firstly k x or with data and then we
+12:15
+do hash then we do k x o with this entire thing and we do hash again so you
+12:22
+can see it is more complicated this is to prevent some potential
+12:28
+um leverage to the vulnerabilities or hash functions okay so you don't need to
+12:33
+know the details you don't need to remember this function you just need to know okay there is one type of function
+12:41
+hash function called hash function which can make it even
+12:46
+more secure and more complicated Okay so then we also need to know for the source
+12:56
+Integrity or the arranging Integrity so this is provided through the public key
+13:02
+and private key through the digital certificate okay we have learned about certificate we know
+13:09
+um certificates usually contains the public key right and public key of one
+13:16
+side the sender or the receiver and then this certificate is usually
+13:22
+um provided by some say right so of course
+13:28
+then the certificate can be or can be verified later
+13:33
+okay so it can also be provided by covers covers is another protocol which
+13:40
+provides the single sign-in so which means when you sign on one website on a
+13:46
+one one uh um once website then you don't need to
+13:52
+sign on the other related websites okay so um it's like that so for example for sex
+14:00
+state if we are using covers then you sign on for once only for canvas let's
+14:06
+say okay then you don't need to sign on for my DOT uh csu.edu anymore because
+14:13
+you you've already been authenticated okay so that is uh cobras
+14:20
+and then the last thing is about anti-replay and to replay we know if we
+14:26
+want to prevent this we must use something that is uh one time okay so
+14:32
+then that's why we can use one-time password or sequence number or timestamp
+14:38
+all of those things uh may work okay so then
+14:44
+for ipsec ipsec is the protocol for VPN
+14:49
+it's the full name is called Internet Protocol security it
+14:55
+um eventually this is essentially this is actually a framework of Open Standards
+15:01
+so it has three major components authentication header which requires ah
+15:09
+encapsulating security payloads which is called ESP and internet K exchange we
+15:15
+mentioned this before right ik so ah gives you the Integrity plus
+15:21
+Authentication and then the ESP gives you the
+15:27
+conditionality integrity and authentication ikey basically takes care
+15:33
+of the key exchange okay of course without case change we we cannot provide
+15:38
+the other functions so for these three components I will not
+15:45
+go to talk about the details I have to briefly give you an idea about those
+15:51
+okay so for ah for example here you can see we have run through one and router X
+15:59
+and voucher y then ah will basically do this at the router x side we we take the
+16:07
+IP header and take the data and then we add something called some
+16:13
+some K okay after that we calculate the hash of this entire thing okay and then
+16:22
+this becomes when you header a h so this data will this will be put into the age
+16:27
+field then at when the router receives the package the router will do the same
+16:33
+thing we it will also use IP header data indicate to uh calculate the hash of
+16:40
+this and then it will compare the received hash with the recomputed hash
+16:48
+if if this matches that means the data and
+16:54
+IP header are not changed okay it can also provide authentication because we
+17:02
+know this K this K is special okay this K is shared between the router X and Y
+17:08
+so we know this is from the wrong tracks okay
+17:14
+so this is ah um ESP is sp can be used in two modes
+17:20
+one mode is called transport mode it provides inclusion traffic between
+17:25
+two devices two peer devices another model is called tunnel mode which
+17:32
+provides encrypted traffic between two subnets okay so I won't talk about the
+17:39
+details for the equation authentication Etc but the major difference between
+17:47
+tunnel mode and the transport node mode is
+17:53
+for tunnel mode we know because this is between two subnets so usually the
+17:59
+tunnel mode has to generate a new IP header instead of using the IP header
+18:05
+directly it will generate the new IP header okay so this also protects the IP
+18:10
+address um the IP information
+18:16
+so then for transport node mode it will directly use the IP header okay so that
+18:22
+is the major difference for Ike ikey is the K exchange part okay
+18:31
+and uh pay attention usually between the two parties that for example
+18:39
+here router X and router y we need uh before we send the data we
+18:46
+need to firstly establish something called security Association from the sending entity to the receiving
+18:54
+entity okay so basically um
+18:59
+this security Association is like a session okay so it contains
+19:07
+some information very important information like
+19:13
+um for example firstly at identifier like SPI Security parameter index and
+19:20
+also the source address as a interface definition as interface
+19:27
+and the type of inclusion used in position K the type of Integrity Check
+19:32
+used and authentication key Etc you can see a lot of information are actually
+19:38
+contained in this security Association okay so we know although IP is
+19:46
+connection is but ipsec is connection oriented it's like before we do sending
+19:52
+data we firstly need to establish such a connection to
+19:58
+provide some information okay and this is an example you can see you
+20:04
+can see the SPI Source IP destination IP the protocol use the encryption
+20:09
+algorithm we use the etc etc okay so again I will skip the details and
+20:16
+this is about the Ikea so the last thing is about the firewalls
+20:24
+and IDs um these are very very common especially
+20:30
+in price Networks firewall basically isolates the organization's internal
+20:39
+Network from the larger internet
+20:44
+allowing some package to pass and blocking others okay so basically this firework can
+20:52
+protect the internal network from the internet okay we protect the trusted Goods guys
+21:00
+from the untrusted bad guys all right so
+21:06
+why do we need firewall firewall can actually be deployed to
+21:12
+prevent a diff a lot of different types of attacks for example it can prevent
+21:18
+the denial service attack we know the night or service attack means a lot of
+21:24
+traffic come to a server right the server cannot serve the legitimate users anymore so
+21:32
+then based on that we know okay we can how about we block some traffic if we
+21:39
+block some traffic then we are able to prevent the now service attack right for
+21:47
+example if we know okay a lot of bogus tcpr connections are from this certain
+21:52
+IP address or from certain IP address range then we can block all the traffic
+21:57
+coming from that IP address or from that IP address range Okay so
+22:04
+that's why we can use a firewall and so one example is the same flooding safe
+22:12
+bloody means the attacker try to establish many bogus TCP connections so
+22:19
+no resources are left for the real connections we know whenever we want to establish a TCP connection we need to
+22:26
+firstly send a c request right c equal to one if you still remember learning
+22:31
+basically means there are a lot of scene requests there are a lot of requests
+22:37
+trying to establish TCP connection that's why we have denial service attack then if we have firewall we can block
+22:43
+that okay um the second uh type is the file one can also prevent
+22:52
+illegal modification or access to internal data sometimes we or many times
+22:58
+we actually we don't want the public to have access to the internal data okay we
+23:05
+want to protect the internal data and the third type is is allow only to authorize access to
+23:14
+inside Network we know the inside networks may contain a lot of important
+23:19
+servers and workstations right so we want to protect the inside network from
+23:26
+the outside world that's why firewall is also very useful there are generally two three types of
+23:34
+firewalls stateless pecky filters State four Packy filters and application
+23:42
+get image let's discuss each of them so firstly for stateless package
+23:47
+filtering this is a very straightforward um basically the internal network is
+23:54
+connected to the internet why router firewall okay so the firewall can
+24:00
+be deployed on the router then this firewall may ask questions like
+24:07
+should the arriving packet be launching pack should the departing packet be let
+24:13
+out so things like that okay so then what we do is it's very easy we just check each
+24:20
+packet packet by packet and then make a decision
+24:25
+okay make a decision for each packet based on this information for example
+24:31
+what is the source IP address what is destination IP address what is the TCP or UDP um
+24:38
+uh Source or destination Point numbers so what is the message icmp message type
+24:45
+or what is the TCP simbit or TCP AC key bits okay so based on those information
+24:52
+for each package we make a decision should we allow it to pass by or not
+24:59
+okay so that is the status room so here you can see one example
+25:05
+in this example we check the datagrams in coming and outgoing Instagrams with
+25:12
+IP protocol field 17 this means 17 basically means this is UDP
+25:18
+okay if it is equal to 6 then this is TCP and we check this protocol field and we
+25:26
+also check the Source or destination port number okay if it equals to 23 that means this
+25:35
+is Talent connection okay so then we want to block
+25:42
+all those datagrams with IP protocol field equal
+25:47
+to 17 and with source of this number uh
+25:52
+that's that's an important number equal to 23. that means
+25:57
+we want to block all the incoming and outgoing UDP flows and TCP connections
+26:05
+okay so this is one example a second example is block the inbound TCP segment
+26:13
+with a c k equal to zero what does this mean if you recall what we have learned in
+26:21
+this tcp3 handshake we know there are three steps for three hatching right
+26:27
+so step one step one sing equals to zero sorry equal to 1 a c
+26:36
+k equal to zero this is step one you read the sender initiate this right then
+26:43
+the step two is the receiver the receiver will reply back so that for example if Step One is sent by the
+26:50
+client then step two is sent by the server the server will say okay C equals to 1 a c key equal to one basis
+26:59
+basically this is confirming right say yes we can talk and then the client
+27:05
+will confirm again okay so then same equal to
+27:11
+zero and a c k equal to one okay so this is the 3B handshake
+27:19
+if you look at example two block inbound TCP segments with a c k equal to zero so
+27:25
+among these you can see the first step has AC k equal to zero which means what
+27:31
+which means this this rule will prevent
+27:37
+the external clients from making TCP connection with the internal clients
+27:44
+okay the external machines cannot initiate tsp connection
+27:50
+with the internal machine but you may worry how about
+27:58
+the internal machine you want to make a connection to the outside if the internal machine starts this
+28:05
+first okay then the packet comes in will will become this S2 right
+28:13
+so basically AC k equal to one if x equal to 1 will allow it right it may
+28:19
+allow it so that's why uh this example 2 is one simple thing
+28:27
+okay one simple rule is actually preventing the external clients from
+28:32
+making this connection between with internal clients but allows the internal
+28:37
+clients to connect to the upside okay so I hope this clear
+28:44
+and there are some more examples here for example if the policy is no outside web access
+28:54
+then the file set the firewall setting will become drop all the outgoing
+29:00
+packets to any IP address with Point number eight
+29:05
+for any package that is going out
+29:10
+and with our destination 0.80 we will drop that
+29:16
+okay so that is the firewall setting so there are more examples I I will not
+29:23
+um talk about the details and you can look through them okay
+29:29
+so you may ask how can this be done how can this be implemented
+29:34
+uh this is a very straightforward the firewall policies are actually
+29:41
+implemented with Access Control lists okay it's like a table it's a table of
+29:47
+rules applied top to bottom to incoming packets okay
+29:53
+so for example you can say this is the action and this is the
+29:59
+condition okay so so for example for this the first line it says okay
+30:06
+for all the packets with the source address following uh falling into this
+30:13
+range and the destination address is outside of this range and the TCP
+30:20
+the protocol TCP and salt product is this that's important destination Port is 80.
+30:26
+the flag beat is any for if if this packet
+30:31
+okay if this package certifies this condition then we allow this packet to
+30:39
+pass by so it's like that okay
+30:44
+and for this one it's similar similar so this is like
+30:51
+this is like if a packet is coming from outside this network to this
+30:59
+internal motion to the internal motion and if it comes from a web web browser sorry
+31:07
+web server okay and if this AC key bit equal to one then
+31:13
+we allow it so it's like that so you can see it is implemented with a number of
+31:20
+rules okay that is the stateless
+31:26
+package filtering but the status package version may have
+31:32
+a problem the problem is sometimes it may admit
+31:37
+the package that make no sense for example for this rule
+31:43
+for this rule you can see um the destination Port is 80. a source
+31:50
+Port is 80. sorry um and destination Port is this and AC
+31:56
+keep it equal to one so this this is like uh the
+32:01
+web server is replying to an internal machine
+32:07
+right the web browser web server is replying to an internal machine
+32:14
+this packet may not make any sense if
+32:21
+no TCP connection is established first right because we know the data exchange
+32:27
+had to happen after the TCP connection established okay but if no TCP
+32:34
+connection is established and we still allow such packets come in
+32:39
+it doesn't make any sense right so that's why
+32:45
+you're only we need to do some stateful Packy filtering okay which it which uh can
+32:54
+help track the status of every TCP connection and make sure we no longer
+33:02
+admit package that make no sense okay
+33:07
+so for example in this this is the example we just saw
+33:12
+right so in this example we will love the package
+33:19
+okay if there is already a TCP connection so that means we need to
+33:26
+check the connection for this type of packets okay even if they
+33:32
+have already fulfilled the other conditions but but we still need to check if there is a active connection
+33:39
+first okay so that is the state for packet theater
+33:45
+the third type of firewall is the application gateways uh the idea is very
+33:52
+simple so basically for application gateways it will filter the package
+33:59
+on application data as well as on IP TCP
+34:04
+UDP files Etc okay it does not only look at the like the source IP destination
+34:10
+IEP phone numbers Etc it will also check the application data that is very
+34:16
+important for example it may allow the select
+34:21
+internal users to download outside so only those
+34:28
+authorized users only these many users can tell net
+34:33
+outside and the other ones they cannot tell on the outside so this is like application layer okay so
+34:41
+um then in this way basically for the
+34:47
+for the authorized users the Gateway set up the Tanner connection to the
+34:52
+destination host okay and the Gateway is like proxy it will release the data
+34:58
+between the two connections okay uh then for the other talented
+35:03
+connections it will the ROMs will basically block all the other tenant connections
+35:10
+not originated from the Gateway okay so that is application layer application
+35:17
+ignorance and we know that is a firewall
+35:24
+okay firewall can do packet filtering but usually it operates on tcpl IP
+35:32
+headers only and it doesn't really correlate
+35:37
+um the different sessions okay so that's why uh it's usually for preventing
+35:44
+something from happening but more importantly sometimes we need to detect
+35:50
+intrusion we need to detect the attacks okay so that's why we need something
+35:56
+called IDs intrusion detection systems there are usually two types of ideas
+36:08
+so first type is called Signature based foreign
+36:18
+so the second type is called a normal detection signature based the base the mean basically means there are some
+36:25
+specific signatures within the package okay that can directly tell
+36:32
+ideas hey this packet is malicious okay so there are some signatures we can
+36:39
+directly check uh anomaly detection is different a
+36:44
+normal detection has no signature so basically what we do is we will check
+36:50
+the normal packets okay the usually this for example you leave this package are
+36:57
+normal and then we know the the outliers will be the will be abnormal right so
+37:06
+then we know if we see some outliers then we result alerts okay
+37:13
+so those are the two types the the um
+37:18
+drawback of anomalytes is it has too many false positives so sometimes it's
+37:26
+not a attack but we view it as an attack okay we view uh the packet as malicious
+37:35
+and then signature based also has some problems initial piece based will easily
+37:40
+Miss some of the malicious packets because sometimes we do not have any
+37:46
+signatures for malicious package right so those are the two types of ideas
+37:54
+um basically as you can see IDs can do deep packet inspection that means we do
+38:02
+not only look at the headers we also look at the content of the package okay
+38:07
+so for example you can check the character strains in the packets against the database of a normal virus or text
+38:14
+range that is a signature based okay
+38:19
+um and also the IDS is able to correlate
+38:25
+different packets okay multiple packets so it is able to look at a number of
+38:33
+packets say oh okay so they are related they may be used
+38:39
+as a series and they may be used um for attack okay because you can see a
+38:47
+series of packets or are connected in summary okay so it's like that
+38:53
+um we will we will not uh go into details about the ideas but as you can
+39:00
+see here the IDS is one type of security sensors that can be deployed in
+39:08
+um at different locations in the Enterprise Network in Enterprise now firstly you can see
+39:14
+this is the internet right and then we have firewall firewall which is able to
+39:20
+uh block the traffic okay to filter the traffic between the internet and the internal Network
+39:28
+so this part is called demilitarized
+39:33
+zone or we call it as DMZ okay in the DMZ we really have web
+39:40
+server DS server file server Etc we have
+39:45
+those servers there because usually these servers are open to the public okay they have to serve the clients
+39:53
+and um what will happen is actually after DMZ we have another firewall here
+40:01
+okay and this will separate the DMZ and the inside Network
+40:11
+so in the inside Network we may have more important computers or workstations there and then
+40:19
+the ideas I did the IDS sensors can be deployed at different locations like in
+40:25
+DMZ or the internal Network okay or even the inside Network or email some uh
+40:32
+servers sometimes okay or some workstations okay so this is based on
+40:37
+different purposes then we can make the decision whether to deploy the ideas
+40:44
+okay so that's all what I want to cover about the security part
+40:49
+I hope you can understand the three most important components of security CIA
+40:56
+computationality integrity and availability okay I hope you also
+41:02
+understand the basics of cryptography the symmetric and public key
+41:07
+cryptography and how this can be used for uh computationality for integrity
+41:14
+and for authentication okay then uh we all we also learned the security can be
+41:21
+used in different scenarios like a secure email TLS and ipse and we also learned some of
+41:29
+the security matters like the firewalls and IBS okay so I don't expect you to
+41:36
+know a lot of details about those because you will eventually learn these
+41:41
+things in CSC 154 the network security course
+41:47
+um for our course 138 you only need to know the basic concepts

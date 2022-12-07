@@ -1,0 +1,560 @@
+0:05
+the next thing we are going to discuss is uh in Ethernet okay ethernet is the
+0:11
+dominant wire land technology we are actually still using it right now right
+0:17
+um so you can see this is this uh this figure is actually the uh sketch for the
+0:24
+ethernet at the very beginning okay um and um over the time we have developed
+0:31
+different types of ethernet so firstly we have bus bus type structure okay this
+0:36
+is very popular so mid 90s and then gradually we learned okay this this will
+0:42
+have some problems because we may we may easily have the multiple access problem
+0:47
+we may have the Collision uh happening okay so that's why people
+0:52
+gradually um switch the bus structure to star kind
+0:58
+of structure okay the right side is the star structure in this structure we
+1:03
+always have a switch in the middle okay and then uh each computer or each each interface
+1:11
+is actually connected directly with the switch okay did not connect with each
+1:16
+other um so this is the ethernet frame structure
+1:22
+okay so basically the sending adapter encapses the IP datagram in the ethernet
+1:30
+frame okay so the iptogram is here in the data it's the payload okay and
+1:38
+then we have the preamble preamble is um uh is a very special string of uh bits
+1:48
+okay so the it's basically uh seven bytes
+1:54
+of this salmon buys a one zero one zero one zero one zero this is one byte right
+2:00
+so we repeat this for seven times and Then followed by one byte hour one
+2:08
+zero one zero one zero one one okay so what is this for this is the use of four
+2:14
+pre-m for for synchronization okay for synchronized between the sender and
+2:19
+receiver's clock um and then we have the source and
+2:24
+destination destination Source address okay those addresses are pay attention those are Mac addresses okay not IP
+2:32
+address because the IP address we know is seeing that IP disk program okay so
+2:37
+these are the Mac addresses um and we know the MAC address is a 48 bits
+2:46
+that means uh six byte for each okay and then this field is the type this type
+2:54
+indicates the higher layer protocol mostly IEP okay uh and then this is the
+3:02
+CRC CRC we have learned that right psycholic redundance checking uh this is
+3:08
+a for error detection and error tracking okay
+3:17
+um so for ethernet we know uh this is a connectionless connection list doesn't
+3:23
+mean we do not need cables to connect them connection isn't here means at the
+3:28
+lower layer at link layer we do not need to do any hand shaking to establish a
+3:34
+connection no handshaking between the sending and receiving new curves okay
+3:40
+and um this is unreliable because
+3:46
+um the receiving new card doesn't does not send any sicks or any Keys choose to
+3:54
+the sending Nick okay the data in drops frames recovered only if the initial
+4:00
+sender uses a higher layer rdt so you can say
+4:05
+um we do not have any reliability uh in
+4:11
+um in the in the ethernet protocol okay no reliability if you want to ensure
+4:17
+reliability to transfer then you have to re rely on upper layer which are the
+4:22
+transport layer okay which is the transport layer and then
+4:28
+um the Mac protocol here Mac is is a means multi-access protocol right
+4:34
+multiple search protocol is and slotted csma CD with binary back off
+4:41
+csma means we always listen before we send right and CD means clear detection
+4:48
+that means when we detect any clearance then we will immediately stop
+4:55
+um transmitting the packet okay that is Sesame macd and binary back off means
+5:01
+what means that we will try to resend with a probability okay resend this uh
+5:07
+this one with the probability of this Frame um so there are many different ethernet
+5:14
+standards actually depending on different links and different physical
+5:20
+layer implementations um so you can see uh these are the
+5:26
+physical layer if the if we are using physically copper physical year then these are the
+5:34
+protocols and then the red color is for fiber physical layer okay different protocols
+5:42
+um that's all about the ethernet so the next thing is which
+5:48
+is a very important device in link layer
+5:54
+um so basically what it does is it it will store and forward ethernet frames
+6:00
+is similar to the router which also do a store forwarding IP datagrams right
+6:06
+um so the switch will examine the incoming frames Mac address and then
+6:12
+selectively forward the frame to one or more outgoing links okay so this is a
+6:21
+you keep in mind switch always switch always always work with the neighbors
+6:27
+the local area networks the the devices can directly connecting to it okay it
+6:33
+doesn't care about the other devices that are far away it only cares about
+6:38
+the devices that are directly connected to to it okay
+6:45
+um and switch is also transparent transparent here means the hosts are
+6:51
+unaware of the presence of switches they feel like they are communicating with
+6:56
+each other directly but they are going actually going through the switches okay and switches do not need to be
+7:03
+configured it is a plug and play it can do self learning so unions which is very
+7:09
+straightforward now we can look at this uh this example if we have for example here we have ABCD
+7:18
+uh sorry ABC a prime B Prime C Prime they are all connected to a switch
+7:25
+okay and this is which we all uh buffer the packets now
+7:32
+um you can see for example a can send package to a prime and B can send a
+7:39
+packet to B Prime they can send together okay they can send uh transmit simultaneously there there is no
+7:46
+clearance okay there's no cleaner don't worry about completing but if we are using the bus kind of structure then we
+7:53
+will have clearance okay and then you may ask how does the switch
+7:59
+know that a prime is reachable while this interface 4 and B Prime is
+8:06
+reachable y interface y how does the switch know that when a switch receives a packet how does the
+8:13
+space switch know which outgoing link to send so this is a question this is a question
+8:20
+we asked ourselves when we learn about the routing right the routers we know
+8:27
+the routers is generating a local forwarding table that local forwarding table is able to
+8:33
+decide help decide which Auto green link this package should be forwarded to
+8:39
+right so for switch for switch it also has some kind of forwarding people
+8:46
+but it's different from router for router we know the local forward table is generated by running a routing
+8:53
+algorithm right so for switch the local forwarding table the forward table is
+8:59
+actually generated through self-learning okay so what does this mean
+9:05
+so the switch also has a as I mentioned it also has a table here
+9:10
+okay it's very similar to a routine table
+9:16
+okay but it generally this table through self-learning self-learning basically
+9:22
+means switch will learn which horse can be reached through which interfaces
+9:29
+gradually okay um so for example for example let's see
+9:35
+now a is sending a frame to a prime you can see the source is a a destination is
+9:44
+a prime okay now it will send this one to the switch
+9:51
+okay see you can see this packet is actually going through
+9:56
+this uh interface one right and then switch will learn oh okay
+10:02
+a is sending a frame through interface one so then a is reachable through
+10:10
+interface one okay so that is uh that is learned by
+10:15
+the switch and put into the switch table and the for each record we also have a
+10:22
+TTL sorry for that and then um after that after that we
+10:31
+know switch doesn't know how to reach a prime because there is no entry for a prime right so
+10:41
+now what can we do what we can do is basically you can say
+10:47
+the switch will broadcast this to everyone
+10:52
+excluding a okay except a so to everyone and say hey uh I'm going
+11:01
+to send this to a prime so who has this definition address of a
+11:07
+prime okay then in this case a prime will
+11:12
+reply right a prime will see hey that's my Mac address and I'm the one uh that should
+11:21
+accept this Frame so and then a prime will reply to a in
+11:28
+this case you can see a the switch learned this again the switch will learn okay a prime is
+11:35
+sending this through interface 4. okay so then this will be put into the
+11:41
+switch table so gradually switch we'll learn all of the mappings
+11:49
+okay and then this time because this Frame is going to a do we need to do
+11:55
+broadcasting again to everyone we do not right we don't need to because
+12:02
+now we already have A's interface Mutual interface right we know a can be
+12:09
+reached through interface one so then in this case we don't need to do any broadcasting then switch can directly
+12:16
+forward this to a this is called selectively send I'm just one link
+12:22
+okay um so that is uh that is just the one
+12:29
+switch in the situation where we have only one switch but if what if we have a
+12:34
+number of switches connecting together okay in this case
+12:39
+how can we how can the switch know how how to
+12:44
+forward the packet okay so for example if a wants to
+12:50
+forward this to G let's see how does S1 know uh
+12:57
+how to forward the the the packet so how does S1 know oh I need to forward this
+13:03
+to S4 and as for that for this to S3 and then s342j how do we know this path
+13:11
+the answer is actually still self learning okay so let me explain how this would work
+13:18
+again and we'll see oh I'm sending something to J okay
+13:25
+so then it's this this Frame will go to S1 S1 will say oh I don't know how to
+13:33
+reach J so I have to broadcast it to everybody okay now this Frame is
+13:39
+broadcast to BC and also S4 okay so as for receives this we know BMC won't
+13:47
+reply right because B and C is not J um and then S4 will say oh I do not know
+13:54
+how to reach J okay then I have to forward this to everybody so S4 we are
+14:01
+basically forward this to S2 and also S3 okay all the switches all the neighbors
+14:07
+and S2 will forward this to everybody
+14:12
+okay flooded to everybody because at Tuesday I don't know who is the how to reach G okay then we know D E and F
+14:20
+won't reply after I still received this Esther will
+14:25
+also forward this to j h and I okay so then in this case J will say oh
+14:32
+that is my frame okay then G will form a frame from J
+14:40
+to a and send it back okay so now S3 has learned S3 has
+14:48
+learned how to reach a through this interface okay so through the interface between S4
+14:56
+and S3 so as the reveal say oh okay I just need to send it back to S4
+15:02
+okay the S4 has also learned how to reach a from last communication right
+15:09
+so S4 will say oh okay if I want to reach a I need to only forward this to
+15:15
+this interface and as one of course also knows how to retrieve because they have
+15:20
+learned they have the switch table okay so this is uh this is the self
+15:26
+learning process and you can see how this um these uh switches learn and in the
+15:33
+future whenever we have any package going to a or J they oh no all this
+15:39
+which is we all know how to reach most of the levels at least S1 S1 and S3
+15:45
+knows how to reach a and j okay of
+15:50
+course S2 doesn't know but S2 can also forward this package to S4 and S4
+15:55
+already knows right any questions about this self learning
+16:03
+okay I hope this process is is from it's a straightforward to you
+16:10
+okay so I have explained this so I just um skip this slide
+16:16
+okay so as you can see in a real institutional Network we usually have
+16:22
+multiple switches connecting to each other you can see we may have
+16:28
+um one switch here another switch here here we have multiple switches and they are all connected to a much bigger
+16:35
+switch and then we may have also have those servers connecting to the switch
+16:40
+and finally all this this switch may be connected to the voucher okay do we have
+16:47
+multiple routers no we have only one big router to the external network but we
+16:54
+may have multiple switches so then this will form one local area network
+17:01
+okay so you may ask what is the difference between the ceviche and router this
+17:09
+sounds uh familiar right the the this seems to have they seem to have similar
+17:15
+functionalities um yes they have some similar similarities they both of them are doing
+17:22
+slow and forwarding okay still on the forwarding the routers will
+17:28
+um will store the datagrams and forward it the link layer the switch will store
+17:34
+the frame and forward it um but they are actually I live different layers voucher is a network
+17:40
+layer device okay it will only examine the network
+17:46
+layer headers it can only enter the network layer headers the switch is a link layer device okay it examine the
+17:53
+link layer headers and both of them have the forwarding tables okay the difference is that the
+18:01
+router will compute this forward table through routing algorithms as we have learned for example link State Amazon
+18:07
+okay um and it relies on IP address to to
+18:14
+determine the outgoing link and switch is different switch will generate the
+18:20
+look of the forwarding table using self learning right flooding and
+18:26
+self-learning and it's relies on the Mac address to determine the Africa unique
+18:32
+so you can see the difference so here you can see the switch has only two layers
+18:38
+physically or unlinklier but network has three layers okay frame uh physically or
+18:45
+nuclear Network layer the computers we know they all have five layers okay so
+18:51
+those are the difference um and I want you to know that the
+18:57
+similarities and differences between routers and switches I may also have test questions here in the final exam
+19:05
+okay and the next thing I want to discuss is
+19:11
+the windland okay um so we know now we know how the land
+19:19
+works right so we have for example a bunch of switches connected together
+19:25
+to a big switch and then connect it to the router okay so maybe this which this
+19:33
+switch is connecting all the computer science um computers and this is the electrical
+19:39
+engineering and this is the computer engineering okay but there is one problem now
+19:46
+so for example if you consider a computer science user
+19:51
+most of the office to electrical engineering
+19:57
+okay so one day one computer is moving physically physically moving
+20:05
+to a different office to the electron in your office but this user this computer science user
+20:11
+still wants to be connected to the Cs computer science switch
+20:17
+because we know the computer science which will do a broadcasting Etc to all
+20:25
+the computer science computers right so of course we still want this computer to be managed by computer science but
+20:32
+physically it is already in the double e then in this case what can we do
+20:38
+so what can we do um so we we all know uh each switch now is
+20:46
+like a single broadcasting right so all the layer two broadcast traffic like ARP
+20:52
+DCP Etc uh they must cross the entire line they also have some security and
+20:58
+privacy issues efficiencies Etc anyway the problem now becomes becomes
+21:05
+we still want this computer to be managed by computer science but it is
+21:10
+physically in double e what can we do okay um we make do we need we may need to
+21:18
+have like a cable a long cable [Music] um to connect this computer back to the
+21:25
+switch but it's not as very convenient right so then one solution to that is called
+21:32
+the waterline okay watch your local area network
+21:38
+okay so basically this this means the switch is supporting the water line
+21:45
+capabilities can be configured to Define multiple virtual lens over a single
+21:52
+physical line infrastructure okay so you can say for example here we have one big
+21:59
+switch this this is one physical switch
+22:05
+okay this switch is used to connect all the machines
+22:12
+okay including computer science and electrical engineering machines they are
+22:17
+all connected to this one single physical switch but we can create
+22:25
+two different water lines by specifying the pawn numbers so for example we can
+22:32
+see all right from port number one to eight the blue color one
+22:37
+okay they belong to One winner
+22:43
+okay then the the those Point numbers from 9 to 16 the yellow ones they belong
+22:50
+to another Villa okay so what does this mean this
+22:55
+basically means all those blue pores they can only connect with each other on
+23:02
+if they are the same color if they are different colors they cannot directly connect with each other
+23:08
+okay so that means when we do like broadcasting we can only broadcast to the same color
+23:16
+from one to eight or from nine to sixteen we cannot broadcast to everybody
+23:21
+okay so in this way we can virtually separate the devices chin to two
+23:30
+different waylands okay so it's like we are
+23:36
+um we have multiple virtual switches okay so it's like although although they are
+23:43
+connected to the same physical switch but it feels like they are connected to different
+23:51
+um switches okay it's like that then if one day if one day uh one computer moves
+23:59
+the office okay so for example
+24:05
+if this computer okay if this computer originally
+24:11
+um it was from computer science and now it is it it is moved to electrical
+24:18
+engineering office and we can still connect this to the big switch
+24:23
+okay but we can just configure and make this
+24:29
+color to be the yellow one so then in this case this computer still belongs to
+24:35
+the computer science wheel and not the electro engineering relay okay so that
+24:40
+by doing this we can enable the dynamic membership okay that means the post can be
+24:47
+dynamically assigned among the vlans okay so that means for the yellow color
+24:53
+when they do broadcasting they can reach to if this is 4 3 and this is four
+25:02
+then in this case if computer science want to do broadcasting they can reach to not only 9 to 16 but also uh the port
+25:10
+number three they can also reach this computer okay and then for these two different Slants
+25:19
+two wheelands we can connect them using a router okay we can connect them using
+25:26
+a launcher so um that's how we do that and sometimes
+25:32
+sometimes we may have multiple switches right so one big switch may not work may
+25:39
+not be sufficient we may have another big switch okay so in this case how can
+25:45
+we connect these two switches so very easy we just use some because it's trunk
+25:51
+port to carry the frames between um multiple physical switches okay so
+25:58
+for example we have connect 16 to 1 and then this is used to carry the frames
+26:04
+between different switches okay and we can still Define the colors uh in the
+26:10
+same way okay Define the vlans in the same way uh any questions
+26:21
+so the the uh we learn frame format is a little bit different
+26:27
+um so you can see there are some more information added here
+26:33
+okay by the winner ID field Etc so you don't need to know this this is just for
+26:39
+reference okay you don't need to know this for the test uh so for link virtualization we do not
+26:46
+talk about this in this class okay for data center networks you can snore
+26:53
+this Center is basically we are basically connecting uh a lot of servers
+26:58
+together a lot of hosts together right so tend to uh 100
+27:04
+000 hosts and these holes are openly often often closely coupled in close
+27:11
+proximity okay for example if we are using Amazon or YouTube or Google
+27:17
+whatever so those costs need to um provide service and also store the
+27:24
+data okay and then the challenge is we have multiple applications each serving
+27:30
+massive number of clients how can we manage the uh the workload how can we do
+27:38
+load balancing avoid like uh overwhelming one host or a number of
+27:44
+Hearts over the others right um so
+27:50
+why am I going to do that is using what we have learned uh using the switches
+27:56
+okay so um for example you can see here we have the broader uh border
+28:03
+um round structure and we also have the access routers then below that we may
+28:08
+have some switches okay so these are the tier one switch
+28:13
+and then we also have a tier 2 switch and the Tor switch to R means the top uh
+28:21
+on rack how those server
+28:28
+um wrecks okay so and there are something called load balancer load
+28:34
+balance are just normal computers okay uh they can run some algorithms those
+28:40
+load balancers are connected to the tier one switch the functionality for load
+28:46
+balancer is to receive the external client requests and then direct the
+28:52
+workload to different costs within the data center and then return the result to the
+28:58
+external client okay so basically the client cannot see a Data Center and
+29:06
+clients feel like it is only receiving the result from one server but it's actually from a data center okay
+29:14
+so you can see here the traffic is coming in it is going through a load
+29:19
+balancer okay the load balancer May distribute to this load to other machines
+29:26
+okay to other machines sometimes it may also need to connect to multiple servers
+29:31
+for example we may have for example if this is a like this is a web server and
+29:38
+this may be a data speed server okay the website when we need to query
+29:43
+the database server to get the results and then the result will be returned back to maps around the
+29:50
+web part so we will reply um to the client so this is the entire
+29:55
+process and then with the load balancer and the switches Etc we can assign the
+30:01
+workload to different uh computer different Hots so that we do not overwhelm just one person
+30:08
+in the one machine sorry okay and there is a rich interconnection among the
+30:13
+switches and drugs uh this can increase the throughput between the Rocks okay
+30:19
+and also of course increase the reliability uh through redundancy because we have redundant machines as
+30:26
+backup if one machine is down and we have other servers to come up and work
+30:32
+okay five-point assignment is

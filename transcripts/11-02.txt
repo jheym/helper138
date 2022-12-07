@@ -1,0 +1,936 @@
+0:01
+the next thing we are going to discuss today is about the ipv4 addressing we we
+0:08
+know we all we are very familiar with IP address now right uh we know it's a 32-bit identifier we use it every day we
+0:16
+usually what we we talk about is this kind of thing right
+0:22
+223.1.2.0 something okay it's like that um but how why do we
+0:29
+um why why do we write IP address in this way okay uh how do we come up with this
+0:36
+kind of format so today we are going to introduce about the rationales the
+0:42
+principles for IP addressing okay so basically IP address we know is 32 bit
+0:49
+uh actually this IP address is assigned for each interface
+0:55
+for each host or launcher interface so what does this mean this means uh we
+1:02
+know on a host we may have the kneecard right network interface card
+1:08
+so this Nick card is a interface is the interface to connect to the network on
+1:14
+the routers we also have some interfaces so for example you can see for this router it has three interfaces so the IP
+1:22
+address is actually assigned to each interface okay uh sometimes for example
+1:29
+on your computer you may have the interface for wire Network and also for wireless network for those two different
+1:36
+networks you may have different IP addresses that is something you need to pay attention
+1:42
+um traditionally we already say oh my the the IP for my host is is a ABCD but
+1:47
+that is actually not accurate okay that is not accurate it's actually for the
+1:53
+host interface for specific host interface so then what is the interface interface
+1:59
+basically means the connection between the host and the physical link or the
+2:05
+router and the physical link okay it's the the con the interface used to
+2:11
+connect to the internet um usually the routers have multiple interfaces which means it has multiple
+2:18
+IP addresses okay um and the host typically has one or two
+2:23
+interfaces for as I said you may have wired or Wireless interfaces okay and the IP address is as
+2:32
+we said is 32 bit so 32 bits means
+2:37
+in binary it is 32 bits
+2:42
+okay and then we know it's very hard to remember this 32 bits in binary it's
+2:50
+very hard to remember then what is a better way to denote the 32 bits
+2:56
+um IP address so then people decide to divide the 32 bits into
+3:04
+four segments for each segment is uh H uh this is one byte basically okay so
+3:11
+then we can convert the binary into decimal so the number will be from 0 to
+3:18
+255. okay so for each byte the biggest number
+3:24
+is 255 then we can we can use dots to separate these four segments four parts
+3:30
+okay so that's why we can say for example the first bytes the first byte is now converted to 2
+3:37
+23rd and then the second byte is converted to one in decimal and this is
+3:44
+one in decimal this is one in decimal so that's why we have two 23.1.1.1 okay so uh in the future when
+3:53
+you see uh IP address in decimal you know you are able to convert it back to
+3:59
+Binary okay any questions
+4:06
+all right uh you may also ask how are interfaces actually connected how are
+4:12
+they connected for example here you may say oh we have uh this interface
+4:20
+this interface this one this one with the router we have this many interfaces
+4:25
+here right so how are those interface connected that will be something that we
+4:32
+will learn uh in the ethernet layer okay in another sorry I should say in the
+4:39
+link layer okay in the link layer we will talk about the switch we will talk about how to connect the adjacent
+4:46
+interfaces okay so that is something you don't need to worry about now
+4:54
+uh another Concept in networking a very important concept is subnet you heard
+5:01
+about this term again again okay so what is a subnetic basically
+5:08
+um for uh subnet we basically mean the device interfaces can be connected with
+5:15
+each other without intervening the router okay without intervening the router for
+5:23
+example here we have this these four interfaces these four interfaces can be
+5:29
+connected together without a router in between okay similarly for this interface you
+5:36
+can see they can be connected together without a router imbition so now we call this as a
+5:45
+subnet and this
+5:51
+as a subnet and this is another subnet okay so we have three
+5:58
+subnets now and at your home you may have your home network okay your home
+6:04
+network um is itself is of course a small Network right so you can also view that
+6:10
+as a small subnet because your devices can be connected together okay but this
+6:19
+your home network is is a little bit different from the subnets because uh
+6:25
+you may or may not use a switch to connect those interface scalar your
+6:31
+device is maybe connected to the browser directly okay so that is the difference
+6:36
+uh and some of you may ask them how can we know how can we denote how can we see
+6:42
+usually how can we see it belongs to a subnet or not those interfaces belong to one subnet or not okay so usually you
+6:50
+can tell from the IP address for example for the IP address usually we have two parts
+6:55
+the sub Network part and the hotspot so the sub Network part is used to denote
+7:01
+the subnet and the host part is used to denote the host the individual horse it's like the subnet part is like the
+7:10
+family name for us we all have our our own names for example my first name is
+7:15
+showian last name is San right so that the sun is like the same approach this
+7:21
+means um I belong to the same family okay and then my first name is the host parties
+7:28
+it's like the hospital it's used to uh denote myself okay to represent this
+7:36
+me okay this individual so that is the difference then usually if the sub
+7:42
+Network part the high order beats are the same then very likely they belong to
+7:48
+the uh same subnet so for example here you can say for this subnet okay the high order bits
+7:56
+are 223.1.1
+8:01
+then you can see the remaining this one two three four they are different okay
+8:09
+so then you can see they belong to the same subnet okay similarly for this one
+8:15
+for this one you can see the high order bits are 223.1.2 okay the host part is one two
+8:26
+nine okay so that means they are they very likely they belong to the same
+8:31
+subnet and similarly here you can say 223.1.3
+8:36
+okay to the third and then we have 2 27 one as the hotspot okay
+8:44
+um by looking at IP address you can you can
+8:49
+um estimate if they are in the same subnet but this
+8:55
+may not be accurate okay because sometimes you cannot determine
+9:01
+how many bits are used for the sub Network part okay so that's why usually the best way to do
+9:08
+it is to look at the topology of this network and see if the router is in is
+9:16
+is within the subnet or not okay if there is a router in between that means
+9:22
+this is not a subnet okay and now you can see
+9:28
+um this is the example we've explained and how do we denote a subnet okay we
+9:33
+can denote a subnet use some using something called mask okay for example
+9:39
+if we use the first 24 bits the first 24 bits
+9:45
+as the subnet part for the IP address then we what we
+9:50
+can do is write in this way
+9:56
+223.1.3.024 slash 24 means this is the subnet mask
+10:02
+okay that means we use the first 24 bits to use as the sub Network part it's like
+10:10
+I use the first 24 bits as the family name okay as the family name and then
+10:16
+the remaining eight bits are used to denote the individual house okay so that
+10:22
+is how we use the subnets now let's look at this example in this
+10:30
+example can you tell can you tell how many subnets we have think about the informal definition I
+10:37
+mentioned before I said for to divide the subnet we need to make
+10:42
+sure there is no rubber in kitchen okay
+10:47
+so for those of you who see third I'm guessing you are talking about this one
+10:54
+this one and this one right we are talking about the
+11:00
+interfaces so those interfaces are connected together without a router so
+11:06
+they can be three subnets but how about these ones
+11:13
+is this also interface yes is this also interface yes okay so are they connected
+11:20
+together yes is there a voucher in between no so this is also a subnet okay
+11:27
+similarly this is also a subnet and this is also a subnet
+11:32
+you may say there are no computers but we didn't mention we must have computers
+11:37
+in between right we just mentioned the interfaces okay the interfaces are
+11:44
+connected together without a router so that's why those three are also the
+11:49
+subnets so the correct answer is actually six so the next the next thing let's discuss
+11:55
+the IP address in depth okay so the IP addressing we have uh we have a
+12:03
+classless kind of Ip addressing okay so class list um the phone name is called Cider
+12:09
+classless enter the main routing okay
+12:15
+um so basically this means for the entire IP address we divide it into the
+12:21
+format of this a dot b dot C dot d slash X so we divide it into the subnet part
+12:28
+and also the host part okay so the subnet parts we can use the number X to
+12:35
+denote how many bits is used for subnets so for example here we use 23 bits 23
+12:42
+bits the first 23 You Can Count okay the first 23 bits are used as subnet and the
+12:49
+remaining nine bits are used for host okay and we do not have any requirements
+12:55
+on how many bits can be used for summer you can use two bits for subnet and use all
+13:02
+the remaining 30 pieces for host or you can use um 30 bits as a subnet and use only two
+13:09
+bits as a host so then what is the difference you can you can think about this for example
+13:15
+if we use a 30 23 bits as the sub Network part okay
+13:22
+then how many subnets can we have in total for the entire internet if we all divide it in this way then the total
+13:30
+number of thumbnails we can have is actually 2 to 23. we have we can have
+13:35
+this many subnet okay sub Networks but in each sub-network how many hosts
+13:43
+can we have we know in each subnetwork the number of
+13:49
+hosts is actually two two nine okay
+13:54
+then you can think about this if we use the first 30 bits and subnet okay then
+14:01
+the number uh subnet this is the number of a host
+14:09
+okay if we use 30 bits for subnet then
+14:14
+the number of subnets is a 2 to 30 and the number of hosts is two two
+14:21
+okay so that means what that means we can have so many subnets but each subnet is very
+14:29
+very small each subnet can only have four hosts one two three four they can
+14:34
+have only four hosts okay if we use for example two bits as the
+14:40
+subnets let me use three maybe have three piece as the Summoners okay
+14:46
+uh then the number of subnets will be two to three
+14:51
+that means we can have at most eight subnets but how many hosts can be accommodate in
+14:57
+each subnet each subnet we can have two two
+15:04
+nine we can have a 2 to 29 uh horse what
+15:09
+does this mean this means we can have only eight subnets but those a subnets
+15:15
+are huge okay because each one can accommodate a lot of horse
+15:22
+okay in the first situation when we have 30 bits as the sub Network part
+15:28
+we can have a lot of subnets but the each subnet is very small it can
+15:36
+accommodate only four costs okay so then you can see
+15:42
+by adjusting the number of subnets in IP address we can actually adjust the
+15:52
+size of the subnet and also the total number of subnets we can accommodate
+15:57
+okay so then this is very good because sometimes we need a big subnet okay if
+16:04
+we have a lot of machines to connect we need to speak subnet okay uh then in this case we can say we need
+16:10
+to assign more beats to The Host okay and the last piece to the subnet but
+16:17
+sometimes we may have only two machines through machine or a few machine to connect then in this case we can
+16:24
+um assign as few bits to the host okay and
+16:29
+uh more beats to the subnet okay so basically we can adjust the size uh very
+16:36
+flexibly um by using by adjusting the piece of the pc47s so
+16:44
+then if you do not have any questions let's look at the network classes we
+16:50
+said we just talked about uh the classless entered the miracle right this is classless but originally I mean the
+16:59
+network actually was classified into different classes okay for example
+17:05
+um here with me this here you can see this is Class A for class in a network
+17:11
+you can see the the white part are used for subnet the yellow beads are used for
+17:18
+the horse Okay so for class a network you can see the we use the cell eight
+17:25
+bits eight bits of four subnet and we use the the remaining 24 bits for the
+17:31
+host so that means what that means and also you need to pay attention for class A the first bit is zero
+17:39
+because uh b c d and e the first speed are all one okay I O one so that's why
+17:46
+uh the for class A the first bit is fixed okay it's fixed so then now you
+17:53
+can say for class a network how many Class A networks can we have
+17:59
+how many Class A networks can we have in total for the entire network
+18:07
+you you can check how many bits can we have we have well in total we have eight bits but the first bit we cannot change
+18:14
+right the first bit is zero so that's why in total is actually two to seven
+18:20
+right it's two to seven very close to uh yeah two to seven okay
+18:28
+um and then for the host part for the Post part how many hosts can we have in
+18:33
+each class a network you think about this we use 24 bits okay so it should be
+18:43
+2 to 24. we have two to twenty four hosts we can accommodate this many Hots
+18:49
+in class a network okay so this is for class A for class B
+18:55
+okay for class B we use similarly we use the first twin uh first
+19:02
+um 16 bits as the network part but the first two
+19:08
+bits are fixed okay it must be one zero so you can see this is actually we can
+19:14
+have two two fourteen subnets each subnet is again two two
+19:24
+16. okay 2 to 16 house we can have this many holes but in reality okay the
+19:31
+number of holes should be 2 to 18 minus two why because the host ID
+19:38
+0.0.0.0 and the ID 225.225
+19:43
+um is actually reserved for something else okay it's reserved for something else later we will talk about that for
+19:50
+example uh 225.25 is used for broadcasting okay so
+19:56
+um so for those for those we do not use them that's why the number of holes should be -2 okay then we can continue
+20:03
+for Class C for Class C this is basically for example first third piece
+20:09
+are fixed so then two to twenty four minus 3 is actually 21 it's for subnet
+20:17
+and two two eight is for house okay and then you can continue for class
+20:24
+D and E Etc so as you can see um regionally when people talk about
+20:30
+class A B C D E the major difference is actually their size okay when we say oh
+20:35
+this is the class a network that is that actually means this it doesn't work it's
+20:41
+very very big okay this subnet is very big if we see this is a Class B Network okay it's it's like oh okay the size is
+20:49
+it can accommodate at most about 65 000 Parts okay if it's a cluster Network we
+20:57
+know this is a small uh small Network okay so it's like that and pay attention pay attention uh for
+21:05
+this type of classification okay it may not work very well sometimes because for
+21:12
+example for classy Network we can accommodate 254 of 254 house
+21:18
+but for class B we can accommodate 65 000 more than 65 000 house
+21:23
+now what if we have a Network that has uh 1000 hosts should we make it classy
+21:31
+apparently not because Class C is not big enough should we make it Class B we can but we
+21:39
+can see there is a risk of IP address right so we use only a thousand IP addresses among this
+21:46
+entire um Network okay and the remaining IP addresses are listed so that's why this
+21:54
+kind of classification classification is actually not very good uh that's why we
+21:59
+prefer to have uh Sader now okay classless addressing okay
+22:06
+the next the next thing you may you may ask is how can we get one IP address how
+22:12
+can can host get the IP address okay there are two different ways one way is
+22:18
+you can actually uh hard code IP address in a file for example you for Windows
+22:24
+system you can go to appropriate files okay you can change the IP address for this machine or in Unix system or Linux
+22:32
+system you can also uh set up the IP address manually okay
+22:38
+basically when you for example in Windows system when you try to set up the IP address you also need to
+22:44
+specify the network mask the Gateway router Etc you need to specify a lot of
+22:51
+information okay and that method is not very flexible not very convenient the
+22:58
+reason is because when you assign IP address that IP address is occupied okay
+23:04
+but sometimes you don't not know which IP address is occupied you have to try
+23:10
+different IP addresses otherwise you may have conflict with other machines okay so I've done that before
+23:18
+many many years ago and I often write that problem that I am competing with
+23:25
+other machines for one IP address okay so that's why gradually now people are
+23:31
+using deep CP so DHCP is dynamic host configuration protocol this is one
+23:38
+protocol that can dynamically assign IP address to the servers or to the
+23:44
+machines sorry not to the servers from a server to the machines okay so basically
+23:50
+a DHCP server um wheel respond
+23:56
+and help to assign IP address to a machine okay this is a plug and play
+24:03
+protocol it's very easy to use very convenient there is no problem of conflicting IP address let's look at
+24:11
+this protocol so basically the goal for this protocol
+24:17
+is to allow the host to dynamically obtain the IP address from a server when
+24:24
+it joins the network and if and this IP address can be renewed
+24:32
+okay what does this mean this means because for example when you join a network you are assigned IP address and
+24:39
+this IP address can be valid for certain amount of time after this time expires then this IP
+24:47
+address cannot be used anymore but we in this case we can renew the list okay we
+24:52
+can renew the list on the address in use this also uh this DCP will also allow
+24:59
+allow the ReUse our address what does this mean this means if one machine left
+25:05
+the IP used by that machine can be reused by some other machines okay so
+25:12
+then this also supports the most buy users who want to join the network so
+25:17
+it's very convenient okay um basically this dtcp has uh the
+25:24
+digital discover offer request AC key Visa four different types of messages
+25:29
+let's look at an example here in this scenario we have one
+25:35
+digicip server okay and we have the subnet okay you can
+25:41
+see this subnet the first four 24 bits are used for to denote the subnets
+25:47
+and now we have a new client trying to join this network this new
+25:54
+client needs a IP address okay so what what what can the uh so
+26:02
+what will happen after that so basically the client will need to shout to
+26:08
+everybody okay say is there a d2cp server out
+26:13
+there why is this a broadcast message because the client does not know
+26:21
+who is the d2cp server okay so that's why the client has to shout to everybody
+26:27
+so how can the client Shout very easy okay the source address is
+26:35
+zero zero zero zero that's why we said before zero zero zero zero is actually reserved okay it's reserved this stock
+26:42
+address basically means I do not have an IP address yet okay I'm waiting for assigning IP address
+26:49
+and then the destination address is 255 255 255 255. this means this means
+26:58
+this message is for everyone for everyone okay
+27:03
+and here the source part is 68 and the destination Port is 67 that means the
+27:10
+d2cp server is actually listening to 67. and this is this uh uh Yi address is
+27:20
+actually this will be changed later okay this means I'm waiting for uh for uh
+27:26
+assignment okay uh and then last line is
+27:31
+the transaction ID Okay so then the everybody will receive this
+27:36
+message everybody will receive this message but for those machines who are not dtcp
+27:44
+servers they will simply discard the message they may not listen to 67 okay
+27:49
+they do not listen to 67. only DHCP server is listening to 67 and DHCP
+27:55
+server will respond to say hey I'm the DHCP server and here is an IP address
+28:01
+you can use okay how is this now basically the DHCP server now will
+28:09
+introduce itself my source address is this one and my port number is 67. the
+28:15
+destination address is now in your broadcasting it's still 255 a bunch of
+28:21
+255 why because the client does not have any IP address yet
+28:27
+the division server cannot reply to a specific IP address so that's why it also has two broadcast and the port
+28:36
+number is 68 because originally we learned the phone number
+28:41
+168 okay and this is the offered IP address okay so the DSP server say you
+28:50
+can use this IP address of 223.1.2.4 as your new IP address
+28:55
+the transaction ID is 654 the same as the last one means this
+29:01
+is the reply to last message and the lifetime is 3600 seconds what
+29:06
+does this mean this means the IP address is valid within 3 600 seconds
+29:13
+after that if you still want to use this IP address you need to renew okay
+29:18
+and then this client will reply say okay I'll take that IP address
+29:24
+okay and then in this case you can see
+29:29
+of the source is zero zero zero because there is no confirmation yet so and then
+29:34
+destination is still the same thing 255 to 55 okay broadcasting to everyone
+29:40
+and the IP address this one okay this is a confirmation
+29:48
+to the server say I'm I will take this IP address okay the transaction ID is uh 655 this
+29:58
+is like a request a request would say hey I'll take this IP address I'll take
+30:04
+this IP address okay and I know the lifetime is 3600 seconds
+30:09
+okay then the server will confirm again so okay
+30:15
+now you've got that IP address okay so now you have uh you can see the source
+30:22
+is this one and destination is still broadcasting and now it's a confirmation that this IP
+30:28
+address can be used by the client and then transaction ID is the same as the last request message lifetime is 36 100
+30:36
+seconds okay so this is the entire process you may feel like oh the second part seems
+30:44
+like very redundant right the second time seems redundant uh
+30:51
+why do we need to have a confirmation again again okay there is the reason here
+30:57
+because in the network we may have multiple thcp servers okay when the
+31:04
+client broadcast the message to everyone multiple industry scissors May reply
+31:11
+with multiple IP address candidates okay so then this client needs to choose
+31:17
+one specific address and then make the DHCP request say I'll take that one not the others
+31:25
+okay although I got several offers but I only choose one okay and then the server
+31:30
+will uh ack so that is the entire process okay and that's the reason why
+31:36
+we have the confirmations again in the second part this will happen once you
+31:42
+join a new network okay and sometimes the d2cp server is actually combined
+31:47
+together with a router the router can directly it also serves as a server okay
+31:52
+but sometimes dtcp server is separate so so when you connect to a network this
+31:57
+happens automatically the ddcp actually return information
+32:04
+a lot of information not just the IP address not just the one we see here you
+32:09
+can see the IP address of two two three one two uh four right uh actually it
+32:16
+also provides more information what information this information it will also provide the address or the
+32:24
+first hope launcher for the client so because we know when the client joins
+32:30
+this network the client is new right the client is new to this network the client
+32:35
+has no information about the network so that's why DHCP is very important to
+32:41
+introduce the basic information about that Network to the client so the clients know how to continue okay the
+32:49
+first very important thing is the first hop launcher why because when the client
+32:54
+wants to send something outside the network it needs to contact the first
+32:59
+Hub browser so that's why dtcp need to introduce the first Hub browser to the
+33:04
+client okay so this is the first piece very important and we are we actually we are going to
+33:10
+use this information again again um the second piece of information is
+33:15
+the name and IP address or DS server DNS server is also very important we
+33:22
+know the SD has a help help the client to interpret the
+33:30
+um the mean name address into some IP address okay so that's why it's also
+33:36
+very important without DNS the client can do nothing okay that's the second piece of
+33:41
+information the third piece of information is the network mask okay padding in the network Market will
+33:50
+help the client know which part is used
+33:55
+for the network which part is used for host so when it is connecting with some
+34:01
+machine okay some IP address it knows how to interpret this IP address okay so
+34:07
+that those are the three pieces of information that will be returned in
+34:12
+addition to IP address by the DHCP okay so this is very important
+34:19
+so you can say here we have a router with DCP server built into the router
+34:26
+okay so the the DHCP server is combined with the router
+34:31
+and we have a switch here and we have a computer here okay we have this computer
+34:38
+when this computer joins the network okay this client you can see we are
+34:43
+looking at the five layer now a five layer application layer transport layer
+34:50
+Network layer okay link layer and physical layer so I hope you have this
+34:57
+five layers in your mind forever okay do not forgot that and then now add the application layer
+35:05
+you can see we will form a DHCP request message okay for my DCP request message
+35:12
+and this message will be sent to the
+35:19
+um transportator and the transport layer will add a transported layer header here
+35:27
+okay the pay attention here the transport layer protocol we are using is
+35:34
+UDP not TCP why do we use
+35:40
+UDP instead of using TCP we're doing is it is about reliability
+35:47
+actually no this is not about reliability okay we all know that for
+35:54
+TCP protocol we need to establish a connection before we do that Exchange but pay
+36:01
+attention this machine does not know who is the server yet
+36:06
+okay and this machine has no IP address yet so in this case how can we make a connection we cannot so we cannot make a
+36:14
+connection that's why we must we must use UDP we cannot use TCP at transport
+36:20
+layer okay so now when this machine comes down to when this message comes
+36:25
+down to network layer and then we are adding a network clear header
+36:32
+okay and then it got comes on to link layer we are adding a link layer header
+36:37
+okay so this is the entire process and finally this message becomes zeros and
+36:43
+ones okay the link later we call it a frame okay transport layer record is a segment Network layer recorded datagram
+36:49
+and then link later we have the frame translated into zeros and a ones then it
+36:55
+is sent out okay okay and pay attention when this Frame is
+37:02
+sent out the frame is broadcasted to everybody how do we do the broadcast we know for
+37:09
+at the IP the IP address we know it should be 255 255 255 25 but when this
+37:16
+is implemented in reality at the link layer what we will do is we will make the MAC
+37:24
+address a bunch of apps okay 12 F's okay 12 apps
+37:30
+in total 48 bits online okay and I know
+37:35
+you have no idea about Mac address now but it's fine we will learn later okay
+37:40
+for now you just need to know a bunch of s okay this is how we do the broadcasting at the link layer
+37:47
+okay and then this message will be received by the dtcp server d2cb0 will
+37:54
+remove the headers layer by layer and finally deliver this DHCP message to the
+38:02
+application layer okay and then the DTC server will basically formulate a DCP
+38:09
+act response continuing all this information okay four pieces information
+38:15
+client address the IP address of 4-hub launcher the name and address of the
+38:20
+server and also the network mask actually okay so basic information will be or included and then send back
+38:29
+to the client okay then when the client receives it the client will remove the header layer
+38:37
+by layer and finally wrote the message to the application layer so this is a the entire process now the client knows
+38:44
+is IP address name and IP address of DNS server IP address always first hop
+38:50
+browser okay so this is a sample message you can see this is the left part is a
+38:55
+request message and it is requesting for subnet
+39:01
+the mean name the router's information that is the first gateway router and
+39:08
+first of all brownstra and also the domain name servers okay so then in the
+39:14
+reply you can see it is providing it is actually providing the client IP
+39:20
+address okay and it also provides the sub
+39:26
+Network mask information DNS servers information and the domain name okay so those
+39:32
+information are provided in the reply message okay so another question you may ask
+39:40
+further is okay I know the router or the dfcp
+39:45
+server can help assign IP address to a host but the question is how could a
+39:52
+network get the subnet part of the IP address that means okay you can assign
+39:58
+IP address but how do you know which IP addresses you can assign okay how does
+40:03
+the DHCP server know which IP address is to assign okay uh so the answer to this
+40:11
+question is that usually uh we need uh for a subnet it needs to get allocated
+40:18
+portion um from its price provider isp's address
+40:25
+space okay so basically for example this is the isps
+40:31
+um space okay outer space so basically this is one block okay it means the
+40:38
+first 20 bytes if you look at the network mask is 20 that means the first 20 bits are used for subnet and then the
+40:46
+remaining bits can be used for horse okay and then this is for the entire ISP
+40:54
+but if we have different organizations okay the ISP may decide to assign the IP
+41:01
+address range to different organizations so they may say okay
+41:06
+let me use this if we have eight organizations let me use these three
+41:11
+bits these three bits to distinguish those
+41:18
+eight organizations so you can see organization zero is zero zero zero and
+41:23
+this is zero zero one this is zero one zero and we continue until we have one one one okay so you can say for all
+41:31
+these uh organizations there first 20 fees are the same
+41:38
+but following those first 20 bits we have three more bits distinguishing those on organizations okay now we can
+41:46
+say okay for each organization the first 23 bits are used for subnet and then the
+41:53
+remaining nine piece are used for horse
+41:59
+okay and then of course the dtcp server for organization zero we all know okay
+42:05
+when I assign IP address I can assign the IP address 13 with this okay and the
+42:13
+first 20 therapies are for the subnet then remaining these are for the host
+42:18
+okay so this is how we can get um a portion of the address space okay
+42:27
+and these are kind of a hierarchical addressing is very useful actually
+42:33
+um because we know uh later we will learn in network layer in when we talk
+42:38
+about the routines and we will learn um the Network each sub-network needs to
+42:46
+advertise to others um which IP address is belong to this
+42:52
+network so for example um the California California's postal office
+42:57
+California's post office will need to advertise to the to the outside of
+43:03
+California say hey if you have any emails going to
+43:08
+um California then you can send it to me okay so that is uh AdWords advertisement
+43:15
+okay AdWords advertisement is very important and then
+43:21
+um you can say when we send advertisement okay we can aggregate those
+43:30
+um those organizations uh all those those routes those routine information for
+43:37
+example uh Sacramento County May Sacramento may say hey if you have any
+43:42
+mail sending to me send it to Sacramento Sacramento you can send it to me and uh
+43:48
+Los Angeles May say hey if you have any lectures going to Los Angeles you can send it to me so they are all doing
+43:54
+advertisements and then when it comes to California California May aggregate all
+44:00
+these advertisements combine them together and only see hey if you have
+44:06
+any letters going to California you can send it to me okay so it's like that it's like it's
+44:12
+the aggregation of those adversements so we can do the same thing in the internet as you can see for organization zero
+44:20
+okay he said hey um this this address space belongs to zero so
+44:28
+this belong to one this belongs to two this belong to seven and then when they are advertising to
+44:36
+the internet then this ISP can simply say hey if you have anything with address beginning
+44:43
+with this pay attention this is 20. okay with this
+44:48
+you can send it to me okay so why this is 20 because as you
+44:54
+can see here 20 means this entire ISP block
+45:00
+okay so 23rd is actually indicating each smaller each smaller organization so we
+45:07
+are doing algorithm we do not need to say one two three four until this eight okay we don't don't
+45:14
+need to say these eight organizations we can combine them together and only advertise this okay it's like you don't
+45:21
+need to advertise sacramental La San Francisco you can directly advertise
+45:27
+California it's like that okay and for different organizations or
+45:32
+different ISP they can see okay if you have anything with address beginning
+45:38
+um 1993100 16 and centimeters okay so we
+45:43
+select that and this is also very helpful for
+45:49
+relocating okay or relocation what does this mean so sometimes for example one
+45:55
+organization may decide to move from one ISP to another ISP we know it's very
+46:03
+common to change the ISP right so in this case in this case
+46:10
+do we need to change the IP address for this entire organization
+46:15
+okay for example now you can say organization one
+46:21
+okay organization one um change from this Flight By Night ISP
+46:28
+to ISP or us okay in this case we may not want to change
+46:35
+the IP address we may not want to change the IP address
+46:40
+for organization one okay because it's a lot of work we know especially if this organization is a big
+46:48
+organization okay the IP address may already be known by by the public okay
+46:53
+we don't want to change those then in this case if we directly move this
+46:59
+organization to another ISP without changing IP address some of you may
+47:05
+worry oh in this case this may create a problem when we do the routing
+47:12
+okay because this already said this already said send me anything with
+47:18
+addresses beginning with this okay it's like saying send me anything
+47:23
+beginning with California okay but what if a Sacramento decided to
+47:28
+move outside okay so what we can do now is
+47:35
+in addition in the new ISP in addition to the original address range we can add
+47:41
+something more we can just say okay if you if you have anything with address
+47:46
+beginning 199 something or 223 18 0-23 you can send it to me okay
+47:57
+so it's like saying oh if you have anything going to
+48:03
+um Pennsylvania or California Sacramento you can send it
+48:09
+to me it's like that okay
+48:25
+so you may see you may think oh then it's there is some confirm for example
+48:31
+if I send I have something going to Sacramento it's certify both conditions is it belongs to
+48:39
+California and it's also belonged to California Sacramento then in this case should I send the package to
+48:45
+the flyby Knight ISP or the SP Rus
+48:51
+can you guess can you type in the chat which one if we use one to represent this two to
+48:58
+represent this so if we have a package going to California Sacramento will you
+49:05
+send this to one or two okay we will choose to send to two
+49:11
+because we know California's Sacramento is a longer address it's more accurate
+49:16
+right so it's the same thing it's the same thing if you have an
+49:22
+address that matches both this sorry matches both this address and
+49:28
+also this address then please remember a principle we learned before that is
+49:34
+called the longest prefix matching then we will choose the one that matches
+49:39
+longer okay that matches longer so it's called longest prefix matching if you cannot
+49:46
+remember let me remind you
+49:54
+do you remember here we learned it right if it matches both
+50:00
+um addresses then we will choose the one that matches longer okay it's called longest prefix matching so that's why uh
+50:09
+this kind of hierarchical addressing is actually very flexible if we want to
+50:14
+move one organization from one ISP to another ISP this organization does not
+50:22
+need to change the IP addresses the only thing it needs to do is the ISP will
+50:28
+simply add this address space in its own advertisement okay so that's a
+50:36
+that's the thing and then you may also ask how can ISP get a block of addresses
+50:42
+the answer is that it will need to get this block of addresses from ICA and N
+50:49
+okay the internet Corporation for assigned names and numbers uh this
+50:54
+organization will allocated addresses manage the DNS and
+50:59
+assign the mean names uh result the disputes okay

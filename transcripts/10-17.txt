@@ -1,0 +1,632 @@
+0:02
+for the rdt that we designed they have uh very bad performance why because it
+0:10
+is using something called stop and wait which means every time I just send out
+0:15
+one package and then I'll just wait okay wait until I receive the feedback
+0:22
+then I send it again so apparently this is uh this is not very efficient
+0:28
+um then people began to think oh how about we send a multiple packets together and then receive for the AC
+0:33
+keys so that for those kind of protocols we call them as pipeline protocol okay there are two types of pipeline
+0:41
+protocols go back in and select to repeat so then first thing let's take an
+0:47
+overview of these two protocols what are their difference for go back-end protocol the sender can
+0:54
+have up to n and a secret package in the pipeline
+0:59
+okay so that means we can send up to n packets out together then when the
+1:06
+receiver receives the package the receiver has a problem to to resolve how
+1:11
+should we do the ack okay if we if I receive for example 10
+1:16
+packets how should I execute them should I execute them individually
+1:23
+okay uh for go back and the method taken by the receiver is to send a cumulative ack
+1:32
+what does this mean this means if we have packet 1 to 10 for example they are
+1:37
+all received correctly then the receiver will only Act 10. AC content already
+1:44
+means all the pack is up to 10 are received correctly okay but pay attention if there is a gap
+1:52
+between them we do not execate the package so for example now
+1:58
+if we have packet one to five okay and six is missing then we have
+2:06
+seven eight nine and ten these 10 packets okay this is the center
+2:14
+at the receiver side the receiver will ack 1
+2:20
+might received one into execute one I'm going to receive two AC key 2 okay
+2:26
+executive 3 is equal four AC K5 6 is missing
+2:31
+okay six is the missing so nothing is sent back then when seven comes in
+2:38
+when someone comes in the receiver will not ack 7 why because this is cumulative
+2:46
+this SDK is a cumulative if we ac K7 that means everything up to 7 is good is
+2:52
+received correctly but that's not correct right that's not wrong and sorry that's not correct that's uh that's
+2:58
+wrong because 6 is missing right so that's why instead of sending backs acq7
+3:06
+we will still Escape 5. so for eight we will still execute five nine still a65 term is still execified
+3:13
+so we keep repeating ack 5 so that's the center and then we all
+3:19
+know oh something is wrong with six okay then the central wheel has a timer we'll
+3:27
+have a timer for the oldest NAC kit package okay that means for six in this case
+3:34
+it's six so when the timer expires the sender will re-transmit
+3:42
+all and executed packets okay we transmit all and execute packets
+3:51
+so this is the go back in selective repeat is different for Selective repeats again we can still
+3:59
+have up to n and executive packs in the pipeline let's assume we have again one
+4:05
+two three four five six seven eight nine ten okay
+4:13
+and the sender let's assume 6 is missing again okay the center will send individual ack
+4:21
+for each packet okay so that means if you are execute one two
+4:28
+three four five and seven eight nine ten okay so the
+4:39
+timer sorry the sender maintain maintains a timer for each NAC kit
+4:45
+packet that means the center will maintain a timer for package six when
+4:52
+the time expires it will retransmit only that and ack package that means only six
+4:58
+is root transmitted okay nothing else so this is the difference between go
+5:04
+back and and select or repeat so then uh what I'll do next is um I'm
+5:12
+going to use an animation to to to help you get a better understanding
+5:17
+so now let's see this is the go back-end protocol if you uh Google search
+5:24
+computer networking and top-down approach that's the title of our textbook and you also add student
+5:31
+resources then uh you can find this page okay on this page you can click on
+5:36
+interactive animations uh there are some very interesting animations here you can look into that
+5:44
+um and for our class today we will look at this go back and protocol okay
+5:50
+so keep what I said in mind go back and is a cumulative is using a cumulative
+5:59
+ack okay and think about the gaps if there is gaps it will
+6:05
+not act the um the package after the Gap okay so let's
+6:12
+see we send let me firstly explain what these are okay so this part
+6:19
+this line above is the center okay and this from 0 to 19 these are the
+6:27
+packets we that are uh waiting to be sent out then uh this line below is the receiver
+6:36
+okay again these packets are just these are not packages are just like let's say
+6:41
+they are uh you can view them as a holders okay um these are just used to hold those
+6:49
+packets okay so now let's assume the uh sender has a
+6:56
+window size on five that means each time animals the five packets can
+7:04
+be sent out okay so the sending when the limb is the standard to a maximum of
+7:10
+five outstanding and executed packets and you can see um now I send out to five if I want to
+7:18
+resume I cannot send a new because of the window sites when the packets are received by the receiver in the package
+7:25
+mail acknowledgment those packets right so for example when zero is received you
+7:31
+can see it will execute zero ack 1 hq2 is equal to three and four
+7:37
+and those are all the acks okay those are all the AC Keys AC keys are also
+7:43
+similar to like a regular packets okay and then when zero is received
+7:50
+when zero nck 0 is received this window will slide to the right
+7:57
+okay so that means oh package 0 is received fine it's received okay then
+8:05
+the center will see now you can send one more packet okay because the window size is the five
+8:10
+we can allow at most five and execated data packets
+8:15
+so you can see it is uh moving to the right element one is received it's moving right two three
+8:22
+four it's like that okay and I can of course listen some new packets
+8:30
+okay so for the first situation for the first situation now you realize
+8:37
+um oh everything is fine we have no loss no errors right
+8:43
+in the second situation okay in the second scenario let's discuss what if the data is lost what if a packet loss
+8:50
+so let's see example let's kill this package package seven got lost during
+8:57
+this process so when 5 is received can tell me what
+9:02
+is AC kit so we will do ack 5. right
+9:09
+so when six is received we will do a c k six
+9:15
+okay you can see 5 6r AC kit now let me ask you a question
+9:20
+what if 8 is received what will happen
+9:26
+what will be the AC key number so in this case with ack 6 why because
+9:34
+there is a gap between 6 and 8. okay that means something is wrong after six
+9:42
+that's why you can see we are still ack 6 AC k6
+9:48
+okay and you can see one five and ack five and six are received the window is
+9:53
+sliding to the right but 1 6 8 6 are received again
+9:59
+will the windows slide to the right should we Slide the window to the right no because 7 is not received right so
+10:08
+that's why you can see even n66 is received it doesn't help okay and
+10:14
+of course now you have two more positions you can send out two more okay
+10:19
+but what will happen next what will happen next is still in statistics right
+10:26
+so now the time the sender has a timer okay when the timer is for the oldest
+10:34
+NAC package which is seven so when the time expires the package all the packets
+10:40
+that are unexecated will be sent out together okay now you can see the time I didn't
+10:46
+do anything okay so the timer times out then 7 to 11 are all sent out and then
+10:53
+they are all easy kids this is the case when the data is lost
+11:02
+the next case we are going to discuss is what if other
+11:07
+what if the ack is lost
+11:13
+so now I send out this five package again and we have those AC keys
+11:21
+okay now I want to maybe delete 14 again
+11:28
+okay pay attention this time is the ack
+11:34
+getting lost okay acq is lost then let's guess what will happen when 12 is when
+11:42
+ack 12 is received at the center side should we Slide the window to the right
+11:49
+yes yeah when we receive 12
+11:54
+we can slide to the right how about 13. should we slide them into the right
+12:07
+yes okay we should also slide to the right so then for 14 we have no AC key
+12:14
+how about 15. for 15 should we Slide the window to the
+12:19
+right
+12:24
+this is a very interesting question should we Slide the window to the right
+12:30
+so now let's step back to think about the meaning of ack
+12:36
+what are the exact 15 mean keep in mind this is cumulative
+12:42
+nck 15 means all the packets up to 15 are received
+12:49
+okay pay attention to this sentence all the
+12:55
+packets up to 15 are received okay
+13:03
+so then does this mean 14 is okay yes or no
+13:11
+ack 15. also pay attention 15 also implies
+13:17
+14 is fine right okay then with this in mind with this in
+13:25
+mind should we Slide the window to the right
+13:30
+so in this case we should slide them into the right why because as I said again
+13:35
+ack and go back and ack's Community when we
+13:41
+execute a number that basically means all the packets up to that number are received fine then in this case although
+13:48
+within the ack 14 is fine because basically 15 already implies ack 14.
+13:55
+okay so then then you can see it is actually select to the right
+14:01
+okay so now of course we can send some more packets out and then wait for them
+14:06
+to be execated let's do it again and so you can then think about the different scenarios okay
+14:13
+for the first scenario for the first scenario we send all all
+14:19
+of them out okay then there are OAC kits nothing happened no errors no loss pay special
+14:28
+attention to this protocol because go back and selective repeat may appear on the final exam okay
+14:35
+and then let's just resume I'm sending some some more out
+14:43
+and if we have some data loss okay I can
+14:48
+use this case I can kill Maybe let's see k06 okay and you can see what
+14:56
+will happen is ack 5 5 8 6 5 again
+15:04
+okay and it's not sliding to the right because 6 is not AC key
+15:11
+okay and then when the timer times out
+15:16
+all the NAC kit package will be recent
+15:25
+we are waiting for the timer to time out okay you can see six seven eight nine they are all recent I can send more
+15:33
+okay they are all ack
+15:41
+and some send some more okay and if the ack is lost
+15:50
+okay if the AC key is lost then
+15:57
+you think about this what will happen next the window will slide to the right
+16:05
+window will slide to the right and then 14 is received the window will
+16:10
+also slide to the right because ack 14 implies ack 13.
+16:18
+okay and then we can continue so this is the go back and protocol
+16:24
+uh and I'll I'll continue to talk about the selective repeat
+16:31
+okay if you recall what we have discussed about selector repeat in selective repeat we will do the
+16:38
+individual executes okay there's no cumulative AC keys so individual sdks
+16:43
+and then the timer is kept for each and executed packet it's not for the oldest
+16:50
+and executive package okay it's a selective repeat is for each the timer is for each and executed packet so then
+16:58
+uh when the timer times out um the sender will resend only that
+17:06
+execute packet okay so let's see there's a new
+17:14
+and if nothing happens then it's just a similar ads uh the go back in
+17:23
+okay but if for example if we lose some packet let's see
+17:29
+six and eight are killed and whatever happened is you can see
+17:35
+ack 5 ack 7 and ack 9. do we do AC K5
+17:40
+here no we do not okay do we do AC K7 5 here no we do not so I although there
+17:47
+are gaps but but as you can see we only ack
+17:53
+um those ones that are received correctly okay and interestingly as you can see
+17:58
+here uh when we receive five okay we just mark this as received because there
+18:05
+is no gap between five and uh the packs before okay for this one we have we
+18:12
+haven't received six at the receiver side so nothing is powerful there but we received seven so at the receiver side
+18:18
+the sum is buffered okay seven is buffered similarly to nine nine is buffered at the receiver side okay and
+18:26
+now this the receiver is waiting for six and eight okay and only five seven nine
+18:31
+they are AC kit as you can see then the window will slide to the right
+18:37
+okay so here the window will not slide to the right because there is a gap for
+18:43
+six okay six is not executed yet so then as we said the timer is for each
+18:51
+individual and AC kit package so the timer will be for six and also eight
+18:57
+okay so you can see only six and eight are recent okay nothing else only six and eight
+19:03
+then with your ack 6 and 8 okay then they are marked as received because there is no gap between this package
+19:11
+okay so this receiver side also has a receiving window then it is sliding to
+19:16
+the right okay so then the their AC kit in the center window will also slide to
+19:22
+the right okay this is what will happen and another case we want to test is what
+19:29
+we what will happen if acks are if acks are killed let's see let's see we kill
+19:36
+11 whatever happened so what is lost
+19:42
+um although at the receiver side we all we know they are all received correctly right but at the center side when 10
+19:49
+arrives we know the window will slide to the right okay when ack 12 arrives the
+19:54
+window will not select slide to the right this is different from go back and forth go back and we know act 12 implies
+20:02
+basically 11 so the window will slide to the right but here for Selective repeat we know this is for each case for each
+20:09
+individual packet so basically 12 only implies ack 12. uh that doesn't that has
+20:18
+no relationship with 11 what happened to 11. so in this case the window will not
+20:23
+slide to the right okay similar for 13 14 okay this is what will happen
+20:30
+and you can see slide no slide no slide no slide okay and then you may Wonder oh
+20:35
+what will happen next what will happen next is the timer there is a timer for
+20:40
+11. because this is an executed when the timer times out
+20:45
+this 11 package will be resent okay you can see it is reset and you may
+20:53
+ask oh what if uh oh the 11 is recent but actually 11 is always already
+20:58
+already received correctly at the receiver side now the receiver will have a duplicate packets right have two
+21:05
+elements what will happen next this is very easy you don't need to worry because
+21:10
+we know these packets are all um they all have their own sequence numbers right so the receiver side can
+21:17
+directly discard this new element because it will say oh I have received this package I don't need it anymore
+21:23
+okay so this will be discarded
+21:29
+okay although it's this is discarded but it will still send back ack to let the
+21:35
+sender know 11 is fine it's received correctly okay then this time this
+21:41
+window can slide to the right okay so this is the entire process for Selective
+21:46
+repeat and uh I'll just stop sharing here
+21:52
+so make sure you really understand this part
+21:57
+um because this will appear on the test now let's look at uh we have explained
+22:03
+how it works right um so in the slides uh let me just quickly go over this slide so when you
+22:10
+review the slides you understand what is uh shown on that on those okay so
+22:15
+basically as you can see for these are all the packets that we want to send out
+22:23
+okay and these ones are not usable uh the the green ones are already execated
+22:29
+this is at the center side okay uh the yellow ones are sent but not yet
+22:35
+execated okay um these ones are the usable space that
+22:40
+means uh we can still send out to those ones okay and the window size is and this is basically the same as we have
+22:47
+discussed in the animation um so we know the timer is for the
+22:54
+oldest in-flight package okay when the timer times out then we will retransmit
+22:59
+all the packets okay all the packets that are not sick
+23:04
+so here is a an example okay in this example as you can see we have the uh
+23:11
+sender window and equals to four that means and most we can send out to four okay and then for the uh then for the
+23:20
+very beginning we can see we were sent out at the center side we are sent out 0 1 2 3. okay and you can see here the
+23:28
+packet two gets lost okay at the receiver side the receiver will just AC key ack 0 acq one and two is not
+23:37
+received so nothing nothing is down here okay and then once third arrives when
+23:44
+packet 3 arrives with a steel sent out packet uh ack 1
+23:49
+because there is a gap between 1 and 3. okay so as you can see actually packet
+23:57
+three is discarded it's not buffered in slightly repeat we know this is this
+24:02
+will be buffered but in go back and this will be discarded okay
+24:08
+and then um all these AC keys are sent out okay
+24:13
+um as at the center side as you can see when it received ACP zero the window will slide to the right and now we can
+24:20
+send out the four okay when it received ack one the manual slide to the right
+24:26
+and now we can send out packet five okay so then one package four and five are
+24:33
+received again they will be discarded why because still at the receiver side
+24:39
+the receiver didn't receive package two okay so you can say they will still ack
+24:45
+1 means which means there is something happening to two Okay and finally the
+24:52
+timer times out okay the timer for package two times out because two is not execated and then all
+25:00
+the pack is up to five are recent okay two three four five are recent so this
+25:05
+is the entire process uh it actually shows the same thing as in animation but
+25:11
+uh we just put it uh on a static picture okay on static picture
+25:18
+and then for a selective repeats as we said receiver individually AC key uh all
+25:24
+the correctly received packets and those packets will be buffered at the receiver side and the center side the center will
+25:31
+keep a timer for every packet individual package when timer times out then the
+25:38
+sender will resend only those and executed packets okay so so this card is
+25:44
+the same the center part is the same as the receiver part you can see it has a receiver and the window so then you can
+25:51
+see uh these are the expected but not yet received okay and these ones are
+25:58
+out of order packets that means they are received they are buffered
+26:03
+okay and then this is the acceptable uh
+26:08
+positions okay that means for these ones we are still except expecting packets new packs coming okay
+26:17
+so basically um here we can look at an example I think we don't need to talk about this
+26:24
+um part yeah we can directly look at this example in this example we have
+26:31
+um package zero one two three sent out again package two is lost okay and you
+26:37
+can see one pack zero is received with an SDK 0 then we've seen ick one and
+26:44
+when we receive packet third we know 2 is not received yet so in this case we will just buffer
+26:52
+the package through and send back executor okay and similarly when ack 0
+26:59
+is received then the window will slide to the right now we send out packet four similarly for AC key one then we Slide
+27:07
+the window to the right then send out packet five okay and now we received AC
+27:13
+key through okay we receive ack3 we cannot slide to
+27:18
+the right because you can see this is a third and two is not received yet
+27:25
+okay ac2 not received so here we cannot Slide the window to
+27:32
+the right okay that's why you can see we we only we need to wait for the timer
+27:38
+okay the timer expires then packet two is recent only package with reason we do
+27:45
+not resend two three four five okay and then at the receiver side the
+27:51
+receiver has already buffered packet four packet 5 package three okay and now
+27:58
+two is received so then it will basically combine two three four five and then deliver them to the upper side
+28:04
+to the upper application layer okay so uh at the same time the sender the
+28:11
+receiver will also send back AC key to tell the sender hey two is now fine okay
+28:17
+so this is the entire process um again so this may appear on the test
+28:26
+and this may appear on the test so in the test that I may describe this so for
+28:31
+example I give you a bunch of packets I say oh um the center is sending uh one two
+28:38
+three four and what happens to to some packets okay oh what happened to some AC Keys then what will
+28:45
+be the package that what will this what will what package will the center send next
+28:51
+okay or what what AC keys without the receiver sending next to those kind of things so you should be uh well familiar
+28:59
+with vest and you should really understand the principles behind so you can answer them correctly
+29:05
+okay for selecting repeat there is a very interesting thing okay we call this as
+29:12
+the selective dilemma okay so what what is what does this mean basically
+29:18
+um when you use select to repeat you have to be very careful about the
+29:24
+relationship between a window size and sequence number that means if you have a
+29:30
+window size like third then your secret number should be as big as 7. okay you
+29:36
+should have zero one two three four until seven to be as the second number if you choose a secret uh the second
+29:44
+number to be only 0 1 2 3 then you may run into a problem okay so let's let's
+29:50
+together look at the problem um so in the first case
+29:56
+in this case okay this case is defined it has no problem you can see we are sending out
+30:02
+uh the window size is three right so we are sending out to zero one two and 012 are received correctly
+30:11
+then you can see this one will will is basically it will sorry it's the AC key
+30:19
+zero Okay so when ack 0 is received
+30:26
+the window is slide to the right with us an out packet through okay
+30:32
+um and unfortunately package 3 is lost this time okay it is lost
+30:40
+um but anyway when packing when when uh AC went this one so when this is uh this
+30:47
+week this is ack 0 is this is your acq one right so when AC keyword is received
+30:53
+we will slide the window to the right again so this time we send out a package zero Okay so pay attention this zero is
+31:02
+the new pack is here
+31:07
+okay which means it's this one is not the the one before it's not the old
+31:13
+packager it's the new package zero okay and this is a this has no problem
+31:19
+but for the next case if you look at the next case okay in this case we received package uh
+31:26
+we sent out zero one two okay then we were ack 0 AC K1 AC K2 okay
+31:34
+unfortunately these AC keys are all lost
+31:40
+okay then in this case we know there is a timer for zero one two right so
+31:46
+because those AC keys are all lost so the timer will finally expires we'll
+31:51
+find an inspired then in this case the timer will retransmit 0 1 and 2.
+31:58
+okay it will really transmit zero and amount to resend one zero one and two so
+32:04
+in this case this pack is zero as is actually the old zero
+32:15
+this pack is zero is actually this one it's the old zero it's not the new zero
+32:21
+no okay it's not the new zero it's actually o zero because it's actually rescinding
+32:28
+but if you put up for these two cases these two scenarios
+32:33
+if you put a curtain between the sender and the receiver
+32:39
+as this the receiver side okay and the receiver side the receiver
+32:44
+is AC key one a zero sck one ack 2 and
+32:49
+then it receives a package zero right so it will think this package zero
+32:57
+is a new zero in the second case it's also doing ack 0
+33:05
+acq1 acq2 and then it receives a pack zero
+33:12
+okay and in this case it will also view this package 0 as a new zero
+33:20
+but it is actually the old zero okay this this is this is a is a
+33:30
+viewed as
+33:36
+new but it is uh actually
+33:45
+out zero okay it's viewed as new pack zero but
+33:51
+it's actually the old package zero so that is the problem because at the receiver side the
+33:58
+receiver does not see any difference between these two cases nothing different
+34:04
+okay but actually we know at the center side it's different the center in the
+34:09
+first case of the center is sending a new package zero in the second case the packet 0 is actually the old package
+34:15
+zero it's just a resending okay so that is what we call as dilemma
+34:21
+then in this case we we know um there is something between the sixth
+34:27
+number and the window size okay so if the window size is K
+34:35
+foreign
+35:09
+number should be at least 0 to 2 2 K minus one okay that means if K is a
+35:17
+third then this number will be seven two two three minus one seven so the second number should be zero one two three two
+35:23
+seven at least okay so in order to award certain kind of dilemma okay so that's
+35:31
+something you should keep in mind uh so that's all about the reliability
+35:37
+transfer and about about the go back and select to repeat

@@ -1,0 +1,752 @@
+0:04
+so the next thing we are going to discuss today is the flow control
+0:09
+um I mentioned flow control and congestion control uh again and again uh
+0:15
+and you need to know the difference between them flow control means we don't want to overwhelm the receiver you don't
+0:22
+want to send data too fast okay too much data too fast then the
+0:28
+receiver may be overwhelmed um TCP congestion control is different this means the network is probably
+0:36
+already congested and then we need to slow down the center we need to control
+0:41
+the speed I'll send you out packets so we don't overwhelm the public network so
+0:47
+that's the difference of between these two okay so you may ask how do we do the can flow
+0:54
+control uh in order to know how we do the flow control we need to firstly understand how can the receiver be
+1:01
+overwhelmed okay so you can see this is a receiver
+1:07
+okay and again this receiver has all these layers application layer transportedly Network layer Etc okay so
+1:15
+basically what will happen is you can see from the center side uh so the center will send in packets to
+1:23
+the receiver right so these are the data payloads okay and you can see uh it has some
+1:30
+headers here okay the headers may be Network layer header transport layer header Etc okay and then you can see
+1:38
+when it comes to the network layer Network layer will remove this network layer header
+1:44
+okay and keep only the transport layer header this is the transport layer header
+1:49
+and then this network layer will push this to the up layer again okay so to
+1:56
+remove remove the transport layer header and save the pillow here
+2:02
+okay then uh here the socket will have a
+2:08
+buffer do you remember when we write the code for socket programming we have some numbers like
+2:14
+when you create the socket it has a 1024 or 4000 um
+2:21
+something 2048 those kind of numbers I told you those are the buffer for the
+2:27
+socket right so the socket has some buffer to store this uh incoming data
+2:33
+this incoming packets okay or we call them segments and uh when this data uh are already
+2:44
+okay so for example if you have those data those segments um that are in order okay from one to
+2:51
+ten or whatever and then when they are in order then we will send those data up
+2:59
+to the up layer to the application layer okay so basically the application layer
+3:04
+process those processes will come to this buffer to get some data
+3:11
+okay to get some data um but you should know you should know
+3:17
+when the data is removed when the application is removing the data from
+3:23
+the TCP socket buffers okay it may be slower than TCP
+3:30
+receiver is uh delivering the data okay because the sender is keep sending data
+3:37
+and if this the data are going out slowly slowly okay then this part for me
+3:44
+become 4. okay it may become full then in this case thus receiver is
+3:50
+overwhelmed we don't want that to happen okay then you can see the critical part
+3:57
+here is actually the size of this buffer and the availability of the buffer space
+4:04
+how much buffer do we still have to store the new incoming data that is the
+4:11
+key okay so flow control is basically the receiver can choose the sender so
+4:17
+the sender won't overwhelm the receiver's buffer by transmitting too much too fast that means the receiver
+4:25
+will stack how much space is still available and tell the sender say hey I
+4:31
+have only this much space available please do not send me more data than that than that size okay so it's like if I if
+4:41
+I um tell um the students to say hey I have only
+4:48
+10 space uh tell the other side whatever the the department say hey I I have only
+4:54
+10 positions available please do not send me more than 10 students it's like that okay
+5:00
+so that you can see uh this is the entire buffer for the receiver
+5:07
+okay and these are the already buffered data so now we still have this much free
+5:15
+buffer space okay then the receiver will
+5:20
+tell the sender say hey this is uh the size of my
+5:27
+available battery space okay please do not send me
+5:32
+data bigger than that okay more than that so then how could
+5:39
+this receiver tell the sender the receiver will tell the sender by setting
+5:44
+this rwnd which is receiving window okay or
+5:50
+receiver area receiving window okay so where is this rwnd
+5:58
+okay where is this rwnd if you go to this TCP settlement
+6:05
+structure okay this is the segment structure that is used by the both the center and
+6:11
+receiver okay they will communicate in this way and here you can see something
+6:17
+like foreign
+6:24
+do you see this one receive window okay this one is actually the rwnd
+6:34
+is the receive window okay that means the number of bytes
+6:39
+receiver we need to accept then you can see actually when the receiver responds
+6:45
+to the sender it will also set this rwnd then the sender will check this rwnd and
+6:53
+the center will immediately know how much data it should send okay so this is how the rwnd is set
+7:06
+okay so as you can see here the receiver advertises free Perfect Space by
+7:12
+including rwnd value in the TCP header of the receiver to Sender segments okay
+7:20
+um it's in the response segments actually okay the receive buffer size is
+7:25
+set while the socket options okay and actually many uh operating systems they
+7:32
+will directly adjust the receive buffer so basically it's a receiver we know
+7:39
+it's this entire thing okay the operating system May adjust this receive buffer okay and you can also set this
+7:48
+receive buffer uh wires the socket options as what we have done before okay
+7:53
+and then when the sender receives this rwnd the center will limit the amount of
+7:59
+an AC kit in Flight data to the receiver's rwne value
+8:06
+okay that means if RW of ND equal to four thousand
+8:11
+okay then the center will have at most 4 000 vital data in flight
+8:20
+okay so this guarantees the receiver uh we are not be overwhelmed okay
+8:28
+any questions so far
+8:34
+all right okay so we will continue to discuss the connection management plan so today we are very efficient
+8:43
+um so for connection management uh connection basically means establishing
+8:50
+a connection between before the data exchange we mentioned this uh again again right so we said for UDP we do not
+8:58
+need to make any connection before date exchange but for TCP we all need that
+9:04
+then how do we establish a connection okay we said we will do something called
+9:09
+through V handshake so basically the client and the serversy high high to each other okay it's like that
+9:16
+um so basically um before exchanging the data the sender
+9:23
+and receiver will do some handshaking they agree to establish a connection and
+9:28
+each each knowing the other willing to establish connection okay and they also
+9:34
+agree on connection parameters okay do you remember I mentioned before
+9:40
+um the first sequence number first AC key number Etc so those those parameters
+9:45
+are actually negotiated during the established connection part okay so
+9:51
+basically the socket the uh one side will establish a client
+9:57
+socket and the other side will agree to accept this connection okay do
+10:06
+you remember this connection socket okay so the connection socket
+10:12
+um we learned basically two type of sockets several sockets at the
+10:18
+TCP socket programming right so we said there is a welcoming socket which is the
+10:24
+server socket uh that welcoming socket we are basically um accept the connection and then later
+10:33
+it will create a different type of socket which is actually doing the real
+10:40
+business to help the clients to deal with the client's request so in the midterm exam we also have that question
+10:46
+how many types of uh server socket will be established at the
+10:53
+um uh in the TCP right at the server side and we said actually there are at
+10:59
+least two types okay so let's first look at the established
+11:07
+connection part how do we establish a connection so a very simple way is to do a three a tooling handshake actually
+11:14
+okay so for example for human being uh you can just say uh say hey let's talk
+11:21
+okay and then the receiver will say okay sure let's talk okay so then this
+11:26
+connection is established um this will work perfectly in human
+11:33
+society because humans can see each other okay they can see each other they can
+11:39
+um they can they can sense each other okay but this will not work in
+11:47
+um Network okay because in networking um the two parties cannot really see
+11:55
+each other okay and they do not know what is happening at the other side
+12:01
+okay so then if we do two-way handshake we may run into problems so let's see
+12:08
+why let's see some of the village scenarios for example let's say the this machine clients say choose our
+12:16
+X and say hey can I is that my connection with you and then the server will say sure let's connect
+12:23
+okay it seems good right but okay
+12:29
+and also after some time okay after some time and these two these two machines uh
+12:36
+after the connection is complete then then the client side will terminate and the server side will simply sketch this
+12:42
+connection okay but what if what if for example
+12:49
+um this kind of side may think this one
+12:54
+this one is not sent correctly okay then the server the client side may
+13:00
+do a real transmission okay so for example let's say maybe the AC
+13:06
+case is lost or whatever okay so then this can I started with me maybe uh
+13:12
+maybe uh doing a re-transmission but this real transmission unfortunately finally comes to the
+13:20
+server side after this termination is done
+13:26
+okay but at the server side the suicide doesn't know this is a re-transmission
+13:32
+it will think oh there is a new request coming okay and then the server side let me say
+13:39
+oh let's establish a connection okay but actually the client is already
+13:45
+gone okay so that in this case you can see
+13:50
+um it's actually a half open connection there's no client there is only the
+13:57
+server there hoping the client is there but the client is actually already gone okay we didn't get any confirmation from
+14:04
+the client so this is actually a failure scenario okay
+14:09
+um another scenario is actually about the uh also similar okay so for example
+14:15
+in this case um this client said can we can we connect
+14:20
+okay so we'll see yes let's connect okay and then client began to send the data
+14:25
+and then the server accepts data very happy right everybody's happy and I
+14:31
+after everything's down determine this connection okay
+14:36
+but in this entire process again we may have lost AC Keys okay we may have
+14:43
+timers timers times out okay then the client side will client sign doesn't
+14:50
+know what has happened at the receiver side right so client designer will say oh let me do re-transmission because
+14:58
+maybe the server didn't receive my request so it did a real transmission of this
+15:05
+connection request and also did a real transmission of the data okay again those requests and the data
+15:13
+may arrive at the server side only after the connection is completed okay after
+15:19
+this is terminated then at the server side the server will feel like oh a
+15:25
+client is uh um requesting to establish connection and also even better a client is sending
+15:34
+data so the server feel like it's talking to a real live
+15:40
+client but actually there's no client okay the server is actually only talking
+15:47
+to itself okay so that is the problem of the
+15:52
+two-way handshake that's why this fails okay so that's why in reality instead of
+15:59
+doing two way we will do survey we will get the confirmation from a client again to make sure both parties are still
+16:05
+there okay so basically what will happen is the client avails client side will
+16:12
+send an initial request with a sequence number X this is negotiated and a same
+16:18
+bit set to one sim bit set to one means I want to establish connection with you
+16:24
+okay so where is the same bit if you look at
+16:30
+this TCP segment structure again
+16:36
+okay so this is the same bit s is the same bit okay there is actually
+16:44
+also F beat for finish okay finish and we also have a bit right ack so these
+16:52
+are all the bits that may be used to establish the connection okay and keep that in mind the same bit is something
+16:59
+real it's not what we um made up okay
+17:06
+okay so send a scene bit means I want to establish a request a connection with
+17:11
+you this is request and then the server side will reply with a simple equal to
+17:18
+one I see K bit equal to one so both the C and ack in set to 1 means the server
+17:23
+agrees to establish the connection okay of course the sequence number is uh also
+17:29
+set and chosen by the um the server side so the AC key number
+17:35
+equals to X plus one because this means I have already received your apps and I'm expecting X plus one now okay but
+17:43
+that's not important the most important thing is you should know that in the reply c equal to 1 is equal to one here
+17:50
+is c equal to one and a c k equal to zero foreign
+18:01
+number okay and then the client will reply with the
+18:07
+ack bit equal to one and same bit equals
+18:13
+to zero okay so these are the numbers that will be set in the three handshake so in this
+18:19
+way uh basically the client answer already confirms with each other that they are willing to establish the
+18:25
+connection okay so that is a theory handshake and TCP may also close a connection
+18:32
+after everything is done okay so how do we close the connection basically the
+18:38
+the client will say hey I want to break up with you think BT equal to one okay
+18:44
+and then this the server will say okay I agree
+18:50
+okay but the server will also see to confirm with you I also want to break
+18:55
+out with you okay break up with you so then the client will also say okay I
+19:02
+confirm okay with AC KB is equal to one uh
+19:07
+usually these two these two can be sent in just one respond this two can be
+19:14
+um combined with combined which means the server while it is AC key uh the uh
+19:22
+connection finished request from the client it also tells the client that I
+19:28
+also want to break up with you okay I also want to finish this connection and
+19:33
+then the the client will ack and then finally they will just close this
+19:40
+connection okay so this is the entire process um all right so we finished 3.5 today we
+19:47
+will continue to discuss the congestion control of TCP okay
+19:52
+um so let me firstly remind you again about the difference between flow
+19:58
+control and congestion control last time away uh discussed the flow control flow
+20:04
+control is not to overwhelm the receiver so how do we do the control basically
+20:09
+the receiver is controlling the sender by setting the rwnd do you still
+20:16
+remember setting the receiving window right so that basically the receiver is
+20:21
+telling the sender hey I have only this many buffer space so please do not send
+20:29
+more than that um right so for example if the rwmb is 4000 that means uh the sender can at
+20:36
+most have four thousand um and AC kit Buys in Flight okay
+20:43
+so that is the flow control and then uh congestion control as I said is actually
+20:50
+uh not to overwhelm the network okay so informally congestion means too many
+20:56
+sources sending too much data too fast for Network to handle
+21:03
+um and then basically the manifestations are lost packets or long delays okay so
+21:12
+if you say a long delay um for the package then that means there is
+21:19
+congestion or even worse you may experience lost packets okay that's
+21:24
+because the buffer is overflowed at the router okay so congestion control is
+21:30
+still a top 10 problem for networking okay and
+21:36
+um researchers and the industry are working hard on this
+21:41
+um so before we um think about how to do congestion control we need to firstly understand
+21:48
+why we need to congest control so what is the reason behind Okay
+21:55
+um so now let's look at a very simple example here we have host a
+22:02
+and we have probably a server here okay and we also have a host B and another
+22:08
+server here we'll assume there are two senders and two receivers in this scenario okay and then the host a and
+22:16
+host B the share um
+22:21
+router okay but all their pack is how to go through this router okay and we at
+22:27
+the very beginning you assume this router has unlimited buffer space unlimited buffer space basically means
+22:34
+there will never be buffer overflow that means there will never be dropped packets all the packets will finally be
+22:42
+delivered right so then if we have no dropped package then that means we do not need to have
+22:49
+any re-transmission because no pack is allowed I lost all the packages will be
+22:54
+delivered so why do we need to do recognition right um
+22:59
+then that is a scenario one and then in this scenario we uh assume we have we
+23:07
+have Lambda in and the Lambda out so what is this um so this is basically the uh
+23:15
+throughput okay uh or we you can think it has a the
+23:21
+data sending rate or transmitting rate uh then none out is like the data
+23:27
+receiving rate okay um so now let's look at the relationship
+23:32
+between Lambda e and lamb out okay so here is the one
+23:39
+um the figure you can see as usually as Lambda e increases
+23:45
+okay Lambda out will also increase this is not this is actually very straightforward very easy to understand
+23:52
+um basically if host a is sending more data at a faster speed then of course at this
+24:02
+side at the output we will receive more data as a faster speed right so it's
+24:07
+like that but you need to pay attention uh because
+24:12
+although this this router has unlimited buffer but the out the
+24:18
+um the output link okay from A and B the total capacity is R okay the total
+24:25
+capacity is r that means for each one of them they can at most have a half hour
+24:32
+okay they can at mostly use half a wall for the um for the link capacity okay or for the
+24:39
+bandwidth okay so it's like in total the bandwidth is R then each route can have at only at
+24:49
+most half of the bandwidth okay so that's why as you can see when the
+24:54
+Lambda e increased to the point of half of our the Lambda out will not increase
+25:00
+anymore it becomes constant okay it can at most be half hour
+25:08
+okay that is the reason and if you look at at look at the delays
+25:16
+then the delay will also increase but when it approaches half overall which
+25:21
+means this round is very very busy now then the delay will increase
+25:27
+significantly okay so that is the relationship between Lambda e and Lambda out and again in
+25:35
+this scenario we assume there uh the buffer at the router is unlimited okay
+25:42
+so the Lambda out will increase as Lambda e increase but reach a maximum of
+25:49
+half hour sorry uh half hour okay
+25:56
+so that is scenario one for scenario two we assume we have uh
+26:02
+Affinity buffer okay so finish the buffer basically
+26:07
+means uh now the the router the router have
+26:14
+a limited buffer then if we have too many packets coming in okay the buffer
+26:22
+can cannot hold that many packets when the buffer is a full then we will have
+26:27
+the router will have to drop some packets okay in this case if the packets
+26:33
+are dropped okay in order to ensure the same Lambda
+26:38
+out say the same effective output we have to do some reasoning at the transport layer
+26:46
+do remember uh the reliable data transfer we have learned just now not
+26:52
+just now actually in the previous classes we have learned uh the reliability transfer protocol and we
+26:59
+set usually when the data packets are lost what will happen is the sender side
+27:06
+will keep a timer right so the timer expires and then we do the resending
+27:14
+okay so this happens at the transporter layer so that's why you can see here we
+27:22
+have Lambda in this is application layer and the Lambda M Prime this is at the
+27:29
+transport layer which means they are different okay they are different
+27:34
+um if this network is very busy to reach the same Lambda out usually
+27:42
+Lambda in Prime has to be bigger than Lambda e why because for example let me
+27:51
+say okay we want to send application layer data for example if this this data
+27:56
+is ABCD we send four bytes okay and then let's assume now we are sending
+28:04
+ABCD okay as application layer we are sending
+28:10
+these four levels then as a transporter layer okay one ABCD are sent out if this
+28:17
+network is very busy and if this buffer is full then some of the letters may be
+28:23
+dropped okay so maybe B is dropped the C dropped okay then in order to to deliver
+28:31
+this data rely in a reliable way we have to resend the B again at transport layer
+28:39
+okay the first B and recent B and at and for C the same thing recent C again okay
+28:46
+sometimes we may do even resend the D if if we are using some protocols let's go
+28:53
+back in okay of course if we are using select to repeat that we
+28:58
+may do um we may only resend B and C okay but
+29:04
+anyway here let's assume we only use that b and c but now you can say in order to receive
+29:12
+a b c d correctly here at the lemon out okay and output we have to do summary
+29:19
+sending at the transport layer okay and these resoundings are not necessary okay I'm
+29:29
+not actually ideally we don't we don't want to have this right
+29:36
+um but then based on this you can see okay Lambda in Prime is usually bigger than the Lambda e okay so that means so
+29:46
+I have already mentioned this but I want you to see this animation we have free powerful space then it is
+29:54
+fine okay
+29:59
+so that in this case in this case it's not busy and it's not busy yet okay so
+30:08
+so then you can see laminating increases and then Lambda out also
+30:14
+increase this is uh the idea um situation where we have perfect
+30:19
+knowledge we know okay sometimes uh we know when the buffer is available
+30:25
+then we do the sending okay but in reality is oh another situation is we know the loss
+30:32
+okay we know when the loss happens no buffering space okay it's dropped
+30:39
+and then we have to send it again
+30:48
+okay so in this case you can see the lamina in Prime is uh
+30:54
+near is almost the same as Lambda out because
+30:59
+we know when the loss will happen Okay and we will do the re redelivery or re
+31:06
+sorry resending only when loss happens okay this actually this is still ideal
+31:13
+situation but in real life reality okay in reality we don't know if the packets are lost or
+31:20
+not maybe the ABCD has already been received but we just don't know okay
+31:27
+maybe the AC keys are lost right so we don't know and sometimes
+31:33
+select this
+31:39
+okay so let me repeat
+31:55
+okay so this is a you can see in this case we do not have any loss of data
+32:02
+okay but still the center did the resending okay uh maybe ABCD has already
+32:08
+been have already been received but still the sender May resend some uh data
+32:14
+okay so in this case in this case the relationship between land in Prime and
+32:21
+Lambda out is like this okay even in order to reach
+32:27
+this effective land out we have to work a lot we have to make laminating Prime
+32:35
+this big okay so this is the the third case uh in
+32:41
+this case when we have no loss okay when we have no loss basically if we have for
+32:47
+example a c d is received we know B is uh lost so we only resend B okay
+32:55
+then um in this case I mean it's although it's not ideal but still it's near
+33:02
+perfect okay in reality is not that perfect that's why as you can see we see
+33:08
+a figure like this okay that means okay for scenario two let me summarize
+33:15
+although we talked about a lot but the takeaway message is
+33:21
+more work is needed for giving good food
+33:30
+okay and we have a lot of unneeded re-transmissions okay the link May
+33:39
+carries may carry multiple copies over the packet okay so that is actually the number one
+33:47
+reason for congestion why do we have congestion because for a
+33:55
+given good put there are a lot of re-transmissions
+34:01
+these retransmissions may or may not be and needed
+34:07
+okay so that this re-transmission retransmitted package will consume the
+34:14
+resources on the network okay those link the links Network links has to carry
+34:20
+this uh multiple copies of targets that's why we have a congestion number
+34:26
+one reason for congestion
+34:38
+okay this is scenario two and now let's look at scenario three we
+34:44
+just found out one reason for congestion actually there are still more reasons okay so let's look at congest scenario
+34:51
+third in this scenario we have host a house B host D and host C here okay and
+35:00
+interestingly pay attention host a is actually communicating with host c not
+35:06
+host B if you if you follow this red route here okay the red route here
+35:13
+actually the host a is communicating with host C and if you follow this round
+35:19
+here for host d okay then you can see host D is actually communicating with
+35:25
+host B okay and again they share this uh
+35:32
+router okay um and now what we want to look at is this
+35:40
+Lambda in and this Lambda out okay so pay attention we are looking at
+35:45
+this Lambda in and this Lambda out they belong to different rows
+35:52
+not this Lambda out no okay why do we study the alumni and lamb
+36:00
+out from different routes because we want to learn the interactions between these two
+36:06
+rows okay so let's make me make this easier
+36:12
+okay so what will happen as Lambda in increase
+36:18
+as we can imagine as laminating increase the limited employment will also increase
+36:24
+okay and at the same time the input at the hospitality will also increase
+36:30
+so then what you will see is is like Lambda increases so lemon out also
+36:36
+increases because they are all increasing okay okay but
+36:43
+at one point because these two rounds share this buffer okay share this buffer at one
+36:50
+point this buffer may get four Okay negative four then we have a
+36:56
+problem now okay we have problem because this buffer is a four so the battery will begin to drop packets
+37:03
+okay but the question the problem is host a you can see if host a and host d
+37:11
+if they all send the same the package at the same time okay if we are seeing X
+37:18
+and Y okay so X and Y which packet will arrive at this
+37:25
+router faster apparently X will arrive at this buffer
+37:32
+faster why because you can see y has to go through
+37:38
+also this router so why is falling away from this
+37:45
+router okay so X is closer so that's why X can
+37:50
+arrive faster okay the the problem is if we have only limited space at this
+37:57
+router R let's see okay this is R1 R2 okay at around R1 if we have a limited
+38:06
+space then X will arrive faster so we can still accommodate X okay but y will
+38:14
+arrive late so we have to drop y because we do not have space for y anymore
+38:21
+okay then this is actually a very sad story why because you can see this package y
+38:28
+actually travels a long way from host d two
+38:34
+finally R1 but Y is killed here
+38:40
+okay Y is killed here then in this case y cannot reach the destination B okay it already it already
+38:50
+used a lot of resources before R1 for example it already consumes the resource
+38:55
+at R2 okay but finally it doesn't arrive at
+39:01
+the destination we can see this is a Visa resource okay this is a with resource for packing
+39:08
+y okay so that's actually the number two reason
+39:13
+for the congestion
+39:26
+the number two reason is when a package is dropped
+39:32
+any Upstream transmission capacity used for that packet was wasted
+39:40
+okay when Y is dropped all the capacities we have used before
+39:47
+reaching R1 okay is wasted okay so that is the number two reason
+39:55
+for congestion and some of you may want to know why do we have this figure actually as you can see as Lambda in
+40:02
+Prime increases Lambda out is increasing at the very beginning okay so as uh this
+40:09
+one is this one is increasing and the hosty is also in sending data faster so
+40:15
+so that's why Lambda out is increasing but at some point okay when they all
+40:21
+reach a big number then the the pack is from host a we all have more privilege
+40:30
+because it's closer to R1 so that's why when Lambda is increasing again then
+40:37
+Lambda out will be will be decreased because
+40:42
+all the packets from host D are throttled at this point okay and R1
+40:48
+so that's why you can see as laminate is increasing actually it it begins to
+40:55
+like it is competing with the the the the blue route here right so that's why
+41:03
+you can see the Lambda actually decrease significantly okay we talked about a lot okay I don't
+41:11
+expect you to remember the relationship between London England Prime Lambda out
+41:16
+Etc okay I only need you to remember the reasons for congestion I will test the
+41:24
+reasons okay for the congestion number one
+41:30
+reason is because for a given good put we have
+41:35
+to do a lot of re-transmissions those retransmissions will consume the network
+41:42
+bandwidth that is number one reason number two reason is when a packet is
+41:48
+dropped all the Upstream transmission capacity used for that package was
+41:53
+already listed okay that is the number two reason so those are the two reasons
+41:59
+for congestions and I may ask you this question in the test what are the two reasons for congestion
+42:05
+okay so you need to know that um
+42:10
+and

@@ -1,0 +1,610 @@
+0:04
+just okay uh so far we have talked about the
+0:09
+channel partitioning Mac protocols first time uh that type we know we learned as
+0:15
+a ftdma fdma okay second type is the
+0:20
+random access map protocols we learned slotted Aloha Pure Aloha we also learned
+0:27
+csma and csma CD okay that is the second type uh the third type is the taking turns
+0:35
+protocol taking turns is actually um
+0:40
+is a is a like a combination of Channel partitioning and the random access okay
+0:47
+the the idea is also very easy for example here we can say we have a master
+0:54
+node and a number of sleeve nodes okay but masternodes is like the coordinator
+0:59
+in the in the middle so the masternodes will invite the cliff the slim nodes to
+1:05
+transmit in turn okay so for example Master will say hey do
+1:11
+you have data to send then the first node we'll see I have data then it will answer the second one and say if you
+1:18
+have what data to send okay second one may say no Okay the third one say I have data so it's like that uh so basically
+1:26
+the master will invite every every uh sleeve node to transmit in turn Okay the
+1:34
+concern for this kind of Mac protocol is that firstly we have the polling
+1:40
+overhead okay the polling it it has hot cost okay
+1:46
+secondly we may have latency okay because every time you need to ask
+1:53
+um uh you need to you need to ask if the computer has data to send okay uh it
+1:59
+takes time the third concern is the single point of failure as you can imagine if the master is down then
+2:07
+basically this Mac protocol will not work okay so nobody can send it out that
+2:13
+is uh those are the concerns for this uh polling protocol okay
+2:22
+um the second type of taking turns is called token party token passing
+2:28
+um the the reason what you talk about passing is that we want to remove this
+2:33
+uh Master this coordinator okay so in token passing we do not have any
+2:39
+coordinator uh basically we have a control token that is passed from one
+2:45
+node to the next node sequentially and then they take turns to send it out for
+2:50
+example you can see but this one has nothing to send the token is passed to the next one
+2:57
+and this one has data to send out okay and the next uh then we can
+3:03
+continue uh if you if you think about this uh actually token cutting also have
+3:08
+several drawbacks firstly we need to have a token okay token has overhead
+3:14
+secondly latency problem the same thing okay so every time we need to uh firstly
+3:20
+use the token to ask and then we can send uh the third thing the third one is the
+3:27
+single point of failure again but this time it is uh uh not the
+3:33
+um the single point of failure is not about the masternode it's actually about the token if for some reason the token
+3:40
+is lost okay then this again this for this entire uh loop on every Network
+3:47
+nobody can send the data out okay
+3:52
+so this is a keyboard Access Network this is a real Network okay let's look
+3:59
+at the structure and see what what will happen so firstly this is the cable hand and
+4:07
+okay and we have the keyboard modem termination system these are all the
+4:14
+home networks okay this is one a big a big one uh and for each home network you can see
+4:20
+we have splitter and the cable model okay we know the cable modem is
+4:27
+basically used to convert the signals from uh from the audio signals or cable
+4:35
+signals to the digital signal right to for the conversion and splitter is used
+4:40
+to to split the different type of signals um and actually for this entire
+4:47
+structure as you can see we have the multiple access problem okay for the downstream
+4:54
+for the downstream uh we basically we can say oh okay we have different type
+5:00
+of signals for example we have Internet frames we have TV channels we have also
+5:06
+the um maybe control signals Etc okay so all
+5:12
+those different type of signals can be transmitted at different type of frequencies
+5:19
+okay different frequencies so this is a like fdma right so this is a like
+5:26
+Channel partitioning okay and then for the Upstream for the
+5:32
+Upstream um signals we have competitions because
+5:38
+many home networks okay some of the home networks they they all want to synapse
+5:44
+the signal they all want to send the signals to um the cable hand ends okay then they
+5:51
+have computation um which is what we call as a multi-process problem okay then in this
+5:59
+case okay in this case we may have different signals transmitted at different
+6:06
+frequencies in different time slots okay so here we use both of the
+6:11
+frequency dividend and also uh time difference okay
+6:18
+um so you can see for Downstream it's easy for Upstream Downstream because we
+6:23
+are just doing the broadcast channels for Upstream then all the users contend
+6:29
+for certain Upstream Channel time slots okay so what is a really happening
+6:35
+actually is that um
+6:40
+so for um we what we do is we use fdm over
+6:48
+Upstream Downstream uh frequency channels this for this one we already know right
+6:54
+and then for um
+6:59
+and therefore Upstream for Upstream uh
+7:04
+uh data okay so for Upstream transmission what we do is we actually
+7:10
+firstly uh you apply okay we apply uh
+7:16
+and say hey for example this this is home network will say hey I want to send something out okay uh what can I do okay
+7:25
+then it will send some requests to the keyboard hands okay the cable
+7:33
+headings will assign some of the slots assign some slots in the downstream map
+7:42
+frame so basically it will tell this home network say Hey you can use this
+7:48
+time interval from T1 to T2 okay then later uh this home network can
+7:55
+use uh the time from T1 to T2 to um uh up to upload data okay to to do
+8:04
+Upstream transmission so it is like that okay
+8:11
+and then the request for Upstream slots is actually transmitted
+8:18
+um using random access okay using random access so you can see in reality the real network is like a
+8:26
+combination of different methods fdma tdma and we also use the random access
+8:33
+okay like for Random Access again we have different uh types like it's Aloha
+8:40
+it's not in Aloha Pure Aloha csma CSM SCD Etc okay
+8:46
+so basically the general the general idea is the first lay you request you
+8:52
+make a request for time slots okay so this request is
+8:58
+made by using random access and then um the time interval will be assigned
+9:05
+using the downstream channel to this home computer home network and the home network then can upload uh or send up
+9:14
+Upstream data using the time slot assigned okay so
+9:21
+that is uh the general idea um and I
+9:27
+to summarize what we have learned we basically learned these three different types of Mac protocols and I really want
+9:34
+you to um remember all of this okay and there are features you should understand we
+9:40
+will definitely um have questions about Mac in the final exam okay
+9:48
+all right so the next thing we are going to discuss today is the land
+9:53
+okay uh for land we will firstly look at the MAC address
+9:59
+okay Mac address we we have learned IP address we know IP address is 32-bit
+10:05
+right so it is the network layer address for interface for the new card okay uh
+10:13
+and this is a used for uh basically forwarding and routing
+10:19
+um and then for each device we know we all we often we mention a MAC address Mac address but do you really know what
+10:26
+is a MAC address so the functionality for MAC address is
+10:33
+actually to um get frame locally from one interface to another physically
+10:42
+connected interface okay so that means Mac address is actually used mainly for
+10:49
+the local area network okay between the neighbors between the direct Neighbors
+10:55
+okay and a MAC address is 48 bit okay this is a burn into the neck roll
+11:04
+um and uh sometimes we can use salt water to set up the MAC address but most of
+11:10
+the time for most of most of Mac addresses they are just burning them and
+11:16
+I think um usually we do not change the MAC address okay
+11:21
+and if you look at the MAC address again as I said it's a 48 bit so then we can
+11:27
+represent this with the hex decimal here each letter or each number
+11:34
+represents four bits okay so four B so that means we have for
+11:39
+this entire Mac address it has one two three four five six seven eight nine ten
+11:44
+eleven twelve we should have twelve letter or uh number has this more
+11:51
+lateral number okay um and pay attention
+11:57
+the IPv6 okay the IPv6 the IP address
+12:04
+is also representing the E hex decimal okay
+12:10
+but it's much longer it's 128 bits okay so it's much longer than mac
+12:16
+address sometimes uh students say oh why do I see also accessible in your IP address that
+12:25
+is because it is using IPv6 okay
+12:30
+so now let's look at the Lan addresses so basically
+12:36
+um this is a lamp and you can see each adapter each new card has its own unique
+12:43
+unique Mac address okay unique language someone you may ask why we already have
+12:52
+the IP address why do we still need a MAC address okay what is what is the
+12:58
+reason for having a MAC address so
+13:03
+um the macro address is like it's a very unique it's Unique to every adapter so
+13:12
+it can be used to uniquely identify each computer each interface and also it is portable
+13:19
+you think about this so for example when you take your computer from your
+13:24
+home network to campus Network the IP address may have changed right
+13:31
+but the um the MAC address is still the
+13:36
+same for a computer is still the same it's not changed so you can see this is a MAC address is portable it's just
+13:43
+similar to um to to a human if we think about human
+13:50
+society everybody has a social security number right and everybody also has a home
+13:56
+address when you move from one place to another place your home address can change your
+14:02
+postal address can change but your social security number is always with
+14:07
+you it's never changed okay so the MAC address is like the social security
+14:12
+number and the IP address is like the postal address okay Mac address is
+14:17
+basically used to uniquely identify a interface
+14:25
+um you may also ask them how can they ensure the MAC address is unique to
+14:31
+every device okay um basically the MAC address allocation
+14:39
+is administrated by IEEE and then the manufacturer needs to buy a
+14:47
+portion of Mac address space to ensure the uniqueness okay it buys a
+14:53
+portion of Mac address space and then when it's manufactured uh the new card
+15:00
+it will assign a unique Mac address to each device okay to each me card
+15:06
+[Music] um so that is the basically the difference between IP address and Mac address
+15:14
+then now we may have a problem okay you may have a question
+15:21
+um so if we already know if we already know the IP address of our computer IP
+15:27
+address or Y interface how do we know the MAC address for that interface
+15:35
+the answer is that we can have we can use a protocol called address resolution
+15:40
+protocol which is a arp okay and this is a very uh commonly used
+15:48
+protocol very useful protocol and please pay attention to this so
+15:54
+basically for ARP firstly we have ARP table okay
+16:00
+um each IP node on the land has a table called ARP table
+16:07
+and then in this Erp table we will store the mapping between IP address and Mac
+16:13
+address of course we also give it the TTL TTM means time to leave
+16:19
+um it's basically means how long will this mating be uh
+16:27
+effective okay so after TTL then the address mapping will be forgotten
+16:34
+so typically the TCL is 20 minutes um
+16:39
+so let's look at how this ARP protocol worked okay
+16:44
+um I think maybe maybe I start with this example and then
+16:50
+we come back to explain okay
+16:56
+um this is another one okay let's come back
+17:02
+to this so firstly firstly if we let's assume let's assume a wants to send a datagram
+17:10
+to B and A and B are in the same land this is a very important pay attention
+17:17
+A and B are in the same length Okay basically means they are not neighbors
+17:23
+okay and we know when a sends something to B okay
+17:30
+in addition to the IP address actually at the link layer a link layer does not
+17:35
+know any IP address link layer means the MAC address to deliver a packet
+17:41
+okay so that's why if a amount to send something to B A must know B's Mac
+17:49
+address keep this in mind a must know piece Mac
+17:54
+address okay but unfortunately this Mac address is
+18:00
+not ease Erp table yet do you remember we said every note
+18:06
+has a ARP table right the Erp table has IP address and the MAC address so
+18:12
+ideally we should have B's IP address and the B is a MAC address
+18:20
+here okay but here at the very beginning we a do not have this Mac address in its
+18:27
+own Erp table and what a can do is a can broadcast the ARP query
+18:35
+to everybody in this line okay to everybody in this land
+18:40
+containing this IP address it will basically ask say
+18:46
+hey who has this IP address okay
+18:51
+then you may ask how can we do the broadcasting actually we mentioned this before I think when we talk about DHCP
+18:58
+if we want to do the Broadcasting okay the destination Mac address should
+19:04
+be FF ffff so 12 F's
+19:11
+okay 12 apps This Is How We Do Broadcasting okay and all the notes all
+19:18
+the notes on this line will receive this NRP query okay it's like if for example if I'm a I
+19:26
+do not know B's Mac address I only know B's in IP address then I will shout to
+19:32
+everybody to all my neighbors asking say hey who has this IP address
+19:38
+okay then when B receives the RRP packet B will reply to a with its own Mac
+19:46
+address okay then this um
+19:52
+um this Frame is sent to A's Mac address directly through unicast because V knows
+19:58
+is Mac address right then after that a will basically save the
+20:06
+this IP to MAC address pair in its own ID its own ARP table
+20:13
+okay um until the information becomes out so
+20:18
+that that means after that before this expires a can directly send uh the frame
+20:25
+to B because a now knows B's Mac address okay so that is the general idea of ARP
+20:32
+if they are if the source and destination are within the same length
+20:37
+Okay so this uh pay attention ARP protocol is Plug and Play protocol uh
+20:43
+they do not need any information from the net Network admin okay no need from
+20:49
+Network enemy um so this is the uh the ARP protocol
+20:55
+when they are in the same land okay it's very easy just a shout to
+21:01
+everybody okay um so then the route into another line is a
+21:09
+little bit more complicated let me see let's move let's finish this try to finish this okay
+21:15
+if if a and b are not in the same length
+21:21
+okay if a and b are not in the same line then a cannot shout anymore
+21:27
+because they need to go through a router here okay so when a sharp a can only shout to
+21:34
+this length it cannot shelter to the other line it can only shout to its
+21:40
+neighbor okay then in this case what can we do if a wants to send something for to B
+21:48
+through a router r okay uh now let's assume a knows B's IP
+21:55
+address B is the destination and we also assume a knows the IP
+22:02
+address of the first hop router are a knows IP address or
+22:11
+How could a nodes know um the IP address of first half grams
+22:16
+are sorry not this one sorry not this one
+22:21
+okay let me see hmm
+22:27
+it's actually this one okay this is uh Earth's IP address at
+22:34
+the at the left side of that okay and isline so how could a know the IP address of
+22:43
+first half router are How could a know this IP address
+22:48
+the answer is actually DHCP
+22:54
+foreign DHCP we said when a new computer
+23:01
+a joins a network okay join the network
+23:08
+it needs to talk to a DHCP server then the DHCP server will return is IP
+23:14
+address and also some other information the other information are
+23:20
+info for example the information the IP address about the first half router
+23:25
+the IP address or the DNS server and the name of the DN server and also the uh
+23:32
+the the network mask right so this information are sent
+23:37
+to a by the DHCP server okay that's how that's how a get this IP address
+23:45
+and third assumption is that we also assume a knows R's Mac address
+23:50
+How could a know RS Mac address the answer is using arp
+23:59
+why because we know this adapter is actually within the same length of a right so we
+24:08
+just learned if they are in the same length a can simply shout it can simply
+24:13
+ask say hey who has this IP address of one zero
+24:20
+okay then our out interface will return this Mac address to a that's how a gets
+24:27
+to know uh arithmetic address so with these three assumptions let's continue
+24:35
+okay then now a will create I iptogram with IP Source
+24:43
+a and destination B okay you can see source is 101.101 destination is two to two
+24:50
+okay then when might comes down comes to the lower layer link layer you can see the
+24:57
+source address source Mac address is is source Mac
+25:03
+address the destination address however is not B's Mac address
+25:09
+because because what because we don't know this Mac address yet we only know
+25:16
+Earth's Mac address right we know this Mac address
+25:21
+okay how do we know we assume we already know that right through arp
+25:27
+so that's why you can see the MAC address here is actually
+25:33
+ours Mac address pay attention is not a busy Mac address okay now this Frame is
+25:39
+sent from a to R okay and then
+25:45
+and then what this art will do is is Reverb it will remove the link layer
+25:53
+headers okay and then add a new header in this new header The Source address
+26:01
+the source Mac address is now this Mac address it's also the other
+26:08
+interface okay uh the Romans the other interfaces so this Mac address is a 1A
+26:14
+29b okay the destination address this time is uh B is Mac address
+26:23
+okay because the router this interface is within the same line as B so of
+26:31
+course um this interface can also shout to this uh uh this line and ask hey who has this
+26:39
+IP address and I who has this IP address and then B can return its own Mac address okay so anyway this Mac address
+26:48
+OB can be known by this interface that's why you can see uh the MAC address
+26:53
+definition is actually big okay the source IP Source address destination
+26:59
+address are not changed it's the same okay so then now this Frame can be sent
+27:05
+to be okay and then B can remove the link
+27:10
+layer headers and pass this to Upper load layer okay so that is the ARP and
+27:17
+you can see when they are within the same length if the source and definitions are in the within the same
+27:22
+line then they can simply Shout but if they are not in the same line then they have to change the MAC address
+27:29
+to the router's MAC address okay to the router's MAC address and
+27:36
+then the router will do the forwarding for them since the ARP is a very important part I want to quickly review
+27:42
+this okay so firstly we learned we learned ARP is a red address resolution
+27:48
+protocol this is basically used to determine the interface's map address
+27:54
+when we know it's IP address okay um so if the source and the destination
+28:01
+are in the same land then Erp protocol is very easy it's very straightforward so basically the source will say hey uh
+28:09
+who has this IP address shouting to everybody we call this as broadcasting right so how do we do the broadcasting
+28:16
+we use uh the MAC address of ff12x as the MAC address right
+28:23
+and then uh the the destination who has this IP address will reply with its own
+28:29
+Mac address and then the source will cache this ip2 Mac address pair in its
+28:36
+Erp table that is the Erp protocol when we have a and b in the same line the
+28:43
+problem is what if a and b are in different lands okay when they are in
+28:49
+different lands we know we cannot shout to each other okay we cannot shout because we have we have to go through a
+28:55
+browser first so then in this case we have to assume a no B's IP address how
+29:02
+do we know because this definition of course we know this IP address right and then we also assume not any nodes IP
+29:09
+address over the first half browser which is uh which is r okay so how do we know that
+29:17
+so we learned with we can do this through DHCP right because we learned hcp does not only return DCP is a
+29:25
+protocol that is used to return or assign an IP address to a
+29:32
+newly joined uh computer right so then we know DHCP does not only return the
+29:40
+mat the the new IP address for this new computer new camera it also introduced
+29:46
+this newcomer uh the important roles in this network right so like who
+29:54
+is the first half launcher what is the IP address or the first Hub browser so what is the DNS server right
+30:01
+and what is the network mask so those information are also returned by DHCP
+30:07
+that's how a no a at the IP address our
+30:12
+first Hub router are okay and you need to pay attention R actually has two
+30:17
+interfaces in this in this scenario y interface belongs to the same name with
+30:23
+uh a okay the other interface belongs to the same line with B okay so now we
+30:30
+assume a node IP address over the first of router are that IP address is the
+30:36
+interface belonging to Ace line not a business okay pay attention to that and
+30:42
+we also assume a knows r as a MAC address how do we know more as Mac address that is very straightforward
+30:50
+because this interface is in the same line as a
+30:56
+okay so then we can simply do a Erp because they are in the same line Erp is very easy a just a shout to everybody
+31:04
+and ask hey who has this IP address and then R can reply so
+31:10
+um those are the three assumptions with those assumptions and then we can see if
+31:16
+we want to send something okay uh we have IP address uh IP Source IP address
+31:23
+destination IP address and then for the map for the link layer we need to add
+31:28
+headers we also need to add the link layer Source address and destination address right so basically the source
+31:34
+Mac address and the source destination Mac address and very importantly the source Mac
+31:41
+address is its Mac address but the destination and Mac address is not
+31:47
+this Mac address is actually our Mac address that is
+31:52
+something you need to pay attention okay that means firstly we forward this package to our to the neighbor R and
+32:01
+then R will forward this
+32:06
+okay R will basically move this from one side to another side
+32:12
+okay from one interface to another interface and then add a new Mac Source
+32:18
+address this time the map Source address is replaced with ours
+32:23
+um the other in Mac address okay this Mac address of
+32:29
+um of work okay so that is the source address and the destination address
+32:34
+destination address destination Mac address is this time it can be beats Mac address okay can be
+32:42
+business Mac address and then this uh can be sent to B and finally B will
+32:47
+remove those headers nuclear headers and pass this to operate okay so this is the
+32:53
+entire process and um we will definitely have this kind of
+32:58
+questions on the final exam so for example I may ask you uh in this
+33:03
+scenario what is the destination Mac address what is the sales Mac address okay can you can you give the MAC
+33:11
+address okay like that

@@ -1,0 +1,764 @@
+0:08
+all right okay so the next part is the multiple access protocols
+0:14
+multiple access protocols is a very important part in this chapter and we we
+0:21
+will look at that so um
+0:26
+we we usually have two type of links in link layer one type is called the point
+0:33
+to point link okay point to point link um it's like it's like the telephone line
+0:41
+between two people so this is not shared to anybody not shared with anybody so
+0:47
+then this is like a reserved okay you don't need to consider about the sharing part but the second type of link is is
+0:55
+the sh is uh the shared type of Link or we call it broadcast type of Link okay
+1:02
+so this is used a lot actually for example we may use this in the ethernet
+1:09
+in the old style internet okay um although now we do not use it very
+1:16
+often but you can see this problem indeed exists before okay also for wireless okay we may also
+1:26
+have different devices sharing the same media basically the air right sharing
+1:32
+the same media to um commute and we may also have the satellites
+1:38
+okay um the different base stations sharing the also the space okay to communicate
+1:46
+with the satellite so this kind of sharing is like a people staying in the
+1:52
+same room for a party or whatever okay we are sharing the air okay so everybody
+1:59
+want to say something everyone probably want to send out a message okay then in
+2:05
+this case we may have the competition problem okay if everybody is saying something
+2:11
+can we hear each other clearly we cannot okay so that is called the multiple
+2:16
+access problem that means when they are sharing the same media
+2:21
+how do we ensure the quality of communication
+2:27
+so if we have a single shared broadcast channel and we have two or more simultaneous
+2:35
+transmissions by the nodes okay that means if we have nodes who want to communicate at the same time
+2:43
+then we may have interference okay so sometimes one note may receive
+2:51
+two or more signals at the same time then this is called clear
+2:56
+it's like when you are standing in a party you you are listening you may receiving
+3:03
+you may hearing two people saying something at the same time
+3:10
+then in this case your you you can you may not be able to process the the
+3:15
+information okay it's the same thing if one node receives two or more signals at the same
+3:22
+time then this is a calculator okay so then in this case we need to
+3:28
+have some kind of protocol called multiple access protocol okay multibox says protocol is a kind of
+3:35
+distributed algorithm that is used to determine how the nodes can share the
+3:40
+channel okay basically it's like um if we are in a party then we can say
+3:47
+oh each time everyone uh each time we can have only one person saying
+3:54
+something okay if you want to say something you need to raise your hand it's like in a
+4:00
+classroom for example okay so this kind of album is called the multiplicious
+4:05
+protocol is used to to control the communication um in the in one channel okay so the
+4:14
+communication about the channel sharing must use the channel itself okay
+4:20
+um so we do not have like another channel for coordination we do not have another
+4:26
+Channel say oh okay we use another channel to coordinate and then use this channel to communicate it's not possible
+4:33
+so basically including the even for the channel
+4:38
+sharing the communication about Channel sharing itself also need to use the channel okay also
+4:45
+used to use the channel itself um so then what is an ideal multiple
+4:52
+access protocol our dla our dla we if we have a
+4:58
+broadcast channel of read r rbps beats per second okay so then the
+5:05
+ideal situation is that firstly well one node wants to transmit
+5:12
+okay if only one node wants to transmit then of course it can send attribute r
+5:18
+that means it can utilize the maximum rate okay do whatever he or she wants to do
+5:24
+okay so one but when we have M nodes
+5:30
+who all wants to transmit then in this case each note can send at
+5:36
+an average rate of r divided by m okay that's that means we share
+5:41
+okay and also we want this multiple access
+5:47
+protocol to be fully decentralized that means we do not need any special node to
+5:53
+code in the Transmissions okay because if we have some node to coordinate then
+5:58
+we may have like single point of failure if this node is down then this entire algorithm cannot work okay uh the second
+6:06
+thing is we do not need any synchronization or clocks or slots or Etc because we we all know
+6:12
+synchronization is actually very difficult okay and then the fourth Sim
+6:19
+criteria is that this protocol should be very simple so these are the like what we are
+6:29
+expecting for the protocol what we hope that we can help right but in reality in
+6:35
+reality we may face some problems okay um generally we have three broad classes
+6:42
+of uh Mac protocols multiprocess protocols
+6:48
+um so first type is called Channel petitioning we actually learned about this before uh Channel partitioning
+6:55
+basically means we can divide the channel into smaller pieces in terms of
+7:02
+time or frequency or code Etc okay
+7:07
+um so for example before we learned fdma
+7:17
+tdma okay so those are all China Channel partitioning protocols and the second
+7:23
+type of protocol are called Random Access protocol So Random Access means the channel is
+7:31
+not divided and we like we may allow clearance happening okay the thing is when we have
+7:38
+clearance how can we recover from clearance that's the most important thing
+7:44
+the third type is called taking turns taking turns basically means the notes
+7:49
+take turns but knows with more to send can take longer turns okay so those are
+7:56
+the three types and now we want to look at each type okay so the first type as I
+8:02
+said tdma tdma is the time division multiple access okay so we need to
+8:09
+divide the time into um into different time slots demanded
+8:16
+yes divide the time into different time slots then basically the nodes can access to the channel in runs it's like
+8:24
+runs okay so each station gets a fixed length of slot in each round
+8:32
+um so for example now we can divide this into six
+8:38
+slots for six notes or six stations okay then for example station one will
+8:45
+use the first time slot station two will do the second time slot as you can see
+8:50
+if we have one station who doesn't want to send anything then
+8:57
+the time slots dedicated to that station will go idle
+9:03
+okay so basically means I use slots go either
+9:08
+um so the problem is that we may have for example here we have one three and a
+9:14
+four sending the packets but slots two five six are idle okay so this in this
+9:20
+case where as you learned before we may have the waste of time okay and similar
+9:25
+things for fdma for fdma it means frequency division multiplexes we do one
+9:32
+channel into different frequencies okay
+9:38
+and then for example if we have six channels we have six stations we can
+9:44
+have six channels okay or even more okay
+9:49
+um but anyway again uh now you can see this uh station one may use
+9:57
+this frequency station through music this one station four moves this one okay again there may be some
+10:07
+um frequencies that goes idle frequency bands go idle okay so that is fdma
+10:17
+um that's the first type called Channel partitioning the second type is called Random Access protocol
+10:26
+so in random access protocol um when the nodes wants to send a
+10:34
+package then it can directly send it out at a full read r
+10:39
+okay there is no like coordination among the notes
+10:44
+um when we have two or more nodes transmitting at the same time
+10:50
+okay that'll cause a node may receive the receiver may receive like multiple
+10:55
+signals at the same time then in this case we have clearance okay so basically the random access Mac
+11:02
+protocols will need to specify how to detect the clearance and how to
+11:09
+recover from clearance so these are some of the examples for
+11:15
+Mac protocols for Random Access Mac protocols so lots of the aloha aloha
+11:21
+um csma csma CD and csmsa so then we will look at this okay so the first
+11:28
+thing let's look at the slotted aloha for slot in the Aloha we assume all the
+11:35
+frames have the same size L bits okay and then we divide the time into equal
+11:43
+side slots so pay attention here although we are also dividing the time but this is no
+11:49
+time not time division it's it is different okay later if I learned
+11:54
+um so generally we divide the time into equal size slots each slot is L over R
+12:02
+seconds I think you are very familiar with this Lor right so what is this this is a this
+12:08
+is the transmission delay right so that means if we have LPS okay
+12:14
+then this can be divided by uh the transmission rate R okay then for one
+12:21
+packet if we want to fully Center this out fully push this out to the link it
+12:27
+takes air over our seconds okay so we will divide the time
+12:33
+equally each time slot is Lor and then we have a requirement
+12:40
+the requirement is that if a node wants to transmit
+12:46
+a package that knows the node has to start only at the slot beginning
+12:54
+okay the nodes are those nodes are also synchronized only start at a slot
+13:00
+beginning means you cannot simply start in the middle of a slot okay so if we
+13:06
+have two or more nodes transmit in the slots then all the nodes can detect the delay clear so then the operation is
+13:13
+like this when we when the node obtains a fresh frame then this node will need to wait until
+13:22
+the beginning of the next slot there's no cleaning then the node can send the
+13:29
+new frame in the next slot if there is clearance the node will need to
+13:35
+re-transmit this frame in each subsequent slot with a probability p and
+13:42
+t of success okay so what does this mean this means okay if there is no clearance
+13:48
+I can directly send it out in the next slot but if there is a clearance okay
+13:54
+then I may try again in the uh second time slot
+14:02
+or in a third time slot or in a fourth time slot and to your success okay so
+14:09
+for each time slot I may try I may try so what is the probability of trying
+14:15
+probably is p okay I know you are you still you probably
+14:22
+still feel confused but let's now look an example and then you will feel better okay so for example
+14:29
+here you can see we already winding the time okay into different time slots okay each
+14:38
+time slot is uh Lor
+14:43
+now we may have node one who wants to send at this time slot
+14:52
+this time slot this one and also this one
+14:57
+okay so another two may also want to send nother may also want to send and
+15:03
+then you can see we may have clearance for example in the first time slot
+15:13
+not 102 and also they all want to transmit then this one is a clear
+15:20
+so then you you can look at the this third time slot
+15:26
+for third one we also have a clearance
+15:31
+okay this one is a success here
+15:38
+another cleaner and then this wine success this one's success
+15:43
+okay then you can see um the good thing of all the pearls of
+15:49
+slotting Allah is that a single active node can continuously transmit at four
+15:57
+root of r Okay add four reads out the channel
+16:03
+and this is a highly decentralized because we do not have any nose coordinating okay we only need the slots
+16:12
+in the nose to be synced okay
+16:18
+and this is also very simple but the console slotted Aloha is that we
+16:25
+have clearance okay we may have whisking slots okay a lot of clearance actually you can
+16:31
+see here we have uh three slots they have clearance okay and we only have
+16:38
+three slots success so the in this example the successful
+16:44
+read is like only 50 percent okay and we also have a lot of idol
+16:49
+slots okay um and also the nodes must be able to
+16:55
+tell the clearance as soon as possible okay um otherwise it's just a width of uh I
+17:03
+would say a whistle power okay or waste of time because we know if
+17:08
+um there is clearly even if you you if you still continue to transmit data it
+17:14
+will finally fail right and also we need the synchronization of
+17:20
+the clocks so that those are all the um disadvantages of the slotted aloha
+17:27
+and you may you may be curious about the efficiency for slotted Aloha okay uh the
+17:33
+efficiency okay is is basically means the long run fraction of the successful
+17:40
+slots okay that means if we have many nodes
+17:46
+all have all of those nodes have many frames to send then what is the
+17:53
+fraction of successful slots in the long run okay suppose we have nodes
+18:01
+with many frames to send each transmits in slot with the
+18:06
+probability p now we want to calculate the efficiency okay so now pay attention
+18:12
+we have unknowns okay we have nodes and we all want to send frames okay I
+18:20
+would say nothing the old ones to the many of them have streamed to to send
+18:26
+and each each transmits in slot with the probability option
+18:33
+that means in this time slot okay each node has a probability of P
+18:43
+to send a frame Okay then if we want to ensure
+18:50
+that a node is successful okay and we want to ensure
+18:55
+a given node has a success in a slot that means for example
+19:02
+if we look at only this time slot okay then for this given node
+19:10
+if we want we we know that in this time slot we may have multiple nodes right
+19:16
+not one two three and even more okay so let's now look at a node I
+19:25
+for this node I if we want this node I to be successful then we we know the
+19:32
+probability for this node I to send is p
+19:38
+foreign Ty for this node I to send a frame is p
+19:43
+okay and we want P to happen okay and at the same time we want to
+19:52
+ensure all the other nodes are silent all the other nodes they should not send
+19:59
+anything so how do we ensure they do not send anything that means
+20:06
+we need to have if they do not send then the probability for not sending is y
+20:12
+minus p probability for not sending is one minus P if we want to ensure n minus 1 notes
+20:21
+all being this all being silent at the same time then it is 1 minus P to the
+20:27
+power of n minus one okay so that is
+20:33
+the probability for node I to be successful of sending but now we need to
+20:38
+consider um we don't care if this is not I or not the J or node node X node C right so
+20:46
+that if we have unknowns as long as one of them is successful then we are happy
+20:52
+okay so that's why for and notes
+20:58
+if any of them is successful then the probability is n times
+21:06
+P times 1 minus P to the power of n minus one okay so that is actually the
+21:13
+probability for any node to be successful
+21:19
+okay then we need to find uh we need to know you may you may want to know what is the
+21:26
+what is the number for this okay so if we have a lot who knows
+21:32
+and um that means if n goes to Infinity
+21:40
+okay so then this entire thing will becomes 1 over e
+21:47
+this is about 0.37 okay so that means for slotted Aloha for
+21:57
+slotted Aloha uh the channel used for useful Transmissions
+22:03
+is um at best okay uh the Reit is uh we can
+22:10
+use only about 37 percent of the time okay you can see the efficiency is
+22:16
+actually very low very low that's why slotted Aloha is like it's um
+22:22
+I would say in terms of efficiency this is not a good choice for a mic box set
+22:27
+protocol okay and the second type of Aloha is uh pure uh or we call it
+22:35
+um Pure Aloha or and slotted Aloha okay so for an slotted Aloha for unsoluted
+22:43
+aloha basically the node can start at any time the transmission cannot can
+22:51
+start at any time it doesn't need to wait until the beginning of a slot so there is no time slot okay it can start
+22:58
+from any time and then as you can see the probability for Collision actually
+23:04
+increases right why because you can see if this is the node I we want this one
+23:10
+to be to be successful right if we want this one to be successful
+23:15
+then we need to ensure nobody is sending in this time frame
+23:21
+because if any node is starting in this time frame then it will likely hear me
+23:30
+how clearing okay it will likely use the time for by by node I
+23:37
+okay and we also need to ensure nobody is starting in this time slot because
+23:43
+you can see if this purple one starts here then we will have cleaner here
+23:49
+okay so because there is no time slots so it's easier to have clearance
+23:56
+okay so you may ask them what is the probability what is the efficiency for Pure Aloha for and slot in Aloha
+24:03
+so for unsoluted aloha we need to ensure this one to be successful
+24:09
+then the probability is p and we need to ensure nobody is sending
+24:16
+here then the probability is 1 minus P to the power of n minus 1.
+24:26
+and we also need to ensure nobody is sending in this time frame
+24:32
+so then that is again 1 minus P to the power of n minus one
+24:38
+so in total this is actually p
+24:48
+okay this is the P times y minus P to
+24:53
+the power of 2 and minus one okay and again this is just for I node I
+24:59
+if we we doesn't care which node then this is n okay so the total for any node to be
+25:07
+success this is n times P times m y minus 1 to the power of 2 and minus one
+25:13
+so if this goes Infinity if this gets go to Infinity then it's about one over two
+25:21
+e so that is uh the equation is about half of slotted aloha
+25:26
+so now by calculation you know the Pure Aloha actually has an even lower efficiency than slotted aloha
+25:34
+okay I don't expect you to remember to know
+25:39
+how you do the calculation of probability Etc don't worry about that I will not give you the test
+25:45
+on those but what you need to know is um
+25:51
+the concluding the conclusion is that
+25:58
+has actually worse efficiency than slotted Aloha for both types we do not
+26:04
+have any like coordinator or something like that okay uh and we know because
+26:10
+the efficiencies is not very good so we we are thinking are there any other ways
+26:15
+for us to deal with this multi-access problem so one way we can use is called uh csma
+26:24
+the full name is Carrier sense multiple access uh the difference between csma
+26:31
+and sloged Aloha or Aloha is that um for CSM ma we always listen before
+26:40
+transmit okay that means if a channel is sensed idle then this uh station or this
+26:49
+node can transmit the entire frame if the channel is sensed busy then we can
+26:56
+this station will defer the transmission so it's very similar to the human
+27:02
+conversation right so in human transition we don't want to interrupt others
+27:08
+um that means when you want to say something for example if it is in our class okay we
+27:14
+are in a let's imagine we are in a classroom setting then uh if you want to
+27:19
+say something you need to First listen to others and listen to the channels if if there is anybody else saying or
+27:27
+speaking then if there are there is nobody speaking that you can speak if there are somebody else speaking then
+27:34
+you need to wait until they finish okay so that is like the the basic uh
+27:40
+principle of csma um then you think about this
+27:46
+it it sounds like csma is perfect right um but do we still have calculations can
+27:52
+we still have clearance the answer is uh yes we we can still have clearance okay so for example for
+28:01
+example um when you start to say something okay you you may have sensed oh okay this is
+28:07
+Idle okay this channel is Idle then you start to speak okay but at the same time
+28:13
+somebody else may also send this Idol and uh he or she starts to speak so you may
+28:20
+start at the same time okay uh that is one reason that we may
+28:25
+have clear okay so the same thing two notes may start transmitting at the same time because they both sense that the idol so
+28:33
+since the channel idle um but there is also a second reason a
+28:39
+second reason um is that this nose this nose may be
+28:46
+far away from each other okay and the signal propagation actually takes time
+28:54
+so when the node sends that the channel is Idle okay
+28:59
+the channel may not be idle actually okay it's just the signal is still propagating it hasn't arrived at this
+29:08
+node yet okay it's like um
+29:14
+for for example you and your friends okay you are far away from each other
+29:19
+you shout to each other and the sound takes time to propagate
+29:24
+okay you may sense the idol but actually it's just the uh the the The Voice or
+29:32
+the sound from your friend hasn't reached it at you yet okay uh that is
+29:37
+another reason why the Collision is still occur okay
+29:42
+basically propagation delay means two nodes may not hear each other's transmission okay
+29:50
+so now let's look at uh example here we have four computers okay and this is the
+29:56
+special layout of nodes we have t0 at t0 this note stars to uh send out the
+30:06
+packet okay and pay attention this is the time okay and then the the
+30:15
+um package or the signal will propagate to both directions as
+30:23
+the time goes by okay so then we can see uh you can see here the signal is
+30:29
+propagating in this way to both directions As Time increase
+30:36
+okay and at this time you can see uh this computer
+30:42
+this was May sense that may sense the channel is idle
+30:48
+okay and then this computer may say okay uh the channel is Idle I can start
+30:54
+transmitting my package so this computer will start transmitting okay it the
+31:02
+reason it sends the idle is because the signal is it's just appropriate to hear at T1 it hasn't reached this
+31:12
+that's the reason why this computer sends the item okay so then you can say they continue
+31:19
+they continue and then at this point at this point this two
+31:25
+signals meet each other at this point at this special notes okay and they
+31:32
+continue again at this time actually both these two computers hasn't haven't
+31:37
+realized but clearly they haven't sensed the screen yet because a signal didn't
+31:43
+reach them yet okay the other side teaches them yet so then we continue and
+31:50
+you can see finally finally
+31:56
+at this point okay at this point let's give them some
+32:03
+name a b c d okay at this point computer B sends to
+32:09
+the calendar why because you can see it is the transmitting the signal the packet at
+32:17
+the same time it is actually receiving a signal from
+32:23
+computer d right so you can see at this point okay at this point computer D now
+32:30
+sends the Declaration because again while it is translating the packet it is
+32:36
+also receiving uh the signal from computer B okay so
+32:42
+then in this case you can see um if they do not stop okay they will just continue transmit transmission okay
+32:50
+both B and D are still continued transmission and this in this case then we can see
+32:57
+it's actually a Visa of time and energy right uh the entire package transmission
+33:03
+time is actually listed okay this is the csma
+33:09
+um method okay you can see finally the completed their transmission okay but we know it
+33:17
+is a waste of time and energy because uh the both Transmissions are failures okay
+33:26
+um so then we want to improve the csma method okay because csma we know when
+33:35
+they detect after they detect the Collision ideally they should stop right because
+33:41
+there's no reason to continue if they continue it's just a waste of time because we know it's already a failure
+33:47
+right um that's why we now have a included
+33:52
+version of csma that is csma CD csma with Collision detection okay so
+34:01
+csmicd uh in in this uh the clearance will be detected within a very short
+34:07
+time period okay when we detected the when we detect the Clarion that we will
+34:13
+abort the transmission immediately okay because there is no reason to
+34:19
+continue or because we after we find the clearance okay
+34:26
+um so this cleaning detection you need to know is very easy to detect in wired
+34:31
+lens okay um because we can easily mirror the signal strength we can compare the
+34:37
+transmitted and received signals but it may be very difficult to detect
+34:44
+Collision in the wireless lens the reason is because when this node is
+34:49
+sending the packet okay the signal is usually very
+34:56
+strong it's much stronger than the uh the signal that it is receiving
+35:03
+okay so then in this case the received signal strength may be overwhelmed by the local transmission student then you
+35:11
+cannot detect the calculator okay so that is uh the csmacd and you can see
+35:17
+then you can see here okay here
+35:23
+um again we have a b c d here A B you can say B detector
+35:30
+clearance and then it takes a little bit time to abort this transmission similarly D detects the cleaner at this
+35:38
+point and it takes some time to abort this transmission okay so then in this
+35:44
+case we actually save at least receives the time and energy after Collision is
+35:50
+detected okay um so this is the ethernet csma CD
+35:57
+algorithm first step when Nick received the datagram from the network layer it will
+36:03
+firstly create a frame and then if the Nick senses Channel idle it will start the
+36:10
+frame transmission so if it sends the channel busy then we
+36:16
+will wait until the channel is uh idle okay uh if Nick transmits entire frame
+36:23
+without detecting another transmission then we are done okay this this is done
+36:28
+with the frame it's a successful transmission however it needs detects
+36:34
+another transmission while transmitting it will need to abort and then send a
+36:41
+jam signal okay after a boarding Nick will enter a
+36:48
+very special phase that cause binary back off okay what does this mean as we
+36:53
+can imagine when when the first transmission failed we will try again right but when should we try
+37:00
+you should be trying again immediately that's probably not a good idea right
+37:05
+because maybe the other transmission hasn't finished yet okay so that usually what how do we
+37:13
+decide when to transmit again when to do the real transmission we use the binary
+37:19
+back off so this means after the amp clearing
+37:25
+Nick choose a number k
+37:30
+randomly from 0 to 2 to M minus 1.
+37:36
+so this for example if m equals to 3 okay that means Nick will choose a
+37:45
+number randomly from 0 to 7. okay and then it will wait for K times
+37:55
+512 bit times and then do the real transmission again then as you can imagine as m is getting
+38:03
+bigger then this number this this range is getting bigger
+38:08
+right then very likely this number k will be bigger because it's chosen
+38:16
+randomly okay then it has a probability of getting choosing a bigger K
+38:23
+like choosing a bigger King and then Nick will wait for longer time
+38:31
+to do the real transmission okay so then this is what we call as binary back off
+38:37
+it's the general idea is basically um if we have more clearance then we
+38:43
+usually will be a bit longer to re-transmitter again but this is not 100
+38:49
+guaranteed with I mean weekend language is not 100 guaranteed because we are
+38:54
+choosing a random number from this range okay from this range
+39:01
+um that means we get we still give opportunities for them to re-transmit immediately so um
+39:09
+you may ask what is the efficiency for
+39:14
+um for csmacd okay
+39:21
+something is wrong with this I think
+39:27
+okay so the efficiency is actually determined
+39:32
+by this tea prop which is the maximum
+39:40
+Corporation delay between two nodes Inland okay and then T transmission the
+39:46
+time to transmit the maximum size frame okay
+39:52
+um so basically efficiency equal to I don't know what happened but the this
+39:58
+efficiency equals to 1 over 1 minus
+40:05
+5 times T prop divided by T transmission okay
+40:11
+so basically um
+40:16
+if if this propagation delay goes to zero okay then you can see the efficiency
+40:26
+efficiency will go to one okay because it's equal to one my over one minus zero
+40:33
+that is uh almost that that is a one okay so that means if this true nose can
+40:40
+hear each other immediately okay immediately then we can have a very
+40:46
+high efficiency we do not have a lot of clearance that's uh that's why okay or
+40:52
+if the time to transmit goes to Infinity
+40:57
+okay if this goes to Infinity then um this efficiency this entire this
+41:04
+number is equals to zero and then this efficient is also going to one that
+41:11
+means here for the transmission time takes forever okay that means they can never finish
+41:18
+transmission okay the signals are all uh kept at each node
+41:25
+um and then in this case efficiency is also one okay so this is a like uh the
+41:31
+formula for defining the efficiency but anyway so this we can see efficiency
+41:37
+this csmacd actually has a much better performance than Aloha okay it is simple
+41:44
+shape and also decentralized so that's why csma CD is very widely used okay
+41:52
+uh so far we have talked about the channel partitioning Mac protocols first time uh that type we know we learned as
+42:01
+a ftdma fdma okay second type is the
+42:06
+random access map protocols we learned slotted Aloha Pure Aloha we also learned
+42:13
+csma and csmacd okay that is the second type uh the third type is the taking turns
+42:21
+protocol taking turns is actually um
+42:26
+is a is a like a combination of China partitioning and the random access okay
+42:33
+the the idea

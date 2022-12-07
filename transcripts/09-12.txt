@@ -1,0 +1,874 @@
+0:04
+yeah so so it's a like like it's another
+0:07
+systems and the
+0:09
+the uh the layer stack and the protocol
+0:13
+stack is like two different uh Concepts
+0:16
+okay so we need to clarify that
+0:19
+okay all right so that let's look at one
+0:24
+example and then after this example you
+0:27
+probably can understand the
+0:28
+encapsulation much better okay in cap
+0:31
+solution and also how the internet works
+0:33
+okay much better you have a better idea
+0:35
+so as I said as I said as you can see
+0:38
+here we have a computer
+0:41
+a
+0:43
+computer B and switch S and a router are
+0:50
+okay then
+0:53
+as I mentioned as I mentioned in the
+0:56
+devices and systems we have all five
+0:58
+layers as you can see in a and b
+1:01
+they have application layer to physical
+1:03
+year
+1:04
+okay
+1:05
+then the writers only have three layers
+1:09
+physical layer link layer and network
+1:11
+layer switch has only two layers link
+1:14
+layer and physically okay so for now we
+1:16
+don't need to know why later in later
+1:19
+chapters we are going to explain more
+1:21
+okay but now I just want you to know
+1:25
+how can we send a message how could this
+1:28
+message be delivered okay how would this
+1:31
+work
+1:32
+so here
+1:34
+um there is one concept means
+1:36
+encapsulation and I'll explain uh more
+1:39
+about that okay so firstly if one day
+1:43
+you want to send a message this message
+1:45
+can be a email message can be a HTTP
+1:48
+request message for example if you want
+1:50
+to request for a web page whatever so
+1:53
+let's just assume this is a like like a
+1:55
+email okay email message then we have a
+1:58
+message app so this m pay attention this
+2:02
+m is at application layer okay you
+2:06
+basically you open your outlook you type
+2:08
+in a message then that's some okay
+2:11
+as I mentioned this message is usually
+2:14
+very big
+2:15
+okay your labor big of course it may be
+2:18
+super small but we have to uh usually we
+2:21
+have to break it into smaller pieces
+2:23
+okay after we break it into smaller
+2:26
+pieces
+2:28
+so here in this animation it doesn't
+2:30
+show that we break M into smaller pieces
+2:34
+but you should know you should know that
+2:36
+your lady we will do this kind of uh
+2:38
+breaking okay
+2:41
+and then this now the M comes down to
+2:46
+the transporter layer or a piece of M
+2:48
+comes down to transport layer okay
+2:51
+then transport layer is is like uh as we
+2:54
+said it will do the
+2:56
+um it will
+2:58
+um add some information okay it will add
+3:01
+some thing like transporter layer header
+3:04
+okay so header you can imagine this as
+3:08
+uh the envelope
+3:10
+okay so the message is like you you have
+3:13
+a several pages of a letter and now when
+3:16
+it comes to transporter layer we need to
+3:18
+add one layer of envelope okay on this
+3:23
+envelope we will write down some
+3:25
+information like
+3:26
+uh what is The Source process what the
+3:29
+destination process okay it's like uh I
+3:33
+need to write down oh this is from uh
+3:35
+showian sun to let's say to Michael
+3:39
+okay so it's like that so I need to
+3:41
+specify who is the sender who's the
+3:44
+receiver who is the signing process
+3:46
+who's the receiving process okay of
+3:48
+course there are more information in the
+3:50
+header you don't need to know what is in
+3:52
+the header yet okay but here you can say
+3:55
+okay I add some header it's called HT
+3:58
+okay and then now this entire thing
+4:02
+is called a segment or datagram
+4:06
+depending on what kind of protocol
+4:07
+you're using if you're using UDP then
+4:10
+that's datagram if you are using TCP
+4:12
+then that's called segment but usually
+4:14
+we just call segmented transport layer
+4:16
+okay
+4:17
+then again this message needs to travel
+4:21
+down this now this segment needs to
+4:24
+travel down to another layer below why
+4:28
+because we need to send it out right so
+4:31
+then we I mean it comes down to another
+4:34
+layer to the network layer we need to
+4:37
+add some
+4:38
+Network a little header it's like we are
+4:43
+adding another envelope outside
+4:46
+the envelope of a transpose layer does
+4:49
+this make sense
+4:51
+so we add another let me wrap it again
+4:54
+okay and this time on the on the outer
+4:58
+outside or outside envelope we will we
+5:03
+will uh write down some information
+5:05
+about the IP address
+5:08
+so this is from uh Sacramento to some
+5:14
+place in in New York okay it's like that
+5:16
+so we need to write down the IP
+5:18
+information and of course there are
+5:21
+other information included in the
+5:22
+network header okay so this is a network
+5:25
+layer header
+5:26
+and now we can keep call this thing as a
+5:29
+packet so you can say in networking we
+5:31
+usually say oh packet packet but packet
+5:33
+is actually an hour clear thing if we
+5:36
+make this very formal okay
+5:40
+and then when it comes down to a layer
+5:42
+below
+5:44
+okay
+5:45
+this is a link layer we need to again
+5:48
+add some link layer header so it's like
+5:51
+we are adding another envelope outside
+5:54
+of the all the envelopes okay so it's a
+5:57
+like we are wrapping it again again
+6:00
+later on later okay it's like an onion
+6:03
+so now we have uh this is a thing called
+6:06
+frame so if the frame has a header
+6:09
+called link layer header okay
+6:12
+the frame will add some information like
+6:15
+the MAC address what is the source Mac
+6:17
+address what is the destination map
+6:19
+address
+6:20
+okay
+6:21
+uh so you may not know what is a MAC
+6:24
+address you don't need to know now I
+6:27
+think some of you may have already heard
+6:29
+this term before right so what is the
+6:31
+MAC address for device usually each
+6:33
+device has a unique Mac address
+6:36
+okay
+6:38
+um there are more information included
+6:39
+in the link layer header but Mac address
+6:42
+is the most important one or most
+6:45
+important piece okay
+6:47
+then eventually this Frame is sent to
+6:50
+the physical layer
+6:52
+and this becomes zeros and ones okay
+6:56
+send it out
+6:59
+so you can see how it travels
+7:02
+it's very interesting actually it comes
+7:04
+to the physical layer
+7:06
+and then goes down to the it goes up to
+7:08
+the link layer so why
+7:10
+because
+7:13
+these are these signals are zeros and
+7:15
+ones right of course it will firstly
+7:17
+come to the physical year
+7:19
+because they all arrived at the zeros
+7:22
+and ones right and then we pass it down
+7:25
+to up layer to link layer the link layer
+7:27
+will
+7:29
+um
+7:30
+sorry pass it up to nuclear the nuclear
+7:33
+will do some process here and then pass
+7:35
+it down again to the physical layer
+7:38
+becomes zero the ones when it arrives at
+7:41
+the router okay it's the same process it
+7:45
+arrives at zeros and ones okay then we
+7:49
+when it comes to the link layer when
+7:51
+this this uh
+7:53
+frame come to link layer okay and now
+7:56
+you can see what will happen is very
+7:58
+interesting the link layer the router
+8:01
+will will read the link layer header
+8:03
+you'll see oh this is to this Mac
+8:05
+address okay and then this header will
+8:08
+be removed
+8:10
+so then what is passed to the up layer
+8:14
+is actually we only have these ones left
+8:17
+each n h t and M
+8:21
+so you can see the link layer header is
+8:23
+removed and the network network layer
+8:26
+will read the network layer header like
+8:29
+oh what is the address okay
+8:32
+then this layer will this header will be
+8:35
+removed
+8:37
+okay so we have only h t and M left
+8:41
+um so
+8:43
+the router may add a new network layer
+8:48
+header when it comes down to the link
+8:50
+layer one the link layer will add a new
+8:53
+header link layer header okay so it
+8:56
+becomes zeros and ones again and then
+8:59
+pass it to the destination B
+9:02
+so again it becomes zeros and ones and
+9:07
+physical error at B B will convert this
+9:11
+and pass this up to nuclear link layer
+9:14
+will read the link layer header remove
+9:17
+this
+9:19
+okay positive to network layer it's like
+9:22
+open the envelope the
+9:26
+outside layer of envelope then it comes
+9:30
+down to the to comes up to the network
+9:32
+layer Network layer will read the header
+9:35
+Network layer header remove this header
+9:39
+okay and then pass what is inside to the
+9:42
+transport layer then transport delivery
+9:43
+the header and remove it finally the
+9:46
+message is passed to the application
+9:48
+here
+9:48
+so it's like the only again it's like
+9:51
+the onion we have Ionia we remove one
+9:54
+layer and another layer and then another
+9:56
+layer finally we see the the message in
+9:59
+the core okay oh it's like
+10:02
+um a letter that is wrapped with
+10:04
+multiple multi-layers of envelope so we
+10:06
+remove the envelope one by one okay
+10:09
+finally we see the method inside okay so
+10:12
+this is uh the entire process explains
+10:15
+how the message is sent and received and
+10:19
+uh in this entire process we see the
+10:22
+concept of encapsulation
+10:24
+okay
+10:26
+any questions so far hope you are not
+10:29
+all around
+10:31
+yeah I just wanted to clarify so when I
+10:34
+go to into the router it peel off the HL
+10:37
+and then it somehow get the HL again and
+10:40
+then when it comes to the destination
+10:42
+apiol of the HL one more time
+10:46
+uh good question you mean here yes we
+10:49
+need to get this get rid of this HL
+10:51
+right and then
+10:54
+so after we get rid of this HL and when
+10:58
+it comment comes down to comes to the
+11:01
+left part actually uh it's like it's
+11:04
+passing up to the network layer right
+11:06
+and then uh we need in the network layer
+11:10
+will do some process then it comes down
+11:12
+to link layer link layer will add a new
+11:15
+HL so although they are all called HL
+11:18
+but they are different hl's so yeah in
+11:23
+the HL the HL so for example a ringtone
+11:25
+in the MAC address is uh is a is a the
+11:29
+definition and Mac address is probably
+11:30
+this router okay but now the router will
+11:34
+change the destination Mac address into
+11:36
+uh the into B's Mac address
+11:39
+okay so that's why this HL is actually a
+11:42
+new HL
+11:44
+okay it's different from the one here on
+11:48
+the right on the right a right side of
+11:50
+the router
+11:51
+but when this message
+11:54
+when this entire thing is sent to here
+11:56
+to be okay so this each L is the same as
+12:00
+this one
+12:02
+and why does it have what's the
+12:04
+difference between those HL uh
+12:08
+this one this HL as I said is the same
+12:11
+as this HL
+12:12
+okay because uh it's simply this thing
+12:16
+this entire thing
+12:17
+is the past to be okay so it's still the
+12:21
+same thing that the HL is the same thing
+12:23
+and then this link layer will will read
+12:27
+this HL
+12:28
+and then remove this HL then pass what
+12:32
+is inside to the ARP layer
+12:35
+that doesn't make sense yeah yeah thank
+12:37
+you okay great
+12:41
+uh other questions
+12:45
+one question in the chat is is the link
+12:48
+layer created by the network layer
+12:53
+do you mean the link clear header or the
+12:55
+link layer yeah
+12:57
+um
+12:59
+I was just going to say does does it
+13:02
+strip the the link when it gets to a
+13:04
+router it strips the link
+13:06
+um layer off and then reads the network
+13:09
+layer to create a new link to the next
+13:10
+destination is that how it works
+13:13
+then puts the header back up top once it
+13:15
+has a new heading
+13:18
+um so here what what will happen is it
+13:21
+will read the link layer header let me
+13:25
+can I can I just
+13:27
+maybe remove all those drawings so we
+13:32
+can see it better
+13:36
+when it comes to the router here this is
+13:41
+Network layer so let me see
+13:48
+firstly event arrives it has all those
+13:51
+four layers headers link near header
+13:53
+Network layer header transport layer
+13:55
+header and the message itself okay then
+13:59
+the link layer header can only be
+14:02
+understood by the link layer
+14:05
+so you can think about this the the link
+14:08
+layer uh can understand the link layer
+14:10
+right so that's why the link layer
+14:12
+header can be understood by only the
+14:14
+link layer
+14:15
+it will it's it doesn't contain any
+14:19
+information that is useful for other
+14:21
+layers
+14:22
+okay so then the link layer will just
+14:25
+read the information from the link layer
+14:27
+header and after the information is used
+14:30
+it's not when link layer knows
+14:33
+what what is happening who is the uh
+14:36
+receiving Mac address the link layer can
+14:38
+simply remove this header and pass it to
+14:41
+our player okay
+14:44
+but when but you know you know because
+14:47
+of this this this entire thing
+14:49
+still has to be passed down to the lower
+14:52
+layer in order to transcend it out we
+14:55
+still need to become zeros and ones
+14:57
+that's why when it comes down to the
+15:00
+link layer again
+15:02
+then we have to add a new link layer
+15:04
+header
+15:06
+Okay add another Link at layer header so
+15:09
+some of you may ask why do we do that
+15:12
+okay because okay this uh as weeks and
+15:16
+explain more and learn more especially
+15:19
+when we talk about the link layer okay
+15:21
+then you will understand
+15:22
+sometimes we need to change the MAC
+15:25
+address in between
+15:27
+okay so because the link layer is DNA
+15:31
+with only the neighbors okay dealing
+15:33
+with only the neighbors for example if
+15:35
+I'm the uh the sender okay if let's see
+15:39
+a question is uh my direct neighbor okay
+15:43
+then I'll put the MAC address or
+15:47
+question
+15:48
+as the link layer as the destination Mac
+15:52
+address
+15:53
+okay as the destination Mac address
+15:56
+but actually eventually this letter is
+15:59
+going to let's say going to Michael
+16:02
+okay eventually this letter is going to
+16:05
+Michael then my the first Mac address I
+16:08
+use is probably Christian Mac address
+16:10
+then
+16:12
+when Christian received this Christian
+16:14
+needs to replace the MAC address to
+16:18
+his direct neighbor okay so probably his
+16:21
+direct neighbor is a Victor so then
+16:24
+he will change the link layer address
+16:27
+the MAC address into Victor's Mac
+16:29
+address
+16:30
+okay and then again so so you can see in
+16:35
+this process where we how to change the
+16:37
+Mac addresses sometimes we have to
+16:40
+change some of the information in
+16:41
+between that's why we actually we are
+16:43
+changing the link layer header
+16:46
+okay we are adding a new header and then
+16:49
+this entire thing is passed to here then
+16:53
+the definition will remove the headers
+16:55
+layer by layer
+16:57
+you can imagine okay you can imagine you
+17:01
+have a letter
+17:02
+okay the letter is wrapped
+17:07
+the letter is wrapped again and again
+17:10
+and again okay for different layers to
+17:13
+understand
+17:14
+okay it's wrapped with different
+17:16
+envelopes okay then when it comes to
+17:20
+specific layer
+17:22
+the layer can only read the envelope
+17:25
+information
+17:26
+for this specific layer
+17:30
+okay so for example the link layer
+17:35
+the link layer
+17:37
+can only read the envelope information
+17:40
+from here after it reads the information
+17:44
+then it doesn't need this layer anymore
+17:46
+it doesn't need this envelope anymore so
+17:49
+then this envelope is removed
+17:52
+the inside is passed to the up layer
+17:55
+okay
+17:56
+then of course if we want to send it out
+18:00
+okay
+18:01
+send this entire thing this entire
+18:03
+letter out again we have to add another
+18:05
+envelope nuclear envelope
+18:08
+okay so when it comes down comes to the
+18:12
+um destination then again we remove the
+18:15
+envelope layer by layer
+18:18
+okay finally we can see the inside it's
+18:20
+like that
+18:22
+um for now we didn't cover we didn't
+18:25
+mention anything about the routing we I
+18:27
+mean in this entire process there's no
+18:30
+routing kind of thing because we
+18:34
+um we are purely talking about what rock
+18:36
+there is only one way one route this is
+18:40
+purely going through this a to S to R
+18:44
+and then to B
+18:46
+okay we didn't talk talk about oh how
+18:49
+about we change to another different
+18:51
+route it's like we are talking about
+18:54
+only from Sacramento
+18:57
+to New York
+19:00
+okay we are going through probably let's
+19:03
+see Chicago
+19:06
+but we didn't mention a different route
+19:10
+that go through La we we we we
+19:14
+here we simplify the problem we say okay
+19:17
+let's see just let's just look at this
+19:19
+route what will happen it's like this
+19:22
+because we we have we do not have any
+19:25
+um
+19:26
+we do not have any more knowledge yet so
+19:29
+at the very beginning when we talk about
+19:31
+all these different layers how this will
+19:33
+work this is uh probably a little bit
+19:35
+overwhelming and very abstract okay
+19:40
+um but gradually gradually just keep
+19:42
+this in your mind this is how we work
+19:44
+how this latest kind of thing work okay
+19:48
+keep it in your mind and gradually when
+19:50
+we learn more about the each layer okay
+19:53
+then you will understand how the entire
+19:56
+thing works we are going to talk about
+19:58
+uh the now

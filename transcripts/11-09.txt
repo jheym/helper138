@@ -1,0 +1,778 @@
+0:03
+there is another example another example here below
+0:11
+let's do the get this together and we take U as the source okay the first step
+0:17
+is the initialization so you can say for we it is 2 K for X we know for is two
+0:25
+and the predecessor is u for w we have a direct link between U and W so
+0:31
+the value is 5 and predecessor is U for X the value is 1 u x is one and the
+0:40
+predecessor of X is U for y u y do not have direct link so infinity and DZ uh
+0:48
+have no direct link so Infinity so this is the first line very easy the second line if you look at the first
+0:55
+line we know okay among these nodes X apparently have the least cost parts
+1:01
+right so the least cost so then d x equals to
+1:07
+one okay we choose X and put X into M Prime then everybody try X when you try
+1:14
+X we try X we know this is 2 plus 1 equals to 3 is not better so that's why
+1:20
+we still keep to you here and if you look at w
+1:25
+Tri X so it's 3 plus 1 is equal to four four is better than five so that's why
+1:32
+we have four here and then we have X as the predecessor
+1:37
+okay uh we skip X we look at y y try X so 1
+1:44
+plus 1 equal to 2 is better than infinity so we put two here and then the
+1:49
+predecessor is X they try x no direct link between x and
+1:54
+z so it's your Infinity now um in the second line among or a second row among
+1:59
+all of these we say a tie between we and Y okay so you can choose any one of them
+2:08
+you may have the confusion there you can choose either way or why both are fine
+2:13
+and they will generally the same result okay of course here in our example
+2:19
+um and in slide it chooses uh y okay it's
+2:24
+put y here of course you can try way on your own and see if you can generate the same thing okay
+2:30
+so now we know okay Y is put uh into the M Prime
+2:36
+okay everybody try y d y now equal to two Okay so we try Y no direct link
+2:45
+between we and Y but we doesn't change W 20y is one plus two equals to 3 which
+2:54
+is better than four so we put three here and Y is the predecessor for w
+3:01
+okay and then they try y is 2 plus 2 equal to four four is better
+3:07
+than infinity so we put 4y here okay because predecessor for Z is y now
+3:14
+among all of these we know we has the smallest value so then we try D we
+3:23
+equals to 2 then everybody twice we um
+3:29
+and we also put a v into n Prime so w try away W Tri V okay it's the third
+3:37
+plus two equal to 5 is not better so w will still keep through Y
+3:43
+and they try one uh they try V okay they
+3:49
+try away there is no direct link between J and uh way so it's still capable y
+3:56
+okay then among these two we choose apparently we choose W okay
+4:03
+so then d w now equals 2 3. okay then
+4:09
+everybody try W only Z is only the only remaining one so they will try W is 3
+4:16
+plus 5 equals to eight which is not better than four that's why we still
+4:23
+keep four y here okay and then we put because this is the
+4:28
+only remaining one so we put uh they here uh into the last line then we are
+4:33
+done with this table now what what we need to do next is we want to construct the least cost path
+4:40
+tree so we connect Z and its predecessor which is y
+4:47
+z and y okay and Y
+4:52
+and X Y and X and u
+4:59
+X and u okay w and y
+5:06
+w n y then we and u
+5:14
+okay so you can see this is the least cost path tree
+5:22
+now we know now let's construct the forwarding table
+5:33
+okay
+5:45
+it's still for you okay so then if the destination is way then we need to
+5:51
+forward it to you wait if the definition is X we need
+5:58
+to forward it to u x what if the definition is uh
+6:05
+um y what should we do if the definition is a y we should
+6:11
+forward it to we need to follow this u x y link right so we should still need to
+6:18
+forward this to u x what if the definition is w
+6:23
+we need to forward this to u x and then X to y y to W so it's c o u x
+6:31
+okay if Danisha is they then we need to forward it to steal u x
+6:39
+okay any questions this is how we construct the local
+6:46
+forwarding table for um for you this link State album as I said
+6:52
+will definitely appear on the test please pay special attention to that okay
+6:58
+and you can see this is uh actually what we have discussed just now it's the same thing okay so I got just skip this part
+7:06
+uh if we look at the digital algorithms complexity then each node we have nodes
+7:12
+okay in each iteration we need to check all the other nodes okay not e and Prime
+7:18
+so that means we need to check n minus one nodes plus M minus two nodes
+7:27
+plus n minus three nodes and here we have and notes a one notes okay so the total
+7:36
+of this is one plus and minus one
+7:43
+times and minus 1 divided by 2.
+7:48
+so this is actually so this is this is actually o big and
+7:55
+two okay uh so we need to do that many comparisons
+8:03
+um of course if you consider also uh the unknowns in the very first iteration
+8:10
+when we do initialization then this will become n Plus this okay so then this will become
+8:18
+um this will become 1 plus n times n so then this becomes n square plus n still
+8:26
+Big O and two okay there is some more efficient implementations which have the
+8:34
+O uh and log in complexity okay but we will not discuss those
+8:41
+um and it makes up from oscillation problem that oscillation problem basically means
+8:48
+um because we are considering the shortest path every time so every time if if the
+8:55
+traffic we know if the traffic is uh um is uh actually related to the link cost
+9:04
+right so when when the traffic is more busy then the cost is higher okay the
+9:12
+cost is higher than because then when if we run this algorithm we will choose the uh the the the the path with less
+9:20
+traffic okay um but it's it's like when you uh so but
+9:25
+it's it's like when you drive on the road okay for example you feel like oh uh this pass is very busy
+9:33
+okay I have to wait so how about I choose this one okay I choose that part
+9:38
+initially okay and then after you everybody everybody let me choose this
+9:44
+one and then the traffic becomes more heavy on this path
+9:50
+and now the time is increasing so then everybody
+9:56
+now switch back to the other parts because the other parts has less traffic so it's like that so we continue
+10:03
+switching back and forth so it's this is called oscillation problem it's like when you drive on the road
+10:09
+I think many of you have noticed if you drive on one lane and this Lane has uh
+10:16
+it's very very slow and you may get impatient you you say oh let me switch to the the other fasterly and then you
+10:24
+may notice after you switch to the faster line and the faster line becomes slower so
+10:30
+you have to switch back so you're doing this back and forth that is actually exactly uh uh the the obviously the best
+10:38
+analogy for this oscillation problem okay and in the exam I will give you
+10:45
+some practice some um network with like the the numbers
+10:51
+okay uh for each link with the cost for each link and then you will need to fill in this table and also generate the
+10:58
+local forwarding table generate the short path tree okay or the list cost path three so those are
+11:04
+are very important so make sure you really understand that and then second algorithm is the
+11:10
+distance Vector album decent Vector algorithm is different from link State as we
+11:16
+mentioned before the state algorithm is a global algorithm which means each router actually know
+11:24
+the topology for this entire Network it knows the cost of
+11:31
+the cost between every two routers okay but additional Vector algorithm the
+11:38
+router know only the neighbors it doesn't care about others it only rely
+11:45
+on the neighbor's information to make the final decision okay so this number
+11:50
+to Amazon is based on the bellman4 equation so for this equation you can see if we Define dxy as the cost of
+11:59
+least cost path from X to Y okay so basically X is the sauce and Y is the
+12:10
+destination then in this case d x y equals 2 equal
+12:17
+to 1. so firstly c x y c x y is the cost between X and Y
+12:25
+so who is the way who we exactly the neighbor of X so we have X and we have a
+12:32
+number of neighbors so they are all called we okay so then basically
+12:39
+um foreign also has a
+12:45
+this this destination this is the sauce
+12:50
+as you can see the basically X will try different
+12:56
+neighbors different weights okay then for this way for example we know the
+13:02
+cost from way to Y to the destination Y is d y and then the cost between X and Y
+13:09
+is a c x b okay so now we use the neighbor's cost
+13:14
+plus the cost from neighbor to the destination this will be the total cost
+13:20
+for this part okay then basically X will try all the
+13:26
+neighbors try all the neighbors and then choose the minimum one okay so this is the base of this in the
+13:34
+vector algorithm now let's look at the example in this example we know uh d v z
+13:41
+is equal to 5 d x z equal to 3 d w z equal to third
+13:49
+okay these are our assumptions okay and then if we want to calculate
+13:55
+the short the least cost from U to Z then you will basically look at them the
+14:03
+different neighbors so U has a one neighbor another neighbor
+14:08
+a third neighbor k u has three neighbors so among these neighbors you will try different
+14:15
+neighbors so basically let's say we try the neighbor wave first we try neighbor
+14:21
+wave first and then we know the cost between you and me is two two
+14:26
+plus d raise it from way to Z we know it is 5.
+14:31
+okay so 2 plus 5 that is 7. and then we also try X
+14:37
+number x x c u x is one okay and d x z we know this is third
+14:44
+okay so it's one plus three this is a four then for c u w okay we try neighbor w
+14:53
+then the cost between U and W is 5. cuw is 5 5 plus dwc from W to the
+15:02
+destination Z is uh three so five plus three equal to eight
+15:08
+okay the amount all these all of this we choose the smallest one which is four
+15:14
+this is how we calculate the shortest path from the source to the destination we
+15:21
+basically look at only the neighbors we do not care about the others okay and
+15:27
+you can see actually uh it is very important for the neighbors to provide accurate and correct information if the
+15:35
+neighbors do not provide the correct information then we cannot calculate this correctly
+15:41
+thank you and then um the decent Vector algorithm is basically every node maintaining a
+15:48
+distant vector okay and the error note one when when one of the notice something changes notice the cost
+15:55
+changes then this node will need to notify all the other neighbors say hey I
+16:02
+have workers change and you need to change your cost based on mine okay then
+16:07
+those neighbors cost will change and then they will need to update their
+16:13
+neighbors including than this neighbor okay so let's see the
+16:20
+um I maybe let's do this very quickly and I
+16:27
+don't want to um go very deep into this okay so for
+16:32
+example you can see for notes Here we have three notes X Y and Z okay note has
+16:38
+a table X okay so so node X has a table and this table is maintaining the cost
+16:46
+from F to x x y and easy white x white
+16:52
+white Z to ask Z2 yd today it is maintaining all the cost and node
+16:59
+Y is also maintaining uh its own cost okay so for this we call this as a
+17:06
+distance vector okay and then when we do initialization you can say from X to X the cost is zero
+17:15
+from X to Y the cost is from X to Y it because it's 2 from X to Z the cost is
+17:22
+seven okay for the others we just make it Infinity because we don't know yet and
+17:30
+then why we also do the uh initialization y to X is 2
+17:36
+okay y to Y is zero why today is a one
+17:42
+okay similarly from Z to X is seven Z to Y is one Z to Z is zero okay so
+17:52
+these are the this is the initialization step and then the next step is you can
+17:57
+see node Y and node Z
+18:02
+because they have because they all have their own costs right so they need to
+18:09
+tell ex about their cost okay because there are ex- neighbors so
+18:15
+then why and they need to update x and x need to recalculate the cost based on
+18:23
+the information from Y and Z so you can see basically Y is copying its own
+18:28
+decent Vector to X table okay so Y is
+18:33
+sending X and 10x to say hey my cost is 201 and Z is also sending in 710 okay
+18:41
+then the network important thing is that X need to calculate these two values
+18:46
+based on the information from y and z so how can X calculate
+18:53
+X will say okay might cause the two definitions
+19:01
+we real y as the destination okay
+19:07
+equals to here x has two neighbors right do you remember we will try all the
+19:13
+neighbors and from all these neighbors we choose uh the smallest value okay so
+19:19
+then basically X will try y first so basically c x y is this one okay plus
+19:28
+from y to Y because the definition we know is y okay the neighborhood this is
+19:33
+neighbor y the first Y is neighbor Y the second Y is the destination y
+19:41
+okay they have different meanings that's why it's actually the destination y
+19:50
+okay and then this is a try enable y if we try neighbor Z then it's c x z
+19:59
+plus d z y from Z to Y so d z y from
+20:05
+neighbor J to destination y okay
+20:10
+then from neighbor J to destination y again
+20:15
+this Z is actually neighbor and Y is the destination so then among this let's say
+20:22
+c x y equal to 2 2 plus d y from y to Y from White y we
+20:30
+need to refer to this table from y 2y so this is actually dyy
+20:41
+okay this number is dyy uh it's zero one is zero so two plus
+20:47
+zero is a two and c x z c x z we know from the figure we know this is seven
+20:53
+and then this is a this is a is actually from sorry DZ y from Z to y this is uh
+21:03
+actually d z y so you can see this is one so
+21:09
+seven plus one equals to eight among these two we choose the smallest number
+21:14
+which is two and then we will put two here okay so this is how we calculate dxy
+21:21
+similarly we can calculate DX Z XZ we will try different neighbors again
+21:29
+to enable y okay c x y plus from y to Z okay from y
+21:36
+to Z and c x Z Plus from Z to Z okay so the c x y we know this is 2 d y
+21:46
+z d y z is from y to Z so this value is actually d y z this is a one okay and
+21:56
+then c x y we know c x y is I'm sorry c x z is 7 6 7 and this is it
+22:06
+this is actually this one from Z to Z this is a d z z
+22:12
+okay so this is equals to um zero then we we know okay two plus
+22:20
+one equal to 3 7 plus 0 equals to seven so the minimum number is three then we
+22:25
+will update this number and put through here okay so and now you can see X has
+22:32
+updated its own value based on the information provided from y and z
+22:37
+similarly similarly as you can see
+22:43
+here x needs to send the information to Y they
+22:49
+need to send the information to y okay and X need to send the information
+22:54
+today why you need to send the information today
+23:00
+and then they will update this value so y opposite Y update
+23:07
+uh that's this value okay
+23:12
+so basically based on those information they will do calculations and then
+23:18
+okay then after that because X has already updated its own value it needs
+23:26
+to it needs to send the information again to Y and today
+23:33
+okay similarly if Y and Z also get new values they need to update the other
+23:40
+neighbors okay so you can see this is actually
+23:47
+um changing process it it needs to go on
+23:54
+and on until finally we reach some kind of equilibrium or some kind of a balance
+24:01
+okay and here finally all these values they do not change anymore okay so this
+24:08
+is the distance Vector algorithm and um
+24:14
+I don't require you I I want you to understand the basics of
+24:19
+what is the vectorism like for example the Spellman fourth equation and how we
+24:25
+can use to do calculations okay um I do not require you to know a of
+24:34
+course it's better if you know how to do the calculation but in the test I will not ask you to do such kind of uh
+24:42
+algorithm um running okay it's different from the
+24:47
+next details so don't worry about that part and this doesn't matter album has a
+24:52
+feature which is called good news travels fast bad news travels slow so
+24:58
+this means um basically if for example if uh cost
+25:04
+is changing to a smaller number okay we know because of this link cost
+25:12
+is changing so for example X will need to update all the neighbors say hey we
+25:17
+have a link cost here link cost changing here okay so then everybody need to update their own tables and it takes
+25:24
+only a few iterations to finally reach the equilibrium to finally
+25:30
+um guess uh guess the final value okay but if if this number is changing
+25:38
+from a small number to a much bigger number okay to a much bigger number then
+25:46
+basically this num this uh this uh this news Okay this this bad news will
+25:55
+take a lot of iterations before the algorithm finally established stabilize
+26:02
+okay so this is called the good news channel was fast and bad news travel
+26:07
+slow basically for if you increase learning cost to a much bigger number
+26:13
+then it takes a lot of iterations for the Amazon to stabilize to to
+26:20
+finally get the final value okay uh I don't want to urinate in the first
+26:27
+semester sometimes I explain this in details why but now I think uh we do not
+26:32
+have time to explain that in that detail and then you only need to remember the
+26:39
+final conclusion good news travels fast bad news travel slow okay you don't need to
+26:44
+explain why the bad news travels low
+26:49
+okay now let's compare the links this algorithm and distance Vector algorithm
+26:55
+for the message complexity the link State album has anodes e-links them
+27:02
+because we as we said all the routers need to know the state of the entire
+27:08
+network then that means we have to send at least a big O and E messages to
+27:15
+update everybody okay and for this adventure I was on the exchange it happens only between the
+27:22
+neighbors okay so for the speed of convergency for
+27:29
+LinkedIn outcome okay again
+27:35
+um the on2 algorithm requires o and E messages they need to exchange the
+27:40
+messages and as we said we may have oscillation problem postulation problem do you remember when
+27:45
+I said uh when you travel it will drive on the road okay you may want to choose
+27:51
+the one that is faster and after you change the name to the first to the
+27:56
+faster Lane you may finally realize the fastening is becoming slower that's because everybody is changing to the
+28:03
+faster Lane so now the fast training becomes slowly okay so then you can change back you change back and then
+28:10
+everybody is changing back okay so this it will generate the oscillation problem
+28:16
+for distance Vector the convergence in time convergency time may vary as you
+28:23
+can see sometimes if you are changing to changing the cost to a higher number it
+28:29
+takes longer to converge but if you are changing the cost to a smaller number it
+28:35
+takes shorter to converge okay so for robustness what happens if the
+28:42
+router malfunctions foreign the node can advertise incorrect
+28:48
+link cost okay each node will compute its own table
+28:53
+so they they are kind of in independent from each other because they are making
+28:59
+their own judgments okay but for this Vector algorithm the nodes can advertise
+29:05
+incorrect cost okay and the nodes are relying actually on the neighbors if the
+29:12
+neighbors are providing incorrect information then those routers will
+29:17
+generate the wrong results okay so those are their difference uh those are all about the different
+29:24
+albums as I said this nixteen album will be very important it may appear on the
+29:30
+test for this and out Vector algorithm you only need to know the BF equation how to use VF equation you don't need to
+29:37
+worry about running the algorithm in detail okay the next thing we want to discuss
+29:45
+is the hierarchical routine currently we what we have learned or for
+29:52
+other accounts or no matter is selling state or distance Vector it's kind of a
+29:58
+flat the network is kind of flat okay because we are treating all the rounders
+30:03
+as the same but this is not true in practice okay you think about this in reality we
+30:10
+may have we may have a lot of raptors we have a huge number of routers
+30:17
+we cannot treat those Rafters all the same okay we cannot store for example if
+30:23
+you are running State housing you cannot run this algorithm towards the entire
+30:28
+network you think about this because we have so many routers
+30:34
+um foreign State algorithm will require every router knowing the status of the
+30:41
+entire network knowing the topology knowing the link cost okay but if we are
+30:47
+training all the routers at the same can we store all the destinations information in the routing table we
+30:54
+cannot we cannot store all the information in just one router right the router has to be
+30:59
+has to have really huge uh storage space okay that is not possible
+31:07
+um and another thing you need to consider is internet in reality is a network of networks each Network admin
+31:14
+may want to control the royalty in its own network so for example sex state may
+31:22
+say Okay I want to control my own network I want to manage this in this way UCD may say I want to manage this in
+31:29
+a different way I want to run a different algorithm okay and different isps may want to control their Network
+31:36
+in different ways so that's why it's actually um we we call this as administrative
+31:43
+autonomy okay so because of that usually what we do is
+31:51
+aggregate the routers into regions for those regions each region we call it a
+31:57
+autonomous system and as okay the router in the same as run the same routine
+32:05
+protocol usually so for those kind of routing protocol we
+32:11
+call it as intro as routine protocol okay then the routers in different as
+32:19
+current different intro as routine protocols so for example we may have this as
+32:27
+another as another as we may have different as
+32:33
+okay then within each as we can run different routing algorithms
+32:39
+so for example this as may decide to run link States this as may decide to run a
+32:45
+decent Vector this is decided to running state I'm just giving an example of
+32:51
+course in reality we may have more complicated algorithm okay but anyway
+32:57
+each as may run its own routing algorithm and we also need to run
+33:06
+among those as so for example from this as1 to as2 to S3 so what is the shortest
+33:15
+path from as1 to sas3 what is the shortest path from as1 to as2
+33:22
+okay of course we have more ES
+33:27
+okay there are more here I'm just giving an example then among those as we also need to run some
+33:35
+routine algorithm to find the best way to reach a certain
+33:42
+autonomous system okay that is actually the uh external as
+33:49
+routine housing okay or we call it inter as routines so now
+33:56
+let's look at an example here okay so in this example you can say
+34:03
+um we are looking at a router 1D okay for Rounds from 1D the forwarding
+34:11
+table for 1D is actually determined by two things one thing is the intro as routine
+34:19
+algorithm another thing is the inter as routine Amazon
+34:24
+okay so the inter is routing algorithm actually determines
+34:31
+um the best way to reach a certain autonomous system okay then the intro answer optionalism
+34:39
+is determining the best way to reach a certain Gateway voucher okay so we're
+34:45
+explaining more later but anyway now you need to know you need to know the forwarding table is actually determined
+34:51
+not by just one routinism is actually by two types of Rockhampton inter and inter
+34:58
+okay so let's firstly look at the inter as tasks okay we suppose the rupturing is
+35:06
+one receive the desk that receives a datagram destined outside of ES1
+35:13
+then okay the router should forward the packet to the Gateway router by which
+35:19
+one okay we don't know for this package if it arrives at ES1
+35:26
+and we need to forward it to somebody else okay so for example if you want to
+35:32
+forward this to as2 then you should send this package to 1B because 1B is the
+35:40
+Gateway router that is connected to as2 okay
+35:45
+but if you are sending this package to as3 then you should send this package to
+35:54
+Gateway router 1C because 1C is the Gateway router connected to as3
+36:00
+okay so now basically as1 need to make this decision
+36:05
+okay so as one must learn which destinations are reachable through as2
+36:11
+which definitions are reachable through S3 okay and then as1 need to propagate this
+36:21
+reachability information to all the routers inside as1
+36:29
+so after basically after ESO one learns how to reach those destinations through
+36:34
+those um as okay then yes we need to tell all
+36:41
+the routers inside the S1 about this reachability information
+36:46
+okay because with this information then these routers can make their own decision they can run
+36:53
+render our routine algorithm right so you can see this job one two is uh the
+36:59
+job of inter as routine awesome okay so basically the inter as routing
+37:07
+algorithm need to learn which destinations are reachable through which autonomous systems
+37:15
+and then propagate this reachability information to all the routers inside
+37:20
+this autonomous system okay it's like it's like uh for example for
+37:28
+our class we have so many students if each student is a router okay
+37:34
+then for our class we need to learn if we want to reach some person
+37:41
+okay some other student in other classes we need to learn how we can
+37:47
+reach that person through which classes right so we may go through class one class two class three and finally reach
+37:55
+a person okay we need to learn those kind of information and then we need to come back tell everybody in our class
+38:03
+saying hey these are all the reachability information I have learned okay and then you need to you make your
+38:11
+judgments based on those information so that is the job of inter as routine
+38:18
+okay now we suppose as1 learns that
+38:24
+the subnet X is reachable through as3
+38:31
+okay but not through as2 and then this intra as protocol protocol
+38:39
+will propagate this reachability information to all the routers within ES1
+38:45
+okay then the router 1D determines
+38:51
+from the intro s algorithm okay it will it will firstly it will
+38:57
+know okay I need to send forward this packet to once it because 1C is connected to
+39:07
+as3 okay and we know as3 can reach X
+39:13
+okay then the next thing is the next thing 1D we will need to determine is
+39:20
+how can I reach this 1C okay what is the shortest path
+39:27
+or the least cost path to reach 1C okay this
+39:34
+is another algorithm this this algorithm is run is run with
+39:40
+aes1 so this is actually the intro as routine
+39:45
+okay this is interesting so basically now if we summarize if we summarize the
+39:52
+inter as routine is learning about the reachability information the as
+39:58
+reachability information and then broadcast appropriate the information to
+40:03
+all the routers inside this network then the intro is abstracting algorithm
+40:09
+is basically used to determine the shortest path from The Source router to
+40:15
+the Gateway launcher okay from 1D to 1C okay similarly let's see let's look at
+40:21
+this now we suppose the X so for example can be reached through
+40:27
+both a S3 and as2 okay now 1D has a package
+40:34
+okay so it can either forward to as2 or 4 or to as3
+40:42
+okay now we need to determine firstly we need
+40:48
+to determine firstly should the way forward to as2 or as3
+40:54
+that is the inter as routine part okay should we forward to es2 or as3
+41:03
+okay which means which is the the best as path
+41:10
+okay that is an intern es launching algorithm if finally we decide
+41:17
+for example we decide to forward to as2 okay then we will say Okay 1B is the
+41:27
+shortest it is the Gateway router that we should use then one thing we'll need
+41:32
+to determine what is the shortest path from 1D to 1B
+41:38
+okay so that is the intra as routine
+41:44
+now you can say when the package is destination as X
+41:50
+okay and the outgoing link the we are actually looking at the forwarding table
+41:57
+okay this is the destination if the definition is X then the outgoing
+42:03
+link should be let's see if this is a link one this is link two okay so this
+42:08
+outgoing link should be one why it's actually determined by two things
+42:15
+one thing is the interest rotioxide which helps determine the best as is to
+42:22
+go through as2 and after that we need to determine okay the best
+42:29
+um the shortest path to reach 1B to reach this Gateway is actually going
+42:34
+through link one okay so it's determined by two things inter yes and intro as okay so that is
+42:43
+the hierarchical routine and let's continue to discuss the
+42:49
+royalty in the real internet so what we have learned are just the principles the
+42:54
+like the basics for optionalism but what are really used in the internet we need
+43:00
+to look at that okay so firstly firstly
+43:06
+uh the intro is astronaut routine is also known as the inter interior Gateway
+43:13
+protocols okay IDP and the most common most commonly used
+43:20
+inter intro in astrological intro which means within this is okay
+43:26
+the most commonly used are ospf open shorted path first
+43:32
+igrp integrated with routing protocol so in our class we only introduce the first
+43:39
+one let's

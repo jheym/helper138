@@ -1,0 +1,866 @@
+0:05
+okay so chapter six is about network security network security is the last
+0:11
+chapter in our entire semester basically in this chapter we try to understand the
+0:17
+principles of network security including the cryptography authentication message Integrity
+0:25
+Etc and we will also talk about the security practice for example how can we
+0:31
+deploy firewalls and electricity systems what are the mechanisms behind them and
+0:38
+um what are the security or how are the security deployed in application
+0:43
+transport Network and ink layers Etc so this is an outline of the entire
+0:49
+chapter first let's look at the question what is network security
+0:57
+basically in our security there are three major principles we call it as CIA
+1:05
+so C stands for confidentiality
+1:14
+I stands for integrity foreign
+1:20
+a stand for availability
+1:29
+so you will learn about this three principles again in csc154
+1:37
+now let me briefly explain what the those principles are firstly
+1:42
+confidentiality so this means only the sender and the receiver should
+1:49
+understand the message contents so this message should be confidential to
+1:56
+um only the sender and the receiver okay so then in order to ensure the
+2:01
+confidentiality usually we need the senders to encrypt the message and the receiver to decrypt the message okay so
+2:08
+that is the computationality then the next thing is the Integrity so
+2:15
+Integrity We have basically two aspects one aspect is the source Integrity which
+2:23
+means we need to make sure this message is indeed sent by somebody okay it's not
+2:30
+by anybody else it's indeed by this person or this computer or this router
+2:35
+okay so for that what we do usually is we need to do authentication okay so
+2:42
+authentication is basically used to ensure or enforce the source
+2:51
+integrity okay
+2:56
+so that in this case we need the sender and receiver confirm the identity of
+3:02
+each other then the second aspect of the Integrity is actually content Integrity
+3:09
+which means we want to ensure the message is not altered the message
+3:17
+itself the content of the message is not ordered during the transition or after
+3:24
+the transition okay so those are the two aspects of Integrity you think about this again
+3:32
+firstly Source integrity and then we have content Integrity okay the last
+3:37
+thing is availability availability means the resources or the
+3:44
+services must be accessible and available to the users okay so you think
+3:51
+about the denial service attack we talked about in chapter one right so basically
+3:58
+for that attack it makes the resources or the services and available to
+4:04
+legitimate users now in this case we say oh okay availability is not there anymore okay okay so those are the three
+4:14
+um principles of network security I hope you keep this in mind confidentiality integrity and availability okay
+4:22
+and later we will discuss how to ensure the this three principles uh using some
+4:31
+security matters okay all right so before we talk more about
+4:38
+security like firstly introduce uh some K roles in security words okay
+4:45
+so Alice ball and Trudy these three people are really famous in the network
+4:52
+security community so firstly n is an above are two users okay because for
+4:59
+example they can be lowers okay they want to communicate securely
+5:04
+but we may have some intruder such as Judy okay who may intercept delayed or
+5:13
+add messages into the communication between Alice and above so here you can
+5:19
+see Alice and Bob has some data they want to communicate okay but the
+5:25
+truly May do something bad in the middle okay so keep this in mind we will use
+5:33
+these three rows again again and you may ask who can be Alice in one
+5:41
+okay in real life in real life Alison and Bob can be anybody can be any
+5:49
+regular users or they can be with the web parameters
+5:55
+and clients okay they can be the online banking
+6:01
+client and server two machines they can be the DN servers and the clients
+6:07
+or they even be between the DN servers they can be the routers okay so they can
+6:14
+be a lot of things they don't have to be the real person they can be two machines to devices keep
+6:22
+this in mind and then for truly what can truly do
+6:28
+what can a bad guy do the better guy can actually do a lot of things if you
+6:34
+recall what we have learned in chapter one okay the bad guy can
+6:39
+do abstract for example he or she can interest at the messages
+6:45
+he or she can also insert new message or wrong message or fake
+6:51
+messages into the connection right he or she can also impersonate somebody
+6:57
+else they can do eyepiece spoofing email spoofing they can fake The Source
+7:04
+address in the package they can also do hijacking hijacking means basically to
+7:09
+take over an ongoing Connection by removing either the sender or receiver
+7:15
+and then inserting himself in place we have a very famous attack called session
+7:22
+hijacking in security and the bad guy can also do the Nile
+7:27
+service which means prevent the service from being used by others okay we have
+7:33
+discussed this before and then after we learn the network
+7:39
+security the basic knowledge I want to introduce the principles of
+7:46
+cryptography because that is like the foundation for network security without
+7:52
+cryptography we cannot do anything to network security okay so only with the foundation of
+8:00
+crypto cryptography and then we can deploy a lot of different mechanisms to
+8:08
+help us achieve the CIA confidentiality integrity and availability okay
+8:15
+all right so firstly let's look at the language for cryptography
+8:21
+in cryptography unfortunately need to know plan text and then you should know save for text
+8:29
+so ciphertext is generated by encrypting
+8:35
+the plain text with an encryption algorithm and an encryption k
+8:42
+so we use Ka to represent Alice's encryption K after the ciphertext is
+8:49
+generated it will be sent to Bob the recipient
+8:54
+then the resentment will decrypt this ciphertext with the decryption algorithm
+9:02
+and also Bob's decryption k which is KB
+9:08
+and eventually it will generate the plain text okay so here we use M to represent the
+9:16
+plain text message and then we can use Kam
+9:23
+to represent the ciphertext which is generated by
+9:29
+encrypting the message with the K of a
+9:35
+or the K of Alice the encryption k o l is okay and then for the decryption we
+9:44
+can do this which means we can use this is the cipher text right the km is the
+9:51
+cycle text then we can use KB the decryption K to decrypt
+9:59
+the ciphertext and then generate the plain text message M so these are the
+10:07
+language we will use for cryptography and later you will we will use it again
+10:12
+and again so personally for cryptography let's talk
+10:20
+about the symmetric key cryptography it's actually a very natural thing when
+10:25
+you talk about the cryptography or the encryption decryption it's a very
+10:31
+natural to think oh the the encryption K and the
+10:36
+decrement K can be the same right so in this case um we say Bob and Alice share the same k
+10:45
+then we call this as symmetric take cryptography that means the K is known to both Alice
+10:54
+and above okay um so you may ask how to Bob and Alice
+11:02
+agree on the K value this is actually a very important question because we want to
+11:09
+um not only ensure the message is confidential right we also want to
+11:16
+ensure the K itself is confidential so in the old days people usually
+11:22
+exchange this uh um encryption and decoration K face to face
+11:29
+okay the the meat for example meeting at some place physically and then they
+11:35
+exchange the K so then later they can use the k for secure communication
+11:40
+that's usually what they do yeah let's look at an example of
+11:47
+the symmetric K cryptography so it's a very uh simple
+11:53
+scheme for example here we can say this is one type
+11:58
+substitution Cipher which means we can substitute one thing for another thing
+12:06
+okay here in this example you can see this is a mono alphabetic Cipher which
+12:13
+means we substitute one letter for another letter so in this example you can see this is the plain text we have
+12:19
+ABCD to the 26 letters and then these 26 letters
+12:27
+will be replaced one by a man for example a can be replaced to M inside
+12:32
+for text B can replace the two n inside for text okay then with this with this mapping
+12:42
+then the plane if the plain text is above I love you Alice this can be
+12:49
+encrypted into nkn Etc as the cipher text so basically B is replaced to n
+12:58
+oh as you can see it's replaced to K B is replaced to n again so it's a very
+13:05
+easy substitution okay um so this is actually already uh
+13:11
+Advanced version of a substitution Cipher uh originally when people firstly
+13:18
+design the substitution Cipher the one very simple way is
+13:24
+um replace a letter with a letter that is behind
+13:29
+so for example we may we may say a can be replaced with the same B can be
+13:35
+replaced with d and c can be replaced with e it's like that okay or of course
+13:40
+you can say a can be replaced with f and B can be replaced with G C can be
+13:48
+replaced with h it is also fine okay but anyway you can see no matter
+13:54
+how this is done these are all the substitution ciphers
+14:00
+okay these are all called the substitution ciphers um so this is a very easy way but of
+14:07
+course you can see it's very simple and it's me it may not be very reliable
+14:13
+um for example there are many different ways for analyzing the ciphertext
+14:20
+if for example if somebody else gets this type of text
+14:26
+and he or she can analyze the fire Cipher text by using statistics for
+14:32
+example and then say Oh okay the most commonly used letter in English is let's
+14:38
+say t okay then by analyzing all the
+14:43
+cipher texts statistically then he can guess oh okay T is replaced into
+14:50
+you okay so it's like that so there are some ways to decrypt this and also uh if
+14:58
+for example the uh somebody somebody know okay this message is about Bob and
+15:05
+Alice and they may guess oh okay Alice this is the name of Alice and then very
+15:12
+likely Alice is interpreted into this then he or she immediately knows a is
+15:19
+replaced with m l is replaced with the G7 so you can see these are all the ways
+15:25
+uh to guess the potential substitution that's why this kind of a scheme is
+15:32
+actually not very reliable okay and in this case you can see the
+15:37
+encryption k is actually the mapping
+15:42
+okay this mapping from the set of alternative clusters to another set of
+15:48
+26 letters is the encryption K okay this encryption K will be shared by the
+15:56
+sender and the receiver okay because this substitution Cipher is not
+16:04
+that um reliable that's why uh nowadays we
+16:10
+are using more advanced symmetric key cryptos like DS data encryption standard
+16:16
+so this is um uh d e s is actually we
+16:22
+call it block Cipher which means it is actually using a 56-bit symmetric key
+16:30
+okay and um the plain text is divided into
+16:37
+64-bit input and then the inclusion is down
+16:43
+in units of blocks okay so how secure is DS
+16:48
+uh in the DS challenge you can see the 56-bit encrypted phrase can be decrypted
+16:56
+in less than a day so it's not very secure actually okay in order to make
+17:02
+this more secure um people also designed 3DS which means we
+17:09
+increase it three times with three different case 40 years to make this
+17:14
+more secure okay and um in addition to that
+17:22
+people also designed AES which is Advanced encryption standards so this
+17:29
+now has already become the new standard for a symmetric key it has replaced Des
+17:40
+the data are processed in 128 bit blocks so for the case it can be 108 bits
+17:48
+192-bit or 256 bit if you compare DS and AES
+17:56
+The Brute Force decryption takes only one second on the yes but it
+18:03
+needs to take 149 trillion years for AES as you can see ESL is actually much more secure
+18:11
+than DS okay um
+18:16
+so that you may ask does the symmetric encryption surface
+18:23
+is it good enough we see symmetric encryption is usually
+18:29
+very fast but it has limitation you think about this so the first limitation is that this K is known by both the
+18:39
+sender and the receiver as we said
+18:45
+we want to the center and the receiver to agree with this case but how can we
+18:51
+distribute to the K right of course we can say oh they can meet
+18:57
+personally choose change the K that's fine but that's not efficient especially if we
+19:03
+are doing everything online right so the K distribution and agreement is very
+19:09
+vulnerable the second thing is the K is not attached with identity
+19:17
+that means if the sender and the receiver assembly fight with each other
+19:22
+the receiver will say hey the sender has disclosed some information
+19:28
+but how can we prove that we cannot right so the center can simply deny that
+19:35
+that's that's the that because this key is shared by both the sender and the
+19:40
+receiver so they can easily deny something they have already done okay so that is uh
+19:48
+actually against something we call as non-reputation okay
+19:54
+so this this is a one aspect the second aspect is the K management
+20:00
+management problem that means when Alice wants to securely communicate with a
+20:07
+large number of people or a large number of receivers then Alice needs to remember or manage a
+20:16
+large number of kids that is sometimes can become very com very complex for for Alice okay so those
+20:25
+are the two limitations for symmetric encryption
+20:32
+um so we have mentioned this right how can
+20:37
+they agree on the K in first place um with those limitations then people
+20:45
+finally designed something called public key cryptography publicly cryptography I would say is
+20:53
+very very important um for security
+20:58
+so basically in public key cryptography the sender and the receiver they do not
+21:05
+share the secret key this this approach is very different
+21:11
+from the symmetric key encryption the public key
+21:16
+okay the public key is known to everybody to or
+21:22
+but the private key is known only to the receiver
+21:27
+so in public key encryption and decryption or public key
+21:33
+crypto cryptography we usually have both
+21:44
+we have a pair keep here public key and also private key okay again public key
+21:49
+is public private key is private okay so known only to the receiver
+21:57
+okay so then how is this used let's see this example in this example again we
+22:04
+have Alice and Bob now if Alice wants to send a message to Bob
+22:13
+and it will first link encrypt the data for the message
+22:20
+with Bob's public key we know public key is public to everyone right
+22:28
+so of course L is no Bob's public key so Alice will encrypt the message with with
+22:34
+Bob's public key and then when Bob received this message
+22:42
+receive this Cipher text Bob will do the decryption using his own
+22:48
+private key it's very interesting okay so firstly Alice will do encryption with
+22:54
+Bob's public key and then Bob will equip with his own private key
+23:02
+okay so actually this has changed significantly
+23:08
+the we of cryptography the 2000 year old
+23:13
+or we know as symmetric K cryptography
+23:19
+okay and actually this idea of public key very interestingly
+23:24
+um this idea is was developed in U.S and
+23:29
+UK independently roughly at the same time okay the same idea
+23:36
+so then now let's look at the encryption algorithm the requirement
+23:42
+for this public inclusion algorithm is that firstly we need
+23:51
+the public key we use KB plus to wrap in the public key
+23:57
+and the KB minus to represent the private key okay so
+24:04
+then we know given a message if we encrypt it with public key
+24:12
+we can then decrypt this ciphertext with the predicate to get this message
+24:20
+from M again this is the first requirement the second requirement is
+24:26
+given public key KB Plus it should be impossible to compute the
+24:35
+private key B minus why because we know public K is publicly
+24:44
+available so everybody can see the public key then if
+24:49
+it is possible to compute the private key then this entire
+24:56
+public key encryption map method will fail right so that's why we should make sure
+25:04
+it's not possible to compute the private key through the public key okay so those
+25:11
+are the two requirements keep academic in mind one very commonly used public key
+25:19
+inclusion algorithm is called RSA RCV is very very common and it's foundational
+25:26
+okay so let's look at the IC album
+25:33
+um I I'll give I I know this is probably a bit abstract to you but I'll give you
+25:38
+an example and hopefully you can understand the general idea why I say
+25:44
+um for the foundation for the theory behind
+25:50
+RSA we will not talk about that in detail like the numbers here Theory
+25:55
+right so we will we will just ignore that part but I still want you to have an idea how this algorithm is uh used
+26:04
+okay so firstly we pick two large Primes p and Q
+26:13
+so for example let's pick p as 3 and Q as 11. these two
+26:20
+numbers are very small so 311 are very small but in reality in real RSA p and Q
+26:27
+will be very large prime numbers they cannot be very small if they are very
+26:32
+small then this algorithm is not very secure okay
+26:38
+so you can easily guess the inclusion decryption K or the
+26:44
+private and public key okay so the next and let's calculate n
+26:51
+equals to P times Q it's very easy right and equal to 3
+26:56
+times 11 equals to 33. after that we pick e
+27:04
+such that it is relatively Prime to Phi n what is Phi n 5 is Q
+27:14
+minus 1 times P minus 1. so
+27:21
+that means 5 equals to 3 minus 1 is 2. 11 minus y is 10. so 2
+27:31
+times 10 equals to 20. we want to pick a e that is prime to 20.
+27:40
+so we can pick a number for example here we can pick 7. there is some way to
+27:46
+calculate to to to help you pick this number e okay so 7 is relatively prime
+27:53
+to 10 because their greatest common
+27:59
+divider is one okay and then next we want to calculate
+28:05
+another number D d can make
+28:12
+d e mode Phi n equals to 1. okay again
+28:17
+there is some way to help you do the calculation and in this case we can say okay
+28:25
+D equals to third by some calculation we know D equals 3 because what because
+28:32
+through is d right okay 3 times e
+28:40
+is 7. okay mod
+28:46
+ER what modify n y n is 20.
+28:52
+this equals to one right twenty twenty one two times
+28:58
+seven equals 21 21 mode 20 equal to 1. so that's why we choose D equal to 3.
+29:07
+Okay so so that D times e multiply n can equal
+29:14
+to 1. again there is some algorithm how do you calculate D but now you remember that
+29:20
+okay after that we get the public key
+29:26
+public K is K plus which is e and n
+29:32
+okay it's a it's a a tube obviously okay e is a
+29:39
+foreign
+29:44
+and N is 33. so the probability K is then
+29:50
+DN D is a three we have calculated and N is third
+29:57
+season okay so now you can remember
+30:04
+for e okay you can even if you want to remember this you can remember it as
+30:11
+encryption and for D you can remember as as a decryption so that you know okay e
+30:19
+n is the public K and DN is the probability so now let's remember this
+30:30
+so public key remember is a 7 33
+30:36
+. and private key is 33.
+30:48
+okay so we know 33 is n
+30:53
+and this is e this is D and this is a okay third is D
+31:00
+and it's a 33. now let's see how the data can be encrypted
+31:09
+and decrypted so basically this is how we get the
+31:14
+cipher text
+31:30
+okay firstly for the encryption process we have plain text this is the plain
+31:36
+text plain text to the power
+31:42
+of E which is 7 right in this example mod and
+31:51
+okay then we get the cipher text then when we do the decryption we use
+31:56
+the ciphertext to the power of d which is the
+32:03
+part of the private key mode n and then we get the plain text
+32:08
+okay so now let's look at example for example if we want to send a data
+32:13
+a piece of data which is four okay a very simple message before then
+32:19
+how can we generally design for text we use four
+32:25
+to the power of E which is 7.
+32:30
+mod n n is 33. if you calculate a number this equal to
+32:37
+16 which means the plain text is a four and then the
+32:44
+ciphertext is a 16.
+32:52
+okay and when we do the decryption we will use
+32:58
+16 the cipher text to the power of D which is a
+33:05
+3. mode and again this will equal to
+33:12
+4. as you can see 4 is what the plane
+33:17
+text this is like a magic right so you use the side the plain text
+33:27
+encrypt it with the public key e n
+33:33
+and you get server text later you take the ciphertext
+33:40
+then you do the same calculation using
+33:45
+the Prodigy then you can get the plain text right so it's like magic
+33:54
+and you may ask what if I do this in a different way
+34:00
+so now you can see in this case we are doing encryption with public key and
+34:05
+then doing decryption with private key what if we switch
+34:10
+that means we firstly do the encryption with private key and then do the
+34:19
+equation with the public key so again we know
+34:26
+K plus which is the public key
+34:32
+is 7 33
+34:51
+okay so still the same number 7 33 and for private key
+34:59
+is 3 33 okay so what if we still send the same data
+35:08
+okay but this time we want to encrypt with
+35:15
+private key first okay which means given 4 we want to
+35:20
+increase with probability which is uh 33. so 4 to the power of what D which is
+35:29
+third mod 33 this equals 31. so that
+35:34
+means the plain text is a four and the ciphero text is uh 31.
+35:41
+and now we do decryption we have 33
+35:46
+sorry 31 ciphertext and we want to use the public key
+35:52
+through the decryption so that in the public key e is a
+35:57
+7. the mod and then we get a 4 again
+36:04
+this is very interesting right so that means even if you switch
+36:10
+the private key and public key switch the order the inclusion and equation
+36:15
+order they still have the same Effectiveness okay so that means that
+36:22
+means given the same message
+36:27
+if we do the encryption with public key first
+36:33
+and Then followed by private key
+36:39
+this will recover m it is the same as you're firstly doing
+36:46
+the encryption with provocate and then do the decryption with public
+36:53
+key you still recover m that means it doesn't really matter
+36:58
+which order you do okay the result is the same actually
+37:04
+this property is very very useful as you can see later when we discuss the detail
+37:11
+signatures of the conventionality things like that authentication itself you can
+37:16
+see this is obviously this is a very uh
+37:21
+very smart or very brilliant okay so uh this kind the public key cryptography is
+37:29
+one of the most important um design and development in the
+37:35
+security field okay now let's see how the RSA can be used
+37:41
+you think about this how can this be used so firstly given a message app
+37:50
+we can first use the recipient public key against the message which means we
+37:57
+encrypt the message with publicly and then later
+38:02
+the private key can be used to restore the original message
+38:08
+this is basically used for confidentiality okay for example if you
+38:14
+want to send a message to somebody you can use that person's public key and
+38:20
+then after that that person receives the cipher text then he or she can
+38:25
+decrease the message with his or her own privacy so this is a full
+38:31
+confessionality and a different type of use is that give her a message
+38:38
+we can firstly use the sender's private key to sign the
+38:45
+message to do the encryption okay and then later
+38:51
+when the receiver receives this the receiver can use the public key to
+38:59
+verify the signed message because it can the public can be used to recover the
+39:04
+message right and this private key is only known to the sender
+39:11
+nobody else knows the sender's private key so of course if later this
+39:17
+ciphertext can be decrypted by the sender's private key then we are
+39:24
+sure this message is sent by this person by the sender nobody else because nobody
+39:31
+else has the private key of the sender so that is used for digital signature
+39:39
+that is actually the idea of digital signature this is usually used for
+39:44
+different purposes like for example for Content Integrity content integrity means we can use this to prove
+39:52
+the message itself or the content itself is not changed okay and we can also use this for
+39:58
+authentication or Source Integrity which means oh this message is indeed sent by
+40:07
+this person not anybody else okay and this can also be used for noun
+40:13
+repudi reputation repetition which means
+40:19
+the sender once this sender sign with the private key
+40:26
+he or she cannot deny this because nobody else knows his or her priority
+40:32
+okay so this is a different use for RSA
+40:38
+you can see ISE can be used for different purposes all right now let's look at this example
+40:46
+so for this example this is a four computationality
+40:56
+okay so firstly you can see the sender has plain text
+41:01
+this plain text can be encrypted with the recipients public key
+41:09
+and then we generate the ciphertext after the recipient of the receiver
+41:15
+receives this such text it can decrypt the message with the recipient's private
+41:24
+key to recover the plain text so this is to protect the message
+41:31
+okay so this is the four conditionality then we can also use
+41:37
+RSA for detail signature and keep in mind the public key cryptography is usually
+41:46
+very expensive computationally intensive
+41:51
+so usually when we do the encryption using a public key
+41:57
+for example especially for long messages a super long message it can be very very
+42:04
+expensive if we are using crypto if you are using public key cryptography so
+42:09
+that's why usually if we have a long message we will first lay
+42:16
+generator digest for this long message how do we do that we use a hash right we
+42:24
+all learn the hashing algorithm before right so we use a hash to generate a digest of the message this hash is a
+42:32
+is very this digest is very short compared to the message
+42:38
+the read the message and then later we can use
+42:43
+and this is a private key to encrypt only the Digest
+42:50
+we do not need to increase the entire message we only need to increase Digest
+42:56
+and then generate the encrypted massive Digest
+43:02
+we send this entire thing to the receivable then what Bob will do is
+43:09
+Bob for the same message okay here we do not care about
+43:15
+computationality we are thinking about the Integrity so basically with this
+43:22
+message the same message Bob we are also run the same hashing algorithm to
+43:30
+generate the Digest
+43:35
+okay meanwhile meanwhile after receiving this encrypted
+43:43
+Digest Bob will use analysis public key
+43:50
+to decrypt the message and get the message digest so Bob will compare these
+43:58
+two and see if they are the same if they are the same then we can say
+44:06
+okay the message is transmitted correctly nobody else has already changed the
+44:13
+content and it is indeed sent by Alice but if they are not the same then we say
+44:20
+the message has already been modified so this is the general idea of a digital
+44:27
+signature based on RSA algorithm okay and later we are going to spend more
+44:32
+time discussing this so why is ISA secure
+44:42
+suppose you know Bob's public key n and E we know public key is known to
+44:49
+everybody okay then how hard is it to determine d
+44:55
+which means if you know the public key can you calculate and get the private key
+45:03
+so if you look at the algorithm here
+45:13
+okay if you look at the algorithm here we know
+45:18
+the public key e and we know the number n
+45:24
+okay if you are able to calculate p and Q by
+45:31
+n through n then based on this
+45:38
+you can easily calculate d
+45:43
+which is the priority okay because you already know p and Q
+45:49
+you already know e okay you know p and Q you know n you
+45:55
+know um you know e and of course you can guess D okay you can calculate d
+46:02
+however because N is a very big number
+46:08
+is a huge number it's very hard
+46:13
+to calculate the prime factors of n which are p and Q is very hard to
+46:20
+calculate p and Q this make it very hard to calculate the
+46:27
+number D which is the probability okay so that is actually why
+46:35
+RSA is q okay
+46:40
+because factoring a b prime number
+46:51
+is really hard okay if we cannot find out p and Q
+46:57
+then it's hard to find out D that's the main reason okay
+47:04
+um then in practice do we really use RSA
+47:10
+to encrypt the content of the message the answer is no
+47:16
+okay you think about this if Alice and Bob are communicating with each other they want to exchange the messages and
+47:23
+the messages may be very long right now in this case if we want to use
+47:30
+RSA to do the inclusion equation it's computationally intensive
+47:37
+very intensive okay um in contrast the symmetric key methods
+47:46
+are much more easier and faster than RSA much more
+47:53
+faster so for example DS is at least 100 times faster than Ric
+48:00
+that's why you relay we only use the public key cryptography
+48:07
+to establish the secure connection so that the Alice and above can exchange
+48:14
+a symmetric key which we also call it as session key
+48:20
+okay and then this session key can later be used to really do the inclusion and
+48:27
+equation of the message okay so that means
+48:33
+um for um the encryption and equation about the the message or the content for the
+48:39
+communication we can use session K which is a symmetric key method okay but how
+48:47
+can we exchange this session key we they cannot meet we assume they
+48:54
+cannot meet with each other physically right so then they can exchange a symmetric session key
+49:01
+with the RSA method okay so this is how RSA is used in
+49:07
+practice all right so that is

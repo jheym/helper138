@@ -1,0 +1,922 @@
+0:03
+all right so today uh we are going to start the first lecture
+0:09
+um introduction to Networks let me firstly discuss the structure of our class the very first chapter is
+0:17
+going to be um introduction to the networks okay then the second check beginning from the
+0:24
+second chapter we are going to discuss the uh application layer then transport layer the network layer and then finally
+0:31
+the link layer okay those are the four main layers we are going to cover in this class each chapter you can imagine
+0:37
+because we we have uh only these many chapters in this semester so we are
+0:43
+going to have super long chapters so be prepared for that uh in this chapter what we are going to discuss is
+0:50
+basically firstly we want to know what is internet and then the second thing we are going to discuss is what is a
+0:57
+protocol then after that we are going to discuss Network Edge Network call these
+1:02
+are very important definitions okay um and then we will discuss how to
+1:08
+measure the network basically what is the uh the performance of the network okay then we will discuss the security
+1:16
+part of uh Network this is this security part is uh is very basic okay very basic
+1:25
+um if you want to learn more you should probably take 154 class the networking and network security class to to learn
+1:32
+more okay and then we will discuss the layers I mentioned we will we will
+1:37
+discuss several layers in this class then why do we have layers what is the
+1:43
+functionality for each layer okay so what are the protocols containing this each layer then we will discuss that so
+1:50
+for history we will just skip that okay all right so then let's start the first
+1:55
+question what is an internet um if we take a Nas and both view I think
+2:03
+last time we did the discussion many of you mentioned notes and the links yeah
+2:08
+those are very important two things or two components that will compose the
+2:14
+internet okay so when we see knows basically we mean the computers the
+2:20
+devices right some of you mentioned servers pay attention servers is just
+2:25
+one type of note okay servers are although the the the same huge usually
+2:32
+this sounds like huge things right but actually servers are just irregular computers may they may have a more uh
+2:40
+computer power computation power they may have more storage Etc but they are
+2:47
+still like a Computing device okay so here we can see uh okay the servers is just a
+2:54
+type of device but in addition to the servers okay you can see this is one type in addition to the servers we may
+3:01
+have the PCS we may have a laptop we may have the smartphones we may have the
+3:07
+tablets and we may even have uh the smart devices okay what which we call as
+3:14
+we now we have a idea of Internet of Things you hear about iot again and
+3:21
+again right so what is iot iot is internet of things so here are the
+3:26
+things may refer to a lot of things okay later I'm going to show you a slide on this
+3:33
+um so that all those Computing devices as long as they as long as they are able
+3:38
+they can be connected to the internet then we call them as the nodes okay or
+3:45
+we calculate them as the hot okay the hots or the N devices okay and the
+3:51
+systems well these are all the possible names for this uh Computing devices and
+3:56
+usually these Computing devices are able to run the network applications okay so for example on your computer you may run
+4:04
+uh uh email okay Outlook so this is
+4:10
+actually later when we talk about the email service Union you will know this is actually the client program for email
+4:17
+service okay and then we need to have some kind of
+4:23
+server program on the email server okay similarly if you you're using a web
+4:29
+page using uh sorry not available
+4:45
+[Music]
+5:06
+okay in addition to that in addition to those Computing devices we also need
+5:13
+some kind of links or um cables or whatever to connect them
+5:19
+together okay so those are called communication links
+5:25
+so the communication links uh so far they can be either white links or
+5:32
+Wireless links okay so for for example we may have uh fiber we know this is
+5:37
+super fast and it has a very low error rate okay it's very reliable uh we may
+5:44
+also have copper um uh corporate cables right so those are
+5:53
+like uh wide links but we miss we may also have wireless links like radio
+5:58
+satellite okay those are all the wireless links um and for these links there is a very
+6:06
+important matter uh that is that that is used uh to show
+6:12
+the speed of the links so this is called transmission rate and this is this
+6:18
+transmission rate is later we will learn it is actually very important it will
+6:23
+um affect something we call a transmission delay okay so sometimes if
+6:28
+the transmission also has another name which is bandwidth I think you are all you all know the term bandwidth right
+6:35
+but what is uh what is the bandwidth the formal name is actually the transmission rate
+6:41
+um and this bandwidth if you have a bigger bandwidth then your your network
+6:50
+is faster what does this mean faster faster means you have less delays okay why
+6:56
+does higher transmission rate cause lower delays later uh I will show you I
+7:02
+will give you a formula for that okay then now we have the links connecting
+7:07
+the Computing devices that is this sufficient is this enough
+7:15
+you think about this if we have if we have the
+7:23
+um links and devices then Avida can we build a network on top of this only
+7:32
+so now we can imagine for example if we have most of you say no right so we say no in
+7:39
+the in the chat right we cannot we cannot we may we may
+7:44
+be able to build a very small network but we want we are not able to build a large area network
+7:51
+or will not be able to build a internet why you think about this if you only
+7:57
+have cables and all vehicle links or on the devices then if you have a computer let's say in
+8:07
+U.S and another computer in Europe then we have another one in Asia okay so now
+8:15
+if you want to connect these two then you need you need to have third direct links between these authorities three
+8:22
+computers apparently it's very hard okay first it's hard to use white links if you use
+8:29
+wireless links then you may you may need to have a very very very very powerful
+8:36
+um uh transmitter and receiver but usually that is not possible
+8:42
+okay even when you think about someone someone of you may say oh I can use
+8:48
+satellite satellite I I'll I'll uh explain this
+8:53
+later satellite is actually also itself is not able to directly connect to those
+9:00
+devices okay it needs to firstly connect to this kind of Tower okay and then the tower is
+9:07
+actually connected to the browser okay so that's why okay that's why this
+9:13
+these two things are not enough we need a third type of thing which is called
+9:18
+tacky switches okay package which is means routers and switches okay so this
+9:27
+kind of thing is use the two forward the package so as
+9:32
+you can see these devices are all connected to a router or switch
+9:39
+okay and then in the middle of the network we actually have a bunch of routers a lot of routers okay then we do
+9:48
+your level do not have direct link between two Computing devices actually those two compute devices when they talk
+9:54
+to each other they have to go through a lot of routers okay so which we call you
+10:00
+lyrical as a for example a path Okay so
+10:07
+um that is uh that is a uh the package which part okay this this packets which
+10:13
+are like the uh post offices if you think about uh the postal service so
+10:19
+those packages are like the postal offices at different um areas so they are they are able to
+10:26
+forward the uh packets or the letters for you okay
+10:33
+um and as I mentioned again some of you may think about the satellite so the
+10:39
+satellite okay the satellite in the sky is actually connected to a tower for us your
+10:47
+computer when you think about it for example some of you may think oh I'm using 4G or LT
+10:53
+uh when you use this kind of cellular network okay your phone is not connected
+11:00
+to the satellite directly because your phone is not that powerful enough okay
+11:05
+it's not that powerful it does not have the power to send signal directly to to
+11:12
+the uh to the satellite okay as a matter of fact your phone as is actually
+11:20
+connected to uh some of the towers okay so some of
+11:25
+the towers here um and then the towers
+11:30
+actually is connected to the uh satellite okay and then you may think
+11:36
+how then how could the towers be connected to the internet as you can see here the towers is actually connected to
+11:42
+a router okay that is how the signals are uh finally uh connected into the
+11:51
+internet so actually it's through a router all right okay so uh do remember I just
+11:58
+mentioned the Internet of Things okay so what are the things so we now have a lot of Internet
+12:06
+uh devices like for example you may have your picture from connect to the
+12:11
+Internet or you may have uh the refrigerator connected to the internet
+12:16
+okay so you may you may even have a toaster which is able to do a weather
+12:23
+forecast so we can have a lot of devices connected into the internet and now
+12:30
+smart devices are we have more and more varieties okay so maybe
+12:36
+um and now you can even for example you may for example have a smart clock which
+12:41
+is able to send some kind of alarm to maybe a coffee maker in the morning and
+12:48
+say hey a master has a waking up please make a copy for him or her so
+12:55
+um yeah so all those devices you can see are now kind of connected but of course
+13:00
+with those devices it connects with each other and you are actually exposing more
+13:05
+attack surface to the attackers so they are more they have more opportunities to
+13:12
+happen to your network that's something you need to pay attention to um I remember maybe one or two years ago
+13:19
+there was a incident actually uh taking advantage of the cameras so those
+13:26
+cameras actually all they all use the default password okay it's very easy to hack
+13:34
+into those cameras and then the attackers basically use those cameras to conduct a DDOS attack okay later we'll
+13:42
+explain more about this kind of uh DDOS attack
+13:47
+okay so um and that's the uh the the basic the basic components of network uh
+13:55
+in addition to that okay in addition to that we need something more as we mentioned
+14:00
+so we have the heart those Hardware right then the device is the links we
+14:06
+also have the uh the routers and switches like the packet switches okay
+14:11
+so is that enough no okay why because we
+14:17
+still need some kind of uh rules or standards for all those devices to
+14:23
+follow okay if we do not have any rules you can imagine you can imagine if we do
+14:28
+not have any rules then how could those devices understand each other right those are just the devices those they
+14:36
+are not human beings okay they can they cannot understand each other so that's why we also need something called
+14:42
+protocols okay those protocols usually control
+14:48
+um when to do the sending how can we do the sending those kind of things right how can we do the receiving when to do
+14:55
+the receiving so it can chose the sending and receiving of messages okay so for example you can see at least the
+15:02
+protocols here actually uh so this is a combination of
+15:08
+protocols from different layers okay we may basically for each layer we have
+15:15
+some protocols for example as a higher layer AS application layer women talk
+15:22
+about the emails the web services we may for at least for example you may know
+15:27
+HTTP right you heard about this a lot at least you see this in the URL right it's
+15:33
+sometimes you see HTTP sometimes you say https okay that's basically means
+15:40
+um the web service is using HTTP protocol okay of course
+15:48
+um this protocol adds up as application layer when it comes to lower layer you
+15:53
+you may have to use TCP protocol and that's transport layer when it comes to the network layer you may use IP
+16:01
+protocol so later we will learn this is called some this is called for example
+16:07
+we have HTTP here then we have TCP here we may have IP here okay so this thing is called a
+16:16
+protocol stack
+16:23
+okay so this is called a protocol stack and later we are going to spend quite
+16:29
+some time explaining this protocol stack um but for now you only need to know
+16:35
+okay we may use a bunch of protocols in the internet to control uh those DIY
+16:41
+those devices okay um and this Heroes Skype is uh is one uh
+16:49
+propriet protocol and 80211 is actually for wireless network okay for Wi-Fi
+16:57
+um and we may also have some internet standards okay so they are usually
+17:02
+documented in formats such as RFC RFC means request for comments and we may
+17:09
+also have ietf internet engineering task force for for the standards
+17:16
+okay then now let's take uh take a service view we just look at the nard
+17:21
+and nuts and both view which means we are looking at all those components okay now if we change our perspective if we
+17:29
+look at the service View um then basically the internet is uh is
+17:36
+the infrastructure that provides the services two applications okay we know the
+17:44
+internet is run it's uh I mean has a lot of different applications it is for
+17:51
+example we may have a web application uh email application you may play video
+17:57
+games right we may do social you may use social networks like Facebook every day
+18:02
+so then the internet is basically
+18:07
+providing the infrastructure to support those applications okay so you think
+18:14
+about this for example um if you are designing a new application
+18:20
+if one day you say oh I want to design application that can be used for
+18:26
+um for mobile phone okay um then when you design this application
+18:34
+you need to of course do the programming for this application to to implement
+18:39
+some of the functionalities right but when you do the programming for this
+18:45
+application do you need to consider the routers
+18:51
+do need to consider how to do the routine do you need to consider how to achieve
+18:57
+reliable debt transfer so for example if a packet is dropped
+19:02
+what what should you do you need to consider a vote
+19:08
+if you think more if you think more you actually you don't need to right thank you James for the response right so you
+19:16
+don't need to consider those you only need to consider oh I want to realize this functionality I want to have two
+19:25
+clients talking to each other for example okay um but you don't really need to consider
+19:31
+about the routers the switches the protocols of them and how to rely how to
+19:40
+achieve the reliable digital transfer protocol those kind of things so so you only need to focus the real
+19:47
+functionality for your application okay of course you may for example you
+19:53
+may call some apis okay you may call some function calls to use some of the
+20:00
+services provided by the internet for example later when we learned the spoki program assignment you will know
+20:05
+sometimes you need to call um call some functions to do to use TCP
+20:13
+sometimes you may use UDP okay and you don't need to know what the what's your
+20:19
+TCP is what UDP is you don't need to know for now there are just some protocols but what I mean here is uh you
+20:27
+only need to implement the the functionalities of the application you
+20:33
+don't need to implement the functionalities of the internet so internet is basically the
+20:39
+infrastructure that provides the services to support your application
+20:44
+okay this is like when you use Postal Service okay when you want to for example email
+20:51
+uh send a letter or gift to a friend you only need to
+20:58
+um write a letter or prepare a package right and then drop it to the postal
+21:04
+office or you can even have them to pick up okay but do you need to worry how
+21:11
+would this package arrive at New York how would they deliver this package you don't really worry about that right so
+21:18
+uh that is very similar okay so postal service is again also kind of
+21:24
+infrastructure that provides the services to you okay it's like that
+21:30
+um yes that's correct it's like the middleman yeah
+21:36
+um and then what is a protocol okay so we need to look further about
+21:41
+the protocol so for human being uh basically uh we also have our own
+21:47
+protocol for example if you uh have a question about something usually you say
+21:52
+oh you say hi and the other person say Hi and then you say I have a question uh
+21:58
+can you can you please help me answer that then the other person responds so we have some kind of implicit rules that
+22:06
+we follow right uh then it's the same thing for the network the network um because they are they are machine
+22:12
+they are not human so the communication activities have to be defined very
+22:18
+strictly okay otherwise um they are not able to communicate with
+22:25
+each other okay so those uh definition those those activities are actually
+22:31
+defined in the OR defined and manage it in the protocols okay so here you can
+22:37
+see this is a like a definition for protocol protocols Define the format order of
+22:45
+messages sent and received among the network entities and actions taken on message receipt transmission and receipt
+22:51
+okay so this is a very important definition and this may appear on the
+22:57
+test okay so in the midterm or final exam I may give you a test like this asking
+23:04
+what is the definition for protocol okay please pay attention to that
+23:11
+and if you look at this example on the left this is a human protocol the one person
+23:18
+say hi the other person say hi then uh the the female on the left is that got
+23:23
+the time and the other person say yes two o'clock okay uh then in networking is similar okay
+23:32
+it's similar for example here we have a server and a client okay this client may send a TCP
+23:40
+connection request this connection request is like a handshaking kind of thing okay it's like saying hi hi to
+23:48
+each other okay so the client personally say can I connect with you then the
+23:54
+server responds and say yes let's connect so after the connection is established then the client may say can
+24:01
+I get this as you can see this is actually a web page
+24:07
+okay this this can be a web page or maybe a file or whatever so this is URL
+24:12
+so then the server may say yes sure so then this is the file to you
+24:17
+okay so if this is a web page then this file is a web page
+24:23
+okay it's a HTML file then this file can be displayed on the
+24:30
+client as a web page on the client when I see on the client with me I mean the client program which means the Firefox
+24:39
+okay which means the Chrome those are those um web browsers okay so for now
+24:47
+you don't need to understand the details like when I say display this on the client program is that we don't need to
+24:53
+know that I I'll spend quite some time explaining the server
+24:58
+and client uh the client and server model so now we don't need to know you
+25:04
+only need to know oh okay there's two machines are actually communicating each with each other okay so uh one is making
+25:12
+a request the other one is serving uh the the client or the first machine
+25:20
+the next topic we are going to discuss is the network Edge okay
+25:25
+so what is Network Edge Network Edge basically includes those things we see
+25:30
+here the end systems which means n devices the access networks and the links okay
+25:38
+so in the network Edge in the network Edge
+25:44
+we are talking about those machines okay those hosts clients or servers okay
+25:53
+those horse or those devices okay that's the edge and you may ask okay if
+26:01
+that's the edge then what is the core okay so Network core
+26:08
+is purely the routers the interconnected routers okay so as you can see here we
+26:16
+can see this approach
+26:22
+this part is the code okay you can see you only see routers
+26:28
+there that is the core or you can think uh you can also view
+26:34
+for example you can sometimes we also view these ad vouchers they are they are
+26:39
+in the edge okay so we may say okay this car is the code both are fine okay it's
+26:44
+not it's not important so both are fine but at least you know okay this part at least you know this
+26:51
+part is the code okay so there are purely purely ruptures
+26:59
+nothing else nothing else keep this in mind and then the network Edge includes
+27:06
+the remaining things like the horse okay so for example here the mobile
+27:12
+phone is belongs to the edge this computer the PC laptop belongs to the
+27:18
+edge okay so some of you may think how about the servers
+27:23
+okay I know in your mind in your mindset probably service is something huge is a
+27:29
+huge Center kind of thing okay uh and later you will learn actually when we do
+27:35
+our own programming you will learn server maybe certain way to just steal a
+27:41
+piece of code okay it's just a piece of code which sits on the machine
+27:49
+okay then the machine can be a regular machine for example your computer your
+27:55
+PC can can work as a service it's a absolutely fine okay the server doesn't need to be
+28:03
+a huge Center okay but of course sometimes the servers do belong to a huge Center
+28:10
+especially for those huge companies like Google Amazon okay they need to have
+28:16
+their own servers they may have a center to host the service okay but you may get
+28:23
+confused you may think oh does the server belong to the Core or the app what do you think
+28:30
+do you think the servers belong to the ad or the core so that's something you need to pay attention the servers no matter how big
+28:38
+they are okay no matter if they belong to the data center or not they are they
+28:44
+still belong to the edge Network Edge why because no matter how huge they are
+28:50
+they are still Computing devices okay
+28:57
+they are still like computers okay so that's why they still belong to
+29:04
+the network Edge and as we said in the network core the network code contains
+29:11
+only only routers okay only routers nothing else
+29:17
+yes this question are they are the servers just bigger computers
+29:24
+as I said the servers are actually just a piece of code okay this piece of code May sit on a
+29:33
+regular computer like your PC it's okay it's fine your PC can be a server or it
+29:39
+may sit in a much bigger computer with much powerful memory
+29:45
+computing power Etc okay oh it belongs to a data center it's
+29:51
+also fine but anyway it's just a piece of code does this make sense now okay okay good
+29:58
+um so pay attention and this may be a test problem so in the test I may give
+30:03
+you for example a true or false question or just a short answer question I may ask you I may say the servers belong to
+30:11
+the network code you know this is this statement correct actually this is a force okay pay
+30:17
+attention to that and then in the network Edge we may also have access Networks okay so what is accessible
+30:23
+networks Access Network means the network that is used to access
+30:30
+Internet okay so for example here we actually have three types of access
+30:36
+Networks mobile network
+30:41
+okay home network or institutional Network
+30:48
+prayer all belong to access Networks so for example when you are at home you are
+30:54
+using home network that is Access Network can you for example you can see you are using your home network you connect it
+31:00
+to this browser and then when you are at the um
+31:05
+maybe when you are on campus okay when for all when you are you find a job for example you work for a company
+31:12
+then you may use some um institutional Network
+31:17
+okay bigger or Enterprise Network okay so those kind of networks are also one
+31:24
+type of Access Network so your machine is connected to some switches or routers
+31:31
+and then finally connected to the internet okay or if you are driving uh or if you are
+31:38
+in the outside okay then you may use mobile network so mobile network in this case
+31:45
+as I mentioned your machine your device is actually connected to the tower first
+31:51
+sometimes we call this Tower as base station is connected to the space station and
+31:57
+then further connected to this router here and then this router is further
+32:04
+connected to the internet so this is called mobile network and then this is
+32:09
+also one type of Access Network so then um we have explained this how to connect
+32:16
+the end devices to a router we can use
+32:21
+either whole network we call as also as residential Network okay or
+32:27
+institutional Network or mobile Access Network okay so we can use those uh Network to connect to these ad routers
+32:36
+so these are all ad routers okay
+32:43
+this one is also Edgewater and this one is also eye drops so you can see the
+32:48
+edge router is actually used to connect the access network and the internet
+32:55
+core okay the internet code um so you need to keep in mind here uh when
+33:04
+we see Access Network the access network me have different bandwidth okay so
+33:10
+sometimes depends width is higher than you have faster speed if the bandwidth is lower than you have slower speed okay
+33:17
+and also um the link may be shared or maybe
+33:22
+dedicated for now you don't need to know this later we are going to spend quite some time explaining explaining this
+33:29
+okay all right so then let's talk let's
+33:34
+continue to discuss a little bit more about the access network let's think about the exact Network
+33:39
+for the access network uh if we want to build this how would you build this you
+33:45
+think about this I think last time I'm going to the discussion some of you mentioned this uh
+33:52
+mentioned this excellent point so since we already have some kind of structure
+33:58
+there for example we already have telephony Network right so in the in the old days we all have we do not use
+34:05
+mobile phone actually we every every home uh has a telephone at home right so we
+34:11
+have the telephone Network then at the very beginning when people firstly design the internet
+34:17
+um they will think oh okay let's let's directly use the infrastructure from the telephone Network okay that's why as you
+34:25
+can see um at a home okay at home we may have a
+34:31
+telephone we may have a computer okay then you think about this
+34:38
+um the telephone Network the telephone can be connected to the network directly
+34:44
+but the computer cannot why because it is using a different type of
+34:50
+signal which cannot be understand by the telephone Network so that's why we need
+34:57
+some kind of a model in between okay so the functionality of
+35:03
+modem is actually to convert the signal or the digital signal zeros and ones
+35:10
+from the computer into the signals that can be understand by the telephone Network so that is the
+35:18
+function of modem of course it can also do the reverse transform which means when the when the signal comes back
+35:26
+okay then it can also transfer convert the signals from the telephone Network
+35:32
+into the detail signal that can be understand by the computer okay so that
+35:37
+is this one and then you can see there is also splitter the splitter here is to use is used to split the signals into
+35:45
+two parts Y is going to the telephone the other one is going to computer okay
+35:52
+and you can see this is a one home and then we may have the other home a lot of
+35:58
+homes they are actually all connected together uh they are all connected
+36:04
+finally to some kind of central office in this central office we may have DSL
+36:10
+access multiplexer okay and then finally this multiplexer is connected to the
+36:17
+internet to the routers here okay so this is actually the design of
+36:24
+the very old days um internet it is using the digital
+36:32
+subscriber line okay which is a part of the the telephone Network okay
+36:39
+um at that time the speed is actually slow okay it's not very fast because you
+36:46
+think about this the telephone Network for that the speed is really slow okay
+36:52
+any special name for the Upstream transmission rate the Upstream which
+36:58
+means um from home to upload to the internet the speed is usually smaller than 2.5
+37:05
+Mach BPS so Mega BPS BPS means beat pure
+37:11
+seconds okay um and then the uh Downstream
+37:19
+transmission rate which is the downloading speed is usually faster it's smaller than
+37:25
+um 24 megabits per second okay
+37:31
+um so Alex is asking is this multiplexer similar to the one in CPU architecture
+37:39
+um so this multiplexer is uh actually used to
+37:45
+um thank you actually a sign the packets or signals
+37:51
+to different home home networks okay and
+37:57
+later we are going to learn more about this so the multiplexer is like a Friday
+38:02
+for example at home your parents okay make may receive a lot of letters
+38:09
+letters from letters for you and for your siblings okay
+38:15
+um for your browsers sorry brother and sisters Etc and then
+38:21
+your parents need to say hey Alex this is your letter and then uh maybe another
+38:27
+and then say to a sister let me say hey this is your letter so basically assign
+38:32
+the letters to different person that is for multiplexing and later we are going to more learn more about oh this is
+38:38
+called D multiplexing for example uh and then we also have multiplexing okay
+38:44
+multiplexing is like collecting the letters from all of you and then send it to the uh the the postal office it's
+38:52
+like that okay um so here's DSL multiplexer and this
+38:59
+this is actually like assigning the signal to different uh home networks
+39:05
+okay is there any server or Edge components
+39:12
+in the telephony network any server or Edge component this is a great question
+39:18
+so um so here the edge components we also have the computers they are this
+39:23
+belong to the edge it's similar so you can see uh these computers no
+39:28
+matter how it is connected finally it eventually connected to the routers okay
+39:34
+so here the routers are still the core and then we may we have those computer
+39:39
+itself belonging to the edge okay growing to the edge and of course
+39:45
+here when we we are kind of zoomed out and let you see the details for example in the edge you need to you need to have
+39:51
+some kind of modem okay this is actually built upon the DSL and later we will see
+39:57
+if it's built upon the cable it's similar things okay
+40:02
+um and then do we have several of course we have servers okay so for example we
+40:07
+may have Google's computer here Google server here the web server for Google we
+40:15
+may have the web server from CSUS server okay of course these are just web
+40:22
+servers and you may also have email several files server again service a lot of servers okay so they are all
+40:28
+connected in some way to the browsers okay
+40:34
+then this is the DSL and after that we uh after some
+40:40
+development we finally realized that the telephone network is not not fast enough because it's usually it only transfer it
+40:48
+always only uh yes um transfer the digital sorry the the
+40:54
+audio signals right so it's not fast enough and then after we had TVs and
+41:02
+then we know okay the cable network is much more powerful than the telephone Network because in cable network we can
+41:09
+hold videos videos basically contain both images and also the audios right so
+41:17
+a video is basically composed of images and audios
+41:22
+and then we all know the video actually has much bigger capacity right uh I mean
+41:30
+and then the cable network are much faster than the telephone Network that's why eventually uh we decided to switch
+41:38
+our infrastructure from DSL to cable but you can think about this even if you
+41:45
+are using cable still the signal types are different we still need a modem to convert the
+41:54
+signals from computer into the signals that can be accepted by the cable network
+41:59
+okay so that's why you in your lane in your home network I guess most of you
+42:05
+know oh okay we have a router you can probably guess what the router is used for but we also in addition to the round
+42:12
+trip we also need a modem then what is the modem used for right now you know
+42:18
+okay the modem is you basically use the for converting the signals and also we
+42:23
+need a splitter okay the splitter is used to split the signals okay so you
+42:28
+can see this is an example of the home network and all those home networks are
+42:35
+connected to a Mainline this main line is actually finally converted to the
+42:41
+keyboard hadn't um so because here there is actually a problem because there are multiple home
+42:48
+networks connecting to this main line as you can see here then there is a problem the problem is
+42:57
+um how can we accommodate the signals from different home networks
+43:03
+right if they all want to transmit something then how can we allow them to transmit at the
+43:10
+same time then this this is actually uh what we call as a multiple access problem and
+43:17
+later we are going to especially in the link layer we are going to dedicate some time to discuss that the protocols for
+43:24
+multiple access okay for now you uh you only need to know we actually have
+43:29
+different different methods to split the signals or to split
+43:35
+the entire uh bandwidth to different home networks okay
+43:42
+for example here you can see for this cable for this one cable we may have
+43:47
+multiple Channel nodes okay we may have here you can see we have actually nine
+43:53
+channels then the first five the first six channels are for the video
+43:58
+it's for the caliber okay and then we have two signals two channels for the
+44:06
+data and one channel for the control so um then for each Channel you can see
+44:11
+both channels one two six even if they are all for the video but
+44:18
+they still have different frequency right low frequency high frequency so
+44:24
+for this kind of a um method we call this frequency division multiplexing
+44:31
+okay that means the different channels transmit the signals in different
+44:36
+frequency bands okay so then in this way we can tell uh
+44:41
+the we can we can distinguish the signals from different channels okay
+44:47
+any questions so far okay
+44:53
+then um we can use for example we can use for this Main
+44:59
+Line we can use a High Hybrid fiber coax to do that usually pay attention uh the bandwidth
+45:07
+the speed is is actually a symmetric for Downstream transmission rate and
+45:13
+Upstream transmission rate this is actually very very common usually because most of the users are
+45:19
+downloading okay uploading is usually very I would say we have less
+45:24
+opportunity to upload usually so that's why the downloading speed is really much
+45:30
+faster than the uploading speed okay or we can see the downstream transmission rate is much higher than Upstream
+45:39
+transmission rate okay the transmission rate we know it also has a very well known name it's called bandwidth
+45:51
+as I mentioned again see how it might process problem okay what if we have multiple users they
+45:59
+all want to send some signals transmit signal at the same time then they have come some kind of computation to compete
+46:06
+for for this uh available uh bandwidth here in the main line then
+46:12
+this is the multi-process network so we will discuss that later that means
+46:18
+the homes actually share the access network to the cable Head end okay
+46:24
+all right um if we take a closer look at the home network
+46:29
+you can see here is to and from the head end of the central office then we here
+46:37
+we have the cable modem all the DSL modem depending which kind of network
+46:42
+you are using and then we also have the voucher
+46:48
+here the router is usually now the router is actually very Advanced
+46:53
+originally um in the old days the routers are just router they are just responsible for
+46:59
+routine but gradually routers integrated the functionality of firewall also okay
+47:05
+you may ask why how can we integrate firewall why can we increase integrate
+47:10
+the firewind router if you think about firewall firewall is like a filter okay
+47:16
+it allows the traffic uh allows specific traffic to come in
+47:22
+and deny some of the traffic okay so we use basically do some rules to Define
+47:28
+um which traffic can come in which traffic can will be denied so especially if you think about this for example now
+47:37
+if you want to refuse the traffic from a certain IP address then you can say okay
+47:43
+if the source IP address is from this this address a for example then all the
+47:52
+track traffic will be denied that means every time if there is a packet comes in
+47:57
+then we will check the IP address the source IP address for that package if
+48:02
+that packet is from a package is from the address we don't like then we just
+48:08
+deny that package we refuse to pass this to the destination computers
+48:14
+okay so that's how the file will work the reason we can combine firewall and
+48:20
+router is because actually all the traffic needs to go through the
+48:26
+router first and then go to the destination computers that's why we can
+48:32
+actually filter the traffic here at the router okay and that is another thing
+48:37
+that is called Network address translation I don't want to spend more time here discussing that we will also
+48:46
+dedicate some time discuss this but uh just to let you know the router can also
+48:51
+certify that functionality it's basically trans I would say translate the network address from public address
+48:59
+to private address or from private address to public address okay
+49:04
+so those are the solar functions for the router
+49:09
+and then here we also have this this is these are called the wireless access
+49:14
+point okay most of the time you will say oh that's how the router look like yes
+49:21
+that's exactly how the router look like at your home usually actually we combine
+49:27
+this wireless access point with the router okay these two are combined in
+49:33
+one single box that means your router your router also has the wireless access
+49:39
+point that's why you see this device at your home okay and in addition to that you will sometimes if you do not use
+49:46
+wireless you do not use Wi-Fi you can see this computer is using Wi-Fi okay so for the other computers they are
+49:54
+connected to the router directly with the cable okay so then that is called
+50:02
+that is usually called the ethernet The Wider ethernet okay and we may also have
+50:08
+the wife the phones connecting to the uh what is success point
+50:14
+so that is about the home network

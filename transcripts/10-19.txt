@@ -1,0 +1,870 @@
+0:02
+we will continue to discuss the real protocol that we are using in reality
+0:09
+okay the real reliable protocol we are using in reality which is TCP okay
+0:15
+e3.4 we just learned the principle uh principles how would we design those
+0:21
+protocols by in 3.5 we are going to discuss um
+0:27
+the actual protocol we are using in reality okay
+0:33
+so for TCP uh we know this is uh
+0:39
+um a reliable protocol and it will do reliable delivery and the byte stream
+0:46
+will be in order okay we only have one sender and one receiver
+0:52
+okay um and we know we are we will use pipeline because we want to improve the
+0:59
+performance okay the efficiency um but we also do the congression
+1:06
+control and flow control congestion control and flow control are different I have been talking about this for
+1:12
+multiple times so flow control is not to overwhelm the receiver congestion
+1:18
+control is not to overwhelm the public network okay so please remember this
+1:23
+sentence and I will ask you in the text what is the difference between fallow control and congestion control okay
+1:30
+and the TCP is also full duplex the data is the four duplex okay that means um
+1:37
+the data May travel bi-directionally okay from Center to receiver to from receiver to the sender okay and there is
+1:45
+also something called MSS MSS means maximum segment size
+1:52
+okay that means the maximum size for each segment reversion segment is like
+1:59
+the basic units for TCP okay or base unit in the transport layer okay and in
+2:07
+one segment in one segment we may send out multiple bytes
+2:12
+keep this in mind one segment may contain multiple bytes okay or a lot of
+2:18
+bytes um and it's also connection oriented which means uh before we do the data
+2:25
+exchange we will firstly need to do the handshaking which means we say hi hi okay to confirm we are establishing a
+2:32
+connection between the sender and the receiver okay uh and it's also uh as I said it will
+2:39
+also do the flow control okay I have already mentioned this so let's look at the second structure
+2:46
+this is the TCP segment structure do you remember
+3:10
+do you remember I have mentioned this again again okay we have five layers application layer transport layer etc
+3:17
+etc and I'll add the application layer we know the thing we we send out is
+3:22
+called message right and when message comes down to the transport layer usually we will break this into smaller
+3:30
+pieces okay and then we add header onto that message okay
+3:36
+foreign
+3:45
+so this is the transporter layer header and then inside is the message okay it
+3:52
+may be the entire message or just a piece of message okay and then you can
+3:57
+see um what we are talking here
+4:04
+is actually this entire thing this is called a segment
+4:11
+this is a TCP segment okay so what is shown here
+4:16
+is actually this one I'm I'm actually enlarging this entire
+4:22
+segment and show you the structure for this element okay so this thing
+4:34
+is the transporter layer header so what what I have shown here
+4:43
+is the transporter layer header okay
+4:48
+this part is actually the M part it's the message part okay and let's see what is included in a
+4:56
+transport layer header in the transport layer header we have Source port number definition phone
+5:03
+number okay and then we also have the sequence
+5:09
+number okay um after the sequence number the secret
+5:15
+number is basically uh showing like it's like um
+5:20
+because we know this packet this segment is going to is going to send some data
+5:26
+right so the data are in a byte stream okay by to zero byte one by two by three
+5:31
+by the four it's like that okay so then if this data if this piece of data
+5:37
+contains for example byte 8 to byte 11 okay then the sequence number here we
+5:43
+are basically showing you shows you the very first byte number so if this is byte 8 2 byte 11 the sixth number will
+5:50
+be eight okay and then this is the acknowledgment number
+5:56
+okay uh which means uh again if we are ack for example if we are ack uh 11 then
+6:04
+this acknowledgment number will be 11. okay so then after that we will say uh a
+6:12
+field called header length this is the length of the header okay and then there are also some bits u a p r s f okay
+6:20
+these beads are used for establishing the connection finishing the connection
+6:27
+uh for uh um some urgent data okay U is generally
+6:33
+not used is for Urgent data and a is for a c k a number of valid or not so what does
+6:41
+this mean this means if a for example equal to 1 we can say oh this is a AC key packet
+6:48
+okay and we are acknowledge the acknowledgment number in this field is
+6:55
+valid okay if a c k equals to zero if this a equal to zero okay that means oh this is
+7:03
+not for ack okay so the number we have in the AC key acknowledgment number
+7:09
+maybe uh invalid okay you don't need to pay attention to that because this is
+7:14
+not ack okay select that and then P is for pushing data now it's uh generally
+7:21
+not used R is for this R's S and F are for
+7:26
+uh set up a connection okay for synchronize uh or for finishing a
+7:33
+connection and later we are going to use that okay then this receive window this receive
+7:40
+window is for flow control and we are going to learn about this later okay
+7:46
+then after that we have checked some check sum we know this is a four checking errors okay and then this is a
+7:55
+disapp pointer okay urgently important so um after that we will have options okay the
+8:03
+options is optional uh it has a variable lens
+8:08
+okay most of the time it's not used but sometimes it's a
+8:14
+maybe used okay after that then this part as I said is the application layer
+8:20
+data which means it is the message part okay it can be an entire message or a
+8:27
+piece of message if the message is big okay now let's look at the header itself for the header each row is 32 bits
+8:36
+okay each row is 32-bit which means
+8:42
+four bytes okay how many rows do we have for the header we have one two three four five
+8:52
+five rows which means 20 bytes right four bytes each row four
+9:01
+times five equal to 20 so 20 bytes together okay and there is also options
+9:07
+options we may or may not have it so then based on this we know the TCP
+9:12
+header is at least
+9:19
+20 bytes okay TCP header it's at least 20 bytes
+9:25
+so it's actually very long okay later when we learn about UDP in the University UDP header is much shorter than this
+9:32
+okay and now if you if you think about what
+9:37
+we have learned before again we said the transport layer is dealing with processes
+9:44
+now you can think about this why do we say that because the transport layer has
+9:50
+The Source support number and the destination Point number and we know those port numbers are for the processes
+9:57
+right we associate one process with a port number okay so it's like that
+10:05
+um so as I said the secret number so you may
+10:11
+ask what is inside the second number I just explained right but let's look at this picture then you will have a better
+10:16
+understanding okay so in this is like this is like a byte stream
+10:22
+okay this is a byte stream and then um
+10:27
+if if this segment contains as again it contains let's say
+10:33
+byte 8 to 11 okay so then the second number will be eight
+10:39
+okay if we are executing this entire segment okay and then we know this is a
+10:47
+community basically so we may exactly 11 okay then
+10:52
+the acknowledgment number will be the 11 okay so as you can see this will be the
+11:00
+sequence number okay and uh this will be the AC key
+11:06
+number okay so what we are sick and pay attention when we are using ack we are
+11:13
+also uh setting this a bit into zero to indicate this is this AC key number is
+11:21
+valid okay and now let's look at our example here
+11:27
+so before we learned before go backhand for example it's using Community
+11:33
+basically and we know if for example we have one two three four five they are
+11:39
+all received then we can need we can ack fine right so that's what we learned
+11:45
+and TCP if TCP is also using cumulative ack
+11:51
+okay but very interestingly TCP does not do act 5
+11:57
+it will do a66 what does this mean this means
+12:03
+everything up to six up to five is correct and I'm expecting six
+12:11
+okay so instead of basically in the previous month I I just tell the sender what I'm expecting
+12:17
+okay that's how we do ack in TCP it's similar to go back and but a little bit
+12:23
+different just a little bit different okay so you can see
+12:29
+see this okay this is what what explained here so when we do the ack
+12:35
+with the ack the sequence number our next byte respected from the other side
+12:42
+okay so let's look at this example and then you will understand that okay
+12:47
+in this example host a and host B are sending data to each other okay and the
+12:54
+host a the user is typing in a letter say okay and this letter C we know this is a
+13:02
+in a byte stream okay byte history
+13:09
+okay and then um at the sequence number 42
+13:18
+okay it is actually sending a letter c okay and then you can see what what a is
+13:26
+saying is uh I am sending say okay and the second number is 42.
+13:31
+the data is say and the ack number is 79 you mean you may ask how do we get 79 I
+13:39
+mean the at the very beginning A and B they are communicating they will actually negotiate the sequence number
+13:46
+and a second number so this is sequence number and AC key number they are telling each other okay they'll tell
+13:52
+each other what number would be so now host a will directly say I'm inspecting
+13:59
+your um uh your by 79 okay I'm sending you my
+14:06
+buy to 42 but I am expecting your bite 79 what does this mean because this is
+14:11
+the data is is a it's bi-directional so B also has a byte stream
+14:23
+okay and then
+14:30
+okay this is B's side at b side and B is probably also it's just also echoing
+14:38
+what is sent by the a okay so if a centimeter uh C let her say
+14:43
+then and B will also send back a letter C so then this is also literacy
+14:49
+okay of course you can do something else right if you send an essay I'm missing you uh e or F or whatever it doesn't
+14:56
+really matter okay so let's assume B is just acting what is set by a then this C
+15:02
+is actually at b side is actually at byte 79.
+15:07
+okay so the a is telling B hey I'm sending you my C and I'm also expecting
+15:14
+you to um send me your byte 79 okay so then B
+15:20
+receives a c b will send back 79 bytes
+15:25
+okay byte 79 so B will say okay you are
+15:30
+expecting 79 so I'm sending you back 79.
+15:36
+579 that's why the secret number is 79 and the data I'm sending back is
+15:42
+actually C I'm echoing so that's why I say of course you can send it letter e or letter whatever okay
+15:49
+and I'm telling you I'm expecting 40 through
+15:56
+why because you have already sent me 42. so the next bite I know you are going to
+16:04
+have 43 so I'm this this is the way I'm telling you I have received 42 correctly
+16:10
+so I'm expecting 43. so B is expecting 43 and then when a receives
+16:19
+this entire package a will say okay so you are expecting 43 then I'm sending
+16:26
+you back 43. my secret number this time is 43 and I'm a 1680 that means I have
+16:33
+received your last packet correctly I'm now expecting the next byte which is a
+16:40
+580. okay so this is the entire process for
+16:47
+um for the communication between them okay uh so of course the data distance
+16:53
+between each other may be different so for example as the whole side I may send back computer
+16:59
+foreign
+17:05
+okay so this may be 44 45
+17:12
+46 47 48 49 it's like that okay and so B may
+17:20
+be sending back something different it may be sending back uh let's see what what what maybe a CSC
+17:32
+okay now 81 82 is like that so anyway you can see
+17:38
+the data are bi-directional when you send some data out you are telling
+17:44
+others this the white the the byte number
+17:49
+for your data by setting the SQL number so you can see the second number is equal to what okay so if I'm saying six
+17:57
+number equal to 45 that means I'm sending out the P the letter p
+18:03
+from inside okay and then the other side from b side uh I
+18:10
+mean sorry at the same time at the same time a we are also 10 in b
+18:15
+and in the other side what it is expecting I'm sending you data but I'm also telling you what I'm expecting so
+18:21
+the expecting part is put into the ack okay so for example I use ack 1079 to
+18:29
+tell the house B that I'm expecting your bike by 79 sorry
+18:36
+okay so this is a very simple Talent scenario and later we are going to uh learn more
+18:45
+about Community basically and I will give you more examples you will understand it's better okay but for now
+18:50
+you should at least know um how the community basic kids work
+18:56
+so the next thing I want to discuss very quickly is about the road trip time
+19:02
+and last time we we actually we mentioned the round trip time it will be
+19:08
+used to set a timer do you remember we said that when the timer times out we
+19:13
+will do the resending but how long should we set the timer how long should we set that okay
+19:20
+if it's such a cute shot it doesn't make much sense and we will have three more
+19:26
+short timeout do you remember the gift part right I said if you send your friend a gift
+19:33
+um you will wait for his or her feedback for thank you letter right
+19:38
+you made me to four two weeks because two weeks is a reasonable round trip time you see the
+19:45
+gift is traveling to your friend and the latter is traveling from your friend to you right this is called round trip time
+19:51
+but if you say oh after one hour I will send reason it doesn't make sense
+19:57
+because this is premature right and you cannot make this too long because if you if you wait for a year okay you are
+20:04
+risking time right so then usually we need to set this as the
+20:10
+round trip time but the problem is how do we estimate this round trip time we
+20:16
+know the round trip time may be affected by many factors I think you still remember the delays and everything we
+20:21
+learned from the very first chapter right um so then this may vary a lot
+20:29
+the how do we determine the estimated rtt okay so then a way we can do that is
+20:35
+we can use okay that means we measure
+20:41
+um the time from the segment transmission and here of acq received okay and then we matter this time again
+20:49
+again we get a lot of samples and use these samples we can calculate
+20:55
+the estimated rtt how do we calculate that so we use something called uh
+21:02
+exponential weighted moving average okay so this is the formula you can use to
+21:09
+calculate uh the estimated rtt and it's very interesting as you can see the
+21:15
+estimated equals to something times the erst estimated RTP again plus I for
+21:22
+times some party T okay and if you replace this
+21:28
+with this okay that means you are putting the
+21:34
+formula into this ads main rtt again again and again and again okay you can
+21:39
+do this offline and then you will and you will know oh okay eventually
+21:45
+um eventually this sample rtt the the influence for the sample rtt
+21:52
+will decrease exponentially fast because these alphons are all numbers smaller
+21:59
+than one okay so what I'm um what I mean is if this is estimated rtt
+22:06
+okay estimated rtt actually equal to 1 minus Alpha estimated rtt plus sample
+22:15
+are alpha times sample rtt okay this actually equals to if you
+22:22
+replace this one rtt with this entire formula again
+22:28
+okay because we know rtt equal to this entire volumetric so this is a 1 minus
+22:33
+Alpha times y minus r for e r t t
+22:44
+right so this this becomes y minus r for Square
+22:58
+of course I forgot to do here I missed srtt
+23:10
+do you see the point so you can continue you can replace this rtt again and again and again and this rtt is always the
+23:19
+newest rtt and this rtt is the oh the older rtt and it will be older and older
+23:26
+and older and older right so finally as you can say the rtt is the sample
+23:31
+architis the influence of it will we the the influence of Parts sample rtts will
+23:37
+decrease exponentially fast because the rfas rfas are
+23:43
+smaller than the one so that is how you estimate the rtts okay so you can see in
+23:50
+the figure the blue uh the blue ones are the some priorities and the pink ones
+23:56
+are the estimated rtts okay um so just give me one more minute but this
+24:03
+is not enough because as you can see the some particles are actually still even either bigger or smaller than the
+24:09
+estimated rtt right if we do not give it a range we know you will always have a
+24:16
+premature timeout or a too late timeout right so then what we will do is
+24:23
+actually instead of getting giving it just a one pink line we will give it
+24:28
+like a band foreign we need to give it some variation to
+24:35
+cover all the sample artities right or at least most of the sample entities now how do we cover that we add some that uh
+24:43
+variations okay so how do we calculate the these derivations
+24:50
+we use similar things we just um we just calculate the derivations okay
+24:57
+by using the estimated rtt to minus the sum property or some rtt minus that
+25:04
+immunity is the same thing okay and then based on that we we will also
+25:10
+do moving Outreach okay it's the same thing it's just similar to this formula but we replace
+25:17
+the estimated RT with the derivation of rtt okay so then derivation of rtt
+25:23
+equals to 1 minus beta times derivation rtt plus beta times this is also the
+25:29
+region of rtt actually this is also deway okay but it's a sample
+25:37
+sample of derivation quantity because you can see this is sample rtt minus the
+25:43
+estimated rtt okay and similar similar ways we can calculate the derivation of
+25:49
+rtt then the real-time interval is actually estimate estimated rtt plus 4
+25:56
+times derivation of rtt then now we give it a safety margin so it all the data
+26:02
+all the sample Rarities are covered within this band okay not just one line okay so that is
+26:11
+how we do the rtt and now you have a sense of how to send the timer so this
+26:17
+part um for the calculation part you don't need to remember how we do the
+26:23
+exponential weighted moving average that we are not up here on the test but you
+26:28
+need to know like the the basic principle of how to set the timer so the
+26:34
+next thing we are going to discuss is the reliability transfer in TCP um we discussed this relative transfer
+26:42
+in 3.4 but that is just about the principles uh we want to do this from
+26:48
+scratch so it's uh it's like the basis for TCP and then for TCP the real
+26:54
+reliability transfer is based on those principles okay let's look at that
+27:00
+um so basically TCP creates the reliability transfer service on top of the network
+27:07
+layers and reliable service okay um and TCP will do pipeline segments do
+27:13
+you still remember pipeline basically means um instead of sending just one packet at
+27:20
+one time we send up a number of packets together and then we wait for
+27:25
+the sdks right so TCP is also using the cumulative AC case
+27:31
+um and it also has a timer for the oldest and executed package okay
+27:38
+so the Transmissions may be triggered by time out events when the timer times out
+27:45
+we do real transmission for this part I think you are very familiar right um but the retransmissions may also be
+27:51
+triggered by duplicated sdks do remember why we mentioned long time ago we
+27:57
+mentioned the apple or an example right so we said instead I was saying
+28:03
+um the current packet is not good we will keep seeing the last packet the
+28:09
+last package received okay is good right so that means when we receive duplicate
+28:15
+sdks we may have errors or uh errors in
+28:22
+the current packet okay um so then in this case we have to do real transmission so pay attention to
+28:29
+this the real transmission may be triggered by two things either timer expires or duplicate sdks
+28:36
+okay um now let's consider a simplified TCP sender we ignore the duplicated case and
+28:43
+we ignore the flow control and congestion control okay let's see what kind of events can happen
+28:50
+at the center side okay so basically first the data will be
+28:56
+received from the application layer we know application layer may have a message
+29:03
+and this message is sent to the transport leader then we need to add some headers we learned this right
+29:12
+okay um so basically this message is like a
+29:18
+byte stream okay it contains by a number of bytes okay
+29:24
+um so then what we do at the transporter layer is we need to create segments with sequence number okay we basically break
+29:31
+this message into smaller segments okay and then we add hazards to that to those
+29:38
+smaller pieces for this entire thing we call it a segment
+29:43
+okay and each segment has a number okay has a sequence number
+29:50
+uh so the how do we give the secret number do we do one zero one two three four no the sequence number is actually
+29:57
+the byte stream number of the First Data byte in segment
+30:02
+so this is very important for example if we have a message like this
+30:25
+so now we may have a message that has 101 bytes okay so we break it into three
+30:32
+pieces the first piece the second piece the third piece okay in the first piece
+30:38
+it's from five zero to by 24. the second piece is from by 25 to byte 27 and the
+30:45
+third piece is from 28 to 100 okay so now the sequence number for the first
+30:52
+piece for the first segment is actually zero the sixth number for the second one
+30:57
+is 25 and the secret number for 31 is 28. that's how we give the sequence
+31:03
+number okay um it's not from zero one two three is not like that okay
+31:10
+um and at the center side the center will also start timer if not already running
+31:18
+um the timer is usually for the oldest and exec kit segment and when the time
+31:24
+expires um we need to do resending okay so when will these three timer expire the time
+31:32
+of the interval is this number timeout interval this is what we learned before right so we we basically
+31:40
+we learned how to set this timeout intro okay
+31:45
+so um these are the like preparation
+31:51
+um and uh when they
+31:56
+when they um sender receive AC Keys okay if this ack acknowledged previously and
+32:04
+execute assignments okay uh then um the center will update what is known
+32:10
+to be execated for example if we say we received ack for this first segment then
+32:17
+the center will update this okay um and if there is there are still an
+32:23
+executed segments then the sender will start the timer for the uh any secret
+32:28
+segments okay so those are the events that may happen at the center side
+32:34
+uh now let's look at an example of the re-transmission okay so firstly we have host a and host
+32:42
+B okay and host a send out uh segment so the sixth number for this
+32:50
+segment is 92. it contains eight bytes of data so that means it's a
+33:00
+it contains basically
+33:13
+okay it contains 92 to 99 this is a advice of data okay
+33:20
+then when the host B my husband receives this packet receive this segment host B
+33:26
+will ack do remember what we learned before about TCP AC kits
+33:34
+do you remember this part in this part okay basically when we do ack we will we
+33:43
+will see what we are expecting okay for example here ack 79 basically me
+33:49
+basically means I'm inspecting your byte 79 so everything before 79 is correct
+33:57
+now I'm expecting 79 okay similar here ack 43 means I have received everything
+34:04
+before 43 and now I'm expecting 43. it's like that so
+34:11
+um so basically when we do the acknowledgment we acknowledge the sequence number our next byte expected
+34:18
+from the other side so then now let's come back to this example again
+34:24
+apparently host B has received 92 to 99. and then hospital is now expecting
+34:32
+the byte 100 that means ack equals to 100 that's why this number is 100 okay
+34:41
+but unfortunately this uh ack is uh got lost if this is lost we know there is a
+34:50
+timer for host a right type the timer is for
+34:55
+this segment so when the timer expires then this host will resend
+35:04
+this entire segment from 92 to 99 and this time uh has to be still ack 100
+35:11
+okay of course at the the at Host B it may have received the duplicate package
+35:17
+duplicate segments right um but uh because it has a secret number
+35:23
+of 92 so possibly can directly discard the second the second one okay so this
+35:29
+is the scenario of a lost ack if we look at the scenario of premature timeout
+35:35
+okay we help host a and hospital again
+35:40
+um so host a sent out two packets okay firstly from 92 to 999 this is the
+35:49
+first segment the second segment is from 100
+35:57
+to 199 or 1 18 sorry okay so the first one
+36:03
+has eight bytes of data the second segment has 20 bytes of data now we know
+36:10
+host B when it receives the first piece it will AC key 100 that means I have
+36:15
+received everything before 100 I'm expecting 100. so husband wait to
+36:21
+receive the second piece okay it will AC key 120 because everything before 120
+36:28
+has been received correctly so now we are expecting um the byte 120 okay
+36:37
+so if the sender didn't set up the timer correctly
+36:45
+okay then we may have premature time up that means before these AC Keys arrive
+36:51
+at the center side okay the sender will think oh this
+36:57
+package got lost so the sender will directly do the resend once the time
+37:02
+expires okay um so that's why you can see this one is
+37:10
+recenter Gap okay this one is recent again um of course in um and based on what we
+37:19
+learned before here when we do the resending we've actually resent uh all
+37:24
+the packets after that okay that means we also send out sequence
+37:30
+number equals 100. okay but you must see something very interesting
+37:36
+at this point okay at this point we know when we do ack
+37:42
+originally we should do acq 100 right because it's this this segment is from 92 to 99
+37:50
+so we are expecting 100 so we should ack 100. but you can see the receiver
+37:56
+actually ack to 120. okay 120 why because we know this is
+38:06
+cumulative basically okay the receiver will directly say oh I have received
+38:12
+everything before 120 so you don't need to resend me the
+38:19
+I wrote 20. okay so that's that's something very interesting and you need to pay
+38:25
+attention to this this can be uh can become a trap sometimes okay and this
+38:31
+may appear on the test I may give you some like um uh fails for you to fill in okay so
+38:39
+you should know uh um how to ack each packet okay
+38:46
+um and this the third third scenario is also talking about cumulative ack and as
+38:53
+you can see we have six number 92 it buys data and a second number 125 data
+38:59
+then for the first piece you can see it's ack 100 and this second piece is executing 120
+39:07
+okay so although AC key 100 is lost it doesn't really matter at the center
+39:13
+side okay the center will directly say oh okay um
+39:18
+we received ack 120 that means the receiver is actually expecting 120 that
+39:25
+means everything before 120 is correct so the sender doesn't need to resend
+39:30
+this packet again okay no need to resend this one it will directly send
+39:37
+um uh send uh the secret number 120 the new
+39:42
+package okay the new segment uh so in this case as you as you can see although
+39:47
+some AC Keys get lost okay as long as the last AC key with the biggest number
+39:53
+is uh received correctly then uh the sender will simply send the new segments
+40:00
+okay so now let's look at the event at the receiver side
+40:05
+okay at the receiver side um and the recent recite when the receiver
+40:12
+re received in order segments with expected sequence number okay
+40:20
+that means all the data up to the expected signal number um
+40:25
+uh need to be execated right and um oh sorry they are already execute
+40:31
+okay so for example now let's see if we have we just now is We Set uh 92
+40:40
+to 99
+40:49
+okay so this is the example we just used in this slide right so the first segment
+40:55
+is from 92 to 99 the second segment is from 100 to 120 okay so the sixth number
+41:04
+equals to 92
+41:14
+okay so now let's assume everything before 92
+41:19
+is correct is received correctly and now we receive the sequence the the packet
+41:25
+92. okay we receive 92 and what should we do should we directly AC key 100
+41:34
+we if we educate 100 that means we are actually executing uh this uh first
+41:41
+segment right but usually we do not do that okay usually the receiver side will
+41:47
+not do that directly because we know in reality networking the data is sending
+41:53
+in a super fast speed okay it is very likely that there may be a next segment
+42:00
+coming in okay then in this case to improve the efficiency usually in the first when we
+42:08
+received the 92 we will delay this ack we do not directly ack 100 we will wait
+42:15
+for some time up to 500 Ms for the next
+42:21
+segment okay if there's no next segment coming in then
+42:28
+with the ack 100. okay which means it's telling the other
+42:33
+part oh everything before 100 is correct we are actually executing this one
+42:39
+okay okay basically in this first segment uh but if there is another segment
+42:47
+coming in if if this sequence number 100 is coming in this segment coming again then in this case
+42:55
+um we will actually execute them together okay
+43:00
+does this make sense so basically when we uh have
+43:06
+see all the segment coming in okay uh if this is this is the only segment that
+43:13
+need to be execute usually we will wait for some time and see if we have another segment coming in okay if no then
+43:20
+reversion ack okay but if for example if this the second one comes in
+43:26
+okay and the first one is also is already waiting for ack
+43:32
+okay it needs to be execated then in this case we just combined it to and send one single Community ack together
+43:40
+so this is the second situation actually okay
+43:45
+um the third situation is if we are we we receive out order segment higher than
+43:51
+expected secret number for example if we we are actually expecting 92 but now we
+43:57
+received 100. okay then in this case we will immediately send a duplicate ack
+44:05
+indicating the sequence number of the next expected byte okay so in this case
+44:11
+for example if we are expecting 92 but we receive 100 then we will ack 92 okay
+44:19
+ack 92 instead of AC King 100 okay um
+44:25
+so if in the last case if the arrival segments
+44:31
+um partially or completely fills the Gap then in this case we will immediately
+44:37
+send the ack okay uh provided that the statement starts at the lower end of the
+44:43
+Gap it feels some Gap okay then we will execute that so those are all the
+44:48
+actions that will be taken at the receiver side so another mechanism we are going uh we
+44:55
+are going to talk about is called uh TCP faster transmit this is very important
+45:00
+okay we know real transmission can happen in two cases one is time out the
+45:07
+second one is duplicate AC Keys okay um timeout sometimes is not very
+45:14
+efficient you think about this okay because we may receive AC Keys super
+45:19
+fast okay but you have to read for a very long time uh tweet for this timer
+45:26
+expire okay in this case you are you simply wasting the time okay uh but
+45:33
+sometimes we we can we can immediately tell there's something wrong with the package because you can receive some
+45:40
+duplicate AC Keys super fast right so then in this case if we can detect the
+45:48
+loss segments why duplicate sdks okay in this case the
+45:53
+sender does not need to wait for the timer to expire okay the sender can
+45:59
+immediately do the resend okay do the real transmission okay
+46:05
+as I said here the center often often sends many segments back to back okay if
+46:13
+segment is lost there will likely be many duplicate sicks okay like like
+46:19
+um let's see we do not have a good example here but
+46:26
+um as we said if something is wrong with the current package we may keep uh ack
+46:32
+in the last one right the last one received okay so if you receive many duplicates sdks that already indicates
+46:39
+something is wrong with the current segment okay then in this case you don't
+46:45
+need to wait for the timer to expire you can immediately do the resend okay this
+46:51
+is called faster transmit okay so for Fastenal transmit uh if the sender
+46:58
+receives three AC keys for the same data then it will resend the NAC kids segment
+47:06
+with the smallest sequence number okay
+47:12
+um so please keep this in mind in the test I may ask you what is the connection for
+47:19
+TCP real transmission okay so you know the condition is is
+47:25
+that the sender receives three acks for the same data or the sender received
+47:31
+through duplicate sdks okay then in this case we will do the root transmission
+47:36
+you don't need a with one timer okay so as you can see here this is a example
+47:43
+uh in this example uh we are sending this many packets out okay
+47:50
+and unfortunately the second one is lost Secrets number 100 is lost
+47:56
+and then we know Husby went to receive the first piece it will ack 100.
+48:02
+when it receives the third piece the second piece is not received so it has no reaction
+48:08
+went to receive the third piece it will again ack 100 because there is a gap
+48:14
+okay because the sequence number 100 is not received yet so no matter how many packets must be
+48:21
+receives afterwards it will keep continue keep uh keep AC
+48:26
+King 100. okay in this case at the center side you can see
+48:32
+um it receives duplicate AC keys okay so uh then in this case the sender don't
+48:41
+need to wait for the timer because it it did probably a long timer okay and this
+48:47
+AC case can happen really fast okay and then it will directly do the resending
+48:53
+of the second segment okay so this is the example
+48:59
+so the next thing we are

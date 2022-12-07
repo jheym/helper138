@@ -1,0 +1,860 @@
+0:00
+next thing we want to discuss is what is inside a router okay for the router we want to look at
+0:08
+the architecture basically we use the launcher every day basically the router has two main
+0:14
+functions we have to ask you this question again so these two functions actually are implemented by different
+0:23
+components in the router for example we need to have a routine processor to run
+0:29
+the login and then we need to have a switching fabric to do the forwarding
+0:35
+okay so the switching fabric is for forwarding the package from the input
+0:42
+post to the outputs okay if we look at the input parts so here we
+0:49
+we basically take one of this and we zoom in to look at uh the inside of the
+0:56
+input Parts okay and this is the this is the launcher we have the switching Fabric and now uh you can look at the
+1:04
+import for the input Port firstly this one is the line termination this is the
+1:11
+physical layer okay in this layer um we will receive the beat level we
+1:18
+will receive the basically the binary the base okay and then uh we will come
+1:25
+to the link layer protocol so basically for example we have ethernet implemented
+1:31
+in this layer and then um we will come to
+1:37
+um the network layer okay in this layer we will do uh the forward table lookup
+1:43
+for example we will say oh for this destination address it should be forwarded to a certain output link okay
+1:51
+and we will also do queuing here do you remember the QE we said in the router the input Port the
+1:58
+router may have some buffers to carry the packets right so if the buffer is
+2:03
+full we may have a package drop right so this this is the one of the buffers okay
+2:11
+so basically um those packets will be cured here
+2:17
+um and then this package will be sent to the switching fabric for forwarding okay
+2:24
+so there are many different types of switching fabric for example memory type
+2:32
+bus type and crossbar type okay so the first switching fabric basically will
+2:38
+transfer the package from input buffer to appropriate output buffer
+2:44
+um and there is a read to measure the speed of the switching fabric it's
+2:49
+called switching Ridge so this is the rich at which packets can be transferred from the inputs to the
+2:56
+output okay so this is often mirrored as multiple of
+3:03
+input output line rate so for example each one has a line rate and then if we
+3:09
+have three that's three times this okay so it's measured in that way um
+3:15
+ideally ideally we hope the switching rich is the number of inputs times the
+3:23
+line rate okay so for the three types of switching fabric let's look at each one the first
+3:29
+type is called memory type okay and memory type you can see it goes through
+3:35
+a memory okay so generally this is the input port
+3:41
+okay the input port then a packet needs to be forwarded to
+3:46
+the memory first okay and then the memory will deal with
+3:53
+that we'll do some calculations or forward uh lookup and then forward it to
+3:58
+the output Port okay um this is actually
+4:04
+um this is a this type of router is very limited in terms of speed
+4:10
+Okay the reason is because the speed is limited by the memory bandwidth because
+4:16
+as you can see it has to go into the memory and then come out the memory okay
+4:21
+so that's why the memory is bandwidth is very important to this type of Roger uh
+4:28
+this kind is called first generation routers it's usually very slow okay
+4:35
+so the second type of routers uh using a bus as the switching fabric
+4:42
+um bus basically means um the data will come out from one port and
+4:52
+go through the bus to the output directly okay but there is a problem because if
+5:01
+in memory we can still for example hold multiple packets in the memory and then
+5:06
+send it out okay but in bus you can see there is no memory kind of thing to or
+5:13
+buffer kind of thing to hold those packets okay so then plus is uh is used
+5:19
+to directly connect the input port to the output then the problem is we may have best
+5:26
+contention okay bus contention basically means um for example if two even input Parts
+5:34
+they both among two forward package to some Outpost okay then they have to
+5:40
+compete for this band for this bus okay um so then in this case the switching Fab
+5:48
+switching speed is actually limited by the bus benefits okay
+5:54
+uh this is my second type um then gradually people began to design
+6:00
+people began to think oh if one bus is a me generate the bus contention problem
+6:07
+how about we create a uh interconnected bus okay or we could create something
+6:14
+called a crossbar okay as you can see in the figure here this is also called banging at work or
+6:21
+crossbar or some or sometimes we call them International interconnection Nets
+6:28
+okay so then basically in this case Okay in this case we have input pause output
+6:35
+pause okay but they are connected in this uh interconnected way okay then if
+6:42
+we have a datagram okay so that if we have for
+6:47
+datagram from multiple parts from multiple Parts okay so then they
+6:53
+can or they can be forwarded to the output without interving each other
+6:58
+okay because there are multiple routes to choose from okay and even more
+7:04
+interesting or more advanced design is that if we have one big datagram okay in
+7:11
+order to make the speed faster we can actually break this uh uh big datagram
+7:18
+into smaller pieces we call this as fragmentation or fragmenting okay and
+7:24
+then um send those smaller pieces in parallel to
+7:29
+the outputs okay and this can make the speed even faster that is the most advanced version okay
+7:38
+uh and then now let's look let's look at the um Outpost
+7:44
+so for option Parts um you can see it is actually the
+7:49
+opposite uh this this is the three boxes are ordered in opposite uh order as the
+7:56
+input policy input Port we know we have the green box which is physical here and
+8:02
+then we have the link layer then we have the uh Network layer okay this is the input
+8:10
+parts then we go to switching fabric then for the outer parts you can see its firstly
+8:16
+firstly data comes from the network layer and here we also have a buffer
+8:22
+okay and then we have a link layer okay
+8:27
+then it becomes zeros and ones to be sent out so this is the output okay
+8:35
+um the buffering is also required within datagrams arrived from the fabric faster
+8:41
+than the transmission rate we know it takes time to push the data out
+8:46
+okay um then if the incoming speed is very fast then we have to buffer the data
+8:52
+here in the output Port buffer okay
+8:57
+so and very interestingly here we need to have some kind of scheduling
+9:04
+um to choose among the cute diagrams for transmission okay because there are so
+9:10
+many um this grants killed here which one should we send out first
+9:18
+okay so there are different ways for the scheduling we will look at that uh later
+9:24
+okay so first let's look at the output Port queuing okay so you can say uh this
+9:32
+is the structure of the entire round term and this is the switching fabric the left part are the um the input post
+9:40
+right right part of the output because okay
+9:45
+um so you can see when these two arrives they all want to be forwarded to the to
+9:52
+this one and as you can see um as you can see this one can be forwarded
+10:00
+to here okay and this blue one can be forwarded
+10:05
+to here okay then we this one
+10:11
+will need to be forwarded to here okay then these ones are all cute here
+10:18
+so that later we can see this one and the red one will also be put into the
+10:25
+input parts waiting to be forwarded to the output box okay so this is a
+10:32
+um you can see the queuing okay those are cute here
+10:38
+um so you may ask how much buffer do we need for the output
+10:43
+okay so the rule rule of thumb is that the average buffer is equal to the
+10:51
+typical rtt times the link capacity okay this is uh roughly how you can
+10:58
+calculate the size of the buffer for example if you have a
+11:04
+10 Giga BPS link okay and we know the rtt is 250 M second
+11:12
+in this case we assume it's 250 M seconds then the buffer size need to be
+11:19
+2.5 gigabits okay so that is the buffer uh
+11:26
+of course if you want to do a more accurate calculation the recent
+11:32
+recommendation is if we have NFL then the buffer should be equal to this one okay this is a
+11:40
+calculated this can be used to calculate the buffer okay so this is I think this
+11:46
+is provided um like uh Federal experience experiments
+11:53
+okay and there are uh another another concept
+11:59
+you need to know here is called the head of line blocking
+12:04
+head of line blocking is like for example when you are driving okay when
+12:09
+you are driving um if you just want to turn right okay
+12:15
+but someone before you is trying to go straight
+12:20
+okay and even if you can turn right but because the the the car before you is
+12:27
+waiting for the green light so you cannot turn right you have to wait until the car before you left
+12:33
+okay uh that's what it's called the head of line blocking it's the same thing for example here we have this one and this
+12:41
+one they all want to be forwarded to this output okay
+12:46
+then we know um let me know the priority is given to
+12:53
+this one okay came into this red this one will have to wait okay this one doesn't need
+13:00
+to wait the blue one can directly go to here okay uh because this red one is
+13:06
+waiting to be sent to this output Port then the green one is actually blocked
+13:12
+there okay so this is the head of line blocking
+13:18
+all right um so as we said because all those
+13:23
+packets are buffered there in the queue in output
+13:29
+like this okay so then we have to have some kind of a schedule scheduling
+13:35
+algorithm to choose the next package to send on the link okay uh very simple way
+13:41
+is we do first in first out first thing first out basically means the packets
+13:47
+are running first will be sent out first okay it's very easy um so and we also need to think about
+13:55
+the discard policy because sometimes the package may arrive at a four Q then in
+14:00
+this case who to discard okay there are three different ways
+14:05
+about discarding so one way is okay we just do teardrop teardrop means we drop
+14:12
+the a driving package the new coming one okay second type is called priority drop that
+14:18
+means we can drop or remove uh based on the priority we can drop some low
+14:24
+priority One For example even if this packet is already killed there but this is not very important then we can drop
+14:31
+it and then um to to give some space to the new new
+14:37
+coming packets okay and we can do also random job okay so
+14:43
+those are three ways to discard a package um a second type of scheduling is called
+14:50
+priority scheduling this means we always we kept two we kept two queues one is
+14:57
+the high priority of Q another one is the low priority queue so when pack is arrives we need to uh assign them to
+15:05
+different cues based on them their priority and then we will always give
+15:10
+priority to the high priority queue okay so for example um if we have one coming in okay this is
+15:18
+high priority so we will do one first then we while we are working on one two
+15:23
+and three comes in okay then in this case three will be put into the higher
+15:30
+priority Q2 is put into the low priority queue so we will do three next and then
+15:37
+after three is down we do two okay if we have more Pocket Casts coming in let's
+15:43
+say four arrives when they are working on two okay then of course we will work
+15:48
+on four and when five lies then we work on five it's like that so we always give
+15:54
+priority to the high priority queue okay
+16:00
+but this actually creates a problem the problem is um is that we may have starvation for
+16:08
+the low priority queue okay uh so for example if we always have some some
+16:15
+packets in high priority queue then those packets will always be sent out first then the package in the low
+16:22
+priority Cube will never get the opportunity to be sent out okay so that
+16:27
+is the problem for this kind of priority scheduling then how can we address that problem
+16:33
+okay another kind of uh schedule is called
+16:39
+the round robin scheduling one Robin basically means we have multiple classes okay but we can
+16:45
+cite cyclically scan all the class cues and at least give the opportunity to
+16:52
+every class okay so we send one complete package from each class
+16:58
+so for example um we here you can see we have one two
+17:04
+three of Rhymes okay we do one first then we give opportunity to the next class although we have both two and
+17:10
+three but we have already Works worked on the red class so that's why we will work on the green class
+17:17
+then we do red Class 2 okay because we have no green now then we will do four
+17:25
+directly which is a red class okay so if I were arrives then I'm going to do five it's like that so in this case it's like
+17:31
+taking turns for every class we take turns every time we just give opportunity to one of the package in uh
+17:39
+one class okay in this case we do not have a starvation problem but the the
+17:44
+thing is also we do not have any priority right we do not have priority
+17:50
+to the red Plus either so that is the problem then some of you
+17:57
+may think how can we give or how can we give priority to the red glass to the
+18:05
+high priority class but also give some opportunity a little bit opportunity to
+18:10
+the low priority class how can we do that so this is a very interesting thing
+18:16
+actually what we can do is called red weighted Fair queuing okay or it's
+18:23
+actually generalized around robbing so we can referral killing means
+18:29
+we we still class them to different classes and if one class is more has more
+18:36
+priority then we give it more weight okay if one class has a low priority
+18:43
+then we give it last week in this way okay we can always
+18:48
+give priority to the high priority queues but we also give opportunity to
+18:53
+the low priority queues okay so this one is like uh we have W1 W2 W3 for each
+19:01
+class okay and then if W1 is let's say uh 10 this is a five let's say it's two
+19:09
+then this means every time we we send out 10 packets from the red class then
+19:14
+we send we can do five packets at most for green class then do two packets and
+19:21
+also for the blue class so that is the uh scheduling problem we will continue
+19:26
+to discuss 4.4 the Internet Protocol Okay Internet Protocol is a very
+19:32
+important part uh in networking so I hope you pay attention to this part okay
+19:41
+um personally let's look at the layers again we learned application layer
+19:46
+transport layer Network learning clear physical layer Etc okay so what we are
+19:51
+discussing now is actually the network layer so in network layer there are different protocols okay uh firstly we
+20:00
+know IP protocol okay IP protocol basically uh deals with
+20:06
+the addressing conventions the datagram format the packet handling conventions
+20:12
+Etc and then we also have the routine protocols the routing Protocols are
+20:18
+basically defining the routing algorithms right and not just the
+20:23
+logarithm actually how we for example select a path okay how we combine
+20:29
+different type of routing algorithms um when should we pay attention to the
+20:36
+performance of the Volcan algorithm where should we pay attention to the policy issues ETC so those things are
+20:41
+all defined in the routing protocols and then we also have the
+20:47
+um forwarding table forward symbol is actually generated by running the working algorithm
+20:53
+for icmp protocol this is uh mainly for
+20:58
+error reporting and router signaling so it's more like control okay control about the
+21:05
+um networking okay so let's firstly look at the IP data format
+21:12
+um we have learned we have learned the different formats like how uh the application layer message right and then
+21:20
+we learned the transport layer segment format okay do you remember if we are
+21:25
+using TCP then um the header is about more than 20
+21:31
+bytes okay the and then it has the payload so in the header we know it has
+21:36
+the source port number destination port number okay so let's maybe quickly read
+21:42
+this again we have several layers
+21:48
+application layer transport layer Network layer okay so at
+21:56
+application here we have a message and then we know when it comes to transport layer we need to add the transport layer
+22:04
+header into this message right to this message and in the transport layer header we know it has the
+22:11
+port numbers okay Source Point number that's the import number and then when this comes to a layer below
+22:20
+the network layer we need to have not so this is called a segment right
+22:27
+this is a segment then when we add a header to the segment we need to add Network layer header so then this
+22:34
+segment now is called the data graph okay this is this thing at the network layer is called Data graph and for this
+22:41
+datagram okay for this tablegram basically
+22:48
+um this is a header okay this is a actually this part
+22:53
+okay and then the payload as you can see
+22:58
+is this part okay so the payload is actually the TCP
+23:04
+or UDP segment pay attention to this okay it contains
+23:10
+not only the message itself okay it also contains the header for the transport
+23:15
+layer no matter is TCP or UDP okay so uh that's the payload and then let's now
+23:22
+look at the Hydra part the network clear header what do we have okay firstly we have the warrior number which number
+23:29
+here means ipv version 4 or version six uh later we will learn the difference
+23:34
+between the two versions okay and then we have header lens
+23:39
+header lens basically means the the number of bytes in the header okay so
+23:47
+the number of bytes in the header may vary because of the option part okay sometimes we may have uh options
+23:55
+sometimes we may not okay so that's why the header length may vary and then this is the type of service
+24:02
+which means what type of data it is then this is uh um a time to leave time claim
+24:08
+I think you are very familiar already right we said this is TTL
+24:14
+okay time to link TTL and TTL is very important this means the maximum number
+24:20
+of remaining hops if TTL equals to 2 this means the packet can travel at most
+24:27
+two more steps two more hops okay one hop is a a router right so then this
+24:35
+number will be decreed decreased at each router okay so
+24:42
+decremented at each router so for example if TTL equal to 2 when it comes
+24:47
+to a router then we will do -1 okay so here becomes one and then when it comes
+24:53
+to another router we'll do here minus one again so one minus one equal to zero we know at this time we have to drop
+24:59
+this packet okay and then um this field is the upper layer
+25:06
+protocol arpelier protocol basically means um
+25:11
+uh is this TCP or UDP so what are our player protocol okay
+25:19
+um and then this field is the length the total datagram length in bytes okay it's
+25:25
+different from the header length because the header length is only about the header but this length is about the
+25:31
+entire datagram after that we will say the 16-bit identifier the flags the and the
+25:39
+fragment offset these three fields are used for fragmentation and resembling
+25:45
+you don't need to understand it now later we will describe how we can use
+25:50
+these three bits for a through field for fragmentation
+25:56
+then you can see we also have um the header checksum okay and then we
+26:03
+also have the source and decision IP addresses okay and for source and
+26:08
+decision IP addresses now because we are using ipv4 with the source ID and
+26:14
+destination IP are all 32 bits they are both 32 bits okay and
+26:21
+pay attention again as we said okay we will use the 32-bit Source IP and
+26:28
+Destiny ip2 especially the destination IP to do the robot key okay to find out
+26:35
+the host okay the host uh which package we should deliver which host we should
+26:40
+deliver this package to okay so that is the function of IP address but uh if we want to find out a
+26:49
+specific process in the host then we have to look at the transport layer
+26:55
+header which is actually within the data okay which is actually within data
+27:01
+so that is how it works um and then in the auction part we may
+27:06
+have some more information like the timestamp um the record route taken and we may
+27:12
+also uh we may also specify the list of routers to visit okay so one thing you
+27:19
+need to know is we want to calculate how many bytes do we have in the header
+27:26
+if you look at again each row is 32 bits
+27:31
+each row is 32 bits okay 32 bits is four bytes right so eight uh B is probably so
+27:37
+four bytes and then we have five rows four times five equals to uh 20 bytes
+27:43
+right so it's 20 bytes of IP and you can see uh I didn't come to the
+27:49
+option part of course you can count the option part right if we count options then we know it's a 20 plus 20 plus
+27:57
+bytes for IP header for Network layer header and we know for T if we are using
+28:03
+TCP okay TCP has 20 bytes of a header okay so then in total you can see
+28:10
+um the header overhead the header overhead is 20 plus 20 uh equal to 40
+28:16
+bytes okay 40 bytes or even more than 40 bytes so that is uh the overhead any questions
+28:23
+so far okay
+28:30
+so the next thing I want to talk about is the IP fragmentation part
+28:35
+um so why do we do fragmentation firstly
+28:40
+the network links have MTU MTU is is the full name is called
+28:46
+maximum transfer size which is the largest possible link level frame
+28:53
+for different networks they have different network links they have different mtus
+28:59
+so for example you can think about uh for fiber we may have one mtu4 Wi-Fi we
+29:07
+may have different MTU so different links have different capacities and and
+29:12
+the capabilities that's why they have different mtus
+29:17
+um it's like it's like um when we drive on the road we may have a very wide Road
+29:25
+or very wide road that can accommodate maybe big cars trucks okay and we may
+29:33
+also have very narrow roads that can only accommodate very small cars
+29:39
+okay so it's like that similarly for Network links they have
+29:44
+different mtus then in this case we may have a very large IEP datagram
+29:50
+arriving at a link but this the size of this datagram already
+29:58
+exceeds the maximum transfer size of this link in this case what can we do we
+30:05
+have to divide the large IP datagram into smaller pieces for this we call it
+30:11
+as fragmentation okay that means one datagram becomes several
+30:17
+datagram several smaller datagram is like that we have one big datagram
+30:22
+and we break it into several smaller pieces this is called fragmentation
+30:28
+then these pieces May travel on their own finally when they arrive at the
+30:35
+destination we need to do assembly with us reassemble sorry we need to do
+30:41
+reassemble reassembling okay we need to reassemble those smaller pieces into one
+30:48
+big this graph one largest ground okay so then you can see the IP headers
+30:55
+are used to identify and order the related fragments
+31:01
+and we learned before here we said these three fails the 16-bit
+31:07
+identifier the flags and also the fragmentation fragment offset these
+31:13
+third fails will be used for fragmentation Now Let's do let's see how we can do a
+31:20
+fragmentation okay this is an example in this example we have a package the packet length is
+31:28
+400. so now what you are looking at is actually a datagram
+31:35
+okay this is the datagram the datagram has different fields do you remember lens right identifier
+31:44
+Flags offset so we also have this Here length identifier Flex offset
+31:53
+okay so now we want to break or break this big datagram into smaller pieces
+32:01
+let's assume the original originally this package has a length of four
+32:06
+thousand but MTU the maximum transfer size is
+32:12
+only 15 00 bytes okay so that means
+32:25
+this is a 4 000 byte packet okay and now we know pay attention
+32:34
+pay special attention women need to break this okay that means we need to
+32:40
+break this 4 000 package into 1500 pieces okay but there is one thing you need to
+32:47
+pay attention the first 20 bytes
+32:54
+are for the header do we need to break the header when we break the big datagram into smaller
+33:01
+datagrams we do not break the header okay it's like for example when you when you drive
+33:08
+a big car a big truck you come to a very narrow road you
+33:14
+cannot pass so then you can bring in several smaller trucks
+33:19
+in this case you only need to load the stuff on the big truck onto the smaller
+33:25
+trucks do you need to also load the truck itself you do not okay you do not
+33:31
+load the truss truck itself um and then what we can do is okay the
+33:39
+header we do not break okay so the next we only need to break the
+33:46
+remaining 39 80 bytes
+33:51
+and you also need to pay attention when you break them into smaller pieces
+33:57
+for the small truck of smaller datagram it also has a header so although in
+34:06
+total the maximum transfer size is 1500 but it
+34:12
+also use 20 bytes for the header so the remaining
+34:18
+1480 bytes can be used for data okay so
+34:23
+that's why when you do the braking you can say okay I need to break this into 1
+34:30
+480. and another one for 18. how many do we have now so 2 9 16 right 2 9 60.
+34:40
+so we still have one thousand 120
+34:48
+bytes remaining is this correct
+34:53
+okay so this is how we break it into smaller pieces then what we can do is we
+34:59
+put this one this into um datagram number one okay and then we can
+35:07
+also put it into
+35:14
+this gram number two okay and then this round number three will be put into this one
+35:29
+does this make sense so this is how you do the fragmentation you basically put the data into
+35:37
+different smaller datagrams and again pay attention each datagram has 20 bytes
+35:43
+for header in the test many students made a mistake at this point
+35:49
+okay so now let's fill in the
+35:56
+data or the the data for these fields in smaller datagrams so for the number one
+36:03
+this is for number one for number one datagram the total length you can see is
+36:09
+1500. okay the ID number
+36:15
+the ID number will inherit the same we will inherit the big
+36:21
+datagrams ID it's very easy so frag flag this is a very special bit
+36:30
+this Beast is used to note to indicate if this small datagram is the last
+36:40
+uh fragment fragment or not because we know one big datagram may be broken into
+36:47
+many smaller pieces and when the receiver receives these smaller pieces the receiver need to reassemble them but
+36:55
+how do the how does the receiver know which one which piece is the last piece
+37:01
+so that it can do the reassemble right so that and the basically one of the
+37:09
+fields that the receiver can look at is the frag flag so if this front flag
+37:14
+equals one this means this is not the last piece we have more fragments coming
+37:20
+in if it equal to zero this means this is already the last piece there are no
+37:27
+other um smaller pieces coming in so you can do
+37:32
+the reassemble now it's like that okay so
+37:37
+and the last one is the offset the last field is offset the offset basically
+37:43
+means the position of this uh
+37:50
+small datagram in the large datagram for example
+37:56
+we know here the first the number one the number one
+38:01
+piece actually starts from here okay and this is the very beginning of the data
+38:08
+so that's why the offset is zero and this one we know it starts at byte 1 480.
+38:18
+okay so by 21480 uh is the position of
+38:24
+the second the number two datagram okay so then
+38:30
+1480
+38:35
+1480 divided by eight is 185
+38:41
+you may ask why do we divide it by eight um we use H as uh eight bytes eight
+38:49
+bytes as a unit okay eight bytes as you need to calculate the offset so that's
+38:55
+why it's so 1480 divided by eight and then this number
+39:06
+this position we know it is actually 1 480 plus 1 for
+39:12
+80. is 2 9 60. so 2960 divided by 8 it is a 370.
+39:23
+okay so that's how we calculated offset and you can see for diagram number two
+39:30
+and number three for number two the length is 1500 again
+39:35
+the ID is of also X the front flag is still one because this
+39:41
+is not the last piece and the offset we just mentioned how to calculate that the length for number three is very
+39:47
+interesting the net for number three is a you need to pay attention again this is
+39:53
+a length of the entire packet so it should include both the header and the data so
+40:00
+it's 20 plus 1020 equals to 1040. many
+40:05
+students made a mistake here in the test some of them forgot to add the 20 bytes
+40:12
+of a header okay they put 1020 here and
+40:18
+ID is also X frag flag is zero this means it is the
+40:25
+last fragment so you can do uh reassemble once you receive this one
+40:31
+um and then this is uh the entire example any questions
+40:36
+some of you are asking why do we need the offset to be divided by eight right
+40:42
+so the reason is because the offs the for the offset this field of the field
+40:51
+has 13 beats that means you can have at most 2 to 13
+40:58
+units or this number can be at most 2 to 13. okay
+41:04
+but the datagram itself can be much bigger than that okay much bigger than
+41:10
+that the date the diagram itself is a the total length can be
+41:19
+65
+41:24
+1536 that is actually equaling into uh this is this actually equals to
+41:32
+8192 this is 81.92 Plus 8. okay so if
+41:38
+you say okay if we want to we I want to denote every every byte
+41:45
+then we have this this offset number has to be this big okay if we want to denote every byte the
+41:53
+Precision the relative position from 0 to 66 65 536 this this offset number has to be
+42:01
+that big but apparently the offset number can be only 13 bit it can be at
+42:07
+most this big so that's why we cannot denote every bite we can only denote every eight
+42:16
+bytes okay we denote every it by so this is eight eight
+42:22
+so we divide this entire diagram into eight bytes per unit and then we can say okay this
+42:30
+is a zero this is a one this is two this is three it's like that so in total you
+42:38
+can have this number is one probably 8191
+42:45
+and then in total we have this many units each unit is advice then we can
+42:53
+denote the entire lithograph this makes sense to you
+42:58
+okay so that's why I mean you do not need to understand the details of this
+43:04
+okay you don't need to do this no need you don't need to know this you only
+43:09
+need to know the units of data is 8 byte in the
+43:14
+fragment in the fragment so that's why when we calculate the offset we need the
+43:19
+byte number the position of the byte number to be divided by eight okay that's
+43:27
+that's all you don't need to know that much details okay so then now let's look at this question for this question the
+43:35
+length and total length is uh one thousand
+43:41
+okay and among this 1000 we know the header is 20. so the remaining
+43:48
+980 of the data and when we do the fragmentation we know we only need to
+43:55
+divide the data for the for the fragmentation number one we know we we
+44:00
+need to divide this into the total is 40
+44:06
+420 420 so 20 bytes over
+44:11
+header and 400 bytes of data so 400 bytes of data okay and then we for the
+44:18
+number two is the same so 20 header
+44:23
+400 bytes of data again 400 so how many is left one thousand minus 800 200 200
+44:32
+minus twenty we have one 180 left so the number three will pack it will look like
+44:39
+this 20 bytes or header and 180 bytes of
+44:44
+data so this is in total 42 400 420 this
+44:49
+is a 200 so those are the lens those are how we calculate the lens so then for
+44:55
+number one we know okay the length is a
+45:02
+420 ID equal to X okay
+45:07
+frag flag we know this is not the last one so this
+45:14
+should be one offset is easy through the beer
+45:19
+this is at zero right so pi to zero we do not Hydra we only count the data so
+45:25
+the relative position for for number one is actually zero for number two we know
+45:32
+here it should be 400 for number three this relative
+45:38
+position from the start is a 0 to 800.
+45:43
+okay so this is 800. that's how we calculate the offset we then we not use
+45:49
+this number to divide eight okay so then for then for packing number two we know
+45:55
+the length is also 420 ID is equals equal to X
+46:03
+frag flag equal to 1
+46:09
+offset equals to what 400 yes 400 divided by 8 equal to 50.
+46:19
+okay for number three we know the length pay attention the length here you should
+46:25
+include the header not just 180 it's actually two hundred ID equals to X
+46:32
+flag flag equal to what it should be zero okay and offset equals
+46:39
+to 800 800 divided eight equal to 100 okay
+46:44
+so that's how you do the calculation all right so that is about the
+46:50
+fragmentation

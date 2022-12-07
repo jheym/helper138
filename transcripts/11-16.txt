@@ -1,0 +1,694 @@
+0:06
+for this chapter we will mainly discuss the the second lowest layer link layer
+0:12
+so we will try to understand the error detection correction at link layer we
+0:19
+will try to understand the multiple access uh indicator because multiple access is a is a very important problem
+0:26
+in nuclear okay we will also talk about the ad addressing for link layer
+0:31
+we also talk about the ethernet and vlans okay so those are all the things
+0:37
+we will discuss um the need for the link virtualization
+0:42
+this part we will not discuss okay this product we will skip um and this part the the data center
+0:51
+networking is 5.6 is it's a very quick thing so we can finish it very soon uh
+0:57
+5.7 is very important this video has this chapter this section basically summarize what we have learned from the
+1:04
+very beginning of this semester okay it's basically uh provides our overview
+1:10
+of all the layers tuning clear okay so using one scenario and then we want to
+1:16
+uh I really want you to understand this part okay so now let's first we look at the link
+1:23
+layer terminologies at link layer for the hosts and launchers we call them as
+1:29
+nodes okay the communication channels that connect the adjacent nodes along the
+1:35
+communication path we call them as links you are already very familiar with those right we have wider links Wireless links
+1:43
+and we may have the lines connecting uh the different devices right for the
+1:50
+layer 2 packet okay layer 2 packet we call it as a frame
+1:55
+okay if you recall what we have learned from the previous layer the application layer we call it a
+2:03
+message and then transport layer we call it a segment okay
+2:08
+um the network layer we call it a datagram link layer we call it a frame okay this Frame encapsulates the network
+2:16
+layer of this ground so basically um if you remember what we have learned
+2:23
+before okay so then a message is encapsulated
+2:32
+with a transport layer header when it comes to the network layer
+2:41
+we are adding Network layer header we call this as a datagram right
+2:46
+so this entire thing is called d this enticing is called segments okay
+3:03
+and then now we are adding one more layer one more header to the datagram
+3:10
+okay we call this as a frame
+3:15
+okay so and pay attention some of you may ask what is the difference between link layer and the network layer
+3:22
+pay attention Network layer is dealing with um the network
+3:28
+um so how I should say for example we are dealing with the source and the destination and we are I think we are
+3:35
+discussing what is the best path to reach a destination from The Source okay
+3:41
+so that we may choose different paths between the source and destination
+3:46
+link layer is different link layer do not care about the path the the shortest
+3:53
+path or whatever okay uh it has the responsibility of transferring the datagram from one node to the physically
+4:02
+adjacent node over a link that means it doesn't care about the path okay it only
+4:10
+cares about the neighbors so I only deal with how I can deliver this packet to my
+4:16
+neighbors to my physically additionals I do not care what is the shortest path what is the the best least cost path
+4:24
+okay so that is the major difference between uh the network layer and the
+4:30
+link layer okay um
+4:35
+so the datagram transferred by different links um different link types may use
+4:42
+different type of protocols okay for example the ethernet if you're we are using a wider links we we should use
+4:49
+ethernet as the protocol okay and then if we are using Wi-Fi we
+4:55
+may follow the 880211 protocol okay so then you can see
+5:02
+um on the same path from the social definition we may use different link
+5:07
+layer protocols determined depending on what kind of links are used
+5:13
+on that path okay and each link protocol provides different services
+5:19
+okay so if we use the transportation analogy if we are considering a trip
+5:24
+from Princeton to lazane uh then we may take for example limo from Princeton to
+5:31
+JFK okay to to the airport and from airport to to another location we may
+5:38
+use an airplane and from the other location to the nation when we was trained so then you can see we can take
+5:45
+different matters different uh travel or I should
+5:51
+say um Transportation modes okay so then in
+5:57
+this analogy the tourist is a datagram okay we have different com communication
+6:04
+links okay then the transport segment like from Princeton to JFK is one
+6:09
+segment different Transportation transport segments are different communication links then the
+6:16
+transportation Transportation mode is basically the link layer protocol okay
+6:21
+we for example we may take bus we may take a plane we may take three they are like different link layer protocols and
+6:29
+then the travel agent is actually the right calcium the routing
+6:35
+algorithm is telling you what is the least cost path okay what is the best
+6:42
+part but regarding one kind of uh Transportation method you are using it
+6:49
+is determined by the link layer okay so then now let's look at the link layer
+6:57
+surface Services okay for link layer basically what we do is uh as as I said
+7:03
+before we encapsulate the datagram into frame okay we add the link layer header
+7:10
+and trailer okay then we also need to deal with the channel access if this is
+7:17
+shared media so you think about this for example if you are using Wi-Fi okay then when we
+7:23
+have multiple devices sharing the same Wi-Fi okay we are sharing the air
+7:29
+basically then in this case we may have competitions between those devices they
+7:34
+may all want to send something okay but then how can we control the access problem okay who which one can access uh
+7:43
+the channel okay so that is uh that is uh diode
+7:49
+um by the link layer and then the Mac addresses a MAC address is used in frame
+7:56
+headers uh to identifying the source and destination address this is different
+8:01
+from the IP address okay so I think you have already heard about
+8:07
+Mac address and we will learn more about this okay um
+8:12
+and we also need to think about the reliable delivery between adjacent nodes we have learned something about this in
+8:20
+the transport layer but um we also need to consider this in the
+8:25
+link layer okay so unique layer if you are using for example some
+8:30
+um low bit error link then you don't need to consider a lot about the reliability especially if you are using
+8:37
+fiber for example we know fiber has very low bit error rate okay but if you are
+8:45
+using like Wireless links this has a this type of links has a very high error
+8:52
+reads then in this case we need to really consider how to ensure both the
+8:58
+link level reliability and the end to end reliability so you may think what are the difference
+9:04
+between link level reliability and end-to-end reliability so link level basically means we want to
+9:10
+collect correct errors as soon as possible okay so for example from one node to the neighbor
+9:17
+okay we want to know the error and correct it as soon as possible if you if
+9:23
+we do only end to end reliability then that means from source to the destination okay then this is a long way
+9:31
+from source to the destination in this case when we find the error it may be
+9:36
+too late already okay we have to go back to the source again to to send the feedback and so we maybe do resending
+9:44
+Etc so it's not as efficient as the link level reliability okay
+9:49
+that's the major difference um for link layer okay link layer may
+9:56
+also do the I mean the services we expect is it may also do flow control
+10:02
+which means the pacing between adjacent sending and receiving notes we don't want to overwhelm the receiving notes
+10:09
+okay and we may also want to do the error detection so the arrows may be caused by the
+10:16
+signal attenuation or Some Noise Okay the receiver can detect the presence of
+10:23
+errors and then provided feedback to the sender for real transformation or simply drop the frame
+10:30
+okay so some of the receivers can also do error correction okay which means we can
+10:38
+directly detect the errors and crack the bit errors on our own then in this case
+10:43
+we don't need to border the sender okay and um the communication can be half
+10:49
+duplexed or full duplex so with half duplex the nodes at both
+10:54
+ends of Link can transmit but not at the same time okay
+11:00
+so you may ask where is the link layer implemented it is actually implemented
+11:06
+in each and every host in something called the Nick card
+11:12
+okay or we call it the network adapter or network interface card
+11:19
+okay um so so for example the computers will
+11:25
+know it may have the ethernet card 80211 card okay so those those cards are
+11:32
+used the network adapter card are used to implement the link layer okay so this
+11:38
+is a this card is usually attached to the host the system to the computer
+11:43
+system bus okay it is actually a combination of the
+11:49
+hardware software and also the firmware as you can see here is the bus okay and then we have a CPU connected to
+11:57
+it and the memory connect to the bus also this uh network adapter card
+12:02
+connected to that okay and you can see uh for CPU it's it is uh
+12:10
+it involves several layers application layer to link layer and then the network
+12:16
+adapter card or the new card is only dealing with the physical layer and the link layer okay
+12:24
+so at the standing side and there's a new side when we receive a datagram from
+12:29
+the CPU okay from upper layer then we encapsulate this datagram in a frame
+12:37
+something called frame okay we also add the arrow checking bees okay the rdt the
+12:45
+flow control Etc and then this this gram is sent to the receiving host which is usually the
+12:52
+neighbor okay the receiving house will look for errors do rdt
+12:59
+um which is reliability transfer okay um and uh then extract the datagram and
+13:06
+pass this datagram to the up layer at the receiving side so you can see this diagram is finally
+13:12
+passed it to the app layer for uh more um actions okay so this is a uh the link
+13:21
+layer the basics for link layer and 5.2 is about error detection and
+13:28
+correction as I mentioned uh error detection and correction is a very important part in nuclear actually
+13:34
+so for Arrow detection and correction we usually have some beats in the frame
+13:44
+okay for those pieces we call them as Ed saybs keep this in mind
+13:50
+EDC bits okay those adcbs are usually attached to
+13:57
+the datagram for error detection and correction okay
+14:02
+so for example here we have the data we have a datagram
+14:08
+okay and we have the data which is represented with d
+14:14
+and then EDC the error detection and the correction bits are attached
+14:20
+to the data okay then this entire thing is sent
+14:26
+through a bit Arrow prone link then later when the receiver side
+14:32
+received this okay it will have the D Prime and EDC Prime
+14:38
+so then it will use the EDC bits to check if all the bits in the D
+14:46
+Prime is okay if it is okay no arrows are detected
+14:52
+then this datagram will be passed to up layer but if this is not okay if we
+14:58
+detect some errors then we will take some other action for example we may notify the sender to resend it again or
+15:06
+we may drop the frame okay so let's now look at a very simple
+15:13
+example this very simple example is uh the single bit parity okay so character
+15:21
+checking is actually very easy way to do the error attacking and the detection
+15:26
+although it's not very reliable but still it's one way okay so now you can
+15:31
+see we have data this is a the D part
+15:41
+and this is the EDC part okay we can do for example all the bits old parity
+15:48
+checking or even purchase hacking okay so if we do all the party checking
+15:54
+okay uh we can say okay the number of ones should be an odd number
+16:01
+of ones should be old number you can count for example one two three four
+16:07
+five six seven eight nine okay this is uh odd number nine is odd
+16:14
+number then in this case we do we for the bit party uh bit or the EDC bit we put zero
+16:23
+now the total number of ones is 9 is old number
+16:29
+okay so if we are doing even project checking then we will need to make the
+16:35
+number of ones a even number so if we are doing the same data
+16:41
+this is odd if the same data
+16:47
+then here the party beat should be one okay to make the number of ones as even
+16:55
+number okay then for single bit part checking we can detect the arrows very easily so
+17:03
+for example if one day you you notice this number one is chained to zero okay
+17:08
+if you count number ones it is a eight number one is it is a even number
+17:15
+then you can easily tell oh there is error in the data because the number of ones is an even number
+17:22
+what we are doing now is actually odd part checking okay we are looking at the
+17:27
+old parachute you know the even parallel checking this is how you can detect the errors but sometimes this single bit
+17:34
+part checking may not work because what especially if you have two
+17:41
+or all number or even number of bits flipping at the same time for example if
+17:47
+you have this one flipped to zero and also this one click
+17:52
+to zero Okay then if you count the number ones now it's seven seven is an odd number so
+18:00
+it is uh uh you may think oh there's no error but actually we have two bits of
+18:06
+error okay that is the problem um
+18:12
+and you can also do a two-dimensional error two-dimensional bit priority
+18:18
+checking so if you do two dimensional basically you are you are doing the
+18:24
+price checking in both the rows and the columns for example now
+18:29
+you can say we are doing this is doing actually even project checking okay so
+18:34
+you can say uh this this is the data one zero one zero one is the data they are
+18:40
+all this data okay and then if you count number of ones for each row you have one
+18:46
+two three four so if fortunate for data you have only one two three ones this is
+18:51
+all the number so that's why we put one here and this is one two three four so we
+18:57
+have four ones so we put zero here and you have one two three this is uh
+19:04
+uh all number again so you put one here so if you look at each column
+19:10
+each column the one two okay or the uh even number we put zero one two we put
+19:16
+zero one two three odd number we put one to make it even and one two zero okay one two uh sorry
+19:27
+one so we add one to make it even so this is how we uh do the beat party
+19:34
+uh in two-dimensional okay we put the data into rows and then we do the price
+19:41
+checking for each for all the rows and the uh columns okay if we have something
+19:46
+wrong okay so for example if this is this bit flipped to zero then you can easily
+19:53
+detect the error because when you count the numbers you can see one two three four this is fine even one two three
+20:00
+this column has a problem because this is odd okay and then one two three four
+20:06
+sorry this row has a problem okay this row has no problem one two three four is
+20:12
+even this row is fine then we look at each columns so one two even is fine one
+20:18
+this is uh not even this is odd so we see this column has a problem
+20:24
+and then one two three four even one two even one two even okay so finally then
+20:30
+you can see oh we are able to find out the beat the arrow bit okay so we know
+20:36
+this error this bit has Arrow why because it this speed should belong to this row
+20:42
+and this column then now we can do error correction directly we can change this 0 to 1. This
+20:50
+Is How We Do Arrow correction okay um of course again this may not be
+20:56
+reliable especially when you have more piece flipping at the same time okay
+21:03
+then you may not be able to detect arrows and crack the errors no matter single pair checking or two-dimensional
+21:10
+preparing checking they they both have problems
+21:15
+um the problem is that when we have multiple multiple bits flipping at the same time then uh the bit parent
+21:23
+checking may not work very well okay and they may not be reliable for single
+21:29
+apparently single people chain for example if you have two bits or four bits or eight or any even number of
+21:36
+Beats sleeping at the same time then you cannot detect the errors right uh
+21:43
+similar for a two-dimensional beat party checking for two-dimensional B parachuting sometimes you if you have to
+21:49
+be sleeping at the same time then uh you cannot detect errors for that
+21:57
+specific column or specific row okay so before we have also learned another
+22:04
+different way of error checking I think you still remember it's called checksum
+22:09
+right so the goal of checksum is also to tell the errors in the transmitted
+22:15
+packet um so checksum is usually used at the
+22:20
+transport layer okay basically the center will change the segment contents
+22:26
+as a sequence of 16 beat integers then we check that we add
+22:32
+those um 16-bit integers together to calculate
+22:38
+to check them and then sender will put this checksum value into a checksum field the receiver will when the
+22:46
+receiver received the checks and the receiver will basically um check and we'll do the same same
+22:53
+computation following the way that Sandra has used Okay then if
+22:59
+um receiver can get the same results we said no error okay if if
+23:04
+um the there are some differences between the checksum from sender and the
+23:11
+checksum calculated by the receiver then we say oh there is a error detected okay
+23:17
+so that is the checksum and then for a link layer okay for link layer
+23:25
+a more powerful way to do error detection is using the psycholic
+23:32
+redundancy checking so this is more much much more reliable than the one we
+23:40
+learned before the beat parity checking okay um so generally if you look at the uh
+23:47
+CDC okay cyclic through dentist check it's the same thing we still firstly we
+23:53
+need to have data okay and then we need to have the um
+23:59
+aerobics so here data you can see uh it's it's it is represented with d okay
+24:05
+uh we so for example we may have DB so small D small D beats of data to be sent
+24:12
+okay and then uh for the CRC bits okay
+24:18
+it is uh represented with the capital r so the CRC bits are the cyclic redness
+24:25
+check Beats okay so you may have a small arbits of crcps okay so anyway you can
+24:33
+see it's still composed of both data and the EDC bits okay do you still remember
+24:40
+the error so here you can see uh this is like the general principle for error
+24:46
+detection right for Arrow detection we firstly we have the data and then we
+24:51
+have the error detection and correction bits EDC bits okay then this this entire
+24:59
+thing will be sent through the bit error prone link we get D Prime and EDC Prime then we
+25:05
+have some way to verify if the data is fine or not okay
+25:11
+so then in Heritage hacking um method the part the the adcbs are
+25:18
+just the disparity bits so very easy then for the cyclic redundance check
+25:25
+method the EDC beats are those CRC bits those Capital R's okay
+25:33
+so now we we can view the data
+25:38
+we can view the database d as a binary number okay
+25:44
+um then you may ask how can we choose the crcps how can we determine these RC bits okay
+25:52
+so let's look at this we need to before
+25:57
+we need to determine the r capital we need to firstly choose something called
+26:03
+generator G okay this G is is more R plus one bit
+26:11
+okay that means if your error checking and detection Beats
+26:17
+has small RBS then the generator has one more bit
+26:22
+so if this is more or equal to third then the generator has four bits okay so
+26:28
+what is this generator used for this generator is shared by the sender
+26:34
+and the receiver okay so basically the center will choose
+26:40
+um small r small rcrc bits okay and then determine this is a Big R
+26:49
+use that to determine the uh Big R okay so sorry basically sorry again so um
+26:57
+basically the sender and the receiver will use this G to calculate this R okay
+27:05
+their relationship is that g has one more bit than the Big R
+27:12
+okay so now the goal for the CRC is that
+27:17
+we need to choose our small r CBS which we need to choose a
+27:24
+Big R okay so that this entire thing this data
+27:31
+Plus this Big R can be divided by Big G
+27:40
+okay so it's it's a how should I say it's a actually it's a um very
+27:46
+straightforward thing okay generally what we need to do is we need to choose a generator G this generator is shared
+27:55
+by the sender and the receiver at the same time okay so the sender will use this J
+28:03
+generator to determine these are
+28:08
+okay and make sure this entire thing
+28:14
+is divided by can be divided by generator
+28:20
+okay and it has a no remainder okay then when the sender then then the
+28:27
+sender will send this entire thing D plus r to the receiver when the receiver
+28:35
+receives this entire packet the receiver will verify by doing this entire thing
+28:43
+divided by the generator because we I just told you the generator is shared by
+28:48
+the Central and receiver right so receiver also know the generator then the receiver will
+28:54
+use this entire thing to divide by the generator if there is no remainder
+29:00
+okay if there is no remainder or at the remainder sorry I should say the remainder is zero okay then that means
+29:09
+no error is detected but if the remainder is not zero then we
+29:15
+say the error is directed or detected okay so this is the CRC algorithm
+29:23
+um then how can we how can we represent this entire thing okay so in binary in
+29:31
+binary if you want to represent this entire thing what you need to do is D
+29:37
+times 2 because this is binary so D times 2 2 R because we have RBS xor is
+29:46
+like the plus okay it's like e um in
+29:51
+decimals like plus so because we learned we learned
+29:56
+um for example 0xor 0 equals to
+30:01
+uh zero one xor one equal to zero right
+30:10
+so uh zero X over one equal to one
+30:19
+One X over zero equals to one so you can see
+30:25
+um it's like decimal plus okay it's like decimal Plus in in binary so for example
+30:31
+in decimal we can say
+30:48
+so this number this number in this entire number this entire number we call
+30:53
+it 68 543 right so now if we represent this if
+31:00
+this is a two bits this is three bits
+31:08
+okay so what we can do is we can use if we want to represent this number we
+31:14
+can use 685 times 10 to
+31:20
+2 Okay Plus 43.
+31:25
+okay 685 times 10 to 2 plus 43. then we can
+31:32
+represent this entire number with a formula like this okay so it's
+31:37
+this is the same thing in binary we can use this
+31:42
+d times 2 2R okay here if R equals 2 this is 2 to 2
+31:49
+if r equal to 3 is 2 to 3. xor the
+31:54
+uh the r okay so this is the mathematical formula then as we said as we said our goal is
+32:03
+that this entire thing this entire thing can be divided by a
+32:10
+generator J okay so we want this entire thing
+32:17
+to be divided by a generator J okay so it's a n times J
+32:26
+then this is equivalent to D times 2 to r equal to n g x o r r so
+32:36
+basically we can remove we can move this to the right
+32:41
+okay so that's because we know for xor is where X has a very interesting
+32:46
+feature that is foreign
+33:10
+okay so that's why we can do we can do um the second formula here
+33:17
+okay but basically move the x or R to the right and this second formula is
+33:23
+also equivalent two this
+33:30
+okay that means if we if that means we can do white
+33:36
+this D times 2 to R by G
+33:42
+okay and then the remainder is r
+33:48
+okay then the remainder is R so you may also why do you do this because you think about this our goal our goal is to
+33:56
+make this entire thing can be divided by J okay so our goal is that we want to
+34:03
+choose a Big R we want to choose the EDC bits or crcps
+34:10
+so that this entire d and r package can be divided by the generator
+34:18
+J okay so then how can we calculate this r we can calculate this R use this method
+34:26
+okay use this formula D times 2 to r divided by G and we get the remainder
+34:33
+okay so for example let's look at the example on the right now we have data one zero
+34:40
+one one one zero this is the data and we know
+34:48
+R equals to thirds more r equal to third that means here
+34:53
+here we have three bits and the arrow bits okay Arrow checking and detection bits
+34:58
+we have three bits so now what we do is we use d
+35:05
+times 2 to R okay that's basically means okay we use D and we add three zeros
+35:12
+that is two to R right then this entire thing is divided by G
+35:19
+okay this J here the J is chosen randomly by the center and receiver
+35:25
+okay so then we use this entire thing to divide by J and then when we get the
+35:31
+remainder the remainder is R okay so how do we do calculation in binary we'll do
+35:37
+the calculation like this so we we get one and one we get one zero
+35:43
+zero one here we do the xor okay binary so One X over one is zero One X or a
+35:51
+zero equal to one so we have one zero one and then we have the zero falling
+35:56
+down okay um
+36:03
+let's see yeah one oh wait for story We unfortunately have one following though we personally have one following down
+36:10
+and then we do zero here we have zero zero zero okay
+36:15
+then now we do X or again at Y X or a zero equal to one
+36:21
+one x o r zero equal to one that's zero X or zero equal to zero okay then this
+36:30
+zero now can fall fall down okay then we do we can do one
+36:35
+so then we have one zero zero one now we do X over again
+36:41
+you can see Zero X over one is one One X or zero is one then we have one one and
+36:49
+then zero following down so we continue until we finish the division now we get
+36:56
+X we can we get this zero one one so then these three bits
+37:02
+are the Arby's okay are the arrow detection and checking bits okay
+37:09
+so that basically means
+37:15
+originally for the data the data is this
+37:24
+one zero one one one
+37:29
+zero okay this is the data and then we need to calculate the r how
+37:36
+do we calculate that we use D times 2 to R okay divided by the generator J the
+37:44
+generator is a real generator is used to generate the remainder so then we get the remainder of 0 1 1
+37:52
+okay then this is a remainder 0 1 1 is the r then now the center will Ascend this
+37:59
+entire thing to the receiver the receiver will use one zero one one one zero zero one one
+38:06
+to divide to be divided by the generator J one zero zero one
+38:12
+if there is no remainder no error if there is a remainder zero a non-zero
+38:18
+remainder then we see there is error okay so that is how CRC is used I know
+38:24
+it's a bit uh complicated um so if you do not understand how this is
+38:32
+calculated it's totally fine but I want you to understand how this R is is
+38:40
+calculated okay so I want you to understand the left part the right part
+38:46
+is fine okay any questions

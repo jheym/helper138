@@ -1,0 +1,610 @@
+0:04 
+all right so that is all I want to talk about the principles of cryptography
+0:11
+then let's let's look at the Authentication let's see how authentication can be done
+0:17
+using the foundation of cryptography so authentication basically means Bob
+0:26
+wants edits to prove her identity to him so the protocol number one
+0:34
+is addicts can simply say hey I'm Alice
+0:39
+but can you trust Alice can you trust her do we have any finished scenarios of
+0:46
+course because Trudy can also see I man is how can you prove that right in real
+0:52
+world we can see the faces but in the cyber world in a network
+0:59
+Bob cannot really see Alice so Trudy can simply declare herself to be Alice okay
+1:07
+or even a dog a cat can declare to be Alice
+1:15
+so let's try again how about Ellie say hey I'm Alice
+1:22
+in IP packet and also attend her Source IP address
+1:29
+into this package then you may think oh that is better right because
+1:36
+Alice has already appended the IP address but if you recall what we have learned
+1:43
+in chapter one it's actually very easy to do spoofy IP spoofy Trudy can also
+1:50
+attach Alice's IP address and claim she's Alice
+1:56
+right so does protocol 2.0 work no it
+2:01
+doesn't work so then how about
+2:08
+Ellie says I am Alice and then also send her
+2:15
+secret password to prove it so this password is is a secret and we assume
+2:22
+truly does not know this password is this better
+2:27
+hmm let's think about this actually truly
+2:34
+can capture the message between Alice
+2:39
+and above how can Trudy do that if you think about the pack is sniffing
+2:47
+we learned about tech snipping before example you can do this using Wireshark
+2:52
+right then in this case Trudy can hear the communication between Alice and above
+2:59
+then Trudy can simply do a playback attack which means it's
+3:08
+captured the traffic between Alex and a bob and then same plane replay
+3:16
+and this is a message to Bob okay nothing is changed so still and his
+3:21
+IP address still and his password still seeing I'm at least okay then probably gonna say oh okay
+3:28
+this is Alice so this kind of attack we call it playback attack or we call it replay
+3:33
+attack so the same thing okay oh so it may you may think how about
+3:41
+we improve this a little bit instead of using just the password we
+3:47
+use encrypted password so the password is not in plain text is encrypted
+3:53
+does this solve the problem I'll say no why because still truly can simply
+4:02
+capture this package okay and then replay it
+4:07
+the same thing nothing can nothing is need to be changed nothing needs to be changed so
+4:16
+then Bob will still think two days at least okay
+4:22
+um then what can we do so in order to avoid this kind of
+4:28
+playback attack now we add some mechanism called nuts
+4:35
+Nas means a number that is used only once in a lifetime so this is a random
+4:43
+number okay so basically as we'll see I'm Alex
+4:48
+bubbly I say okay this is a nuts number are this is again this is once in a lifetime
+4:57
+it's a random number it it can be used for only for once okay
+5:02
+then the main reason is we want to approve Alice live
+5:09
+okay the Alice must return r encrypted with the shared secret key
+5:17
+okay and this is actually done
+5:23
+um using the share decay so this kit is known by both A and B
+5:28
+both L is in a ball now above no analysis line and only Alice knows the
+5:35
+key to increase the nuts so it must be Alice
+5:40
+is that correct we want to think about this again think about the scenario again
+5:48
+okay so in this case in this case because we are using nouns so of course
+5:54
+it's very hard for 2D to do replay attack because
+6:00
+we know this nouns is useful once right so of course Alice message usually will
+6:06
+arrive first if um true they want to replay this okay so to
+6:14
+develop send this same message again to Bob Bob will say okay I have already
+6:19
+received this right so this nouns can be used for only once in a lifetime so then
+6:25
+Bob will not uh take uh through this message as
+6:32
+Alice's message right because it will only accept the first copy
+6:38
+okay so but is this method 100 perfect
+6:44
+I would say no first name Alice and Bob still need to exchange the K so how can
+6:50
+they exchange the K is a problem one problem the second problem is since this
+6:55
+K is shared by Alice and Bob and later Bob can also claim to be Alice if Bob
+7:02
+becomes malicious right so Bob can also claim to be Alice and pretend to be
+7:08
+Alice okay so this is a second problem and another thing is sometimes the true
+7:14
+day can also collected samples to do some kind of crypto or statistic
+7:22
+analysis to get the K shared by these
+7:28
+two parties okay so those are the problems with this
+7:33
+um protocol 4.0 so to improve this again
+7:39
+we can use this uh public key methods
+7:45
+to do the Authentication so the way is like this
+7:50
+personality analysis and the Bob Wilson announced again
+7:55
+the Alice will include these nouns with its own private key
+8:02
+so then Bob will say hey please send me your public key
+8:08
+and then Alice will send the public key so later as you can imagine what Bob
+8:14
+will do will is Bob will decrypt this entire Cipher text with the public key
+8:22
+of A and generate r yeah and then because Bob knows only
+8:29
+Alice could have the private key so then
+8:35
+um the encrypted the r to actually be generated by this
+8:43
+okay but is it is perfect
+8:48
+no there is still a flow and actually a very obvious or very important flaw okay
+8:55
+because in this version we can still do man in the middle attack
+9:01
+or woman in the middle attack okay that means Trudy poses as Alice
+9:09
+to Bob the end as well to end so but that means This truly stands in the
+9:16
+middle between Alice and above and pretends to be Alice to Bob and also
+9:22
+pretend to be Bob to Alice how could the truly do this so firstly you can see
+9:27
+Ellie said I'm Alice and then Trudy will say I'm Alice
+9:33
+to Bob Bob Wilson announced are
+9:39
+so what it truly will do is truly will actually encrypt
+9:45
+are with its own privacy not Alice is probably actually
+9:52
+through this privacy and then Bobby Mercy send me your public key so to
+9:58
+reverse in the public key its own public key then after that Bob compute computes
+10:05
+by doing decryption the time the Cyber text with the public key of 2D and then
+10:16
+finally generate R and Bobby will think oh okay everything matches this is indeed the
+10:23
+nouns I sent to Alice so this must be Alice
+10:28
+at the same time okay truly can send the same r
+10:36
+to Annie's and is will increase
+10:41
+this r with its own provocate and two diversity send me a public key so truly
+10:47
+is basically pretending to be bought in this case then it will send the public key
+10:57
+and then after that of that Bob sends a personal message and
+11:05
+to Alice potentially this is a personal message M to only Alice
+11:11
+and then because Bob will think blah blah think
+11:18
+Trudy is Alice so Bob will use
+11:24
+through this public key to encrypt the message
+11:31
+okay it will not use analysis because Bob will think truly is Alice right then
+11:37
+Trudy can easily recover M because of course truly has its own private key
+11:46
+right then truly we are basically send this message
+11:53
+to Alice with Alice's public key
+11:59
+so then when Alice receives it Alice will decouple this thing with its
+12:06
+own private key okay so then and it feels like this
+12:13
+message is from Bob but it's actually from Trudy well we feel like it is
+12:19
+sending the message through Alice but it's actually sending to Trudy it's just
+12:24
+truly in the middle is doing the increasing and decoration okay
+12:31
+um so then you can see this entire thing
+12:36
+has a big problem then think about this why
+12:42
+where are the mystics right what are the mistakes
+12:48
+made here so if you think about this very
+12:53
+carefully you will you will find out the main reason is because
+13:00
+when Bob is authenticating Trudy or authenticating Alice
+13:07
+it said send me your public key right
+13:13
+so it is asking for the public key
+13:19
+from whoever is sending the message so of course if today is including with
+13:28
+its own private key and it can send its own public key
+13:34
+if we really really want to authenticate Alice here what we actually we need to
+13:39
+use is Alice's public key not through this publicly right so that's the main
+13:46
+reason why we have a flow here that means the public key
+13:55
+should be absolutely correct if you ask the public key from only the
+14:01
+sender that will cause the center consenting anything how can you do the verification you cannot right so you
+14:08
+have to verify this by getting a absolute correct public key
+14:15
+right so that's the main reason but how can we do that how can we do that we can get the
+14:23
+absolutely correct public key from somewhere okay from say a later without
+14:31
+we will learn about this okay but we before we talk more about that I want to
+14:37
+talk a little bit about the message integrity and I want to introduce the
+14:43
+detail signatures first okay of course we we already talked about digital signatures but I I want to talk a little
+14:51
+bit more about that so basically
+14:59
+um digital signature is like the handwritten signature okay so the center Bob digitally signs a
+15:07
+document to prove that he is the document owner or creator
+15:14
+um and the recipient Alice can prove to someone that Bob
+15:22
+and nowhere else Including Alice must have signed document
+15:28
+okay so basically
+15:34
+um what we can do is Bob can sign this message m
+15:40
+by encrypting with its own privacy provocate to create
+15:48
+the sign message kbm okay so you can see this is a long
+15:56
+message we encrypt this with Bob's privacy to
+16:02
+generate this entire thing okay message together with the sign message
+16:11
+okay suppose Alice receives the message m
+16:16
+with the signature together with the signature then Alice can simply verify this
+16:23
+by applying Bob's public key to
+16:29
+the signature okay so then we can do kbm
+16:34
+decrease by Bob's public key and then we can recover
+16:40
+app okay so if we can indeed get m then this message must be signed
+16:49
+by Bob using Bob's property why we can
+16:54
+prove that why because only Bob knows its own product nobody else knows Bob's
+17:01
+property right so basically an incident can verify that
+17:06
+Bob sine M no one else sign m and Bob signed the message m not
+17:14
+anything else because we can recover m right and also this is a non-reputation this
+17:22
+may have non-repidation feature here because if there are some disputes between Alice
+17:29
+and Bob and it can simply take M and also the signature
+17:36
+of Bob to the course to prove that Bob have signed them so Bob has no way to
+17:43
+deny this because again only Bob knows Bob's private key
+17:48
+okay and as we mentioned before usually
+17:54
+it is very computationally expensive to use the public key English method
+18:03
+to encrypt the long messages that's why usually if we have a large
+18:09
+message we will firstly run as hash function to generate a
+18:15
+digest or amp which is hm okay we call this a Digest
+18:22
+yeah and then after we have this digest we can sign
+18:30
+this digest instead of saying the long message okay this is a much easier way to
+18:39
+create a detailed signature so this is the entire process you can
+18:44
+see Bob since a large message firstly we generate hm
+18:51
+hash of the message by using hash function and then we can do the increasing by
+19:00
+using both private key to sign this digest to generate kbhm
+19:07
+this is the encrypted Digest okay then we send this entirety into
+19:15
+Alice when Alice receives it and it's mailed to two things
+19:21
+so firstly Alice will um use
+19:29
+let's see if you receive this right and it will use Bob's public key
+19:35
+to decrypt this message and of course we know it will get the HM right
+19:42
+decryption it will get HM and also at
+19:47
+the same time Alice will generate the HM which is the hash of the
+19:55
+message using the same hash function so as we'll compare these two and see if
+20:02
+that's same if they are the same then Alice can verify
+20:08
+this message m is signed by a bob
+20:13
+and the m is not changed but if they are different then that means that either the message
+20:21
+has been changed okay that's the that's the entire process
+20:29
+for the hash function there are a number of hash functions to choose from
+20:36
+so for example md5 is widely used md5 basically
+20:41
+compute uh 128-bit message digest in a four-step process
+20:49
+and pay attention the hash function we know it is one way
+20:55
+right one way means giving the input we can generate the Digest
+21:01
+but giving the digest it's very very very difficult to
+21:06
+get the input okay so that means if we are giving up
+21:12
+to 128 bit string X which is the hash okay it is really difficult to construct
+21:20
+the message M whose hash is equal to X
+21:26
+okay so that's why we call it one way um and Charlotte is also used okay so it
+21:34
+can create a 160 bit message Digest
+21:40
+so now let's go back to the problem we mentioned before again in the protocol 5.0
+21:48
+to remember this problem the my in the middle attack or um
+21:54
+okay so basically 2D is trying
+22:00
+to pretend to be Alice to Bob and also pretending to be Bob to X right and we
+22:09
+said the main reason is because we are getting the public key directly
+22:14
+from Trudy right of course 2 DB of Sunday's own public key
+22:21
+so how can we address this problem we say the public key should be
+22:27
+absolutely correct which means this public key should not be provided by today
+22:35
+it should be provided by ants or this public key must be at its public
+22:40
+publicly not through disability right then
+22:45
+that's why we actually need some authorities to manage
+22:54
+the public key okay or to certify the public keys
+23:00
+to ensure the public keys are indeed correct ones
+23:05
+okay so then we have something called certification Authority which is also
+23:12
+called C what is the email do is CA we are basically bind the public key
+23:21
+to a particular entity e okay so that means
+23:27
+this entity no matter is a personal website a router or whatever this entity
+23:34
+needs to register its public key with the certification Authority
+23:41
+and also provide the proof of identity if this is personal you may need to take
+23:47
+a driver license for example okay then the ca creates the certificate
+23:54
+binding the identity e to ease public key okay
+23:59
+so basically for example if we have Bob will take its own
+24:06
+driver license let's see as the identification or the proof of identity
+24:11
+two CA to register is on public key okay
+24:18
+so what CA mail do is see a real sign
+24:25
+this public key with its own privacy
+24:30
+what does this mean this means CE will say okay
+24:38
+let me prove this public key is indeed from Bob because I have verified this okay so c e
+24:47
+will sign it with its own private key okay and then generating a certificate
+24:56
+for Bob's public key and then so in the
+25:02
+future Bob can provide this certificate to anybody who is communicating with him
+25:09
+okay so say Hey you can see this is my public key and this is already signed by
+25:15
+the ca so is is of course correct okay so it's like here Trudy when
+25:24
+through the product is public key Trudy cannot provide
+25:31
+a public with certificate because he does she she does not have analysis
+25:37
+certificate right so it's like that
+25:42
+um then when n is one spot public key
+25:49
+Alice will basically get this thing this certificate first we know this
+25:55
+certificate is already it contains both public key and also it is signed by the
+26:02
+C is probably k so then later
+26:07
+Alice can decrypt this with cs public key to guess
+26:13
+Bob's routine Bob's public key okay so this is the entire process then of
+26:19
+course we can see this public key is absolutely correct okay it's not fake
+26:25
+because this is already signed by the C okay all right so that is about the
+26:32
+authentication and message integrity so the next thing I would like to talk
+26:39
+about is securing email so
+26:45
+for email communication it's still the same thing we still need to consider
+26:50
+conventionality integrity and availability okay
+26:56
+so now let's firstly talk about the confidentiality let's see Alice wants to
+27:01
+send a combination email to bot so if we are using
+27:08
+the um public key cryptography then we know it is very
+27:16
+expensive we have mentioned this again again right it's very very expensive
+27:22
+then what we usually do is okay let's use a random symmetric key let's use
+27:30
+symmetrical encryption method for the content equation okay that's why and it
+27:37
+will firstly generate a random symmetric private key KS okay
+27:43
+but how can we exchange this chaos how can we exchange this with Bob
+27:49
+we can use the public key cryptography right
+27:54
+so you can say Alice will then encrypt them email message with KS
+28:03
+meet the symmetric key for efficiency and also encrypt
+28:08
+this K itself with Bob's public key
+28:14
+so this is used to exchange the K right the symmetric key and then n is we'll
+28:20
+send both the encrypted message
+28:26
+and also the increment k
+28:31
+to Bob okay so this one is for the message
+28:38
+and this one is for exchanging the symmetric key
+28:43
+so this is similar to what we have discussed before okay and when Bob received this message
+28:51
+Bob will use his private key first to decrypt and recover the ks the symmetric
+28:58
+key is like the session key right and then it will use this
+29:04
+symmetric key to decrypt the message okay to decrypt this KSM to recover that
+29:10
+so this is for confidentiality now the next thing we want to see is
+29:16
+about the message integrity and Authentication
+29:21
+so we want to ensure this message is sent by Alice not anybody else and we
+29:28
+also want to ensure the message is uh not changed by anybody else right
+29:34
+so what Alice will do is still because this message is uh
+29:42
+probably a long message right so usually we do not directly increase this with
+29:48
+the public key cryptography so what we can do first is
+29:54
+we can generate a hash or the message
+30:00
+okay and then we sign this hash with Alice's private key
+30:09
+okay so then in this case later
+30:14
+Alice will send both of the message in clear text
+30:20
+okay and also the digital signature tube up here pay attention here we are
+30:27
+only talking about integrity and authentication we do not really care about confidentiality
+30:34
+okay and then and sends the message to Bob
+30:43
+okay so when Bob receives this remember Bob will do two things
+30:50
+first thing with a message m it's real
+30:56
+calculate the hash and generate hm and then
+31:01
+with this signed hash
+31:07
+okay it will decrease with A's public key and John M also hm also so Bob will
+31:15
+compare these two and save that same if they are the same
+31:20
+then we say no problem okay if they are not the same the N is will say oh Bob we
+31:26
+must say okay this message uh has already been chained by somebody else it had that oh it has arrows at
+31:33
+least right so that's how we ensure the message integrity and Authentication
+31:40
+so but what if we want to ensure all of that
+31:46
+we want to ensure confidentiality Mass integrity and also authentication right
+31:53
+so in the first two cases in the first case we consider only conventionality in
+31:59
+the second case we only consider message integrity and authentication in the third case we want to consider all of
+32:05
+them okay then how can we do this okay so it's uh actually it's the answer
+32:13
+is verse three four we simply combine them okay that means when they send
+32:22
+this uh uh message you can see okay we send three parts first thing we have each m
+32:30
+okay uh the hash and we include with is private key
+32:36
+okay we will of course send this to Bob
+32:42
+um okay and then also we will use this
+32:48
+message okay uh and then we will encrypt
+32:56
+this message with the symmetric key okay and we also need to exchange
+33:05
+the symmetric key so that's why we use bobs
+33:11
+public key to encrypt the case so we send all this through to Bob okay and
+33:18
+then Bob will do the decryption um to get this symmetric key and then do
+33:25
+the diffusion together message M then calculate the hash om
+33:30
+to compare everything okay and also uh um our course decrypt this entire thing
+33:38
+with um Alice's public key and then finally
+33:43
+compare that nhm with the hash wage web

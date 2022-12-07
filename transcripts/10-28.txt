@@ -1,0 +1,632 @@
+0:01
+all right so in this chapter we will this chapter is very important okay of
+0:09
+the students who finish this class after some semester they came back to me
+0:14
+again asking say hey professor uh I'm interviewing for a networking job do you
+0:23
+have any idea what kind of questions they will ask or what is the most important part for
+0:30
+networking okay um usually I I would just say Okay
+0:35
+networking is very important okay so tcpi tcpip transport layer
+0:42
+um and network layer obviously are the most important two layers in networking
+0:48
+so be prepared for those kind of uh questions if you want to get such a
+0:54
+position so in this chapter let me firstly give you an overview we will
+1:00
+introduce the network layer in 4.01 and we will discuss the workshop circuit and
+1:07
+the datagram network now you don't know what they are but uh let me see datagram
+1:12
+networks means what we are using right now that the internet okay virtual
+1:17
+circuit was an old design okay but I will show you the difference between them and then we will look at the router
+1:24
+and see what is inside the router what is the structure for the router or the architecture for the router okay
+1:30
+uh after that we will talk about the Internet Protocol IP protocol is very
+1:37
+important you really want to know uh the format for the datagram the how the ipv4
+1:43
+addressing is used um and why we use IPv6 right now
+1:49
+um so all those kind of things and then um 4.5 is also very important the
+1:57
+routing algorithm very very important okay so we will mainly focus on a link
+2:04
+State algorithm we've also discussed the distance Vector but uh the decimal
+2:10
+factor I will only give you high level uh test questions I will not ask for you
+2:15
+to like um run the exam or do calculations on the test paper okay no
+2:22
+um but next date I may give you task questions okay in deep uh hierarchical ranking we will discuss
+2:29
+that also and then after that we will discuss the gravity in real internet
+2:35
+what kind of routing protocol do we use in Internet okay
+2:40
+um so for uh broadcast routing we may
+2:48
+yeah we will discuss a little bit about the spanning tree Etc okay so that is uh
+2:55
+all what we will have in this chapter all right so let's look at firstly the
+3:00
+network layer okay when I talk about this layer I need
+3:05
+to help you review what has happened in the previous layer Okay so
+3:13
+I have draw this figure again again they have application layer
+3:19
+transport layer
+3:25
+Network layer link layer and physically okay so for
+3:32
+application layer we know we will have a big message foreign
+3:42
+for this message we know when it comes down to the transporter layer usually we need to break it up to smaller segments
+3:50
+okay smaller pieces
+3:56
+okay and then we add header to that
+4:03
+for those headers we know they are transported layer headers if you cannot remember you can review the slides
+4:11
+so basically in transport layer headers we have the source port number and
+4:17
+destination port number do we have it address in transport layer header
+4:22
+we do not okay we do not have IP address in transportally header it's only about
+4:29
+um if you remember UDP it's actually a very very short
+4:35
+header okay version header it has only like the support that's New Port the
+4:40
+checksum ETC okay then when this segment comes down to a
+4:46
+lower layer okay this is called segment
+4:53
+okay when it comes down to lower layer you know we already have the transport
+4:59
+layer header now we need to add another header which is Network layer header okay the network clear header will
+5:06
+contain the source id address and destination IP address okay so this is
+5:11
+the process basically the transport segment
+5:18
+uh the network layer will transport will transport the segment from the sending
+5:24
+to the receiving host okay so then on the sending side at the center side what
+5:30
+we will do is we will need to encapsulate the segments into something called datagrams
+5:43
+you can see at the application layer record a message transport layer recorded segment then at the network
+5:51
+layer we call it a datagram okay then on the receiving side when the
+5:56
+receiver receives this datagram it will remove the network layer header and
+6:03
+deliver the segment to the upper layer which is the transport layer okay the
+6:08
+network layer protocol is in every host and every router okay the router
+6:15
+examines the header fields in all IP datagrams passing through it okay so
+6:20
+let's see you can see the application layer in transport layer only exists in the end
+6:28
+hose okay but the network layer exists in all
+6:33
+the hosts and all the routers okay all the routers so this is what will happen
+6:39
+comes in comes down up down up down down until
+6:46
+finally it reaches at the destination okay then this is a uh sent to the upper
+6:53
+layer okay delivered to the transport layer and then the application here at the receiver side and we mentioned the
+7:01
+two functionalities 2K functionalities are actually forwarding and routing okay so for
+7:09
+wording means we move the package from the router's input to the appropriate router's output and then the routing
+7:17
+basically means determining the route taken by the package from source to destination okay so there is analogy on
+7:24
+the right the routine is like the process of planning the trip from source
+7:30
+to definition okay so for example I would say oh one day I want to travel to
+7:35
+New York I'm thinking uh should I trans
+7:41
+should I go through Chicago or should I go through uh La okay so those are those
+7:49
+are different rounds okay when I do the planning I may choose a different route
+7:55
+so that is the wrong team part the forewarning is like the process of getting through single interchange okay
+8:03
+so for example if I finally decided to go through Chicago then at the Chicago
+8:08
+airport as I said okay uh I need to
+8:14
+um come down from the airplane and then go to the correct gate
+8:21
+to step onto the plane to New York again okay so basically I was forwarding from
+8:30
+one gate to another gate okay so that is the forwarding part it's different okay
+8:38
+um I think we also explained this figure before but I would like to give you a quick review
+8:45
+so here you can see there there is a network okay in this network we have a number of
+8:52
+routers and in each router in each router it has
+8:57
+two things it will need to firstly run a routing algorithm okay and then generate
+9:05
+something called the local forwarding table this local forwarding table will help
+9:10
+decide how to forward a packet okay you
+9:15
+can see each router every router they all need to run their own
+9:21
+routing algorithm and then generate their own local phone table okay so for
+9:27
+example for this router for this router if we have a local phone table like this
+9:33
+and we have the header value of these ones okay then now if we have a
+9:41
+packet coming which has a higher value of zero one one then we immediately know okay we want to forward these two
+9:48
+outputs link two okay so this is how the local foreign table works okay later we
+9:55
+will learn more about that but for now you only need to know um the basics
+10:02
+so the routing algorithm determines the end-to-end path through the network and the forwarding table determine the local
+10:08
+forwarding and this router and later when we talk about the routine algorithm
+10:14
+I will show you step by step how to generate the local
+10:19
+phone table by running the routing algorithm okay
+10:25
+so before we continue to talk about the um
+10:31
+the routine Etc last firstly step back and talk about
+10:38
+um the different types of networks okay so one way to do the network layer you
+10:45
+if you think about the transport layer we have two main functions or two mean protocols TCP and UDP so we know TCP
+10:54
+requires connection setup eodp doesn't require the connection setup so and also
+11:01
+TCP is reliable UDP is not reliable right um
+11:06
+so then for Network there are actually also two types of network one type need
+11:12
+the connection setup okay like the uh um like some Network architecture like
+11:19
+ATM okay um for those type of network before the
+11:24
+datagram flow the two and Halls need to firstly establish a virtual connection
+11:31
+okay the routers will also get involved in this virtual connection okay so this
+11:37
+is connection oriented another type is connectionless okay it's connection is
+11:44
+um actually our internet interesting our internet is actually connectionless
+11:50
+okay we do not really establish any connection between two hearts before the
+11:56
+datagrams floats okay but this kind of connection setup indeed exists in some
+12:01
+of the network architectures okay it's not very common though
+12:09
+um and then let's look at the network service model uh if you use recall what
+12:15
+we have learned in the transport layer uh we know there are some Services we
+12:21
+expect from the transport leader like uh reliability okay time
+12:28
+uh minimal bandwidth guarantee right so those kind of things security so those
+12:33
+are the service we expect from the transport layer but we may not have it
+12:39
+okay similarly there are some Services we expect from the network layer
+12:45
+okay for example if we are delivering only one individual datagram
+12:51
+then some of the example uh services are guaranteed delivery okay that is the
+12:58
+service we expect from the network layer or guarantee delivery with less than 40
+13:04
+m second delay okay that is the expectation of some example Services we may not have it we
+13:13
+may not have it in the real network but those are Services we expect okay if we are
+13:20
+delivering a flow of datagrams okay then some of the example services are in
+13:28
+order delivery okay if you are sending out ABCD you don't want to get a busy
+13:33
+Ada okay um and also we may want to guarantee the
+13:39
+minimum bandwidth to flow okay we may also want to restrict the
+13:45
+changes in inter-packet spacing okay so again those are the services that we we
+13:51
+may want from the network layer but we may not be able to have it them in the
+13:56
+network layer okay so now let's look at um
+14:01
+the service models that we we may have in the uh Network architectures okay so for
+14:11
+internet for internet the service model is best effort service okay
+14:19
+do we have guarantees on bandwidth no guarantees and loss no guarantee that
+14:24
+order no no guarantees on timing no okay uh and we also we do not have congestion
+14:31
+feedback okay the feedback is actually inferred why are the loss the timeout
+14:38
+delay Etc okay uh so this is for internal for other
+14:44
+network architectures like ATM CVR or vbr okay
+14:50
+um constant bit rate or variable bit rate those are the um not very commonly used architecture
+14:57
+or these are the previously used architecture okay for
+15:02
+those ones some of them guarantee the bandwidth some of them guarantee the loss or the no loss okay or order or
+15:10
+timing um some of that them do not guarantee okay but any any of those ones are not
+15:18
+our focus our focus is the internet although internet provides no guarantee
+15:24
+but it works very well okay then let's let's look at the virtual circuit so
+15:29
+virtual circuit is basically a connection oriented network service okay
+15:35
+so it's different from the datagram network datagram network is basically a
+15:41
+connection okay I think I mentioned this before uh similar to TCP and UDP the TCP we know
+15:48
+we have to establish a connection before um data exchange but for UDP we do not
+15:54
+need a connection established right um and interestingly that in networking
+15:59
+Workshop circuit is actually corresponding to um TCP similar to TCP because it
+16:05
+requires the connection service okay and the datagram network is similar to UDP
+16:12
+because it doesn't require any connection to be established okay
+16:17
+um again as I said in the current Internet what we are using actually is
+16:22
+the datagram network okay so firstly let's see what is a virtual
+16:28
+circuit um so water circuit behaves like a telephony network okay so we have a
+16:36
+source two definition path reserved for uh for the connection okay uh we need to
+16:43
+do a setup for each core before the data can flow okay and then each packet
+16:49
+carries some identifier because we call it VC identifier virtual circuit
+16:54
+identifier okay the packet does not carry any destination host address no
+17:01
+host address just visit identifying okay then on every router on the source to
+17:07
+destination path maintains a state for each passing connection okay and then
+17:13
+based on um the VC identifier and also uh the
+17:19
+link that this packet comes in then the router needs to make a decision on how
+17:24
+to forward this packet okay so basically VC consists of a third
+17:31
+person a path from source to destination we see numbers okay uh this is the
+17:38
+number for each link along the path okay and also the entries in the forwarding
+17:45
+tables in the router along the path okay so let's look at example and then you will understand uh what did this mean
+17:51
+okay um firstly you can see we have a source so we have destination and we have a
+17:58
+router the router has three interfaces one two three okay and now if we
+18:05
+um uh also you need to know for each round here the router maintains uh
+18:11
+forwarding table okay this is a forwarding table is not the same as the forwarding table uh in
+18:18
+this program Network actually before we learned for datagram Network we only need to look at the IP address the
+18:25
+destination IP address for the packet and then we know how to do the forwarding right but in in this case in
+18:32
+this VC virtual circuit Network the router the router's phone table is
+18:39
+more complex than the datagram network so you
+18:44
+can see um it contains the incoming interface in coming VC number and then we will have
+18:51
+outgoing interface and outgoing VC number okay so then for example when you have a
+18:57
+packet comes in packet comes in with from interface one okay and the incoming basic number is
+19:06
+12. then the router need to determine the outgoing interface it is through and the
+19:12
+outgoing basic number is 22 so it's like that um sometimes the packets may come from
+19:19
+the same interface but they have different basic numbers and then they may be forwarded to different interfaces
+19:26
+with different wasting numbers okay so it's like this so this will not appear on the test so
+19:33
+you don't need to remember this table how this work the reason I want to introduce washer circuit is is I just
+19:40
+want to tell you there are actually different types of network layers okay
+19:46
+um different protocols but the one type we are using is the datagram network
+19:52
+okay um as you can see before we see circuits
+19:58
+if we want to do data um the transmission Etc we need to firstly
+20:04
+establish a call okay initially initial call and then this one accepts the core
+20:11
+and then uh the this flow begins okay this is the process but if this is a
+20:16
+datagram network we do not need to do any call setup okay uh the routers
+20:23
+maintain no State about the end-to-end connections okay the routers simply need
+20:29
+to forward uh the package so you can see what has happened is uh the sender will
+20:36
+send the diagrams and the receiver will receive the datagrams so if we compare the virtual circuits
+20:43
+networks and datagram networks datagram networks um is more preferred
+20:49
+um one major reason is because this actually makes the router very simple
+20:58
+okay the router only need to do the forwarding we do not have a lot of our workload put on to the router but for
+21:05
+the VC Network the router has to maintain in some states okay so it is it
+21:12
+has more workload okay so now let's look at the diagram
+21:17
+forwarding table for this forwarding table um it is very simple as we mentioned before
+21:24
+each router needs to run the routing algorithm to generate such a local
+21:30
+forward table and in the local format table on the left side we have the destination address on the right side we
+21:37
+have the output link so basically we only need to check the destination address and then determine the output
+21:43
+link okay so it's like uh if you if we if for example for post office
+21:50
+post office will need to look to look at the address of The Ledger and then determine where to forward
+21:57
+okay so for example if we have a sacramental post office Chicago post office uh New York post office La post
+22:05
+office okay then we basically uh look at the latter if this letter is is going to
+22:12
+New York okay then we know the destination address is uh is New York
+22:18
+some City okay and then we can determine oh the up link
+22:23
+should be should be uh this one okay should be for the link from uh
+22:29
+Sacramento to Chicago okay so it's it's like that
+22:34
+um so you may ask why is a address range
+22:41
+it's not an individual address so here it listed the reason we have about 4
+22:48
+billion IP addresses because we know IP address is 32-bit right so basically we
+22:55
+have if this is ipv4 then we have 2 to 32
+23:01
+um IP addresses okay for this many IP addresses it would be really hard to
+23:07
+list all individual destination addresses okay it also requires the
+23:13
+router to have a very large memory okay so it's not visible that's why instead
+23:20
+of doing um the individual addresses we actually use our address range okay it's like uh
+23:29
+in again in post office in post service what we will see is not for this specific address is actually for uh for
+23:37
+example the entire New York State we have we need to for all the letters going to the New York State we need to
+23:43
+forward it to uh this link okay so it's like that
+23:50
+um so in reality what you will see the forward table is looks like this okay so
+23:57
+firstly you can say uh this is a 32-bit okay each
+24:03
+part is eight bits okay so we have four eight bits so in total
+24:10
+is 32 bits this is the IP address okay we can say oh if the address falls into
+24:16
+this range okay between this IP and this IP then we can forward it to link one link
+24:24
+zero okay so you if you look at this IP address you can say the first 20 bits
+24:30
+are all the same and then the remaining ones are different
+24:36
+okay so the mini ones are different um and then we only need to check uh
+24:42
+each individual address and see which category or which range does this uh address four into them to determine uh
+24:50
+the link interface okay opening um but there is a question the question is
+24:57
+what happens if the range or the ranges do not divide up so nicely so here in
+25:04
+this example we know the first 20 B's are exactly the same
+25:10
+and the remaining ones are not the same okay so then we only need to focus on
+25:16
+the remaining uh travel bits but what if sometimes we have the first 20 bits the
+25:23
+same sometimes we have the first 16 bits the same okay it's like in post service sometimes we say oh all the
+25:31
+um all the letters go to New York state has to be forwarded to zero
+25:38
+okay then we in this case we are using States to define the range but sometimes we say
+25:45
+all the letters going to um San Francisco
+25:50
+needs to be forwarded to one and in this case we know San Francisco is not a state it's actually a city
+25:57
+okay um so we may say similar things in our working okay then in this case how what
+26:04
+can we do okay uh in this case what we will do is we
+26:09
+follow a principle of longest prefix matching okay lucky prefix matching
+26:16
+means when looking for forwarding table entry for given destination address we
+26:22
+use the longest address prefix that matches the destination address
+26:27
+okay so it's like again in postal service if we say
+26:34
+um if we see all the letters going to California should be forwarded to zero all the
+26:42
+letters go into sacramental should be 40 to 1. okay if we have a letter going to
+26:49
+for example 16000 J Street
+26:55
+Sacramento which link should we forward to should
+27:00
+we fold this to 0 or 1 so actually this will be forwarded to
+27:06
+one why because
+27:12
+um Sacramento come you if you compare California and Sacramento apparently
+27:18
+Sacramento is a more accurate um address right more accurate so we can
+27:24
+here we can see California Sacramento so this one is more accurate
+27:31
+okay so that's why if we have a letter going to if you have a letter going to
+27:38
+um 6000 J Street Sacramento we will forward this letter to one instead of
+27:45
+zero okay uh so this is called the longest prefix matching we will match California
+27:52
+first okay if we match California it can be 40 to zero or one but then we continue to
+27:58
+match and then now we we can match sacramental then it will be forwarded to one
+28:04
+okay so this is something you need to keep in your mind uh if we look at an example
+28:09
+here in the table so for example it says okay
+28:15
+uh for the ad for the address range of this okay you can see the first
+28:22
+um 16 21 first 21 bits are the same and
+28:27
+for the remaining these are wild cards okay so you can for this piece it can be
+28:33
+zeros or ones it doesn't really matter as long as it matched this one the move forward is to zero
+28:40
+but if it matches this one okay the first this this many
+28:46
+beasts are all match and then this piece can be arbitrary it can be zero or ones
+28:53
+we don't care uh then it will be set to one okay similar things for the
+28:58
+remaining uh ones okay uh now let's look at an example this example
+29:05
+for this one can you take a look at the base and determine which interface
+29:13
+should move forward to these beads are all the same okay these beads are all the same and these beads
+29:20
+are also the same so you only need to compare these remaining ones
+29:27
+okay so zero zero zero one zero zero
+29:33
+zero one zero one one zero zero it's definitely
+29:38
+match this one it doesn't match this one
+29:44
+okay it doesn't match this one
+29:50
+so which interface do we forward the first packet
+29:57
+first one is zero okay so we need to forward this to zero
+30:02
+because it matches zero right uh how about the second one the second one can
+30:08
+you check again for the second one we have zero zero zero one
+30:13
+okay it matches zero zero zero one and then one zero zero zero
+30:20
+it doesn't match this part doesn't match zero but it matches this
+30:26
+one zero zero zero and it also matches number two actually one zero zero zero
+30:35
+okay it matches both link interface one and two
+30:41
+so which interface should be for the second
+30:46
+packet it matches both this one and this one
+30:54
+which one will you choose so the interface we need to choose is actually one okay
+31:01
+um the reason is because the longest prefix matching okay if we if and one
+31:08
+address matches two ranges both two ranges okay then we
+31:13
+will choose the one um matches better match is longer okay and keep this in mind we will use this
+31:21
+later uh when we discuss the sub networks okay so very important
+31:28
+so if we compare the datagram network and the virtual circuit Network
+31:35
+so uh the internet for internet data exchange among computers okay it is
+31:40
+providing the elastic service we do not have any requirements on timing okay
+31:47
+there are many different link types like different characteristics um
+31:52
+it's a very uh it's very hard to have a uniform service okay and also uh for the
+32:00
+most important thing for datagram network and VC Network is for different network we have smart and systems okay
+32:07
+but the internal the the routers are dumb okay
+32:13
+they do not need to be very complicated or very complex okay so simple inside
+32:19
+but complex at the edge uh VC circuit is uh different okay for basic circuits uh
+32:28
+it's like a human conversation we know we may have strict timing for example
+32:33
+one two-party talk both of the two parties need to be online okay this is
+32:41
+of course this can guarantee the service okay
+32:46
+uh but again the most important thing is um for water circuit Network okay the
+32:54
+end systems are done they don't need to be very smart they can just be like telephones okay but the
+33:02
+routers are very complex the inside of the network is very complex
+33:09
+the next thing we want to discuss is what is inside a router okay for the router we want to look at
+33:17
+the architecture uh basically we use the launcher every day basically the router has two main
+33:24
+functions we have to ask you this question again again the two functions one is routing another one is forwarding
+33:31
+okay so these two functions actually are implemented by different
+33:38
+um components in the router for example we need to have a routine processor to
+33:44
+run the login and then we need to have a switching fabric to do the forwarding
+33:50
+okay so the switching fabric is for forwarding the package from the input
+33:56
+pause to the outputs okay if we look at the input parts so here we
+34:04
+we basically take one of this and we zoom in to look at uh the inside of the
+34:11
+input Parts okay and this is the this is the launcher we have the switching Fabric and now uh you can look at the
+34:19
+import for the input

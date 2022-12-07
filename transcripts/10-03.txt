@@ -1,0 +1,950 @@
+0:02
+the the next very interesting topic which is uh DNS the name name service
+0:10
+okay so we all know that uh as a person we
+0:15
+have many identifiers we have for example we have the um SSN
+0:21
+okay we have the name and we have also password numbers okay
+0:28
+um then for um computers computers also have some name called IP address you can use you
+0:34
+you can view this uh as a type of identifier right IP address and the
+0:42
+computers also have names like yahoo.com google.com Okay those names are commonly
+0:50
+used by humans so you may ask why do we have the names if we have IP address why
+0:56
+do we need the the host names so it's like we know each person's SSN
+1:03
+why do we still need a name for for that person if we know Michael's SSN is one two
+1:10
+three four five okay why do we need a Michael the name Michael for for him
+1:17
+it's very easy to remember Michael but it's very hard to remember Michael's assassin right we have to use IP address
+1:23
+for roughly and everything but we also need uh easily understandable
+1:30
+name for that host okay because you can you can remember yahoo.com you can remember google.com
+1:37
+it's very easy to type in but it's not easy to remember the 32-bit IP address
+1:44
+okay then the question is the question now becomes how can we map between the
+1:51
+IP address and the hostname otherwise it wasn't the answer is called the mean
+1:57
+name system okay so we need something called domain name system to remember
+2:03
+the mapping between IP address and name okay actually actually when we mentioned
+2:09
+DNS it implies two things one thing is a distributed database that means in this
+2:16
+database we need to store the mappings between IP address
+2:21
+and the name okay this is this distribute database is actually
+2:26
+implemented in the hierarchy of many name servers okay but DNS also has
+2:33
+another menu that means um the application layer for Toko this
+2:39
+allowed the house to query the distributed database okay so this is another thing we are
+2:45
+going to learn in this class so now let's look at what kind of
+2:50
+services can be provided by DS so the first thing that comes into your
+2:56
+mind is probably the mapping between the hostname and IP address right host name
+3:01
+to IP address translation actually vs does much more than that
+3:08
+okay so there are three more other functions that are provided by the DNS
+3:13
+first one host Alice house editing for what does this mean this means uh for
+3:20
+each cost it may have a canonical name and also a A-list name for example the
+3:26
+canonical name is relay one or really or whatever that's West
+3:32
+Coast dot enterprise.com this is the canonical name but the Alias
+3:39
+name that is too long right nobody's going to remember that but the Alias name can be Enterprise outcome or www
+3:46
+dot enterprise.com which are much easier to remember
+3:52
+okay so that is actually the uh aliasing it provides a host a lesson okay and it
+3:59
+also provides the mail server Alice okay that means the mail server may have
+4:05
+a very long name but we can also give it a short Alias to remember it easily
+4:11
+if you still remember in the demo of email we actually use the
+4:18
+we actually used the alaci um
+4:23
+do you see this telnet
+4:29
+smtp.csus.edu this smtp.csus.edu is actually a ALS
+4:37
+the real name for this server is this one smtp.settling.csus.edu
+4:47
+okay that's the real name is longer okay it's longer than that
+4:53
+um that's the third type okay third additional type the last one
+5:00
+that can be done by the DNS is called the load distribution okay load
+5:06
+distribution um as you can imagine for those big companies okay the web server the web
+5:13
+server may be accessed um a lot you imagine about google.com
+5:20
+amazon.com right so it's usually it's not possible to
+5:26
+have just one web server serving for all the uh clients it's not possible right
+5:34
+so in this case what can we do what we can do is we give it to just the one
+5:41
+name okay one name like google.com but we actually assign multiple IP addresses to
+5:49
+this one name okay then in this case when people access google.com Okay then we can kind
+5:58
+of distribute the load to google.com to many different IP addresses okay that
+6:04
+means to many different machines okay so this is called load distribution
+6:09
+so that's another service that can be done by DNS okay
+6:15
+so then the next question we need to consider is oh how can we how can we deploy this DNS
+6:23
+system can we just use one centralized server
+6:29
+it's like for for example web application can we just use one
+6:34
+centralized DNS server so we cannot do that for a number of
+6:40
+reasons the first is single point of failure that means if this server is down okay
+6:47
+then we cannot provide DNS service for the entire world
+6:52
+okay then in this case the entire internet system this is very important because you can you can think about this
+7:00
+for all the clients around or whatever if they want to communicate usually they
+7:07
+need the answers the answer is essential okay nobody's going to type in IP
+7:13
+address they all type in the hostname okay if the DS service is not there
+7:20
+is uh the entire internet is going it's going it's going down okay this is even
+7:26
+worse than for example a web service a web server is down it can probably only
+7:32
+impact one specific company and the clients to that specific company but if
+7:38
+this uh the answer is done then it will impact this entire internet for the
+7:45
+entire world okay and another thing we need to consider is if we have one single server then the
+7:52
+traffic volume is is huge This Server can easily be overwhelmed okay
+7:58
+and then we also need to consider uh where we should put the centralized
+8:05
+database because everyone wants this to be close to them right but we we do not
+8:10
+have like a perfect location for the entire world right
+8:16
+um then the last thing is the maintenance okay if we have one single server this server has to be there
+8:22
+forever and it has to be up and running forever we cannot afford
+8:30
+shutting it down to do maintenance we cannot okay so those are all the things
+8:35
+we need to consider so the major reason to summarize one
+8:41
+word one sentence it means if we have a single server then it it doesn't scale
+8:46
+okay so in reality DNS is actually a distributed hierarchical database okay
+8:55
+um so that means we firstly have the root DN server okay and then the second layer uh
+9:05
+is called the top flower the mean name servers okay that means they are.com dot
+9:12
+org.edu okay so those are called top level the new email servers and finally
+9:19
+the last layer the lowest layer is called the authoritative name servers
+9:25
+okay authoritative name servers so generally if a clients wants IP address
+9:30
+for Amazon.com okay uh your relay or
+9:36
+theoretically the client will need to First Contact the root
+9:42
+to find the IP address for.com DN server
+9:47
+and then the client will query the.com DN server to get the
+9:53
+amazon.com's authoritative DN server okay that means
+10:00
+from this one we will get the contact of this one okay then finally we go to the
+10:07
+amazon.com the answer we're together IP address for Amazon.com
+10:12
+okay so this is like for example for our department
+10:17
+okay for our department if we have uh Veronica as the authoritative name
+10:23
+server then the college level we may have somebody there let's see it's our day our day is there as the authority so
+10:31
+let's see this is the president
+10:37
+and the women have the thing and we may have let's use the chair okay
+10:44
+instead of Veronica okay let's say if you want to find a contact
+10:50
+information for me okay I'm a regular faculty in the department of computer science then you have to contact the
+10:57
+president say hey do you know the contact information for Dean Daniel for ECS
+11:03
+quality is of VCS and then you'll find the content and then you get the
+11:09
+information for the thing and then you cut the thing and asking hey do you have the contact information for the chair
+11:15
+and the final encounter the chair to get the contact number for me so that is the entire process
+11:21
+okay so it's hierarchical um if we look at the name server the
+11:27
+root name servers we for the entire world okay for the entire world we have
+11:33
+13 logical root name servers worldwide okay
+11:39
+as a marketing this map um when we say logical servers that
+11:45
+means um while minority console does not really mean one physical server and one logical
+11:52
+server can have many many uh physical
+11:57
+servers okay it's just viewed as one server but as you can imagine
+12:03
+Apparently one physical server is not sufficient to serve the entire world right
+12:10
+um so basically the root name server context The Authority name server if
+12:16
+named mapping is not known okay to get the mapping and then the root names will
+12:23
+return the mapping to the local name server okay so um and we just mentioned the top level
+12:29
+domain server which is the second layer okay servers are responsible for.com org net
+12:39
+edu etc etc okay and it's also for all top level country domain names okay that
+12:45
+means like UK from CA um Japan okay
+12:52
+um so this organization this company Network
+12:57
+Solutions maintains the servers for.com TLD okay and for DOT edu is add your course
+13:05
+maintaining the top level domain servers okay for the authoritative uh DNS servers
+13:13
+which is the lowest layer okay each organization will maintain their own
+13:19
+authoritative DNS server okay the organization's own DNS servers
+13:26
+provide the authoritative hostname to IP mapping for the organization's name has
+13:33
+this means for example for sex States we have our own authoritative DN server the
+13:39
+reason we call it authoritative because only this DNS server knows the correct
+13:46
+mapping between IP address and house name for all the host e exact States
+13:53
+okay and authoritative the answer can be maintained by the organization or the
+14:00
+service provider okay those are the Third type of service
+14:07
+and there is one more time called the local DNS so low code DNS does not strictly belong
+14:15
+to hierarchy okay um so each ISP
+14:22
+has a one local DNS so for example for succeed we also have local DS so what is local dnf
+14:30
+what is the difference between look audience and and this one here so the local DNS is like the one
+14:39
+uh survey all the queries from this
+14:44
+organization for example safe State local DS will serve all the clients in within
+14:53
+succeed if you for example you want to know the uh IP address for google.com
+14:58
+you will ask a local DS and then local DNS will try to find out the answer for
+15:05
+you okay so that is the uh the local DS
+15:11
+my horse makes DNS query the query is sent to its local DS server so yeah some
+15:17
+of you may ask what is the difference between local DNS and authoritative DNS so authoritative DNS is is the one
+15:25
+maintaining the contact list okay but the local DNS is the one
+15:33
+answering your queries so it's like for our computer science
+15:38
+department probably the chair is the one maintaining the contact list for all the
+15:44
+faculty but if you want to ask the contact contact information for other faculty in
+15:51
+other universities you have to contact the let's say Veronica in this case
+15:56
+Veronica is the local DNA server okay she is helping you helping you to
+16:03
+find out the contact information for others does this make sense okay it's like the
+16:10
+chair is maintaining uh or the low the authority of DNS is
+16:15
+maintaining all the IP address and host name mapping for all the machines with
+16:20
+insect State okay but if you want to query about something like amazon.com
+16:26
+like ebay.com google.com Okay then you have to contact the local DS server okay
+16:33
+of course sometimes they are combined into one machine especially for small organization and sometimes they are
+16:40
+separate but they have different functions as you can see they are very different okay
+16:46
+and the local DS has a local cache of the recent name to address translation
+16:51
+pairs okay but this may be out of date um it's like
+16:57
+a proxy this will forward the query into the hierarchy that means uh
+17:03
+for example if you acquire about google.com and google.com is already cached in local DS then in this case
+17:09
+local DNS will directly provide you the answer but if google.com is not cached
+17:15
+in local DS then the local DNS will help you to make the query into the hierarchy
+17:22
+to basically local the answer will contact the root and ask hey do you know what is the IP address for google.com
+17:28
+Okay in reality when we do the DNS name resolution we have two ways one type is
+17:35
+called iterated comparis another type is called recursive query okay now let's
+17:40
+look at an example we have a requesting host here
+17:46
+okay cis.poly.edu this one is the requesting host which needs to find out the IP
+17:53
+address for some machine okay so then that Submachine is this gaia.cs.ums.edu
+18:02
+so basically the host at CIS of the poly.edu wants the IP address for
+18:08
+gaia.cs.ums.edu then for Italy the query
+18:13
+uh basically the contacted server replies with the name of the server to
+18:20
+contact okay so generally for for the very first step the requesting host will contact
+18:27
+the local DS okay contact the local DNS and say you
+18:34
+can see the local DNS is still belongs to poly.teu right so this local DNS
+18:40
+serves all the machines Within poly.edu
+18:45
+okay then this requesting host will ask the local DNC hey I want to find out the IP address
+18:52
+for gaia.cs.umass.edu could you please help me then the local DNS will say sure let me
+18:59
+help you okay and the local DNS will then contact the root design server
+19:06
+theoretically it's like this okay it will contact the root design server
+19:14
+oh I'm sorry I don't know this name okay but I know it belongs to dot edu so
+19:24
+please go ahead and contact This Server
+19:29
+okay so basically the root in step 3 the rooting s is returning the contact
+19:35
+information for DOT edu DN server okay then this local DS for poly.edu
+19:44
+will go ahead in step four go ahead to ask the dot edu DN server say hey could
+19:50
+you please help me find out the IP address for this machine and again the dot edu will say oh I'm
+19:57
+sorry I don't know I don't know the name but I know who you can contact it's like
+20:03
+the thing is saying hey I don't know but please go ahead to ask the Cs department chair here is the information for the
+20:09
+department chair okay then basically step five the edu DNS will return the IP
+20:17
+address for The Authority DNS for
+20:22
+umass.edu okay and say go ahead to contact that person
+20:27
+that machine then this in Step six look at the answer will again Ask the authoritative DNS server and say hey
+20:34
+could you please provide me the IP address for this machine and finally this authoritative DNS
+20:42
+will provide the IP address to the local audience and then now the local DS is
+20:48
+Happy local DNC hey I've I completed the work okay local DNS will return this IP
+20:55
+address to the requesting host okay now eventually that you requesting
+21:01
+house has the IP address for gaia.cs.umass.edu and then it will
+21:07
+contact the um it will contact this uh this machine
+21:14
+for further communication okay uh for example if this machine is a web server
+21:19
+we know they will continue to do the TCP connection and they will begin to start
+21:25
+with uh the HTTP request message and response message so this is a one time I uh and you can
+21:34
+see in this type every time when the server is contacted the server may not know the answer but the server will
+21:40
+redirect the local DNS to another server who may have the information right
+21:48
+um in recursive query is different okay in recursive query every server is very
+21:55
+responsible if the server do not know the information the server will say hey
+22:01
+please wait here okay hold on wait here and I'll go ahead to find the answer for
+22:07
+you okay so it's like that every server is very responsible so again you can see
+22:14
+this is the requesting host okay the requesting host will make a request to the local DNS
+22:20
+and then locally as well say okay let me find it out for you the local DS will
+22:25
+then contact the root DS L DNS will say hey I don't know the
+22:32
+answer but hold on let me find it out for you okay then root will go ahead in step 3
+22:39
+root will go ahead to contact the tlddsr and TLD will also say hey I don't know
+22:46
+but hold on wait here and I will find out for you so then in Step 4 TLD will
+22:53
+directly go ahead to contact the authoritative DNA server of cs.ms.edu
+22:58
+okay and finally find out the answer so in step five this authoritative DNS
+23:06
+server from UMass is providing answer to TLD and then TLD prior answer to the
+23:12
+roots and the final root provide the answer to the local DS okay
+23:19
+again with this answer local DNS will in Step 8 will provide this answer to the
+23:26
+requesting host with the cis.poly.edu okay
+23:31
+um the problem for this recursive query as you can see because every server is
+23:38
+very responsible so this actually puts the burden of name resolution on the
+23:44
+contact name server okay as you can imagine because there
+23:49
+are so many machines that that may contact the root yes then the root yes
+23:56
+will have very heavy workload because it has to be responsible for all the
+24:02
+quarries okay it needs to get the answer for all the queries so in this case the
+24:09
+root yes can be easily overwhelmed okay so that is the problem of the recursive
+24:15
+query um of course as in the future of course
+24:21
+now you can you can think about this um later maybe I I'll explain this again
+24:26
+actually um for the local DS
+24:33
+the local DNS May cache some answers directly
+24:38
+for example if you if everyone is visiting google.com
+24:44
+then the IP address for google.com may have already been cached on the local DS
+24:52
+okay in this case when a requesting host is requesting IP address for google.com
+24:58
+the local DNS does not need to do the step three two two to seven it doesn't
+25:03
+need to do two to seven okay it's it's the same thing here
+25:09
+same thing here no matter what kind it basically means the query is not needed
+25:15
+to the root to the TLD to the authoritative DNS server because local DS already knows the answer okay
+25:22
+um and also also the local DNS may also
+25:28
+cash the IP address for root and IP address for TLD
+25:34
+okay why because we do not have a lot of root ntlds
+25:40
+okay we do not have a lot um so it's very easy for the local DN
+25:45
+server to Cache those IP addresses it's like you if you already have the
+25:51
+president and the things contact information okay every time we need to
+25:57
+do a query you still need to go back to the present you don't need to right you
+26:03
+don't need to contact the project again to find out the contact information for the thing because the things information
+26:09
+is already cached at the local DNS okay it's the
+26:15
+same thing here if the local DS has already cached the root and the TLD
+26:21
+okay the IP the IP address for TLD then every time when the local DS needs to
+26:28
+contact a um a TLD server it can go good a good
+26:35
+content that directly without consulting the root DS okay
+26:42
+so that is something you need to pay attention um and for the cash okay the cash
+26:50
+entries time out after some time for this time we call it time to expire TTL
+26:56
+you probably um are very familiar with TTL right now right so time to leave
+27:03
+um so the cash has some time uh been there but it will finally
+27:09
+disappear okay uh and again as I mentioned the TLD server typically caches in the local audience name
+27:16
+servers okay and also need to pay attention the cash entries may be out of
+27:22
+date okay um then in this case if for example if
+27:27
+you imagine one name one host one host okay uh changes the IP address
+27:35
+then this may not be no internet Wild
+27:41
+internet wide until all the ttls expire
+27:46
+okay only after all the ttls higher than everyone knows everyone will everything
+27:52
+else will uh have the new IP we'll do a new query and
+27:58
+get the new IP address okay before that this may not be known internet-wide okay
+28:04
+so those are the information you need to know any questions
+28:12
+okay um so another thing is about the DNS
+28:18
+directors okay um so basically as we said the DNS means
+28:24
+a database then in the database okay in the database um they will store the records of the DS
+28:32
+okay so how how is the record store it's like this
+28:37
+foreign the type and the TTL so that is the
+28:46
+format okay um so basically for the type we have
+28:51
+four types okay type A which means it's a mapping
+28:57
+between the name and the hostname and IP address
+29:03
+okay which means for type A okay
+29:09
+uh let's see if we have pass.com
+29:15
+okay and if let's see the IP address is uh
+29:22
+this is the IP address for test.com then in this case we will have the name
+29:29
+as task.com this is the machine name okay the value will be the IP address
+29:36
+and the type is a the TDL can be for example 1000 seconds and this is the
+29:43
+type aim for type NS type NS in type NS patients the name
+29:51
+is the domain name and the value is the hostname of authoritative name
+29:58
+servers for this domain okay so basically we will use Type n s
+30:04
+to provide uh the the authoritative name
+30:10
+server for this domain so for it for example again if we have
+30:17
+foreign
+30:26
+if the authoritative name server for this dummy is
+30:37
+dns.test.com then this is type NS
+30:44
+and the aspiration the TTL can still be housing
+30:50
+okay this is the name server type the third type the third type is the same name type
+30:58
+so in this case for say name type the name is the A-list name for some canonical
+31:05
+name it's the Alias okay again this is a test.com and then the canonical name
+31:12
+can be
+31:28
+so this is Type C name
+31:35
+okay this third type and the fourth type is
+31:40
+the MX and MX is basically providing the male silver okay for example we can have
+32:01
+foreign
+32:09
+types the name and the values are different okay so the last one for test
+32:16
+outcome the names the mail server is called neo.test.com of course it can be
+32:21
+other names or other email servers it can be smtp.test.com
+32:27
+with whatever mail server you have you just put the name there and then this is MX type and the tkl is 1000 okay so this
+32:36
+will become a test problem in the exam in exam I may ask you to
+32:45
+write down some records okay for example I give you the domain
+32:51
+name the IP address the host name and I ask you to provide uh uh maybe NS type
+32:58
+or whatever type okay so then you need to know how to write this record correctly
+33:04
+okay questions
+33:14
+is asking what's the difference between hostname and domain name
+33:19
+um so hostname hostname is uh the name for
+33:26
+a machine okay and the mean name is usually um usually means um
+33:33
+the for example for uh this for this domains the how we reference them in for
+33:40
+example csus.edu can be a domain name but it can
+33:45
+also be the host name sometimes okay especially when we use for example we use a
+33:52
+um csusw to refer to the web server okay but the host name can also be something
+33:57
+else hostname can also be
+34:03
+smtp.test.edu.test.com okay then in this case the host name is the hostname for
+34:08
+this email server okay so um the domain name is like a family
+34:14
+name okay but sometimes the host name is is just the same as the domain name
+34:21
+especially for the web server because we usually refer to um for example google.com can be the
+34:27
+main name and google.com can also be in the host name for the web server Google okay but the mail server and DN server
+34:35
+database servers may have different names okay
+34:41
+all right so then let's look at the DNS protocol uh and also the message format
+34:47
+for DNS the query and reply message they both share the same message format it's
+34:53
+like that in the in the figure short here in the table short here okay as you can see for the message hacker for the
+35:01
+message header we have identification number which is a 16 bit number this is
+35:07
+uh used for query and reply okay so the query and reply message will share the
+35:13
+same identification number okay to indicate oh this is the reply for that
+35:19
+specific query okay and then um after that we have two guys of flex
+35:26
+okay uh another 16 bits is used for Flags in the flags it may indicate this
+35:33
+is a query or reply message okay and it may indicate uh if recursion is desired or
+35:42
+uh if your current is available okay and it may also indicate if the reply is
+35:49
+authoritative or not okay if the reply is authoritative that
+35:55
+means the reply comes from the authoritative name server directly
+36:00
+okay if the reply is not authoritative that means the reply is from the local
+36:07
+DS the cache is from the cache it's not from the original authoritative name
+36:13
+server okay so after that you may see uh the number
+36:18
+of questions uh number of RRS R Us means resource records okay and
+36:26
+the number of authority authority errors and number of additional hours okay so here uh these four are just the numbers
+36:34
+okay that's just the numbers and then after that we will see the questions
+36:41
+okay uh if this is a quarry then the questions will be shown here so the name
+36:47
+and type fields for query and if this is a response message then the answers will be say uh in the in
+36:56
+this field okay the response to the records in response to the card will be shown in
+37:02
+this field and um we also have the records for
+37:09
+authoritative name servers and there are also some additional information that
+37:15
+may be helpful for example um you may have the information for the
+37:21
+authoritative name servers um and other things okay
+37:27
+all right so let's look at some examples right these um experiments here just for
+37:33
+fun okay so a very commonly used tool
+37:38
+4ds query is the NS lookup okay you can try it on your own at home so for
+37:45
+example here I firstly did let's look up for google.com okay
+37:51
+and this is what I get this is the response okay and you can see the first part
+38:02
+This Server and address pay attention This Server and address is not the IP
+38:08
+address for google.com this is not the answer this just means
+38:19
+this just means is the local DNA server means which
+38:25
+local DNS server is providing you the answer okay and then if you look at the answer
+38:32
+here the non-authoritative answer
+38:37
+okay you can see the IP address for google.com is 200 this one I don't want to read it
+38:44
+okay but this is the IP address for google.com okay
+38:59
+and also you need to pay attention
+39:05
+this is a non-authoritative answer that means the answer comes from the
+39:12
+cache from the local DS the answer does not come from the authoritative name
+39:19
+server of Google okay pay attention to that and after that I did another query
+39:24
+our csus.edu as you can see it is showing the same
+39:31
+IP address 251-251 again that is the local DN server that means it's still
+39:37
+the same server replying to me okay and some of you may ask what is this
+39:43
+this is the Pearl number 53 is the post number for DDS service
+39:50
+okay it's like 84 HTTP 25 for email okay and then you can see the answer for
+39:58
+csus.edu is
+40:04
+130.86.9.189 this is the IP address for Sac State for for csus.edu okay
+40:10
+and then I did another query I'm very curious so I call it
+40:17
+dns.csus.edu I want to know the IP address for DNS of CN csus.edu
+40:24
+but unfortunately the server cannot find this dns.csus.edu
+40:32
+that means safety do not have this machine does not have this machine
+40:38
+then I'm curious if this is not the DNS server then who is the answer
+40:46
+so then I did a lookup again and this time I type in the type
+40:53
+equal to NS csus.edu [Music] okay this is two
+41:03
+get the name server for CSUS EDU so I get two answers
+41:09
+apparently the name for CSU for the CSUS CDU the answer is not
+41:16
+ds.csus.edu it's actually s4.csus.edu and as through.csus.edu
+41:24
+okay um and then I'm again very curious I want to know which one is this machine
+41:33
+okay is this S4 os3 so I did another NS lookup
+41:41
+as4.csus.edu and then you can see actually this is an S4
+41:49
+right it's ns4 and then I did another lookup of S3 and it returns me a
+41:56
+different IP address so this proves that is actually as for
+42:02
+providing the local DN service to me and it also shows you that on exact State we
+42:09
+actually have more than one DN servers okay
+42:15
+and then I did another lookup okay what I look up is I want last time to
+42:23
+remember we talked about the smtp.csuf.edu right so this is the mail
+42:30
+server do you remember mail server adjusted but we want to know
+42:37
+the canonical name for this one and after that you can see after the lookup you can see I get the canonical
+42:45
+name which is smtp.statlink.csus.edu okay
+42:51
+so you can do the same practice at home if you like um
+42:56
+this is a this is like exploring process very interesting okay so then now you understand how you can do the lookup
+43:03
+okay any questions
+43:10
+okay so another thing I want to emphasize is
+43:16
+about inserting records into DS so why we need to re research records into DS
+43:24
+you imagine in a scenario for example you are um you have a new company a new startup
+43:30
+which is called for example Network Utopia okay and you want everybody to
+43:36
+know about your network right to know about your company then you have to register your company at the DNS
+43:44
+register okay you basically need to register this name Network utopia.com
+43:54
+okay so then what you need to do is you need to
+44:00
+provide two things at least two records okay one thing is that you need to tell
+44:08
+others what is your DNS server that is very important because DS server the D
+44:17
+answer reveal provides all the mappings between the host between all host and
+44:22
+the IP addresses so the answer is like the contact person you need to let
+44:28
+others know who your contact person is otherwise nobody can contact you right
+44:33
+nobody can reach reach out to you that's why the very first directory need
+44:38
+to insert is the network utopia.com and provide the DNS
+44:46
+the DNS server name and this is type NS Type n s because that is used to provide
+44:53
+the DNS server's name okay but pay attention this is just providing
+45:00
+the name but the question is how can others contact him you also need to
+45:05
+insert another record into the um
+45:11
+uh TLD server you also need to tell others IP address for the CNN's name server
+45:21
+okay and then others will know how to contact it so for this record it's type
+45:27
+A because this is a the name
+45:32
+the IP this is type A record okay you are providing a mapping between IP and a
+45:38
+name okay so this will become a test problem
+45:44
+so in the test I may ask to you if you have a new startup
+45:51
+okay if you want to let others know your company your your
+45:58
+um the IP address for all your domain name what would you do what are the two
+46:04
+records that you will insert into TLD for sure okay at least two records so
+46:11
+again keep that in your mind first thing is tell others who is your DN server use
+46:17
+the using the NS type and then tell others the IP address for this DNS
+46:23
+server using the type a record okay those are the two records you need to
+46:29
+add of course you you need to also include another type a record for your
+46:36
+web server right and then you need to also insert
+46:41
+um MX record for this dummy that means you need to provide a mail server okay
+46:48
+and with all those four then you are complete Okay so
+46:55
+but at least you need to insert the DNS and then the IP address for the S okay
+47:01
+all right so the last thing we want to talk about very quickly today is uh
+47:06
+about attacking 2DS okay uh so a very
+47:12
+common type of the attacking is the DDOS attack he does attack basically means
+47:17
+bombard the root servers with traffic so we if we send you as you can imagine if we send a lot of queries okay and if all
+47:25
+those colors go to the root server prove DNS that will cause Radiance will be all
+47:32
+around so this is the DDOS attack okay but in reality in reality is very
+47:39
+challenging or very hard to attack the rootiness
+47:44
+can we imagine why because the root yes
+47:51
+okay in reality is not contacted a lot because the TLD servers as we mentioned
+47:58
+are already uh already cached in the local DS okay it's like with everyone
+48:07
+all the local audience already has the content information for the thing they
+48:12
+don't want to bother the president again because they already know how to contact the thing so what what is the rationale
+48:18
+to contact the president again so that's why in most cases
+48:24
+attacking the routine server is actually very difficult but uh doing the details
+48:31
+to the TLD servers is possible okay it's possible because the TRD server may
+48:37
+be contacted a lot um so that is uh that is the uh the details
+48:43
+attack okay and another type of attack is called the redirect attacks okay and uh
+48:51
+also DNS poisoning so this is a very common type so what is happening is
+48:57
+actually for example if this is the local DS
+49:04
+okay and then it will contact
+49:09
+the original routines or whatever or TLD
+49:15
+okay for example TLD name servers okay and then some people some money in the
+49:23
+middle okay will intercept the query so for example the TLD will return some
+49:30
+IP address right a real IP address but this bad person this bad guy will
+49:35
+actually intercept the query and provide a fake IP address
+49:42
+Pride provide a fake IP address to this local DS does this make sense okay give a fake
+49:51
+IP and this click it will be stored here at the local DS
+49:57
+okay it's cached there in the local DS then in this case we call this as DNS
+50:04
+poisoning the reason is because if there's somebody else the client is requesting for local DS contacting local
+50:11
+dance again uh for uh the IP address for some
+50:16
+machine okay let's see if this is uh again test.com
+50:22
+and now test.com has a fake IP and then this fake IP will be returned to client
+50:28
+if there are some other clients contacting the game for test.com the local DS will say oh I already have
+50:35
+the IP for test.com so the fake IP is returned again to the to another client
+50:41
+so that's why it's called pointing because um they are all cached here at the local
+50:46
+DS okay and yes poisoning can also happen
+50:52
+um between the other DN servers like between the root and TLD between the TLD
+50:58
+and the authoritative name so it doesn't need she doesn't necessarily happen between the local and others okay
+51:06
+so as long as a fake IP address is stored or cached in their server then
+51:15
+this is called against poisoning okay because then this cancer reveal
+51:21
+they are pro always provide the wrong IP address or the fake IP address okay
+51:28
+this is called the redirect attack another type of attack is called employed DNS for DDOS attack so this is
+51:35
+this one is also very interesting this one means when the client send out a
+51:42
+query it will use a spoof IP address
+51:47
+okay and it will send out a lot of queries using a spoof IP address and then as you
+51:56
+can imagine all those queries will have a response right and then all those
+52:02
+queries will will come back two
+52:08
+this IP address to this moved IP address then this both IP address is the target
+52:14
+IP actually it's the victim because it is receiving so many responses then this
+52:20
+is like DDOS attack uh in this attack you are pretending to be someone else to make a lot of queries
+52:27
+to the DNA servers and machine with that IP address will receive a lot of responses and that is the DDOS attack
+52:34
+Okay so

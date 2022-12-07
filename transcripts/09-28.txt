@@ -1,0 +1,636 @@
+0:04
+all right so for socket programming assignments uh we will talk about two
+0:10
+two different directions one is with UDP the other ones with TCP through uh 2.01
+0:17
+and 2.2 we have already learned that at the transport layer there are two type
+0:22
+of protocols UDP and TCP the difference between them is UDP is unreliable and
+0:28
+TCP is reliable that is one major difference that as a developer as a
+0:34
+program developer you can choose which protocol to use when you are developing
+0:41
+your application so if you choose UDP that means you do not care too much
+0:46
+about reliability you can tolerate a little bit of data loss for example maybe for the video application you can
+0:52
+allow data loss okay because we if we lose some pixels it's fine we can still watch
+1:00
+the video like smoothly but if you are developing like
+1:06
+um a web service then you have to use TCP because this if it's reliable you
+1:11
+cannot afford losing even one detail data okay that's the major difference so today I will basically show you how to
+1:18
+do the soccer programming in the socket programming in the in this
+1:23
+case our goal is to learn how to build client and server applications that
+1:29
+communicate using sockets okay we know there are two different architectures
+1:36
+P2P and client server model right so so now we are focusing on client server
+1:41
+model but it's fine if you do P2P it's the same thing okay anyway these applications will communicate using
+1:48
+sockets if you cannot remember sockets anymore let me help record what we've learned before so the
+1:56
+circuit is like a door between application layer and the transporter
+2:02
+layer okay so basically the application layer have a num have some processes and
+2:08
+they want to communicate okay for example now we have process a and process B so process is like a
+2:16
+running application right so you can think this as like an email application
+2:22
+or a web application okay so anyway when they are when they code
+2:30
+our application are moved to memory to run then we call it a process okay so
+2:36
+now the computer to computer communication is actually a process to process
+2:43
+communication okay driving process a wants to send a message to process B it
+2:51
+needs to push this message through a door okay that door is called socket do you
+2:58
+still remember the analogy I gave you before if you want to use the Postal Service then basically you need to
+3:05
+prepare a package and put that package outside the window right so now in this
+3:11
+case your door is like the socket then after you push your package outside of
+3:17
+your door somebody from the postal office will come to pick up your package
+3:23
+and then deliver it for you so it's like this message is picked up at the transport layer and then delay word for
+3:30
+you to the other transporter layer at the other side okay at that destination
+3:36
+then basically process B can
+3:42
+come to pick up this package okay come pick up this message through a socket
+3:48
+again okay so that is the socket then in this case you are using the services
+3:56
+provided by the internet okay so what you really need to do
+4:02
+when you are doing the development is you call some apis okay you call some
+4:10
+interfaces so then you can directly directly use the services you don't have
+4:16
+to write all the code from scratch so that's something you need to keep in mind okay now let's look at this uh
+4:26
+this application so for this application
+4:31
+basically uh it has a very simple functions firstly the client reads a
+4:38
+line of characters from its keyboard and sends the data to the server you
+4:44
+imagine you imagine now you have a client machine and a server machine so this can this one can be a client this
+4:51
+one can be a server okay so the client reads a line of characters from its
+4:56
+keyboard and sends the data to the server the server receives the data and
+5:02
+converts the characters to uppercase then the server sends the modified data
+5:09
+back to the client finally the client receives the modified data and displaced this line on its
+5:16
+screen so that is the application very simple very simple so basically the main idea
+5:22
+is oh the client wants to convert the lowercase characters into
+5:28
+uppercase that's all okay the server is providing just one service that is
+5:34
+converting the characters to uppercase that's all okay so of course if we think
+5:40
+about the web service the other services the service may be much more complicated
+5:46
+but here we just use the one very simple very straightforward to
+5:52
+demonstrate how the client server model can be deployed or can be implemented
+5:58
+using socket programming before I demonstrate the code okay I
+6:03
+want to firstly discuss at high level what will happen Okay so if you are
+6:09
+doing circuit programming with UDP you need to pay attention for UDP we do not
+6:14
+need to do any handshaking kind of thing between the kind of server so we do not need to establish any connection between
+6:21
+the client server before we do that exchange okay then in this case the center if the sender wants to send
+6:28
+something to the server the sender can ex need to explicitly attach the IP
+6:36
+destination address and port number to each packet so it's like
+6:42
+there is no established connection between you and your friend if you want to write a letter to a friend you need
+6:49
+to explicitly write down the address and the name of your friend on the envelope
+6:55
+okay so it's like that then the receiver side will extract this Android IP address and phone number from the
+7:02
+received package and then reply back okay so like when your friend receives your letter your friend will read the
+7:10
+information on the envelope including your name and your address and then
+7:15
+extract this this name and address and then reply to the same name the same address okay so that is the UDP
+7:23
+pay attention for UDP the transmitted data may be lost or received out of order okay from application point of
+7:31
+view UDP provides unreliable transfer of groups of bytes between the client and
+7:39
+server so that is UDP and I want to skip this part because later
+7:45
+I'll show you in the code so if you are doing programming with the
+7:51
+TCP pay attention for TCP we must establish a connection first
+7:58
+okay that means that means it's like if you want to mail a letter to your
+8:04
+friends okay you can imagine there is a huge pipe between you and your friends
+8:10
+okay a pipe you need to be firstly established and then what you do is you
+8:16
+just drop your letter to that pipe okay then the letter will automatically
+8:21
+goes to your friends okay in this case you don't need to specify the
+8:27
+destination IP address and destination port number because I mean the pipe is
+8:33
+already established with that destination um address and definition name okay so
+8:40
+this is like the for TCP so in this case the client must contact the server
+8:47
+the server process must first be running okay the first server must have created
+8:52
+the socket that welcomes the client's contact this is the same for both
+8:58
+UDP and TCP um then the client will need to firstly
+9:05
+contact the server by creating a TCP socket specifying the IP address phone number of server process okay
+9:13
+when the client creates the socket the client TCP established connection to the server TCP so you can see this is
+9:20
+basically the pipe part okay the establishing the pipe part is leveraging
+9:26
+the connection okay then when contacted by the client the server TCP creates a
+9:32
+new socket for the server program process to communicate with the
+9:37
+particular client so I will explain this later probably you are already overwhelmed right now and that's totally
+9:44
+fine okay that's 225 but anyway from the application point of view okay TCP is
+9:52
+providing the reliable in all the byte stream transfer between the client and
+9:57
+the server okay so I I'm gonna stop here uh in the
+10:03
+slides and I want to give you a demo right now I'm trying to open the
+10:10
+terminal and in the terminal so I currently you can see my my code I actually put on the
+10:16
+desktop I'm using a Mac uh if you are using Linux machine okay you will you
+10:22
+can do the same thing basically you can deploy your code on your local machine okay or if you are able to connect to
+10:28
+Athena you can also do the coding on Athena directly something you need to
+10:33
+pay attention is for this for this exercise because um the scanning code provided by the
+10:40
+textbook is using python 2 so please make sure you are using python 2. you
+10:48
+should install python to do not install Python 3 because otherwise you will run into some problems okay or if you are
+10:56
+confident that you can solve the problems those are very minor issues you can solve those issues that's fine but
+11:02
+if you are not confident please please use the python too okay here
+11:08
+um I'm just going to direct to
+11:13
+to my desktop python okay you can see here I have two photos TCP and UDP now
+11:21
+we can go to TC we can do UDP first it's easier okay
+11:27
+so in this folder I have two two pieces code client.py and 0.py you can ignore
+11:34
+the other one with the sharp sign okay um so usually when you firstly start
+11:40
+programming you have not nothing right you need to firstly create a new file on your own okay here I've already
+11:46
+created my file so I'm I'm good but if you have nothing there yet you need to
+11:53
+create a file so what you can do is you can do for example touch new DOT qy okay
+11:59
+then you can see here is the new file you can create it then you can do the
+12:06
+um editing new py okay then you can do the do the editing
+12:12
+so you can see see um do the program in socket whatever okay
+12:18
+do the programming here but um here I don't want to do the pro
+12:24
+programming Lively I'll just show you the code okay foreign
+12:31
+I don't want to keep it here you remove it and then now let me firstly run a server
+12:38
+program okay so pay attention you always need to run the server program now I
+12:44
+just want to give you a sense what what this feel like so and then later I I'll
+12:51
+show you the code okay so let me firstly run the server if the server is not there yet the client
+12:57
+when the client can't have the server the server is not there so the client will definitely fail so run the server
+13:04
+first by using python server.py you can see the server is ready to
+13:09
+receive and now you need to start a new window okay new window because this one is
+13:17
+already running the server I need another one to run the client okay so do the same thing
+13:23
+where are you stop the code
+13:28
+DP okay and then I run the client
+13:35
+okay you can see the client just giving me a proper message to say input the lower case sentence okay you can say I
+13:43
+like computer science okay and then it will return I like
+13:50
+computer science in uppercase that's all that's how the code works
+13:57
+okay so the for TCP and UDP is the same thing okay for TCP and UDP is the same thing
+14:04
+exactly the same functionality but they are deployed using
+14:09
+um different protocol as transport layer so why is using UDP and otherwise using TCP okay so now I want to show you the
+14:17
+code so let me show you the code
+14:26
+[Music] um let's see The Client First
+14:34
+okay so this is the client code this is the client-side code
+14:43
+okay so at the client side you can see firstly what we need to do
+14:49
+is do from socket import asteroid so this means this means you
+14:55
+want to import the library for uh for socket okay then after that because the
+15:00
+library is imported so you can directly use some of the functions in this Library okay then the server name server
+15:09
+name equals to 127.0.0.1 pay attention here because I put my
+15:17
+server and client on the same machine on the same machine so here the IP
+15:23
+address is actually the local the local machine okay this is
+15:28
+127.0.0.1 is for local machine if you are using F Athena so for example
+15:35
+if you put your client as on your local machine and you put your server on
+15:40
+Athena then here the server name should be Athena's IP address or Athena's name
+15:46
+so for example you can put athena.ecs.csus.edu here or you can put
+15:52
+an IP address of Athena here okay so pay attention to that that is
+15:58
+very important on the slides on the slide here the server name is type at
+16:04
+equal to hostname so some students when they do the programming they follow the
+16:09
+slides and then they directly type everything here they directly typing uh
+16:15
+hostname equal to hostname but what is host name you didn't really specifies host name right
+16:22
+um the we do not have any machine called hostname so then that's why their code
+16:27
+didn't work and then the email me say hey professor I cannot figure out what why this code doesn't work it's actually
+16:34
+because of this so pay special attention to the server name
+16:39
+and then the second the second line is some report equal to one two zero zero one here what I'm
+16:48
+using is one two zero one that means I'm contacting the server
+16:54
+at Port 12001 that means the server needs to listen to this port
+17:00
+okay you can use any you can use other ports you don't need to use one two zero
+17:05
+zero one this is just a random phone number so pay attention uh for this one
+17:11
+you can Google online what are the port numbers available it's usually from one to sixty five thousand uh
+17:20
+536 I I'm not sure if this is accurate but try to avoid those famous port
+17:27
+number like 80 like 25 okay because those ones are reserved okay so you
+17:34
+cannot use those ones that's the second thing you need to pay attention and then client stock is equal to socket AF
+17:42
+Internet stock D gram here this means we are calling a function called socket
+17:49
+and this socket we are this function will help us create a new
+17:54
+socket like a door okay it is using address family internet which means
+18:01
+using the IP address and the sock D program uh sorry soccer diagram circuit
+18:07
+gram here means we are using UDP that is
+18:12
+very important that is where you slash it specify you use UDP okay
+18:18
+so after you create this then this is like uh this is a socket is created and
+18:24
+so we later we can refer to this socket as client socket okay after that then we
+18:33
+we create another variable called message message equal to Raw input
+18:38
+this is a function called also okay this function code will give a proper message so the prop
+18:46
+message here is called the input lowercase sentence you can type in anything else you can type Place type in
+18:53
+your sentence or anything any prop message you like okay and after that it will also collect the
+19:00
+keyboard input and put this input into the message
+19:06
+okay so then now the message has your keyboard input after that what we do is we use this
+19:14
+client socket okay do you remember we already established this client socket we use
+19:20
+this one and call it some function called send two okay pay attention here we need
+19:29
+to use send to not send okay I explain why so in this set of two function first
+19:34
+you need to attach the message and then later you will need to
+19:39
+uh give the server name and server Port so we know server name is IP address so
+19:45
+report is the port number do remember I said before
+19:50
+because we are using UDP there is no connection established yet so that's why
+19:56
+you have to you have to explicitly specify the server name and
+20:03
+the server port or the destination IP address and that's important so this is how you do that okay after that you just
+20:11
+wait okay so here you can say uh we will call another function call called
+20:16
+receive from so you will just receive from the server okay so here 20 48 is
+20:24
+the buffer size okay it's the buffer size and then after you receive the
+20:29
+message the response message from the server you will extract that message and
+20:35
+get two wearables one is a two pieces of
+20:41
+information basically one piece of information is the modified message which means the message is already sent
+20:47
+to the server the server has already converted it to uppercase and then send
+20:53
+it back so now you can you can put that message into the modified message this is the variable name and also there is a
+21:01
+second piece of information contained in this uh data you received so the second piece of information is the server's
+21:08
+address the service address so you will put it into server address
+21:14
+because actually here you already know the service address before right you specify the server name so you do not
+21:20
+really need this right now but still when you want to put it into some variable okay and then after that you
+21:27
+print the modified message and then you close the socket okay you close please
+21:33
+pay attention after this is all things are done you need to close the client
+21:40
+socket that is very important okay because otherwise this socket will be
+21:46
+open okay always open and it will basically waste the resource of the client side
+21:53
+and also the server side okay so this is uh the client code client
+22:00
+code and um let me show you the server code
+22:20
+so this part is the server code okay this is the server code so firstly at
+22:27
+the server side the server side you also need to do socket from socket import import the Sim library and pay attention
+22:35
+here you can see the server port number is exactly the same as the one we
+22:42
+specified in the client so usually what we need to do actually is you firstly specify the one in server and then use
+22:50
+the same one in the client that's usually uh the order okay then the
+22:55
+server side need need to also create a new socket by using socket function and
+23:01
+here we can see it is also using UDP if you use UDP and client sign then you
+23:06
+need to use it at the server side okay then later we need to bind bind This
+23:12
+Server uh Port 12001 okay with this socket so then the
+23:19
+server socket will uh the several will be always listen to this port at one two
+23:25
+zero zero one okay and then after that the server is ready the server will say hey I will print a message to say hey
+23:32
+the server is ready to receive okay and then after that do remember we learn
+23:37
+when we learn client server model we said the server will have to be always on right so the server will run a while
+23:44
+loop forever never stop okay so in this while loop you can see it
+23:51
+will firstly do receive from it doesn't do any send it to yet okay because the
+23:57
+server is waiting to be contacted so the server will do receive from
+24:03
+using the server socket and the buffer is still 2048
+24:08
+it will extract two pieces of information again the same thing as here as here in the client side
+24:14
+okay do you remember okay so here the two pieces of information is firstly it
+24:22
+extracted the message received okay secondly it will extract the address of
+24:29
+the client okay because it is contacted by the client but it doesn't know the IP
+24:35
+address of the client IP address port number so that's why actually this
+24:41
+socket will will extract the client address and then later reply to this
+24:46
+same address okay then after that after that it will call
+24:53
+another function call called upper it will basically convert this message into our practice and then store it into
+25:01
+a new variable called modified message after that as you can imagine the server
+25:07
+circuit will basically call another function called section 2. so Senator we used this before right in the client
+25:14
+code so it will send to what send to
+25:19
+send it to the client address okay send it to the client address
+25:25
+send what send the message send the modified message okay here you can do
+25:31
+the encoding or you can just send modify the message that's also fine but please
+25:36
+remember if you do encoding here then you're like in the at the client side you also need to do the uh decoding when
+25:43
+you receive it but it's a it's a fine so this part is you have the flexibility okay
+25:50
+so that is the client and server code for t for UDP okay so let me
+25:58
+wait
+26:03
+let me show you the code of TCP TCP is a little bit different so let's
+26:09
+see the um aligned first okay so this is the client
+26:16
+code for TCP we have only eight minutes left so I want to make this faster so firstly
+26:24
+firstly you can say we need to import the socket and we
+26:30
+specify the server names report we create a new socket called a client
+26:36
+socket it's the same but there is one thing you pay attention here
+26:41
+it's using stock stream not sock D gram
+26:47
+sockscream means we are using TCP that's how you choose okay then later after
+26:54
+that it's very important this is very important later when you firstly
+26:59
+establish a connection with the server okay do remember in UDP we do not need
+27:06
+to do this but in TCP we firstly need to establish a connection with the server
+27:13
+the server name is this one the support is this one and then it will call Raw
+27:18
+input okay give this prop message take the input and put it into something called
+27:24
+sentence okay later the client socket will call function called send not send
+27:32
+to incent function we only need to drop the
+27:37
+sentence there the message there we do not need to specify the destination IP
+27:43
+destination Port the reason is because a pipe is already established between the
+27:49
+sender and the receiver we do not need to explicitly specify the name the other the address
+27:56
+definition address and destination Port that's the reason pay attention to this this is very important
+28:02
+and then later we will do receive the client socket will do the receive
+28:07
+message and then do the decoding okay so finally print from server the
+28:16
+modified sentence so basically the received message is put into the modify
+28:21
+sentence and then we'll print out this uppercase sentence after that the client
+28:27
+socket will close okay so pay attention here in the client socket really close
+28:33
+but in the server socket do you remember in this for example even for UDP even
+28:38
+for UDP the server socket Network loads because because
+28:44
+the server should be always on it will be there forever okay so that is a TCP
+28:53
+and then let's uh
+28:58
+see the server code foreign
+29:11
+okay so this is uh the TCP code the TCP server side
+29:17
+same thing import socket specify the server IP address and then create a
+29:24
+server size socket using sock stream because this is a TCP okay and then find
+29:31
+the cell reports with this socket to listen to this portfolio ever then do
+29:37
+the listening and then we do print this is ready okay so after that it will
+29:43
+enter a while loop and pay special attention this part is very important
+29:48
+in the while loop we can see the server circuits okay is accept
+29:55
+incoming requests so after the accept
+30:01
+it will do two things the first thing the first thing is it
+30:07
+will extract the address of the client side and put it into address
+30:12
+okay and also it will need to create another socket
+30:18
+called connection call socket okay so what does this mean
+30:24
+this is a this is very interesting so TCP is different from UDP in UDP we
+30:31
+have only one server socket that is called the server socket that server socket is uh welcoming the incoming
+30:38
+message and then also do the service right particip is different TCP have two
+30:45
+types of server socket so this one the server socket is the one for welcoming
+30:52
+it's like when you go to a bank somebody is standing there welcoming you so that
+30:57
+is the server socket but that person that person will not do the real
+31:02
+business with you that person will not serve you directly instead that person
+31:07
+will assign you to some uh teller sitting behind the window and say hey
+31:15
+please help this uh this this person um he or she is one wants to withdraw
+31:22
+some money right and then the person sitting behind the window is doing the
+31:27
+work or doing the service for you so that person is this connection socket
+31:32
+okay that means in TCP TCP can receive can welcome a number of incoming
+31:39
+requests okay and enough a number of incoming clients and extract their address and then assign that request
+31:47
+choose a new socket called connection socket this connection socket will do
+31:53
+the service for for you okay so that's why you can see later this connection socket is not the server socket it's the
+32:00
+connection socket receive the message and put it into something called sentence and then convert this sentence
+32:07
+into uppercase put it into capitalize sentence and then later send this capitalized
+32:13
+sentence to the client and again you can see it's using send not to send the tube
+32:18
+because as we said a connection is already established between the server
+32:24
+and the client what we need to do is we only drop the message we don't need to specify the destination IP address and
+32:31
+destination Port okay and then after that interestingly you can see the
+32:38
+connection socket need to be closed after everything is done we need to
+32:43
+connect the close the connection socket that means what that means when you go to the bank you talk to the person who
+32:51
+sits behind the window and that person after he finished the service to you he
+32:56
+or she can leave okay they can leave to take a rest they don't have to be there forever
+33:02
+but the person who stands in front of the door the welcoming person can never leave
+33:09
+because he or she will be there forever to welcome the newcomer new new
+33:15
+customers it's the same thing here you can see we close the connection socket but we never
+33:22
+close the server socket that's the difference okay never close the server
+33:27
+socket so in the test I may ask you the question how many types of socket server
+33:35
+sockets do you need to create in TCP you know we need to create at least two types let me ask you how many do we need
+33:42
+to create how many types do we need to create in UDP they you know in UDP you
+33:48
+only need to create one type okay I may also ask you um do you need to climb close the client
+33:56
+socket you should know yes we need to close the client socket do you need to
+34:02
+close the server socket you never close the server socket which is welcoming
+34:07
+right but you can close the connection socket the one which is doing the real
+34:12
+service for you in TCP okay so those are all the things you need to understand if
+34:18
+you understand this this very basic principles you will know the answer to those questions okay

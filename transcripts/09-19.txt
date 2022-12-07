@@ -1,0 +1,628 @@
+0:05
+all right so um let's talk a little bit more then we stop the class okay
+0:12
+so uh the next thing we want to discuss is the protocol the protocol basically as I said is like
+0:19
+a rule between the machines we want we want the machines to understand each other otherwise how can they communicate
+0:25
+okay they need to all follow the same the same rules okay so basically the
+0:31
+application layer protocol each layer we have protocol okay here we are talking about only the application layer
+0:38
+protocol application layer protocol defines the types or messages exchanged like the
+0:45
+request message the response message and also the message syntax so what are
+0:52
+the fields in the messages how the fails are deleting delineated okay so those
+0:59
+are the things defined in each message and then what are the semantics of the
+1:07
+messages okay what are the semantics that means what are the meaning of information in
+1:13
+each field okay and also the rules for one and how the processes can send and
+1:22
+respond to messages so those are all the things defined and there are more okay
+1:29
+so here you can see there are there are some open protocols uh defined in the
+1:35
+RFC request for comments documents some of the some of them are like HTTP
+1:42
+for web SMTP for uh email okay there are also some private protocols like Skype
+1:50
+okay this is a protocol
+1:55
+um so pay attention to what are defined here this may become a test question
+2:02
+I may ask you what are defined by the application layer protocol so you should
+2:09
+know these are the things that are defined okay next thing we are going to talk about is the services provided by a
+2:17
+transport layer uh let me see okay so again if this is a computer's five liter
+2:25
+model one two three four five okay and this is
+2:31
+a physical layer okay this is uh the link layer definite
+2:38
+layer Network layer transport layer
+2:45
+2005 layers and now okay we know for the application layer
+2:52
+it will need to get service from the transport layer it's like
+2:58
+if you want to deliver a package you need to get service from USPS
+3:04
+okay from the post office at USPS okay
+3:10
+then what kind of service can we get from transport layer or what
+3:16
+kind of service do we need right does our application need so first thing
+3:22
+we need reliability transfer it's like if you are using USPS you don't want to
+3:27
+lose your package right same thing in the uh in the application
+3:34
+layer the apps need to deliver a message and some applications they require 100
+3:41
+reliable data transfer why you think about this if you are sending
+3:47
+out an email do you want to miss some letters in your email
+3:53
+if you are withdrawing money from a bank or doing transfer
+4:00
+do you want to miss any numbers right do you want to miss a zero in in
+4:07
+the transferring amount you do not want right so those applications will require 100
+4:14
+to Reliable this transfer but there are some applications that do
+4:20
+not require a 100 reliability transfer they can tolerate some loss
+4:26
+so what applications can tolerate loss you think about this
+4:32
+if you are listening to an audio okay for example now if you are listening to me
+4:37
+when some beats are missed are lost can you still hear me you can still hear
+4:45
+me right you can still get you if some meat some bits are missing
+4:52
+that's fine your eye your ears can still can still hear what I'm saying right or
+5:00
+if you are watching a video do you really care if some pixels are missing
+5:06
+you do not really care right when you watch the movie if some pixels are missing you can still see this entire
+5:12
+picture perfectly does this make sense so for those applications we can
+5:19
+tolerate some loss then those applications do not rely require reliable data transfer at least not 100
+5:26
+reliable okay that's one service we are talking about data transfer reliability
+5:34
+second service we want to have is the timing okay for example when you send a package
+5:42
+to your friend as the as the
+5:47
+Christmas gift you want to have this package delivered by Christmas right you don't want to
+5:54
+wait for a year for this application to be it for this package to be delivered
+5:59
+so timing is also very important especially in some applications such as
+6:05
+uh telephony or games right we require a low delay to be effective
+6:13
+in the gaming when you shoot uh Avatar you don't want that to die
+6:20
+after two hours right the experience would be be really bad so timing is very important
+6:28
+the next thing throughput so some applications require minimum
+6:36
+amount of throughput to be effective so some of you may be thinking oh what's the difference between throughput and
+6:41
+timing it's very different timing means we can wait okay or we cannot wait so
+6:48
+this email for example this email will be delivered in one day or in two seconds
+6:55
+okay but throughput means we want to guarantee the minimum amount of
+7:01
+throughput to be effective for example if you are watching a video you want to guarantee the minimum
+7:09
+throughput so at least your experience is not bad right if your your movie is not very
+7:16
+smooth that's because of a low throughput then it will affect your experience of using
+7:24
+that application okay so that's why some applications require a minimal throughput but some do not okay for
+7:31
+example for email we do not require throughput you can you can send this
+7:37
+um you can send in one bit in this second but you can send one one megabits in next second it doesn't really matter
+7:43
+to me as a lot of the final in my email my email is delivered right
+7:51
+security we care about if you can provide encryption or data integrity
+7:57
+okay those kind of features pay attention those are the services
+8:04
+that we hope we all get we hope we will get right but do we
+8:10
+really get those it's like we hope we can get reliable
+8:16
+package delivery from USPS but do we really get reliable packet delivery from
+8:22
+USPS I don't know maybe or maybe not right
+8:27
+so let's look at the requirements of this common applications okay
+8:35
+on the left side in the table on the left side you will see the applications we have file transfer email web
+8:41
+real-time radio audio etc etc bins okay
+8:46
+and then let's look at for example uh the file
+8:52
+transfer for file transfer we cannot afford the data loss that means we
+8:59
+should not allow any loss for throughput it's elastic we do not care about the robot okay as long as the
+9:07
+file is finally delivered then we are fine is this time something no we don't care
+9:14
+okay so that's those are all the requirements for file transfer for
+9:20
+emails the same thing for web is the same thing but for video okay let's see for video
+9:30
+for video can we tolerate data loss the answer is yes we can tolerate data
+9:38
+loss if you lose some bits we don't care do we care about the robot yes vary we
+9:44
+want to have a minimal throughput so that we can have a good experience okay is this time sensitive yes okay the data
+9:53
+has to be delivered in a very fast way because this is real time audience video
+9:59
+excess you can say depending on different applications we require
+10:04
+different services from the lower layer okay their requirements are different okay
+10:11
+then now let's come to the transport layer okay we just discussed the application
+10:18
+layer need this need that they all need this kind of services but at transport layer can we provide
+10:26
+those services okay it's like if you you want to have
+10:32
+some services from USPS but let's look at USPS can we provide these Services we
+10:39
+don't know okay now we are standing here pay attention now we are
+10:45
+looking at the transport layer we are not looking at the application layer okay
+10:51
+add transpose layer transport layer provided two type of services
+10:57
+one is called transmission control protocol service which we know as TCP
+11:04
+the other one is the user datagram protocol which is UDP
+11:09
+so please pay attention to the full name okay I remember uh one year I had a
+11:18
+final exam question called uh what is the full name for TCP
+11:24
+I thought this is the easiest problem ever but a lot of students didn't get the
+11:32
+answer and you know what they provided a very creative answers
+11:37
+so some students said the full name for TCP is truly challenging points
+11:45
+that's really really creative um so please remember the full name and
+11:52
+if you cannot remember that you can write it down on your notes uh for the exams I usually allow you to have uh
+11:59
+change it okay so for TCP again let's come back for TCP
+12:06
+TCP is one service for this service it provides reliable
+12:12
+data transfer okay reliable transport between sunny and receiving process that
+12:17
+means if you choose to use TCP then your data will be delivered eventually okay
+12:23
+will be guaranteed for delivery it will also provide flow control flow
+12:30
+control means the sender won't overwhelm the receiver for example if I am sending
+12:35
+something to my friends okay I'm I'm calling him I'm sending him letters
+12:41
+every day every hour then he or she will be overwhelmed okay flow control will
+12:47
+means I cannot do that okay I will be controlled I cannot all around the receiver
+12:53
+so congestion control means throw to the center when network is overloaded this
+12:58
+is the same in our flow control but it's very different okay it sounds similar
+13:04
+but it's very different so conditional control basically means uh the network is already overloaded it's not about the
+13:11
+receiver it's about the network the network is already loaded so we want to
+13:16
+stop the sensor from sending uh more packets more quickly
+13:23
+okay so it's like if I know the traffic is already very very congested on the road if you are all in the classroom I
+13:30
+won't let you out because I know if you go out you will make the condition even worse okay
+13:37
+but TCP does not provide service about tiny no minimum throughput guarantee no
+13:45
+security um and it will also need to establish a
+13:52
+connection before data exchange okay that means before
+13:57
+the source and the destination I want to exchange any data they need to firstly agree upon something they need to
+14:04
+firstly set up a connection okay that's the transport uh sorry
+14:09
+that's the TCP service so for UDP service UDP provides unreliable data transfer
+14:18
+that means there are maybe data loss happening okay it doesn't provide any
+14:24
+reliability no flow control no congestion control no timing no throughput guarantee no security no
+14:31
+connection setup nothing okay
+14:36
+so you might be thinking oh uh UDP provide nothing
+14:43
+then why bother why is there a UDP why do we need it
+14:49
+okay so later you will learn UDP has a lot of
+14:55
+um other one it is over TCP okay for example
+15:01
+because no connection setup is needed so it is much simpler okay
+15:08
+because um the UDP packet is also much smaller
+15:13
+much smaller than TCP header the UDP header is much smaller than the TCP
+15:18
+header it's like when we write a letter okay the TCP header will have a long long uh information on the envelope but
+15:27
+TCP has a very few information on that envelope okay this is much simpler and
+15:33
+you save a lot of resources for example you have less beats right less B is used
+15:39
+for the header so it is smaller the package is smaller
+15:44
+uh yeah there are a lot more for example because there is no flow control no
+15:49
+congestion control so the UDP can um use the resources to the most
+15:57
+potential okay to the most potential um so the data can be sent out really
+16:03
+fast okay there is no control over uh over the sender okay so a lot of these
+16:10
+benefits we will learn gradually later for now don't you don't don't need to remember but uh you you should know okay
+16:17
+there is a reason for UDP being there okay there is a reason
+16:23
+uh so TCP and UDP again are these are just two kind of uh Services provided by
+16:31
+transport layer it's like when you walk to the post office okay post office will say oh we have uh the priority mail okay
+16:39
+we have the express here we have this we have that so the if you pay more money
+16:45
+then you will get better service right you will have uh we will ensure your package is
+16:52
+delivered reliably okay but if you pay less if you use just ordinary letters
+16:58
+okay we cannot ensure that so it's like that it's just different services that are provided by transport layer and the
+17:06
+application layer has the ability to choose from these two okay application
+17:12
+layer when you for example you are developing the app okay you can say oh
+17:18
+my application is a web service for example okay then I need to
+17:23
+guarantee the reliability to transfer so I need to use TCP
+17:28
+okay if you are developing an application for video gaming you don't really care about data loss then you can
+17:34
+say oh I I want to choose UDP okay so you can choose whatever service you like it's like you when you go to SPS you can
+17:41
+choose what service you like based on your need okay so let me look at the question
+17:47
+remedy said so TCP is more insured I don't know your what what do you mean by
+17:53
+insurer do you mean reliability yes yes so TCP is more reliable
+18:02
+that means whenever you want to send something out using uh TCP your package will be guaranteed to
+18:12
+be delivered but if you use UDP the data may get lost okay no guarantee over
+18:17
+reliability does that make sense remember
+18:24
+okay great and then in this table you can see depending on what application you are
+18:31
+using we can choose different protocols at the transport layer okay
+18:39
+for now for the application layer protocol you do not need to remember those for example for email we will use
+18:45
+SMTP and we want to ensure reliability so we have to use TCP so remote terminal
+18:51
+access this is for um usually typing some command in terminal right so we also want to ensure
+18:58
+reliability so TCP uh web TCP again because we need reliability file
+19:04
+transfer we need TCP because reliability streaming multimedia not necessarily
+19:11
+okay we can use either TCP or UDP okay because we may afford the losing data
+19:17
+think about this this is the multimedia the movie the pictures if the audience
+19:23
+if you lose some beats it doesn't really affect you watching the movie watching the picture or listening to the audio
+19:30
+right so it's fine that's why we can use TCP or UDP for internet telephone name
+19:36
+we again we can use gcp or UDP okay so you can you can say depending on what application you are using we can choose
+19:43
+what protocol we will use at the transport layer and then the last thing
+19:49
+about this section is the securing TCP and if you look at the
+19:56
+um the features of gcp and UDP we know both of them do not provide any security
+20:04
+okay both of them do not provide any security so then some of you may ask oh
+20:10
+uh then what if I want to have some security right I don't want my password
+20:17
+to be sent in clear text right um so then what can we do so as I
+20:24
+mentioned before if you want to in uh add any security then you have to
+20:29
+implement the security in the application layer how can we do that we
+20:35
+use something called secure socket layer okay is this another layer on top of the
+20:42
+Internet Protocol stack no this is actually within the application layer
+20:49
+okay um although it's also called a layer but it's not really a layer in the internet
+20:54
+okay so the SSL can be used to provide the
+21:00
+encrypted TCP connection it can provide the data integrity and it can also
+21:06
+provide the endpoint authentication so what it does is generally uh it's so for
+21:13
+example if you have your password or whatever text okay that is in plain text okay
+21:21
+then when it goes through the SSL the SL SSL will add a layer of encryption okay
+21:29
+basically uh the application Will Call some encryption functionality functions
+21:35
+okay in the API to encrypt the data and then send the data out okay so it's like
+21:40
+that um when I see send it out I mean push it down to the transport layer okay
+21:49
+um so SSL is application layer as I mentioned uh applications use the SSL
+21:56
+libraries which talk to the TCP okay so basically you firstly call SSL libraries
+22:02
+and those libraries will will talk to the TCP or
+22:07
+UDP okay so SL SSL socket API is able to
+22:13
+encrypt the clear test messages or password or whatever
+22:18
+um and then send them into the internet okay so any questions
+22:30
+all right so starting from 2.2 we are going to discuss uh each application as
+22:36
+you can see we will talk about web email DNS P2P videos okay uh as I mentioned
+22:43
+after we finish 2.2 we are going to talk about 2.7 and then we come back come
+22:49
+come back to the email okay all right so let's first think about the
+22:55
+uh web application you are using the app web application almost every day right we use web browsers
+23:03
+um when you display when you have a web page on your uh web browser so that has
+23:09
+Firefox okay uh what is displayed what is really displayed okay so basically
+23:17
+um a web page consists of objects okay so then what is object
+23:24
+sorry my sign is screaming um so the object is uh is a HTML or jpeg
+23:34
+or Java application applet or audio file okay so it can be a lot of things okay
+23:41
+so basically when your web browser load a web page it's not really loading one
+23:47
+whole thing okay it's loading a number of objects including the HTML file
+23:54
+itself and which and also the the images the audience the videos which are
+24:00
+inserted into this HTML file okay that's why sometimes uh for example your
+24:07
+internet is not very very uh very good when your bandwidth is very low for
+24:13
+example okay the web browser may be able to load the
+24:18
+HTML file because it's usually a small files just the text right
+24:24
+um but it may not be able to load the images or the videos okay then that's
+24:29
+why sometimes you can see the the web page is not displayed correctly okay
+24:35
+um the web page consists of Base HTML file which includes several
+24:41
+reference objects okay each object is addressable by a URL
+24:48
+uh I think probably you've already had some experience uh before with HTML
+24:53
+right I'm not sure if our our computer science courses cover that part uh but
+25:01
+you all know that when you write the HTML file if you want to insert something for example if you want to
+25:07
+insert a PDF or image you need to refer to that object okay and then that object
+25:15
+will be included into that web page okay
+25:21
+and then when you want to and we want to um
+25:26
+um let's see um display uh web page sorry uh email sorry what
+25:35
+I'm saying when you want to display an image okay or a PDF okay then you can
+25:41
+use a URL to uh refer to that object okay for example here you can see if we
+25:47
+want to display a J file okay so you can just say uh
+25:54
+homeschool.edu some Department slash pic.gif okay so usually what what is all
+26:02
+so this is organized in some way okay firstly on this web server this is the hostname this is the server okay on this
+26:09
+hostname there is actually a folder called some Department okay and under this folder
+26:17
+you will say pic.gif that's how you are able to uh get to that picture
+26:23
+okay and uh if you have the experience building your own website you you can
+26:29
+you can try this okay for example for my website I'm able to do
+26:36
+athena.ecs.csus.edu and then slash something one folder slash another sub photo slash another sub folder and
+26:41
+finally reach a PDF file or my picture okay so I select that
+26:50
+and then okay and then when we want to
+26:55
+um request for web page okay your web browser is actually
+27:02
+communicating with the web server and requesting for that web page okay so
+27:09
+it's like uh you are making HTTP request to that server and the server response
+27:14
+response with the ATM file and all the referred objects okay similarly for your
+27:22
+phone it's the same thing okay so what is used in this process is called HTTP
+27:29
+HTTP is a protocol so what is the protocol we mentioned it's just
+27:35
+um like rules right it's like how can they understand each other we follow
+27:40
+protocol then the uh the the both machines can understand each other okay
+27:49
+so um HTTP the full name is hypertext transfer protocol this protocol is used
+27:57
+for web application only okay sometimes of course email sometimes
+28:03
+we also use HTTP but you know the base is still the web application okay
+28:09
+and uh for for HTTP we usually use it in
+28:14
+a client server model OKAY the client again do still remember what we said last time when we see in a client we
+28:22
+usually mean uh a client program right or client process when we see the server
+28:29
+it usually means a server program on server process okay it's not just the
+28:36
+machine okay so here the client is the browser
+28:41
+to say is the browser which is a client program the browser that request
+28:47
+receives and displays the web objects okay then the server basically is the
+28:54
+web server okay that sends web server program also okay sends the objects in
+29:01
+response to the request okay and the client and server they are using HTTP to
+29:06
+talk to each other all right any questions so far
+29:12
+okay all right so that's the application layer when we come down
+29:19
+to this application layer we know we are using HTTP protocol okay
+29:27
+but as we mentioned at transport layer we need to choose one protocol
+29:35
+so here can you tell me which protocol do we use TCP or UDP can
+29:42
+you guess you can type your answer in the chat foreign
+29:50
+TCP okay
+29:56
+Matthew said TCP Anthony said TTP okay Michael said we need a response great
+30:03
+voice is also mentioned TCP excellent view are all correct so some of you may say oh you have the answer on
+30:09
+the slide yes but still I want you to think about this why do we use TCP
+30:15
+because we want to guarantee reliability right when you request for a web page
+30:22
+you want your request to be delivered correctly and you also want that web
+30:27
+page to be delivered correctly that's why we want to ensure reliability at transport layer that's why we want to
+30:34
+use TCP okay so generally what will happen is the client side will initiate
+30:39
+the TCP connection okay so it will create a socket
+30:44
+um this and then talk to the server okay and the server is listening to Port 80.
+30:51
+do you remember this port it's a very very famous Port 80 is for web
+30:57
+application okay again it's client is the client initiating this connection say hey can I
+31:04
+talk to you okay then the server is listening to 80 when it's it constantly
+31:09
+checks Port 80 okay Port 80 is associated with a socket with the
+31:16
+servers socket okay and then the server accepts this TCP
+31:21
+connection from the client and say oh yes sure let's talk okay after that then
+31:28
+um the the uh client will send in that HTTP messages okay so uh request message
+31:36
+and then the server will respond with HTTP response message okay so then the
+31:42
+18 messages are exchanged between the browser and the server uh using HTTP
+31:48
+HTTP protocol okay finally after they are done they are all very happy and
+31:54
+then the TCP connection is closed so this is the entire process and pay attention TC HTTP is stateless
+32:02
+what does this mean this means the server side maintains no information
+32:09
+about past client requests it doesn't remember anything the server doesn't
+32:15
+remember the past requests okay so some of you may say that's not correct that's
+32:22
+not true uh for example when I use a web browser
+32:27
+to buy something okay I added this thing into the cart and I've got to make the pressures right
+32:36
+I may uh decide to come back after a month
+32:41
+okay or at least after weeks a week okay and then I want to purchase that thing
+32:48
+again and I notice that thing is still in my cart because I added that into my
+32:54
+card okay does this mean the server already remembered the information about past
+33:01
+client request this means yes yes the server remembers
+33:07
+but that's not because of HTTP okay that's because of something else we are
+33:13
+going to discuss it later okay for now keep in mind HTTP is stateless it
+33:18
+doesn't maintain any information about past client requests okay
+33:25
+uh the reason why we don't use a protocol that maintains that is because
+33:31
+usually those Protocols are very complex okay you you can you think about this
+33:36
+you need to remember all the past history okay if the server or client
+33:42
+crashes their views of state may be inconsistent okay so that's the main thing that's why we want the protocol to
+33:49
+be as simple as possible okay so uh any questions so far
+34:00
+okay all right so now let's talk about the two types of HTTP one type is called
+34:06
+non-persistent either type is persistent so what are their difference
+34:13
+um for non-persistent http each time when we establish a TCP
+34:21
+connection we can send at most one object
+34:26
+okay and then we have to close the connection that means if this web page has multiple
+34:34
+objects let's see 10 objects okay then each time

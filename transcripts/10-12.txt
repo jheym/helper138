@@ -1,0 +1,674 @@
+0:01
+um the last thing I want to talk about is the UDC UDP checksum so here we can see
+0:07
+the checksum what is checksum used for techsum is used to detect the errors
+0:13
+which are usually the flipped bits in the transmitted segment so basically what will happen is at the center side
+0:21
+the center side will treat the segment contents including the header Fields as a
+0:27
+sequence of 16 bit integers so we for example we treat this one as one part
+0:33
+and this one another part then every 16 bit every 16 bit
+0:40
+is treated as one integer and then we do the addition of the segment content
+0:46
+okay we do the addition uh for this we call this checksum okay and then the
+0:52
+center will put the checksum value here in the UDP uh chuckson field
+0:59
+the receiver sign when the receiver receives the assignment it will compute the checksum of the received segment in
+1:06
+the same way in exactly the same way and check if the computed checksum
+1:12
+equals to the checks and field value if
+1:18
+if the are not the same that means error is
+1:24
+directed sorry error is detected if they are the same that means no error is
+1:30
+directed detected so basically we need to come the center side will calculate
+1:35
+one value put it into this field the receiver side will also do the same calculation and save the match if they
+1:42
+match no error if it doesn't match then we we can see there is error okay
+1:49
+so you may ask how do we do the checksum how do we do the editing uh now you can
+1:54
+see we have two 16-bit integers okay and it's very easy to do the add-in zero
+2:00
+plus one is one one plus zero one one plus one is zero and add one so this
+2:07
+becomes one you continue okay until you finish all the edit if
+2:12
+you have one more bit okay then you need to carry out this bit
+2:19
+from the most significant bit and put it to the to here
+2:24
+okay you move this one to here and then add one again okay then one plus one is
+2:33
+zero and add one and Z it becomes zero and then add one it becomes one okay so
+2:40
+that is called the sum and now the check sum means you flip the Beats okay so we
+2:45
+flip zero to one zero to one one two zero one two zero one two zero so it's like that okay this is how you calculate
+2:52
+the check sum uh this is a how to do the Eddie and
+2:58
+everything okay and basically the sender and the receiver will follow the same way to
+3:03
+calculate this checksum okay we will continue with the 3.4 principles of
+3:10
+reliable this transfer and let me tell you this part is very important
+3:17
+and it will definitely appear on the test so pay attention from now
+3:24
+um so basically in this section we are going to design a reliable data transfer
+3:30
+protocol from scratch okay so I can show you the principles of the designing and
+3:36
+you you will understand oh why I do this why I do that there are some reasons behind okay so basically for reliability
+3:43
+transfer our goal is we want to transfer the data
+3:49
+reliably okay um and this is very important in application transport and also link
+3:56
+layers this is the reliability transfer is the top 10 list um important
+4:01
+networking topics okay uh and what we are going to discuss
+4:07
+today is basically about how we are going to design such a protocol to make
+4:14
+sure we indeed have reliability transfer so now you can look at the figure on the
+4:20
+left and on the left you can see we have sending process on the right you can see the receiver process okay
+4:27
+um and then now we have a transport layer we know transport layer is going to provide a service to the application
+4:34
+layer okay and ideally if the transporter
+4:39
+layer has a reliable Channel okay that means all the data are sent through this reliable Channel
+4:46
+then no data will get lost right so this this is reliable we don't need to do anything else
+4:53
+it's like if our USPS is reliable completely reliable and you will never
+5:00
+lose any letters or packages okay but is that the truth
+5:06
+no right that is not the truth so your name
+5:11
+the channel itself is unreliable like USPS is unreliable okay similarly
+5:18
+networking is also unreliable you think about the links we are using like the wireless links the cables or even the
+5:26
+fiber the fibers although it has a very low error rate but this it still has errors okay uh Wi-Fi has a lot of Errors
+5:35
+I would say okay then with this kind of unreliable channels how can we achieve
+5:42
+the reliability that's the issue okay then what we will do in reality is okay
+5:48
+let's design some kind of data transfer protocol okay then the upper layer can just call
+5:56
+some reliability transfer protocol okay and say oh okay please send this
+6:02
+for me in a reliable way okay and then this protocol we are basically
+6:09
+Ensure everything is reliable okay by
+6:15
+calling some unreliable transfer functions
+6:20
+okay by using some unreliable channels okay so then
+6:26
+this is a this is uh what we will do in the real in the reliable data transfer
+6:31
+protocol so basically we will say okay for example I understand you I'll do
+6:36
+some packets uh it's fine but how are we gonna ensure the reliability we may say okay check it
+6:43
+again if it's it's lost then let's send it again right so using this way we can
+6:49
+ensure the reliability okay that's what we are going to do in the reliable this transfer protocol we
+6:56
+are going to design something like that to ensure the reliability okay so I'll just skip this part and at
+7:03
+the receiver receives receiver side you can see um they will call a relay relay position
+7:09
+for receive and then finally after all the receive uh data are received and
+7:14
+then we will deliver the data to the upper layer which is the application layer okay so I just skip that
+7:21
+all right so then what we will do is we will incrementally develop the sender
+7:27
+and receiver size of reliable this transfer protocol uh we consider we consider only unit
+7:35
+direction of this transfer okay that means the data is only from sender to
+7:40
+receiver but the control flow sorry the control uh information will flow on both
+7:47
+directions okay that means data is going one way but the control information can be sent back okay
+7:53
+all right let's look at rdt 1.0 rdt means reliability to transfer okay
+7:59
+version one we assume we are sending data over a
+8:06
+reliable Channel in this case the underlying channel is
+8:11
+perfectly reliable no bid errors no loss of packets okay when we say reliable or unreliable
+8:18
+We Will We Will mainly refer to these two aspects bit errors or loss of
+8:23
+packets okay and then in this case if we have a reliable Channel then do we need to do
+8:29
+anything no we don't need to do anything so this is RDP 1.0 you do nothing that's
+8:36
+very easy right very easy okay rdt 2.0 now let's assume the
+8:43
+channel has big errors okay pay attention we assume the channel has big
+8:49
+errors but no loss
+8:58
+okay we assume the channel can deliver all the packets but some packets may
+9:04
+have big hours okay with habit errors um so the underlying Channel may flip
+9:13
+bits because we have only zeros at once we let me have let me see bit arrows we basically mean
+9:19
+um zero becomes one one becomes zero right Philippines in the packet and then the question is how can we
+9:25
+detect the error how did how can we detect a bit error do
+9:31
+you still remember when we talk about the UDP
+9:36
+we talked about something called checksum you remember this
+9:41
+okay how do we deter that how do we detect errors we set at the center side
+9:47
+the center will calculate the traction basically treat a 60 treat every 16 bit
+9:56
+as a one integer and then add it integer together right so we calculate checksum and put the checksum into this field
+10:05
+okay take some fear then when this packet is received at the receiver side the receiver will calculate the checksum
+10:12
+again in the same way and then compare if that checksum is the
+10:17
+same as this taxum if they are the same we say no error okay if they are not the
+10:25
+same then we say oh some piece has been flipped there are errors do you remember
+10:31
+that okay so that's how we detect the errors okay how we detect the arrows but the
+10:38
+question is oh if we know there are some errors then
+10:44
+how can we recover from the arrows for human being how do we recover from
+10:49
+errors during a conversation for example if I say something wrong what do you do start over
+10:55
+start over right yes so you just signal me right you will signal me say hey professor said something wrong right and
+11:03
+then I will um correct that okay I'll I'll repeat
+11:08
+and translate so that is how we recover from error so let's look at what is
+11:14
+happening here so basically I will check some firstly to detect the bit errors and then we use
+11:22
+something called X acknowledgment ack
+11:27
+okay to express explicitly tells the center that the packet is received okay
+11:34
+but if this is not okay if the packet had arrows then we will directly see
+11:40
+negative acknowledgments k-o-n-a-k neck
+11:46
+okay and AK so the in this case the sender when it
+11:53
+receives naked it will re-transmit the packets
+11:59
+okay to correct the arrows so it's just a re-transmission of the packet
+12:07
+um so this is the rdt 2.0 we have a Channel with mid-bit
+12:13
+arrows but this 2.0 has a fatal flow what is the flow
+12:19
+the floor is basically what happens if a c k or nak is corrupted
+12:26
+so if this is corrupted then the center side doesn't know what has happened at
+12:31
+the receiver so what should the sender do should I retracement should I not you so if you do not
+12:40
+retransmit them maybe the receiver side has some errors right you cannot correct it but if you
+12:46
+decide to retransmit then you the receiver May re receive a duplicate
+12:51
+package so then how can we address that issue so basically in order to address
+12:57
+that duplication issue the sender will add sequence numbers to
+13:03
+each packet okay that is very important how do we handle the duplications we add sequence
+13:10
+number to each packet so basically in this case when the
+13:15
+sender is rescinding a certain packet it will say oh I'm receiving packing fine
+13:21
+okay then receiver side we'll look at this packet and say oh
+13:28
+um if for example if I didn't receive packet file correctly then I will use
+13:35
+the new packet file if I have received 5 correctly then I'll just discard the
+13:42
+duplicate packet okay so that's what we do with uh with the duplication
+13:50
+okay and pay attention uh in this case we are
+13:55
+talking about a stop and read mode so basically the sender will send one
+14:00
+packet at a time then which for the receiver's response and then the sender
+14:06
+continue okay if the sender does not get any response from the receiver then the sense the sender cannot continue okay so
+14:13
+one pack at a time we are using a stop and wait wait let's now discuss the 2.1
+14:21
+okay I mean 2.1 is actually adding the sequence number okay adding the sequence
+14:26
+number 2.0 is we use a a c key and aak okay
+14:33
+so now second number is added into the packet um and the two two single numbers are
+14:40
+needed only two are needed actually 0 and 1 we are surface why because as we
+14:47
+said here we only need uh to send one packet at a time right so we only need
+14:53
+to uh denote this packet and this old packet and new packet so zero and one
+14:59
+are enough okay um and we also the center side also must
+15:06
+check if the received nak or ack is corrupted okay and the receiver side
+15:12
+then the receiver must have if the received packet is duplicated or not okay the receiver cannot know if its
+15:21
+last ack or any case is received okay at the center side
+15:26
+that means that receiver can send signals to the sender but it cannot know if that is or that is a received
+15:33
+correctly or not okay so it's like there is a curtain between the sender and the receiver side
+15:40
+now that is 2.1 okay let's review again 2.0 is we adding the and we use n a k
+15:49
+and ack okay to Signal the center
+15:54
+and 2.1 is we add six numbers to handle the duplications
+16:00
+okay now for 2.2 we want to design uh
+16:06
+nak free protocol so what does this mean
+16:11
+because we use ack both ack and nak to Signal the center right so that means if
+16:20
+we design the package the packet must have two fields one field is n a c k
+16:26
+another field is nak okay so we can we can see oh ack is one or is k0 and K is
+16:33
+one or NK 0. okay but we say the LA case
+16:39
+is kind of redundant we want to say how can we remove this one okay if we remove
+16:44
+this field we can basically save some space for for the data for example right so save some resources then that's why I
+16:52
+want to design a nak free protocol so that instead of naked what can the
+16:58
+receiver do to repeat the functionality of nak so this is a very interesting thing I
+17:04
+would say this design is is also very smart so let's now think about an example in this example you
+17:11
+let's see a okay you are sending a gift to be okay
+17:19
+to a friend b as New York okay and this is a
+17:25
+Christmas okay gift time and you shouldn't be as an apple
+17:32
+for the first time okay and B will say what
+17:39
+a c k Apple
+17:44
+right so then this means apple is good okay B
+17:49
+is very happy and then you send your friend uh Orange
+17:57
+okay and then your friend will send back he should send back ack Orange right but
+18:05
+if there is something wrong then previously what we will do is what we will see
+18:12
+m a k Orange right so something is wrong with orange
+18:19
+please send it again to me this is what we did originally but now if we want if
+18:25
+we want to remove an AK we want to remove this how can we replace it okay so what we
+18:32
+can do is is this your friend doesn't want to hurt you
+18:38
+so instead I was saying hey your orange is bad I don't like that
+18:44
+female constantly say oh I like the Apple so much okay
+18:55
+he doesn't want to hurt you so instead of saying the Orange is bad your friend
+19:01
+will just say oh the Apple is very good then you will begin to think oh what happens to my orange
+19:07
+okay I sent you orange but you didn't comment okay you just say oh something is very good about the last gift
+19:14
+right then this indicates something is wrong with my second gift with my orange
+19:22
+does this make sense okay so this is what we will do in in
+19:28
+the networking even now working instead of seeing naked instead of naked the current
+19:35
+package the receiver will just ack the last package received okay
+19:45
+okay it's similar to the orange Apple thing instead of naked only say the
+19:50
+Cardinal wine is not good we will just see the last one is good then the center will realize there is something wrong
+19:57
+with the current package that makes sense okay so that's what we will do okay so the
+20:06
+duplicate now even you will see oh the first time I have ack airport second time I have ack airport game this is uh
+20:13
+called a duplicate SDK
+20:19
+okay when we see a duplicate ack at the center side this will result in the same
+20:25
+action and and making okay we are basically retransmit to the current
+20:31
+package so it's like when you receive two ack
+20:36
+apples you will find some things wrong with your orange and then you will resend
+20:43
+another orange to a friend okay similar things in the networking if you
+20:50
+receive duplicate SDK for the last packet then you will need to resend or
+20:55
+re-transmit the current package and the next one RT 4.0 we will deal with the
+21:01
+channels which has errors and loss okay now it's not just errors
+21:07
+okay we may experience loss of packets then in this case what can we do okay so
+21:14
+now we can say in the end of this new assumption the underlying channel can also lose the packets like the data or
+21:22
+the AC Keys both of them okay and then um we may still use checksum to detect
+21:29
+errors we may still use sequence number to remove the duplications we may still
+21:35
+use AC keys but we may still do transmission they all help but not
+21:40
+enough why because those packets May simply get lost okay as I said it's like there is a curtain
+21:47
+between the sender and the receiver they cannot see each other they cannot communicate right so then uh when for
+21:55
+example when the sender sends something to the to the receiver the data gets lost at the receiver side the receiver
+22:01
+receives nothing right the receiver doesn't know what has happened okay so it will of course have has has
+22:09
+no reason no response to the sender and then at the center side the center receives no feedback from the receiver
+22:16
+right now what can the center do it cannot do a real transmission because it
+22:21
+it doesn't receive any duplicate sdks right so then what can we do in this
+22:27
+time in this case I will see the center
+22:33
+after sending out the packet it will wait for some time to wait for the response
+22:40
+okay if after a reasonable period of time the sender does not receive
+22:46
+anything then the sender will do a re-transmission okay so it's like if you send a gift to
+22:53
+your friend okay your gift should your friend should write a thank you letter to you okay if after 14 days you didn't
+23:01
+receive any thank you letter then you will reason the gift right so to make sure your friend
+23:08
+received the gift so this is what we do so basically the center will reach for a reasonable
+23:17
+amount of time here the keyword is reasonable okay and later we will discuss how we
+23:24
+get this reasonable time okay it's like when you send a gift to a friend you cannot say oh I listen again after one
+23:31
+hour doesn't make sense right it takes time for the gift to arrive at your friend it
+23:36
+takes time for a friend to write you the letter right so reasonable time is a is a very
+23:42
+important so the time the reasonable amount of time basically means the round trip time
+23:47
+we need to estimate hormone time is used to reach the
+23:53
+receiver and then how much time do we need for the receiver to send back the
+23:58
+feedback like a secure and K okay so it's like if you take if you really it
+24:04
+takes seven seven days from Sacramento to New York for the gift and then take
+24:10
+another seven days for the letter to arrive from your friend to you round
+24:15
+trip time into 14 days so that is a reasonable amount of time basically if the sender
+24:22
+um does not receive any ack during this time then the sender will re-transmit
+24:27
+okay if the package or the AC case just got delayed okay just got delayed not
+24:35
+lost okay for example the data is delayed it's not lost all the sdks are
+24:41
+just delayed are not lost then in this case the real transmission will be a duplicate okay but you don't need to
+24:49
+worry because the sequence numbers will handle this okay for example if let's see uh you
+24:56
+send your friend a gift and your friend replied A Letter by the letter you you
+25:01
+expect the 14 days to receive the letter but now um the letter arrived at the 15th day
+25:10
+okay but you already sent out another gift now in this case your friend will
+25:15
+receive two gifts from you right this is a duplicate but we don't need to worry about that because the sixth number will
+25:22
+handle the duplicate okay it's the same thing if the SDK just arrived late and
+25:27
+the sender has already sent out a packet okay has already retransmitted the
+25:33
+previous packet then the receiver may have duplications um in this case we just use secret
+25:38
+number to remove the duplication okay
+25:43
+um so then this means how do we wait for a reasonable time we just need a timer
+25:50
+okay we need a countdown timer okay so let's look at an example here
+25:55
+in this example we have a sender the sender is sending out packet zero here
+26:01
+we assume we have no Lots okay no loss everything is received the receiver will
+26:06
+receive package there and see ack package zero so we continue so the
+26:14
+packing one and AC key packet one then we send the package 0 again and ack
+26:19
+package 0. so here you can see we use only zero and a one as a single number because we said we it's already enough
+26:25
+okay but if we have a loss then what should we do take zero
+26:32
+ack 0 and then it sends out packet one Center package one and pack the one is
+26:40
+lost receiver has no response for packet one there you can see the sender will have a
+26:48
+timer when the timer times out it will resend packet one okay now the
+26:54
+receiver receives packing one and it will ack one and then centers and package zero the receiver ack0 so it
+27:01
+will continue okay so what if we have AC kilos
+27:08
+if we have AC key loss what will happen is Peck is zero acq zero as normal take it
+27:15
+one AC q1 but this time pay attention a
+27:21
+c k is lost that means at the center side the center
+27:27
+hears nothing from the receiver no feedback from the receiver then the
+27:33
+sender will say oh what should I do if nothing
+27:39
+if I hear nothing then I'll just rely on the timer if the timer times out then it
+27:46
+will reason the packet one then in this case at the receiver side you can see because the receiver has already
+27:54
+received packing one and it received package one again okay
+28:00
+and then the receiver will use the sequence numbers to deal with the
+28:06
+duplication so basically we'll say oh I received two packing one the second packing one will be discard discarded
+28:13
+okay so then it will continue as normal this is the AC key loss okay
+28:20
+and paper pay attention we set the timer must has a reasonable time
+28:27
+if the time is not reasonable then it will create some problems for example
+28:33
+pegas0 ack 0 Pack 1 and AC K1 AC K1 is
+28:39
+delayed so that's why packet one is firstly sent out again
+28:46
+and then we received Acky then in this case pay attention this ack one at the
+28:52
+center side the center will think this AC keyword is actually for
+28:58
+the new ecq one not the old AC camera right okay
+29:04
+so um and whatever happened next okay is
+29:12
+and the receiver side so don't get overwhelmed as a receiver side the
+29:17
+receiver will receive another packing one and then it will AC key one again
+29:25
+okay ack one again then you can see at the center side
+29:32
+it receives two AC one
+29:38
+in total received two AC key ones what does this mean
+29:43
+this means it is a duplicate right when we see we may have a duplicate AC key do
+29:50
+you remember what happened do you remember the apple or anything you didn't see anything about my orange
+29:56
+you kept seeing my Apple is good so that means something is wrong with my orange right you remember that
+30:02
+so here's the same thing sender has already sent out new packet
+30:08
+0. but from the center side it feels like oh you didn't say anything about my
+30:14
+new package zero but you kept seeing the package one is good that means packet
+30:22
+zero is not good so that's why the sender now is sending
+30:28
+out another packet zero again because send your thoughts there's something
+30:35
+wrong with the package zero so that's why it's reasoning again and because of this resending you can say now
+30:43
+again two ack zeros are received by the root sender right and you can
+30:50
+imagine the center will again send out the package one
+30:56
+repeatedly okay so then this will continue forever never stops okay so
+31:03
+that's why that's that's that means if you have a early timeout then you may have
+31:11
+duplicates a lot of duplicates okay it will continue forever okay so that's why
+31:19
+since uh setting the uh the timer for reasonable reasonable amount of time is
+31:25
+very important okay it's very important do not set up a premature time timer or
+31:33
+uh yes of course sometimes you cannot control the AC kit right if the AC keys are delayed then this is what you're
+31:40
+gonna say okay um so that is the
+31:45
+uh the 3.0 but the 14.0 the performance is is not
+31:53
+very good okay 3.0 is correct but the performance is not good why because every time you just send out one packet
+32:00
+and then you wait okay it's like that so every time you send
+32:06
+you take this much time do you remember the L over R thing okay so the L is the size
+32:14
+oh package L is the size of a packet
+32:19
+and R is the bandwidth okay or the packet transmission rate so now
+32:26
+the time we use the two send out the data is L over R the first
+32:32
+package right and after that you can see the data this is this is the time
+32:39
+okay at the center side and the receiver side this is the time so after the data is sent out the data
+32:46
+is is traveling to the receiver side okay and at the
+32:53
+center side A Center is reaching meeting for what for feedback okay is waiting
+32:58
+for feedback so all this time called rtt is wasted because the seller
+33:05
+is doing nothing during that time it's like every time you send out one layer
+33:10
+and then you wait for 14 days for your friends uh feedback
+33:17
+you send out one gift okay and then you send a second gift and you wait for
+33:22
+another seven 14 days okay so the efficiency is really bad if
+33:28
+you look at the utility utilization rate then it will be L over R which is this
+33:34
+time okay over divided by rtt plus L over this is
+33:41
+the total time okay the total time
+33:47
+then uh if if we follow the assumptions here we are following uh the bit packet
+33:54
+is the packet is has a 8 000 bits okay and we assume the proposition
+34:00
+propagation delay is 15 Ms and this bandwidth is uh uh one gigabs okay then
+34:09
+the transmission delay is Lor which is uh eighty eight thousand this over 10 to
+34:17
+9 this is one Gigan right 10 to 9 bits per second so that means the
+34:22
+transmission delay is 8 microseconds okay so then the utilization rate is
+34:28
+basically this this number okay it's basically L over r divided by rtt plus
+34:35
+Lor so this is uh eight microseconds and
+34:40
+then uh this is a uh this is the rtt the total rtt is 30.
+34:47
+let's assume it's 30 microseconds okay so that's 30 plus 0.008 in total this will become
+34:59
+0.00027 okay that is the utilization rate it is very very very low okay so
+35:06
+how can we improve this we can improve this by sending multiple
+35:15
+packets at the same time okay we send multiple and we then we wait it's like
+35:21
+you send your friends 10 gifts and maybe wait for the response for those hand
+35:26
+gifts for the for the feedback right so that's how we improve the efficiency so
+35:32
+now let's summarize what we have learned today rtrt 1.0 is a completely reliable
+35:38
+Channel rdt 2.0 we will detect the arrow with checksum and we will send the
+35:44
+sender AC key and any case as feedback but in rdt 2.1 we want to avoid
+35:52
+duplicate packets okay so that's why we want to use the sequence numbers okay so
+35:58
+for rdt 2.2 we want to design a naked frame
+36:04
+protocol okay so what we do is instead of a nak the current package we ack the
+36:14
+last package received okay okay that is 2.2 remember the apple or an example
+36:20
+so for rdt 3.0 we will deal with packing loss how do we deal with that we will
+36:27
+introduce a countdown timer if the timer times out then we will do a
+36:33
+re-transmission for the artists we design

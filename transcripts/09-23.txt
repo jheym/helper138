@@ -1,0 +1,1010 @@
+0:00
+really trying
+0:01
+talented try HTTP on your first self so
+0:06
+basically what you do is you just
+0:09
+try to tell next to the web server okay
+0:13
+tell net to one web server basically
+0:17
+it's like you are talking to that web
+0:19
+server directly okay not go not through
+0:23
+the web browser but through the terminal
+0:27
+okay through the terminal you directly
+0:29
+talk to that machine for example you can
+0:32
+open a TCP connection to Port 80 at
+0:36
+cis.poly.edu of course you can do
+0:40
+csus.edu okay you can connect to Port 80
+0:43
+to csus.edu or even other servers okay
+0:47
+just try your favorite web servers and
+0:50
+then you can type in a get message
+0:53
+a get message to request for a
+0:57
+um for object okay it can be a web page
+1:01
+it can be an image or PDF whatever you
+1:04
+like okay then you can look at the
+1:06
+response message
+1:08
+sent by the ATP server okay so I did
+1:12
+some tests for you okay so you can see
+1:16
+here
+1:17
+here what I'm trying to do is I'm trying
+1:20
+to connect I'm using telnet trying to
+1:24
+connect to
+1:26
+cs.umass gaia.cs.ums.edu
+1:31
+okay at Port 80.
+1:34
+480 is the phone number for web service
+1:38
+we have mentioned this from many times
+1:40
+right basically at the server side pay
+1:44
+attention at the server side
+1:46
+the server is opening this support 80.
+1:49
+it's like a door it's opening this door
+1:51
+and then the server will constantly
+1:54
+check this port and see if there there
+1:57
+are any incoming requests okay the
+2:01
+client side does not need to use 80
+2:04
+because 80 is a full web server okay
+2:06
+client-side also need to have a door
+2:09
+open in order to communicate with others
+2:11
+so then that small door can be any
+2:15
+um can be any other random port numbers
+2:18
+it doesn't need to be 80. okay that's
+2:20
+something you need to pay attention and
+2:22
+after I type in this command
+2:25
+you can see it is trying to connect to
+2:28
+this
+2:32
+connect to this server okay these are
+2:34
+all the responses after that okay after
+2:37
+that after this connection is
+2:39
+established okay what I what I'm doing
+2:42
+is I'll send a get message
+2:46
+I want to get this
+2:50
+object this is one object
+2:52
+okay the ATP version is 1.1 that's the
+2:57
+format I'll get okay a format of this
+3:00
+request line after that I will specify
+3:05
+who is the server
+3:10
+okay I'm providing this guy I don't
+3:13
+suggest you thought you must have knew
+3:14
+as the server name okay and this line
+3:18
+hostline is actually the header line
+3:20
+okay here you can see in my request
+3:23
+message I have only one request line
+3:28
+which is get and one
+3:32
+headline only two lines in my request
+3:35
+message okay that's all
+3:38
+foreign
+3:47
+after that
+3:49
+the server will respond okay I'm waiting
+3:52
+for the server to respond
+3:53
+so this entire thing
+3:58
+is the response message
+4:07
+okay if you look at the first line the
+4:11
+first line is HTTP 1.1 200 okay as we
+4:16
+said this is actually the status line
+4:19
+right the status line and then after
+4:22
+that you see a number of header lines
+4:29
+foreign
+4:37
+you can see the dates of this response
+4:40
+message date and time and the server for
+4:44
+the uh for the web server this is Apache
+4:47
+okay that is the program and it's
+4:49
+powered by PHP the content length the
+4:53
+type Etc okay so those are the header
+4:56
+lines and after that you can see
+5:01
+this entire thing
+5:06
+okay
+5:09
+so this is actually the data part okay
+5:12
+do you remember
+5:14
+if you look at here
+5:16
+we said the data is appended after the
+5:19
+header lines right so
+5:23
+this part is the data okay and if you
+5:26
+look at the data the dog type
+5:29
+the document type is HTML okay and then
+5:35
+um you can see uh
+5:37
+this uh this file HTML file the head the
+5:42
+title and everything the body okay so if
+5:45
+you have learned HTML before you know
+5:47
+this is actually one HTML page right one
+5:51
+HTML file so basically what is happening
+5:56
+here is actually I'm making a request to
+6:00
+the server directly and the server is
+6:03
+replying with the data it's responding
+6:07
+with the data the data is just the one
+6:11
+HTML file okay
+6:13
+but since we are not using the web
+6:16
+browser we are not using the web browser
+6:19
+so this web page is not displayed as a
+6:23
+web page it's actually just shown as a
+6:25
+as the raw data okay and the raw data
+6:28
+the source code uh that's what you see
+6:31
+okay of course what will happen if
+6:34
+you're if you are using the web browser
+6:37
+then the backgrounds will will basically
+6:40
+pass this part plus this um web page and
+6:44
+display it in the browser okay question
+6:47
+so far
+6:51
+foreign
+6:55
+so the next part this slide is showing
+6:59
+you
+7:00
+um another test okay I'm trying to
+7:03
+connect to the web browser a web web
+7:06
+server at sex State okay so you can say
+7:12
+it's I'm trying to tell that to csus.edu
+7:16
+at Port 80.
+7:20
+the connection is successful okay I'm
+7:22
+able to connect directly with that
+7:24
+server and I also sent
+7:27
+one get message okay the gas the gut
+7:31
+request message here is uh I'm trying to
+7:35
+request for index.html
+7:38
+okay
+7:39
+but as you can see as you can see
+7:44
+the server is replying to me another
+7:51
+the stat line is is actually full for
+7:53
+not fund okay what does this mean this
+7:57
+means on the server side it doesn't have
+8:00
+any a
+8:01
+index.html file it cannot find it okay
+8:06
+so you can see these are all the header
+8:08
+lines
+8:09
+and then you can see the data
+8:14
+okay so although you can the server does
+8:18
+not have any
+8:20
+index.html file but it's still providing
+8:24
+me a web page
+8:25
+okay it's still providing me a web page
+8:28
+this web page is just displaying
+8:30
+actually the four funnel fund message
+8:33
+okay if you don't trust me if you don't
+8:36
+trust me you can open your web browser
+8:38
+type in
+8:41
+cs.csus.edu
+8:43
+index.html and you can see what what
+8:46
+will happen after that okay
+8:49
+um of course I I did this uh years ago
+8:52
+so probably the webpage changed is
+8:54
+possible okay
+8:57
+all right any questions so far
+9:08
+okay so I would encourage you to try
+9:11
+this on your own uh after class okay
+9:16
+so the next thing we are going to
+9:19
+discuss is uh about the cookies okay uh
+9:24
+if you have watched the video on Friday
+9:26
+you probably have already known we
+9:30
+mentioned one thing when we learn about
+9:32
+http
+9:33
+okay let me see we said
+9:37
+HTTP is stateless okay status basically
+9:42
+means the server maintains no
+9:44
+information about past client request
+9:46
+okay so what does this mean this means
+9:51
+um although the client
+9:53
+sorry uh sorry I you can you can hear
+9:57
+the noise again so this is this is some
+10:00
+reminders kind of things it's pop out
+10:02
+when I'm giving lectures uh hopefully
+10:05
+you are not these terms by this okay
+10:09
+um but again so HTTP is stateless
+10:13
+means the server maintains no
+10:15
+information about the request the past
+10:18
+client request although for example I'm
+10:20
+visiting a website like Amazon okay
+10:25
+um the lab server will never remember my
+10:28
+information
+10:29
+so you may say that's not true
+10:31
+okay because for example one day I want
+10:35
+to buy something I put something for
+10:38
+example I'm buying let's say uh a book
+10:41
+okay I put in that I put that book into
+10:45
+the cart okay and I didn't pay for it
+10:48
+after many days when I come back again I
+10:51
+can still see that book in my cart
+10:54
+does this mean the server is remembering
+10:56
+the information about the request
+11:01
+this means this means I would say yes
+11:05
+this means the server is indeed
+11:07
+remembering information about the client
+11:11
+request but
+11:14
+it is not it is not because of HTTP it's
+11:18
+not it's not because the web server or
+11:21
+the HTTP session is remembering this
+11:24
+it's actually because something else
+11:26
+okay what is that something okay that is
+11:30
+actually the cookie
+11:36
+it's called cookies okay how do we use
+11:39
+cookies
+11:40
+so a cookie is basically composed of
+11:43
+four components so firstly
+11:47
+um
+11:49
+okay header line of HP response message
+11:51
+okay
+11:54
+um and then cooking headline in the next
+11:56
+request message
+11:59
+um the third thing is the cookie file
+12:01
+that is kept on the user's host and the
+12:04
+last thing is the back end database at
+12:06
+the website so four components probably
+12:08
+now now you don't need you don't know
+12:10
+why do we consider these four components
+12:13
+and I'll explain this okay I also need
+12:15
+this let's first look at example in this
+12:18
+example somebody called Susan
+12:22
+um always access internet from PC so
+12:25
+Susan visits specific e-commerce site
+12:29
+for the first time
+12:31
+and because this is for the first time
+12:33
+okay so when this request this initial
+12:37
+ATP request arrived at the site the site
+12:41
+will create a unique ID
+12:43
+okay and store this ID in the backend
+12:47
+database at the server side so let's
+12:49
+look at this
+12:51
+this is the client student
+12:53
+this is the server okay
+12:56
+and this is a cookie file this file is
+13:00
+stored at the web browser it's in the
+13:03
+web browser okay so when I say clear all
+13:06
+the cookies in the browser I mean you
+13:09
+actually clear all the information in
+13:10
+this cookie file
+13:11
+okay so now in the cookie file you can
+13:14
+see we say one cookie
+13:16
+that is for eBay for this website eBay
+13:19
+the ID quick ID is eight seven three
+13:23
+four
+13:24
+okay
+13:26
+okay
+13:27
+um that is the information that is
+13:29
+already in the cookie file okay but now
+13:31
+the client is actually visiting Amazon
+13:35
+another different website
+13:37
+the client is visiting Amazon
+13:40
+for the first time
+13:42
+okay it is sending an HP request
+13:45
+the server recognized that this client
+13:48
+is a new user
+13:50
+okay say hey I got a new customer then
+13:54
+the server will create an ID for the
+13:57
+user
+13:58
+okay the ID is 1678 okay and this ID
+14:03
+will be stored
+14:05
+here at the back and database okay one
+14:10
+six seven eight installed here
+14:13
+meanwhile the server will respond to
+14:16
+the client
+14:18
+in the response message
+14:22
+in the response message do you still
+14:24
+remember the format for the response
+14:26
+message the first line is the stat code
+14:28
+then you have a number of header lines
+14:30
+right so here when the server responds
+14:34
+the server will add one
+14:38
+more headline that is a set cookie
+14:41
+and telling the client hey I got a new
+14:45
+ID for you your ID is 1678 okay and you
+14:50
+can see then this new ID
+14:52
+is now stored at the client side
+14:55
+in the cookie file
+14:58
+okay then
+15:02
+the next time when the client contacts
+15:05
+the server again
+15:08
+it will make another HPV request right
+15:11
+if you still remember the format for
+15:13
+request message we know the first line
+15:15
+is guess something usually okay and
+15:18
+second the starting from the second line
+15:20
+is uh is the headlines right so now we
+15:25
+will add one more headline
+15:29
+okay this is the header line one more
+15:32
+headline in the request message to say
+15:34
+hey I'm not a new customer I have my
+15:38
+cookie my cookie ID is one six side
+15:41
+okay then the server will check
+15:46
+okay the server after we see this
+15:48
+request message it will check this ID
+15:51
+167 is in the backend database and
+15:54
+recognize oh this is Susan
+15:58
+okay so then the the server will respond
+16:03
+will respond uh in a specific way okay
+16:06
+we'll respond to this to Susan with some
+16:10
+of our Susan's information loaded in
+16:12
+advance
+16:13
+okay so then it will send it back and uh
+16:17
+HTTP response message
+16:20
+okay and then and then one week later
+16:25
+one week later if Susan is contacting
+16:29
+the server again
+16:31
+then it will still
+16:34
+add this cookie
+16:36
+as long as this cookie is not clear it's
+16:38
+not inspired then it can still add this
+16:42
+cookie then the server will check
+16:46
+this cookie idea again in the background
+16:49
+database and say oh this is Susan again
+16:51
+visiting us one week later so then the
+16:54
+server will load Susan information again
+16:58
+and respond uh in a specific way okay so
+17:02
+this is how it works this is the entire
+17:04
+process
+17:05
+as you can see in this process it is not
+17:09
+HTTP
+17:12
+remembering the information it's not the
+17:15
+server the web server program
+17:17
+remembering the information of the
+17:19
+client it's actually this database
+17:23
+it's actually this back-end database
+17:25
+remembering all the information and then
+17:28
+load this information in the ones that's
+17:30
+what happens actually okay uh that's why
+17:34
+usually when you buy things online
+17:37
+okay we always visit websites online so
+17:40
+they will say oh okay they are using
+17:42
+cookies okay this is a this is a very
+17:45
+convenient for users because your status
+17:48
+are remembered okay but it also has
+17:51
+privacy issue as you can see here okay
+17:54
+also has privacy issue
+17:57
+and actually one interesting thing is uh
+18:00
+for example sometimes especially during
+18:05
+Black Friday when you when you're
+18:07
+shopping uh for something okay when you
+18:10
+are shopping when you are
+18:12
+um getting those kind of deals okay
+18:15
+sometimes they will they will also use
+18:17
+cookie okay uh the servers will also use
+18:21
+cookie they can see one customer can
+18:24
+only use this coupon for once
+18:28
+okay for once how do they know you you
+18:32
+have used this coupon for once or twice
+18:33
+they use cookie to remember you they
+18:36
+will say oh okay this customer has
+18:38
+already used this coupon before so we
+18:41
+cannot if if he or she buy again we
+18:44
+cannot give him or her another discount
+18:48
+okay that's what happens so one way to
+18:52
+to
+18:54
+um address this problem is actually you
+18:58
+can clear the cookies okay if you clear
+19:00
+the cookies at your side okay the server
+19:04
+will not be able to recognize your
+19:07
+machine again so the server will treat
+19:09
+you as a new customer and then you can
+19:11
+use the coupon for second time or for
+19:14
+many times okay that's like a bonus as a
+19:18
+computer science student okay
+19:22
+all right uh let me look at the
+19:25
+uh
+19:26
+questions in the chat
+19:32
+one question is since the server is
+19:34
+storing data in the back-end database is
+19:37
+this still considered stateless
+19:40
+uh when we see status I mean HTTP is
+19:44
+status I I don't mean the server or this
+19:49
+entire website is stateless okay I mean
+19:52
+HTTP itself the protocol itself is
+19:55
+status because the protocol
+19:58
+never remember the past client uh
+20:02
+information so for example if you look
+20:04
+at the HTTP request message and response
+20:07
+message here okay it doesn't remember
+20:10
+any of your previous information the
+20:13
+server the server does not use HTTP to
+20:15
+remember it is using the backend
+20:17
+database so I would say
+20:20
+if we want to make this accurate I would
+20:23
+say HTTP protocol is stateless
+20:27
+okay I do not say anything else
+20:32
+Does this answer a question
+20:37
+okay good
+20:42
+another question is is there reasons I
+20:45
+shouldn't accept cookies on a website
+20:49
+um some most of the time I think you can
+20:52
+you can reject you can of course reject
+20:55
+using cookies on a specific website then
+20:58
+in this case they will
+21:00
+um they will not be able to remember you
+21:02
+but sometimes you know
+21:04
+um the website is just enforce okay they
+21:08
+uh enforce to use cookies so in that
+21:12
+case if you want to continue using this
+21:15
+website and then you have to you accept
+21:17
+the cookie the cookie conditions they
+21:20
+they have specified for you okay
+21:24
+um but I would say if you have a choice
+21:26
+you don't have to accept cookies as
+21:29
+again as I said it is uh very convenient
+21:32
+using cookies is very convenient but
+21:35
+it's uh it also remember your status it
+21:38
+also has privacy issues
+21:41
+okay
+21:43
+yeah any other questions
+21:51
+all right very good okay so let's see
+21:54
+what cookies can be used for the cookies
+21:56
+can be used for a number of things for
+21:58
+example authorization we know sometimes
+22:01
+if you have logged in to a website okay
+22:05
+then you don't have to login again and
+22:08
+again because they have already
+22:10
+remembered you using the cookies so this
+22:13
+is a one functionality of cooking of
+22:15
+course it has security issue right so if
+22:17
+you do not sign out if they have already
+22:20
+remembered you then this will of course
+22:23
+create some security issues
+22:27
+um the second thing is for sure shopping
+22:28
+cart and they have used this example the
+22:30
+third thing is for recommendations
+22:31
+because they have remember your sets
+22:35
+they know what you are looking for then
+22:37
+they can make recommendations based on
+22:40
+the activities you have already
+22:42
+conducted before Okay the third thing is
+22:45
+to remember the user session State this
+22:48
+is uh this is similar to the
+22:50
+authorization part okay
+22:53
+basically they remember your session
+22:56
+State and then you don't have to uh log
+23:00
+in again again and also of course
+23:02
+sometimes they also remember some of the
+23:05
+settings in the current session okay
+23:07
+then they do not you do not need to
+23:11
+restart everything from scratch okay
+23:15
+so that's uh the functionalities for
+23:18
+cookies so how can we how to keep the
+23:22
+state okay basically
+23:24
+um
+23:27
+uh basically the protocol endpoints is
+23:31
+maintaining the state and center and
+23:33
+receiver side or multiportion sections
+23:35
+okay the cookies are what used to
+23:39
+remember the state okay again as I said
+23:43
+hcp itself is not is stateless it
+23:47
+doesn't remember any state but the
+23:49
+cookies are helping the ATP protocol to
+23:55
+remember the stage okay this is used by
+23:59
+the server side to remember the clients
+24:02
+uh States okay so this is different from
+24:05
+the protocol being staged as itself okay
+24:10
+um and of course of course you can see
+24:13
+cookie permits sites to learn a lot
+24:14
+about you this is a this has a privacy
+24:17
+concern okay
+24:20
+um
+24:21
+so that's something you need to pay
+24:23
+attention to all right so that's all
+24:26
+what I want to cover about cookies any
+24:28
+questions
+24:35
+okay
+24:38
+all right
+24:40
+so the next thing is about web cache so
+24:43
+webcash is another very important thing
+24:45
+in uh in the web service uh so what is
+24:50
+the web cache webcache is also called as
+24:52
+processor I think you probably heard
+24:54
+about this term before proxy okay so
+24:58
+what does this mean
+25:00
+um proxy is basically one machine
+25:03
+set between the clients and the original
+25:07
+servers okay usually it is very close to
+25:11
+the client
+25:13
+it's close to the client okay
+25:15
+so the goal for webcache is to satisfy
+25:19
+the client request without involving the
+25:22
+original server
+25:24
+okay the arranging server
+25:26
+um so why do we do that you can think
+25:29
+about this usually usually if you want
+25:31
+to request something you want to connect
+25:34
+to the arena server and then the Renault
+25:36
+server sent back the objects you need
+25:39
+right but this is not very efficient
+25:42
+sometimes especially when the servers
+25:45
+are far away from the clients
+25:47
+okay
+25:49
+the response time may be very long okay
+25:52
+maybe seconds or even minutes
+25:54
+okay then uh in this case
+25:58
+if we have a proxy server okay
+26:03
+if we have proxy server the process
+26:05
+server can fetch some of the

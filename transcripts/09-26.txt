@@ -1,0 +1,704 @@
+0:03
+okay all right so the next thing is about web cache so
+0:11
+webcash is another very important thing in in the web service
+0:17
+so what is the web cache webcache is also called as processor I think you probably heard about this term before
+0:23
+proxy okay so what does this mean um proxy is basically one machine
+0:31
+set between the clients and the original servers okay usually it is very close to
+0:39
+the client it's current close to the client okay so the goal for webcache is to satisfy
+0:46
+the client request without involving the original server
+0:51
+okay the arranging server um so why do we do that you can think
+0:56
+about this usually usually if you want to request something you want to connect to the arena server and then the Renault
+1:04
+server sent back the objects you need right but this is not very efficient
+1:10
+sometimes especially when the servers are far away from the clients
+1:15
+okay the response time may be very long okay maybe seconds or even minutes
+1:22
+okay then uh in this case if we have a proxy server okay
+1:30
+if we have proxy server the process server can fetch some of the objects in
+1:35
+the ones and put it onto this uh local machine this proxy okay then whenever uh
+1:43
+the so for example if this client is is trying to get this object for the first
+1:50
+time from this unreading server okay then the client can send a HP request
+1:56
+to the proxy so let me display this again send it to
+2:01
+the proxy the proxy will say hey my client is trying to get this object can
+2:07
+you send it to me then the proxy will contact the original server to to make
+2:14
+another request right the original server will respond to the proxy
+2:19
+the proxy then responded to the client okay so you may say why do we do this we
+2:24
+are adding one more step between the client and the Renault server the benefit of using proxy is actually
+2:32
+later when other clients are making the
+2:37
+same request okay requesting for the same website the
+2:42
+same same object then the client can contact proxy and proxy can respond
+2:49
+directly without involving the arranging server that is the benefit okay you can
+2:56
+think about this for our University if we have so many users we may have thousand ten of ten thousand users okay
+3:03
+on campus then most of us need to request something from let's say Google
+3:09
+we use some very common websites okay then if everyone is connecting Google
+3:17
+directly connecting to Google directly you can see that a lot more traffic is
+3:23
+between us and Google so for each user the response time may be long
+3:31
+right the response time may be very long and the traffic is a lot okay if we have
+3:37
+more traffic than the the response time can be even longer okay you can see more delays but if we have a proxy in between
+3:45
+okay then when the first client is using this uh is requesting something from
+3:51
+Google then the proxy can get this Google.com webpage on the processor okay
+3:57
+then later on some other clients are requesting for the same thing they don't need to contact Google anymore it is
+4:03
+saving a lot of time so pay attention actually the cash here
+4:08
+acts as both the client and the server okay so when the client is making a
+4:15
+request the pocket server is now a server but
+4:22
+when the proc server is making a request to the original server now the processor
+4:27
+becomes a client okay so it has a two rows both client and zero
+4:33
+uh and typically the cache is installed by ISP University company or residential
+4:39
+ISP and typically the cache is close to the clients we mentioned why last time
+4:46
+right we want this to be close to clients so the response time can be improved can be very short okay
+4:53
+so here we list several motivations for using
+4:59
+web cache firstly is to reduce the response time for client requests I
+5:04
+guess you can all understand this now okay the second one is to reduce the
+5:10
+traffic on institutions accessing what does this mean
+5:15
+so um so if these are all the clients okay if
+5:22
+this is the cash and if this is the original silver
+5:32
+okay now you you think about this because most of the requests
+5:38
+are already Satisfied by the cache by the proxy okay we use those two names uh
+5:46
+interchangeably okay then in this case um
+5:52
+we do not need to request something from the original
+5:57
+server I mean most of the time of course there are still time we need to come down to the original server right
+6:03
+so then the link the link between the cache and the internet
+6:09
+okay for this we can see this is the entire the entire internet in this internet we have Arduino servers
+6:16
+right so this link is called the Access Link
+6:26
+as you can see here we can indeed reduce the traffic on the institutions Access
+6:32
+Link right why because again most of the requests from the clients are already
+6:38
+Satisfied by the cash okay that's the main reason any questions
+6:47
+no okay good so uh the third motivation um
+6:53
+is that uh now the internet is dense with the caches okay so this enables the
+7:01
+per content providers to effectively deliver the content so what what is
+7:06
+content provider content providers means for example uh YouTube is accounting
+7:13
+provider Netflix is a content provider okay so mostly for those video providers
+7:19
+they need to provide the content okay so of course we have big companies like
+7:26
+YouTube like Netflix but we also have smaller companies or smaller content
+7:31
+providers they may not have the resources at those big companies okay but they still want to deliver the
+7:39
+content as fast as possible they still want to provide very good experience to
+7:44
+the customers how can they do this they can use cash okay they can basically push their content to the caches then in
+7:53
+this case um most again most of other clients requests can be certified as a cash okay
+7:59
+so this this uh improves their service so those are the three major motivations
+8:05
+for uh web caching okay um we just mentioned uh especially for
+8:13
+the first one we mentioned this can web caching can reduce the response time for client requests but some of you may not
+8:21
+agree with me right how do you know that so then next we want to use this caching
+8:27
+example to prove why I said that right why and how how this can
+8:35
+improve the response time okay now uh here you can on the figure uh in this
+8:42
+figure on the right you can say we have a number of servers okay this is the public internet
+8:49
+okay and we also have any institutional Network in this institution
+8:54
+institutional Network we have these clients and um for now for this machine you you it
+9:01
+can be treated as a normal client or a normal server whatever okay
+9:08
+um and this router is the access router or we call it add
+9:14
+router okay and this link is called the Access Link
+9:21
+okay this actually starting is connected to the public internet and again on the
+9:26
+public internet we have a number of servers so now we assume the average object size is 100k beats so what does
+9:34
+this mean this means um we know the clients are making requests from the Arduino server right
+9:40
+request for what for objects right we assume these servers for example one of
+9:45
+them is the web server foreign
+9:52
+object size is 100 KBs okay that means a image is 100k of web
+9:59
+page is 100k uh PDF is also 100kv average okay we average and then the
+10:05
+average request rate from the browser to the original server is 15 requests per second
+10:20
+what does this mean this means the web browser is making 15 requests
+10:27
+per second okay and each request is requesting for
+10:32
+one object okay the object is 100k
+10:38
+okay now we can calculate the average data rate so the hourly data rate is
+10:43
+100k 100 KBs
+10:53
+per object times
+11:00
+foreign
+11:07
+bits per object times 15 objects per second right so in total this is a
+11:24
+in total this is 1500 KBS per second that means
+11:42
+right that means 1.5 megabits per second which is 1.5 Mbps okay BPS stands for
+11:51
+beats per second okay that's how we get this number
+11:57
+on the slide okay this is the average degree you may ask why do we calculate that
+12:05
+the reason is because we want to know here for the Access Link
+12:12
+you can say it's 1.54 Mbps that means in one second we can send
+12:19
+1.54 megabits data okay so that is the bandwidth of this Access Link we want to
+12:27
+know if this Access Link is busy or not right we want to know how much data how
+12:35
+much data is sent through this Access Link in one second per second okay then
+12:41
+we kind of sense oh if this is busy or not so then you may ask again why do you care if Access Link is busy or not
+12:48
+later you will know this is very important for the response time okay
+12:54
+all right so then let's let's first leave that and then let's look at the rtt from the router to the internet side
+13:01
+okay the rtt from this router to the original server if this is a
+13:10
+also a web server okay and then coming back
+13:16
+pay attention from this router from the router at the internet side from the
+13:22
+router at the internet side to the original server and then coming back the rtt here we assume is two
+13:29
+seconds okay all right so now let's calculate the total delay
+13:36
+the total Delay from a client let's say client a to server
+13:42
+V okay from A to B we know the total delay should be the
+13:49
+time let me use a change of color [Music]
+13:55
+um okay let's let's look at how I draw here
+14:01
+okay from A to B we are traveling to the first sorry let's chain two different
+14:06
+colors we are traveling to the first round here okay and then we go through the Access
+14:14
+Link and then we go to the
+14:20
+lab server B and we come back and then we come back to the Access Link
+14:28
+and then the router comes back to here do you say
+14:34
+this is this is the entire process the total delay should be should consider all those six segments
+14:42
+okay so now we consider this part
+14:52
+this part we know it is two seconds
+14:58
+right the the blue part is two seconds in the internet side okay
+15:05
+and then now we consider
+15:11
+we consider this part this um the the local area network part I
+15:20
+mean the institutional Network part then we consider these two
+15:26
+what is the total time span here the time spent here is called the land
+15:32
+delay okay so the land delay as you can see
+15:39
+it is usually very fast because it's just local right it's usually very very fast
+15:46
+so the um here the internet delay
+15:53
+I use the blue color is two seconds okay the land delay we said is very it's
+15:59
+very fast and then another thing we need to consider is actually the accessioning
+16:06
+part we only we are only left with this part
+16:12
+okay so then this part is called the access delay
+16:18
+how many how much time do we spend here the access delay is determined by how
+16:25
+busy this Access Link is if this Access Link is is very very busy
+16:31
+then we will spend a long time there it's like when you drive drive home from
+16:36
+school if the road is very busy then you you will have a long delay there it's the same thing okay so then now our
+16:44
+question is is Access Link busy now
+16:49
+is this busy we just calculated our data rate to the
+16:56
+browsers right so the average data rate is 1.5 Mbps
+17:04
+that means the re the data we going through from the institutional Network to the public internet going through the
+17:11
+Access Link is 1.5 Mbps and the bandwidth here we have is 1.54 Mbps
+17:19
+you can imagine is this busy of course this is busy right because this is 99
+17:26
+that means that the bandwidth is already utilized to the four almost right so 99
+17:34
+means oh this is very busy then we have to spend a very long time there it can
+17:41
+be minutes for example right usually when minutes is already a
+17:46
+very long time in uh in networking okay so now you can see the total delay here
+17:53
+is actually two seconds plus minutes plus microseconds
+17:59
+then finally it is mostly determined by the access delay by the minutes part
+18:05
+right okay so now let me ask you a question if you want to improve this situation
+18:12
+what would you do if we want to improve this situation
+18:18
+which means if you want to um decrease the delay
+18:24
+okay then you have to decrease the excess delay right you have to decrease
+18:29
+it excessively now what would you do okay how about we do this
+18:36
+we increase the bandwidth from 1.54 MBS Mbps to 154 Mbps that's a huge increase
+18:45
+right now the Access Link utilization rate becomes
+18:51
+becomes 1.5 over one point Sorry over 154.
+18:58
+that is 0.99 that is even less than one percent
+19:05
+so it's not busy anymore right then because it's not busy so the access
+19:11
+delay can be decreased significantly okay for example it can be decreased
+19:17
+from minutes to M seconds okay now we know this total delay is
+19:22
+equal to two seconds plus M seconds plus microseconds so it's about I would say
+19:28
+it's about two seconds foreign that's a good idea
+19:38
+but this solution this solution I would say is very expensive
+19:43
+right you think about this every time when we have a problem like this we have
+19:48
+to change the cable right success link
+19:54
+and many times this can be very expensive especially if you consider this if this link is uh uh is across the
+20:03
+ocean right so how expensive that is okay so um
+20:12
+apparently that's not the best solution all right so we just mentioned okay we
+20:19
+can increase the accessing speed to solve this problem but that is not cheap
+20:24
+okay that's not the best solution okay uh do we have a better way to improve
+20:30
+the response rate or response time from what we just learned okay you just
+20:35
+guess do we have a better way so here we have a local web cache We Make This
+20:41
+Server a local web cache that means every time when a client wants to
+20:46
+connect with the original server it will need to firstly connected to the Local web cache okay
+20:54
+and ask the cash hey do you have this object or not okay then in this case we
+21:01
+still we still view the average of size as a 100K beats okay and we still view
+21:08
+the average uh request rate as 15 requests per second and the average data
+21:14
+rate to browser is 1.5 Mbps so the calculation is still the same the round
+21:19
+trip time on the internet side is still two seconds and the access link is still 1.5 Mac bks we do not change anything
+21:27
+okay now we assume the line and the learn side that utilization rate is still 15
+21:33
+which means the land side is not busy okay it's not busy so the land side is
+21:38
+still very fast now we need to calculate the total delay
+21:44
+so again before we we want to calculate the total delay we need to the total delay now still include includes the
+21:52
+third 3.3 portion okay uh the land portion the access portion and also the internet
+21:59
+portion okay but how do we calculate the link utilization rate
+22:04
+here how do you calculate the utilization rate do we still use 1.5 M BPS no
+22:14
+why because a lot of requests have already been certified by the web cache
+22:21
+The Local web cache they do not need to go through this Access Link okay
+22:27
+so then here we want to we want to make some assumptions before we we make the
+22:33
+Assumption we cannot do any calculation okay we assume the cash credit rate is 0.4
+22:41
+what does this mean what is cash flow rate we know the cash cannot hold everything
+22:48
+right the cash only holds the most ly uh common uh visited websites
+22:56
+okay then now we assume 40 percent of the request
+23:04
+40 percent of the clients request can be certified as a cash
+23:10
+okay that means when you request for a web page 40 percent like the likely hold
+23:16
+of getting certified by the cash is just forty percent okay and the sixty percent
+23:21
+requests need to be certified as a regional server okay so what does this mean this means
+23:28
+do you remember the Access Link arrange knowledge need to carry 1.5 Mbps
+23:36
+right originally and now how much data need to go through here
+23:46
+how much did I need to go through here originally 1.5 Mbps has to go through
+23:55
+this Access Link okay is it 60 of that right accident so
+24:01
+it's 60 percent of the 1.5 Mbps okay that means it's a 0.9 Mbps
+24:14
+only 0.9 BPS need to go through the success link the other 40 percent
+24:21
+are already satisfied at the local cash okay does this make sense
+24:30
+so now we want to know because this is only 0.9 is this accessing still busy
+24:38
+it's not busy anymore right it's not busy let's say okay
+24:45
+um so as I calculate it's 0.9 Mbps and now the utilization rate for the Access
+24:51
+Link is 0.9 overall 1.54 so it's just a 58 percent
+25:00
+okay 58 percent means it's not congested so now the accessing is not congested so
+25:09
+it's also very fast okay then now the question is
+25:15
+how can we calculate the total delay okay
+25:21
+so if we want to calculate the total delay we want to average for for some requests some requests can be certified
+25:27
+here by the cache and some requests have to go through
+25:33
+the access link to the public internet so as you can see some requests can be certified very quickly and some cannot
+25:40
+okay it's like when we want then how can we calculate the average
+25:47
+it's like if we have for example um let's say if we have
+25:53
+um the grace for each student the grid for each student for the final exam okay if
+25:59
+I want to calculate the Outreach what can I do some students have got zero
+26:05
+that's brutal I know right some students get 100 okay
+26:11
+let's say we have 40 students 40 person students get zero and a 60
+26:19
+person student get 100 how would you calculate the average
+26:26
+zero times 40 percent plus 100 times 60 percent
+26:35
+right that's how you calculate the Outreach of our students right if you don't trust me some of you
+26:42
+may say oh 40 means zero times 40 students
+26:47
+plus 100 times 60 students
+26:52
+now in total we have 100 students that is the average
+27:00
+right some of you made me say that because this is the same thing I would zero time 40 plus 100 times 60 okay
+27:08
+that's how we calculate the average okay it's the same thing for the total
+27:14
+delay okay let's see the total delay now equals to
+27:20
+60 percent how to be satisfied by the original
+27:26
+server that means 60 times the delay from original server
+27:32
+plus 40 percent can be certified as a cash so that is 40 percent times the
+27:39
+delay when certified at the cash okay so that is sixty percent times what time
+27:48
+what is the delay from original server so then this one have to go through here
+27:55
+Local web cache we know it's very fast and Access Link is now very fast
+28:02
+and then it has to go to the public internet we know this is two seconds
+28:09
+right two seconds Plus maybe M seconds plus microseconds in
+28:16
+total we can see it's about 2.01 a little bit more than two seconds
+28:24
+right so that is for those requests that have to be certified at the server Arena
+28:30
+server okay and for the remaining for the remaining uh delay the remaining uh
+28:38
+requests they have they can be certified at the local web cache and I may know the local
+28:44
+um web local area network is not busy right so then the delay is very very
+28:53
+shocked so that is about 0.01 seconds
+28:58
+okay so in total if you calculate then this the total delay is
+29:06
+about about 1.2 seconds
+29:12
+1.2 seconds that's that is our delay
+29:18
+and if you compare this number with the one before
+29:27
+do you see this the one before is about two seconds a little bit more than two seconds right when we increase the
+29:34
+bandwidth okay 1.2 seconds is even much better than two
+29:41
+seconds right so but you can compare the cost the cost
+29:49
+of in changing the Access Link and the cost of adding one Local web
+29:55
+cache apparently the second option installing a local web cache is much more cheaper
+30:03
+than changing the Access Link then increasing the bandwidth of the Access
+30:08
+Link right so now we know okay with this very
+30:14
+smart solution we actually we we improved the performance
+30:19
+but we spend less okay we spend less it's it's a much more
+30:24
+cost effective okay because the Local web cache is just a a general computer
+30:30
+it's very uh very early very cheap to to install okay any questions
+30:39
+I know this is a lot of information on the calculation uh but I think I think
+30:44
+you you are able to digest this okay and for the exam do not worry for the
+30:50
+exam I will not ask you to calculate the total delay do the calculation like this you only need to remember the the
+30:58
+takeaway message the takeaway message is that installing a local web cache
+31:05
+can improve the response delay or the round trip time
+31:11
+much better but with with the less uh spans okay less expense
+31:19
+uh less cost okay so um the next thing I want to talk
+31:25
+about is about conditional get when we use the cache there is actually
+31:31
+one problem I I'm not sure if you have noticed this so a problem is
+31:37
+um the cache you can see the hatred
+31:43
+the cash flow rate is 40 right and also sometimes the cash
+31:49
+May store some Auto outdated uh web pages
+31:55
+or objects does this make sense so some some of the some of the objects have already been
+32:01
+updated at the original servers but the local cache does not know that
+32:07
+okay then in this case the objects stored on the local cache is outdated
+32:12
+Okay this may create a problem for the for the uh clients because the client wants to get the most up-to-date version
+32:21
+okay in this case how do we address this problem okay we address this problem
+32:26
+using something called conditional get do you remember that last time we learned the get method
+32:32
+right for ATP request um so the goal of conditional guide
+32:39
+basically means the proxy server the cache the processor
+32:45
+role will contact the original server and say hey can you send me the most up-to-date
+32:52
+version if my current version is already the most up-to-date one then you don't need
+32:59
+to send me the object but if it's not the most current version then you need to send me the up-to-date
+33:07
+version does this make sense okay so then that means the server need
+33:14
+to check if the current version is the up-to-date one or not
+33:20
+okay how do we know that how do we know if this is uh
+33:26
+the most current one or not do you have a question Michael okay okay
+33:32
+so there do you remember in when we talk about the get message there is one line
+33:38
+called if modified things okay if you cannot remember that let's
+33:44
+go back to the get message
+33:50
+the guide message here
+33:56
+um let's see it's not here it's in the response message
+34:02
+yes either sorry sorry I said something wrong in the response
+34:07
+message we have some headline called last modified okay and I told you this is very
+34:13
+important right so this tells you the last modified data and time of the
+34:18
+object how it tells you oh okay this file was
+34:24
+last modified on October 30th 2007. okay
+34:29
+and then in the conditional gut okay
+34:35
+we will use this modified let's modify date and time okay we will say okay if
+34:42
+this is modified since that date please send me the new version if it's not
+34:48
+modified then you don't need to send me a new word okay so let's see how it's used
+34:54
+this is the cache and this is the server okay the cash will send a
+35:00
+a message Say Hey I want to get a web page or something or some object okay
+35:07
+and also in this request message we will say if it's modified since this date
+35:14
+if the object is not modified sorry it's not before it's after
+35:22
+if it's not modified after that date then the third of your simplicity
+35:29
+304 not modified what does this mean 304 is the status code right this means the
+35:35
+object was not modified since that date but if we have
+35:41
+the object was modified okay then the server will send back 200 okay and
+35:49
+then attach the data the data is the most
+35:54
+current version object is the up to date
+36:05
+okay is the new object this is how it works okay let's see another example
+36:11
+here we have a conditional uh get so we have one uh sorry we have one cache and
+36:19
+one server okay the cash will say hey can I get this fruit
+36:24
+KV dot GIF the HTTP version is 1.1 the host Hospital name is the first outcome
+36:32
+so this is a fruit stock count okay and then the silver will say okay
+36:39
+HTTP 200 okay I have this uh object to you I give you this KV and the last
+36:47
+modified date and time for the KV is September 9th 2017-15 okay so this
+36:54
+contains the KV okay and then a week later
+37:00
+the cash will say hey I'm requesting for the Kiwi but
+37:06
+I already have a version of KV the last mode if I didn't have time is actually
+37:12
+last one September 9th 2015. if the object is not
+37:18
+modified so the third of your simply respond back with
+37:25
+304 not modified and here the amp The Entity body is
+37:30
+empty because it's not modified so we do not need to update okay
+37:36
+but you can imagine if this object is modified then what is the response message the
+37:44
+first line would be what can you guess
+37:49
+if the object is already modified the first line of the response passage should be
+37:55
+http 1.1 200 okay
+38:01
+do you remember you remember here if it's already modified
+38:08
+then we need to respond with 200 okay and then send in the most up-to-date
+38:13
+version of the object okay so that's why here in this example pay attention if
+38:19
+the object is already modified then you will send it back with 200 okay
+38:24
+here will be HTTP 200 okay
+38:29
+okay the first line and here you will also need to send in the most up-to-date version of KV
+38:37
+okay it is clear
+38:42
+when it says modified does this that's its main object
+38:48
+yes when we say modified we mean the object is unmodified or not okay I mean the if the web page is
+38:55
+already updated or not okay yeah this will be on the test
+39:07
+I want you to remember every sentence here and in the test I may for example I make
+39:13
+it give you all the host name uh ATP version and everything I want you to
+39:20
+specify how will you respond okay so for example how would you
+39:26
+respond here I may also ask you to identify the request message how do you write
+39:34
+this request message so remember everything here okay

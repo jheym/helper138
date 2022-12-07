@@ -1,0 +1,760 @@
+0:05
+today we are going to discuss the application layer application layer is
+0:10
+the very first layer top the top layer that we will study for this entire class
+0:16
+and you are probably worth minimum in some of the terms in this layer so it's
+0:22
+actually a good thing to start with um personally this is like the structure for this entire chapter so you can see
+0:30
+2.1 is about principles and 2.2 we are going to introduce the web application
+0:36
+HTTP service and let me talk about email DNS some of the P2P applications and we
+0:44
+will discuss the video streaming okay the last portion is the sockey
+0:49
+programming assignment project programming okay so I will move this
+0:55
+section uh to forward so we can start
+1:01
+the soccer program assignment as soon as possible okay all right
+1:07
+okay so what already what are we going to accomplish in this chapter
+1:13
+basically we are talking about some of the some of the concepts regarding application layer okay I will get you
+1:20
+familiar with some of the protocols like HTTP FTP SMTP DS okay for SFTP we will probably
+1:29
+skip FTP will skip okay but for the other protocols we will be we will
+1:36
+definitely discuss and another important thing we are going to discuss is about the socket okay this is a very important
+1:44
+Concept in application layer and you will see this concept again and again
+1:50
+actually all right so let's start firstly let's talk about some of the
+1:56
+applications Network applications I'm sure you are very familiar with some of
+2:02
+them right email web test messaging for those who are you you probably use it
+2:07
+every day and remote login P2P file sharing uh the games the videos all
+2:15
+those kind of things they belong to the applications right so when you when you
+2:20
+want to use something use some service but basically you need to firstly install an application on your machine
+2:28
+okay on your device it can be a computer or a mobile device right so these are
+2:34
+the network applications then when you think about the application if for example if you are
+2:42
+starting to create a new network application
+2:48
+okay so of course you may need to run some programs as the end systems
+2:53
+those programs need to communicate over the network for example you think about
+2:59
+this if you are writing a messaging let's say application Messenger
+3:05
+application right I'll call the two computers need to communicate with each other over the network and then each
+3:13
+application each computer each end system needs to need to install this
+3:19
+application okay so those applications are installed on and systems and then they communicate
+3:25
+now you can also think about the web browser communicate with the uh the
+3:31
+other machine okay the other machines so then the web browser here is uh like
+3:37
+an application then as we said if you want to write a network application then
+3:44
+you need to write a program for that right right program for that application
+3:49
+like you need to write a program for this web server sorry for this uh web
+3:55
+browser okay sorry I think I I Mark something wrong I should say
+4:01
+browser okay you need to write a browser application of course if this browser is
+4:09
+communicating with web server then you need to also write the web server
+4:14
+software okay probably right now I mean the idea of server is still a bit
+4:20
+abstract in your mind that's totally fine just imagine it's a machine okay
+4:26
+imagine it as a machine um now again for the messaging
+4:31
+application as I said if you have two devices communicating with each other
+4:37
+they are sending messages to each other then of course you need to write the program for each messaging application
+4:43
+okay so those are the things you need to do as the developer
+4:50
+but you need to think about this when you write the program for the
+4:55
+software or for the application do you need to write the program or the
+5:02
+code for the network core devices that means do you need to consider
+5:08
+about the routers how the routers work uh how do you set up the routers how do
+5:15
+you uh write algorithms or protocols for the browsers do we need to do that
+5:22
+you don't need to right you don't need to so as a developer you never worry
+5:28
+about how the network code will work how will those vouchers work right you just care
+5:36
+about your applications you never worry about those then why why don't you need
+5:42
+to think about this as we mentioned before actually the
+5:48
+internet is like providing some kind of service right if you take a service view the internet is actually providing you
+5:56
+some service so basically all those Network core devices have already had their own
+6:03
+programs Okay so what you need to do as a developer is
+6:09
+you only need to write your own application and then use some API to to
+6:18
+to use the services provided by those Network core devices here what I mean
+6:24
+our code devices are the routers right you need to you need to get services from those routers from the
+6:31
+infrastructure but you don't need to do it on your own okay it's like
+6:37
+when you try to do a business for example okay you may use the Postal
+6:42
+Service then you may drop a package to the or drop the packages to the post office
+6:50
+but you never need to deploy the entire network for postal service
+6:56
+right so you are using the service from them but you don't need to worry about
+7:02
+how they are implemented okay it's the same thing okay it's the same thing so this is
+7:09
+about how to create a network application and what you need to worry about basically
+7:15
+okay so now you can see uh on the figures we see on the devices
+7:22
+on devices or on the end systems they all have five layers
+7:28
+okay they all have five layers application Layer Two physically and then you can see the communication
+7:36
+is basically happening between application layer to application layer but later we will know okay the
+7:43
+communication is actually supported by the layers below okay by all the layers
+7:51
+below okay so question so far
+8:00
+okay then the next thing we are going to discuss is the application architectures
+8:07
+okay there are generally two types of architectures one is client server model
+8:13
+the other one is peer-to-peer model or we can call it P2P model
+8:19
+so what are the differences between them probably you are already very familiar
+8:25
+with the names right client serum model P2P model but you never know the difference between them let's look at
+8:31
+each one firstly for client server model for client server model if we view these
+8:40
+are the servers okay the servers will provide services
+8:48
+and again as I said servers are just machines okay no matter how big they are
+8:54
+they may be back they may be small they may be like just your PC okay but
+9:01
+they are providing services to others okay and there are some characteristics
+9:08
+for servers for example firstly they are always on
+9:15
+okay the servers usually cannot go down if the service go down you can imagine
+9:22
+especially for those big companies they may suffer from a lot of financial loss
+9:28
+they cannot afford the server was going down okay so basically a huge thing if we see a
+9:34
+servers going uh server going down um that's why many times actually the servers they have backup service if one
+9:41
+server is down then the other servers can survive the backup uh so that's why it's very important to make sure we have
+9:50
+always on servers okay always on cost then uh the second thing is
+9:58
+the servers always have permanent IP address
+10:03
+what does this mean this means the IP addresses for servers
+10:09
+can never be changed okay they are also the same you may ask why
+10:16
+the reason is because the clients the clients usually will
+10:21
+need to contact the servers right so if the IP address of the servers are
+10:27
+changing then how could those clients know what is the most up-to-date IP address
+10:34
+right it's very hard for the clients to know so that's why the servers always
+10:39
+maintain the same IP address so for example for Google Okay google.com this uh when you type in
+10:47
+google.com actually later you will learn this URL google.com will be all this
+10:53
+domain name or this server name will be translated into an IP address e uh
+11:00
+through the DN service okay uh so basically this IP address is
+11:07
+always there okay it's always there that's the second thing the third thing
+11:13
+is usually the servers will have data centers for scaling okay of course as I said if you are
+11:21
+simply implementing a server or your own use okay or deploy a server
+11:27
+for very small company or very small Network to serve
+11:32
+only a few clients then you probably don't need a data center
+11:38
+probably just your um PC is good enough okay
+11:44
+but if you have a lot of clients okay if your company is Skilling then you have
+11:51
+to think about this Skilling okay you have to think about how to accommodate the large number of
+11:59
+clients that's why we really need the data centers for scaling okay so those
+12:05
+are the third characteristics for the servers
+12:10
+then for the clients okay for the clients they also have some
+12:15
+characteristics for example the clients need to communicate with the server
+12:21
+okay they usually need to communicate with the server they do not communicate
+12:27
+directly with each other okay so that means that means
+12:34
+for example if you are running a web browser okay the web browser is a client
+12:40
+it's a client program so here I hope you can I want to firstly clarify my basic
+12:47
+client server have usually refers to the machine we usually refer to the machine but
+12:53
+that's not accurate because on your machine for example you can think about this on your machine you may run a
+12:59
+number of applications you may have web application you may have email you may have video gaming right you have all
+13:05
+those applications then in this case if we want to be more
+13:10
+accurate then the client means client program
+13:16
+okay so for example when we see web server okay then web server is a server now who
+13:23
+is the client the client can be a machine if we refer to this generally but more accurately we should see the
+13:31
+client is uh the web browser it's the Firefox this is the Chrome okay so it's
+13:37
+like that it's the web browser okay so here when I say the clients cannot
+13:44
+communicate directly with each other we mean yoga browser cannot communicate
+13:52
+with another web browser we cannot okay they can only communicate
+13:58
+with the server that's the client okay of course the clients may be
+14:03
+intermittently connected they may be up they may be down okay we do not have any requirements on
+14:10
+clients it's totally fine for clients to be off okay
+14:15
+the clients may also have Dynamic IP addresses it's totally fine for the client to
+14:23
+to um to change the IP address okay but we do not
+14:29
+usually we do not change the IP address for Server because server server is the one to be contacted okay everybody
+14:36
+should know the IEP address for the server all right so that is the client server
+14:43
+model any questions
+14:50
+okay so the next architecture is the P2P architecture
+14:56
+in P2P art architecture we do not have any servers no servers no always answers
+15:03
+okay we only have some n systems
+15:10
+okay those end systems are the peers they are exactly the same I mean when I
+15:16
+say the same I mean they are treated at the same okay of course they can have different settings
+15:22
+then we can have those peers communicate with each other directly
+15:29
+okay then the peers the peers usually will need to request a service from other
+15:35
+peers okay and also at the same time the peers can provide a service in return to
+15:42
+other peers okay so it's like if you think about the
+15:47
+uh our class okay if you think about our class then client server model is like
+15:53
+I'm the server you are the client I'm serving you okay then P2P model is like you are all
+16:02
+learning from each other you do not need any instructors okay you are all learning from each
+16:09
+other you are all um help each other so you can request service from each other and you can also
+16:15
+provide service to each other okay then you if you think about the
+16:20
+scalability that's very interesting okay if you think about scalability actually
+16:26
+the P2P network is very self-scalable why because when we have new periods
+16:35
+joining the network the new peers of course they will need to get service
+16:42
+from others right but at the same time they can also provide service to others
+16:48
+that means the new peer actually bring new service capacity
+16:54
+okay as well as the new service demands of course
+16:59
+so again if you use our class as the example if I'm the server you are the clients
+17:06
+then I can only handle this many students okay if I have like 200
+17:11
+students of course I cannot handle all of them right it's too big for me to manage
+17:18
+then we have a scalability issue but if you are doing P2P network if you are
+17:24
+learning from each other then basically you do not need uh you do
+17:29
+not need much help from the instructions right so you can you your Learning
+17:35
+Network I would say is a self-scalable okay
+17:41
+um so the peers are intermittently connected and they also change the IP addresses so you think about this
+17:48
+because there is no always on server the peers can always change the IP address
+17:54
+they may get connected or get disconnected then the amendment is actually very complex okay this is a one
+18:03
+of the drawbacks for PHP Network compared to the client server model
+18:10
+all right so question so far
+18:23
+foreign drawbacks with P2P regarding security
+18:32
+this is a a very general question regarding security I would I cannot see
+18:39
+there are some specific drawbacks that are related to only P2P
+18:45
+okay so the the major difference between P2P and client server model is like the
+18:51
+management product scalability those kind of things but in regards to security
+18:57
+or I would say most of the problems most of the problems are the same are the
+19:04
+same for both financial model and the PPP model okay but of course there is one thing you need to pay attention when
+19:10
+we talk about security okay for client server model it's very easy to conduct
+19:16
+detox attack do you remember what we discussed in last slides uh sorry last chapter regarding DDOS attack for DDOS
+19:24
+attack we said so for example uh there are a number of machines you one who wants to
+19:32
+get requests from the host right here the host we mean the
+19:37
+server then if this server gets a lot of fake requests from the malicious
+19:45
+machines Then This Server can be easily taken down okay this server cannot
+19:52
+provide regular service to the other legitimation machines or the legitimate clients okay so then in this case I
+19:59
+would say cancel model is a very vulnerable but for P2P model we do not
+20:04
+have that issue okay that's one example but as I said for most of the other
+20:10
+aspects I would say they are kind of similar in terms of security for example
+20:15
+think about the communication between machines the encryption decryption uh
+20:22
+the package significant the eyepiece spoofing all those kind of things they are similar okay but the client server
+20:30
+model is sometimes more vulnerable because the server is always there the
+20:36
+IP address is not changing okay uh and the attackers can easily scan the
+20:43
+network and know which ports are opening then uh
+20:48
+and also the server may have some vulnerabilities that can be easily exploited so those are the things you
+20:55
+may need to consider of course DDOS is another thing you need to consider okay
+21:01
+another question is why would anyone go for P2P our server this is a great
+21:07
+question why would anyone go for P2P 2p actually as we as we see here P2P
+21:15
+have has its own benefits for example scalability scalability is really good
+21:22
+for PHP okay um and if I I'm not sure if you have
+21:27
+used some of the tools before for example B torrent okay
+21:33
+it's one of the PVP application yes you in B torrent basically sometimes
+21:39
+you can download the file very fast okay you don't need to wait for the server to
+21:45
+respond because you can get service from so many different other peers okay so
+21:50
+that is uh I would say one of the benefits to use big P2P foreign
+21:57
+there is another question in the last slide is up here just any device
+22:03
+yes okay the appear here is uh just a device any device okay and it can be a a
+22:12
+PC it can be like a laptop it can be a tablet or mobile from any device as long
+22:20
+as they are connected to the network then they become appear okay and the later we are going to spend
+22:26
+more time discussing the PHP Network Christian mentioned tolerance P2P right
+22:33
+yeah be torrent and Torrence P2P is the one great application for P2P
+22:39
+all right so those are awkward questions any other questions
+22:50
+okay so then we will continue the next thing I want to discuss is
+22:57
+actually the process communicating when we say a machine is talking to
+23:03
+another machine in your mind in your mind okay
+23:08
+foreign probably now you are thinking machine a is talking to machine B
+23:16
+okay but as I mentioned before on one machine we may have a number of
+23:24
+applications you may have email Web video gaming
+23:30
+all the other applications okay on B we have the same
+23:36
+thing a number of applications
+23:43
+okay so you can say if we think about the applications then when you say
+23:49
+machine talking to a machine is not accurate right we have to see
+23:54
+application talking to application
+24:04
+we can see application A1 is talking to application B1
+24:10
+okay then we know for application if you have taken the class of 139 probably
+24:17
+most of you haven't yet okay but we know in our persistence application is just a
+24:24
+piece of code okay this piece of code usually is on the hard drive
+24:31
+when you run this piece of code what if the opening system will do is to
+24:37
+move this piece of code from the hard drive and put it into the memory and
+24:42
+then begin to run this okay then after this is put into the memory we do
+24:49
+not call this as application anymore we call it as a process
+24:54
+so process is basically a running application or a running program
+25:01
+okay so now you can see if we want to see this more accurately
+25:07
+machine to machine communication is actually the process to process
+25:13
+communication okay process to process communication if
+25:19
+these processes are within the same host then we can see oh two processes are
+25:25
+communicating using the inter-process communication
+25:32
+this inter-process communication is defined by the opening system
+25:37
+but if these processes are within different uh they are in different hosts
+25:43
+okay then we can see oh they are communicating by exchanging messages
+25:50
+okay by exchanging messages that's the difference okay that's why actually
+25:56
+that's why usually at the application layer we always say oh a is sending a
+26:01
+message to b okay so now if you think about the
+26:06
+application and the process okay the process also has client process and
+26:13
+server process okay clients process means the process
+26:20
+that initiates the communication server process means the process that wish to
+26:26
+be contacted it's very easy to understand the incline server model usually the processes on
+26:34
+the client on the client machine or the client processes and then
+26:40
+processes on the server machine are the server processes because they need to be contacted okay however in P2P model in
+26:49
+P2P model is not that obvious the how do we Define the client's server
+26:57
+process so it's the same definition actually okay in P2P model although we
+27:03
+do not have any clients any servers but still we can say the client processes
+27:10
+are those processes that initiates communication so if this one process is trying to
+27:17
+initiate the communication then this becomes the client process then the other machine that is contacted the
+27:23
+other process that is contacted is the server process okay so that's something
+27:29
+you need to pay attention all right questions so far about process
+27:40
+okay all right the next thing we are going to discuss is a very important context
+27:46
+Concept in networking the socket this is very important okay so now we can look
+27:53
+at computer a and computer B and each computer you can see
+28:01
+in terms of networking it has five layers from application layer to transport layer and the network layer
+28:07
+the link layer the physical layer so I hope these five layers are like they are deeply painted in your mind
+28:16
+okay so so you you you will have that in your mind forever now okay now we let's
+28:22
+about talk about the the communication okay so we just learned that we just
+28:28
+learned one machine may have a number of
+28:33
+patients okay a number of applications then the right new application or the
+28:40
+running program is called a process so this process
+28:46
+is actually living in the now in the application layer okay the process
+28:53
+resides in the application layer so you can see application layer we have those
+28:58
+processes okay and as we said if one machine is talking
+29:06
+to another machine if this processes of it in different machines I I need different machines then we say
+29:13
+this is a kind this is called as a sending and receiving messages right they need to communicate by exchanging
+29:19
+the messages so how do we send the message out how do we send the message how do we
+29:26
+receive the message so what is happening is actually this process
+29:32
+okay this process will need to compose a message
+29:38
+like email message uh whatever message okay and then
+29:44
+push this message down to the transport layer down to the transporter layer so then
+29:50
+the all the layers below will start to work and then deliver this message
+29:58
+deliver this message to b okay so then this message will be passed
+30:07
+from the physical layer up to the transporter layer and then find them to the application layer this is the entire
+30:13
+process in general okay it's like you are using the Postal
+30:19
+Service you prepare a package you drop it to The Postal Service post office and
+30:25
+then they will do the delivery for you okay but there is one very important
+30:31
+thing here when you try to send this message out when you push this message
+30:38
+to the transporter layer you need to go through some something called socket
+30:45
+so this is this yellow box is here
+30:51
+okay those Yellow Boxes here are actually the sockets the socket is like a door is like a door
+30:59
+between the application layer and transport a layer so what you do is basically the it's basically plus uh
+31:07
+push the message through the door okay to deliver the message to the lower
+31:14
+layer to the transporter layer and then the lower layer will do all the work for you
+31:19
+similarly when we receive a message okay of course as we said we do not call it a
+31:26
+message at the other layers right we may call it a segment or a packet or frame okay it doesn't matter it's still the
+31:33
+core is still the same okay so when we receive this thing okay
+31:39
+this theme will be delivered from transport layer to the application layer
+31:44
+through the socket still you need to go in through the store okay so you think
+31:50
+about think about this this store is like when you use the Postal Service okay it's like your door at your home
+31:56
+you prepare the package you push the door you push push the package outside of your door
+32:02
+then the USPS or UPS will come to pick up this
+32:09
+package outside of your door and do the delivery okay when they arrive at the
+32:15
+recipient's house okay they will do the same thing drop the door drop the
+32:21
+package outside of the door and then you can go pick up okay you can pick up your you can get
+32:26
+your package through the store is this clear to everybody
+32:37
+okay so this is a uh the concept of socket okay
+32:44
+your lane usually the this part the process the application layer is
+32:51
+controlled by the application developer so that means you can make changes there okay and then the layers below are
+32:58
+controlled by the operating systems that means usually you do not touch that part as a developer okay so those are the
+33:07
+basic things the uh the other question you you will probably ask is how can we address those
+33:14
+processes okay uh when we say a process how do we identify them
+33:22
+okay so it's like when you use Postal Service we know when you send out uh
+33:28
+something for example if I'm sending something to my friend Michael okay so I
+33:33
+will say from Sun this is from me okay I'm like a process from Sun to Michael
+33:40
+Michael is another process okay then we all have the names
+33:46
+the same thing if we want to add address some processes then they all need to have some identifiers
+33:54
+okay they all need to have identifiers so you may say oh we know IP address so
+34:00
+the machine has IP address but think about this as I mentioned for each computer
+34:07
+you may have IP address right but on this computer you have a multiple
+34:15
+applications you have multiple processes it's like in my at my home I have
+34:23
+several people living in my home right we can use the home address but how can we distinguish
+34:30
+different person that's the question it's the same thing you all you have the
+34:35
+same IEP for a the same IP address for a but how do you identify
+34:41
+a1a2a34 those processes right so that's the question that's why
+34:47
+using only IP address to identify process is not sufficient
+34:55
+the IP address is able to is only able to identify the host the host computers
+35:01
+the machines okay then in order to address those processes or to identify
+35:07
+those processes we need something more okay so what we will use is actually the
+35:15
+port number okay a port number so that means that means if we want to
+35:23
+address address a specific process
+35:28
+we need two information IP address plus a port number
+35:35
+so you may ask the support number itself work again if you look at this
+35:42
+uh slide here we may have A1 on computer a right we may also have even on
+35:49
+computer B so it's because the port numbers are the
+35:54
+same what numbers are all from 1 to 65 something 65
+36:01
+000 something of course okay so sorry so those are the port numbers uh each
+36:09
+machine has those port numbers so we cannot use only uh the port numbers to
+36:14
+to identify a process we have to use both IP address and phone number okay it's like at our home we may have sun
+36:22
+and the other um families they may also have somebody names that okay so we need to use both
+36:30
+the home address and also the name of the person to identify the specific
+36:35
+person I hope this is clear okay
+36:40
+so these are some of the example post numbers for http
+36:48
+for HTTP the server number okay I mean
+36:53
+for the port number for HTTP server pay attention for hdb server is always
+36:58
+adding HTTP server the port number is always 80 that means when you contact a server
+37:06
+HTTP server a web server okay you are always talking to the 80
+37:15
+port number on that machine it's like if you view a web server as a big house it
+37:22
+has a 65 more than 65 000 people okay
+37:28
+you are only talking to that people named 80. okay but as the client HTTP client can
+37:35
+use any phone numbers okay that's something we are going to discuss more later
+37:40
+for mail server the port number is always 25 okay always 25. so there is
+37:46
+one there's one example here you can see to send HD messages to
+37:53
+gaia.cs.ums.edu web server you need to firstly have the IP address and then you
+37:59
+need to have the port number okay you need to use both to contact it
+38:05
+let me look at the question
+38:14
+one question is it is it like apartment numbers at an apartment complex
+38:22
+the port being different apartment rooms
+38:27
+if you view this depends on how how the analysis is down okay if you view the
+38:35
+entire apartment complex as one unit
+38:40
+okay as one cost and they all share the same mailing
+38:45
+address okay I mean all different apartments are sharing the same menu address
+38:52
+then of course yes you can view those different apartment numbers as different
+38:58
+both numbers okay yeah other questions
+39:11
+another question is does Comcast distribute different poll numbers to its
+39:17
+users this is a good question the answer is no the port numbers are
+39:24
+usually managed by the operating system because port numbers are associated with
+39:30
+processes okay processes as I said are applications which are running on one
+39:37
+machine so that's why the port numbers are usually assigned by the opening
+39:42
+systems not the internet service provider the internet service provider
+39:48
+will provides the IP address or the IP address range okay but they do
+39:55
+not care about the port numbers another question is how many ports that
+40:01
+an IP address have or does that depend on your ISP or router
+40:07
+good question so usually for each host each computer
+40:13
+the port numbers can vary from one two more than 65 It's a 65
+40:23
+536 I I believe I I maybe this number is not accurate but it's more than 65 000
+40:30
+okay each cost every host have that many phone numbers
+40:36
+okay have that many phone numbers then but this doesn't mean all those parts
+40:43
+should be open okay those parts are like doors okay I like
+40:49
+some some ports are open samples may not be open okay so for example if this is a web
+40:57
+server then the web server will only have put 80 open all the other posts may be closed that
+41:04
+means only this 80 is receiving messages from others from the clients from other
+41:12
+machines then other ports are all closed okay it's possible and for the clients
+41:19
+then you may have a number of posts open because if you want to talk to others
+41:25
+you need to have a phone number open okay so I would say the answer is
+41:31
+um this does not depend on ISP or router this is again depends on the open system
+41:37
+I hope this answers all your questions any other questions
+41:46
+okay great I think you all asked a very very good questions thank you
+41:52
+all right so um let's talk a little bit more

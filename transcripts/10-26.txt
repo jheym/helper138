@@ -1,0 +1,552 @@
+0:03
+um and there there were some approaches towards uh there are some approaches for
+0:09
+congestion control okay so these two here releases are the two commonly used
+0:16
+approaches one is called end-to-end congestion control this means we do not get any
+0:23
+explicit feedback from the network no feedback from the network okay now how
+0:30
+do we know the congestion how do we know the status of the network what we can do is we infer the
+0:37
+congestion from the end system by observing the loss and delays okay
+0:44
+it's like if your mom observes that you arrived at home late then your mom may
+0:51
+say oh there is congestion on the road okay it's like that so this is actually the approach taken by TCP
+0:58
+okay another type of congestion control is called Network assess assisted
+1:04
+congestion control uh in this method the routers will provide feedback to the end
+1:11
+systems so basically there there are some bits indicating the congestion
+1:17
+okay um and also uh
+1:23
+um yeah this piece basically will be sent for example beside to one to tell uh the
+1:31
+sender say hey uh there's a congestion okay so it's like that
+1:36
+um let's say maybe this is actually this is a this one is used in TCP and this
+1:44
+one is actually not um use the very commonly at the current
+1:50
+Network okay the current Network um but I I want to maybe quickly discuss
+1:56
+this this will not appear on the test but I want I want to want you to understand how this congestion control
+2:03
+was done before okay so firstly we have something called ABR
+2:08
+which is available bitreach okay um
+2:14
+so let's see so if the central path is under loaded
+2:20
+the sender should use the available bandwidth if the center part is congested then the center will be
+2:26
+throttle to a minimum Guaranteed Rate okay and then there
+2:32
+in the communication between two parties in addition to the data cells the data
+2:39
+cells will carry the data we will also have those cells called Resource Management cells okay those Resource
+2:46
+Management cells are sent by the sender interspersed with the dead cells okay
+2:54
+um and then there are some bits in the RM cell resource matter myself
+3:00
+um so for example no increase speeds a night beat or a CI beat which means
+3:07
+congestion indication okay so uh these RM cells will travel together with the
+3:15
+data and then um what will happen let's look at this
+3:21
+okay so you can see the white ones I did the cells the red ones are Resource Management cells so those cells will
+3:28
+travel together okay um
+3:33
+so there is a two byte ER rate field
+3:39
+so er is a explicit to read okay then
+3:44
+this number will if for example if if this uh um
+3:50
+cell comes to a router and this router is very busy okay it's very busy then
+3:58
+um this router May deduct some number
+4:03
+okay deduct some number to make this er a smaller value
+4:10
+okay um and then find when when it comes to
+4:16
+another router if it's not busy then we do not change the ER but if the second
+4:21
+round trip is also busy then again this error will be deducted okay your value will be deducted so finally we're going
+4:28
+to reach reaches the uh the receiver okay then we get a
+4:35
+we get this then we will get to know um what how congested this network is
+4:43
+okay and then there is also the efci bit in the data cells okay in the data cells
+4:51
+we have the efci bits okay so this speed is set to 1 in the congestive switch
+4:59
+okay so you can see um we have RM cells we also have bits in
+5:05
+the data cells so all those data combined together will tell the we'll
+5:11
+we'll um finally reach the receiver and then the receiver will send this feedback to
+5:18
+the sender to tell the sender say hey you need to slow down okay so it's like that this was how congestion control was
+5:25
+done before okay it's not very common but I want to show you how congestion
+5:32
+control is done in TCP okay as I said this part
+5:41
+okay I will not test this on the on the test
+5:48
+okay
+6:02
+okay but for TCP congestion control I will definitely have a test
+6:08
+okay yes by uh we have a question by cells are you referring to packets yes yes
+6:16
+here this uh there are packets but we have different kind of packets some packets are for data some packets are
+6:22
+for resource management okay so how do we do uh congestion control in
+6:30
+TCP okay uh it's actually very interesting the approach taken by TCP is
+6:38
+called addictive increase and multiplicative decrease okay so basically the center of your
+6:46
+increase to the transmission rate gradually the transmission rate here means the window size okay the sender's
+6:54
+window size so if the window size is 2000 that that means we can have two
+6:59
+thousand in-flight bytes if it's 4 000 that means we can have 4 000 in-flight
+7:05
+bytes okay so basically the center will increase this transmission rate gradually
+7:11
+probing for usable bandwidth until loss occurs okay when loss occurs
+7:19
+then um we can do multiplicative decrease we want to decrease as fast as possible
+7:26
+okay to decrease to a very low number so to improve the condition uh quickly okay
+7:32
+so that's what we do for example we can say this is a cwnd CW indeed is the
+7:39
+congestion window size okay so then it is increasing gradually and if we see a
+7:47
+loss here then we will do multiplicative decrease so it decreases to half of that
+7:54
+number so then it will increase again and may have lost we cut to half again
+8:01
+okay and increase gradually again so finally you can see some kind of a
+8:07
+Sawtooth Behavior okay so this is this is like the basic
+8:14
+principle approach okay um so then some of you may ask what is cwnd
+8:22
+as we said the cwnd is the congestion window okay so it's just the window size
+8:29
+we learned before for go back and select repeat and for TCP okay so basically we
+8:36
+want to make sure the last bite is sent this is the last bison minus the last
+8:43
+byte AC kit okay this number is smaller or equal to CW and D that is basically
+8:51
+means uh we have we can have at most this many CW and D bytes our data and a
+8:58
+secret okay so CWD is dynamic um
+9:05
+um is a dynamic function of perceived Network congestion okay so basically
+9:11
+then the TCP sending rate can be roughly like CW and D over rtt bytes per second
+9:18
+why because as we said so we we uh we have to we can have at
+9:26
+most cwnd by Sol data in flight so that then how much time do we need to
+9:33
+finish this entire from this uh for the for these bytes we have to use rtt time
+9:39
+right so the data arrive at the the receiver or the receiver send feedback and then we can send another
+9:46
+cwnd by sub data okay so that's why the transmission rate is like cwnd over rtt
+9:54
+okay um
+10:00
+so then for the TCP you can see how originally we said it is a increasing
+10:08
+gradually right the CWD is increasing by one uh
+10:14
+MSS every rtt so it means at the beginning we have one then we have two
+10:20
+then we have three we send a one package two packets three packages like that so here YMS means maximum
+10:30
+segment size okay
+10:37
+so it means every time we just increase one package but in reality in reality in TCP we we
+10:45
+do not do that we actually what we do is we do this exponentially so and the
+10:52
+first time we will send one segment second time mission two and third time
+10:58
+representative four the next time you can send eight okay we do
+11:03
+um we increase this read exponentially and here the loss happens
+11:09
+okay so this phase is called slow start okay slow start
+11:17
+and then if we have lots of packets okay
+11:22
+the loss of package may be indicated by timeout if the timer times out
+11:30
+so uh this indicates loss right so uh it
+11:36
+may also be indicated by Third duplicate AC keys do you remember the fast rear
+11:42
+transmission so if we keep receiving duplicates duplicate sdks that means something is
+11:49
+wrong with the current package do you still remember that the apple or an example right
+11:55
+so then for these two cases the loss can be indicated by either time out or
+12:02
+duplicate executes so I would say duplicate it is the case may actually
+12:08
+indicates the congestion is not very serious
+12:13
+why because the AC keys can still come through right it can still arrive at the
+12:18
+center side but if you have time out usually the congestion is already very serious
+12:26
+because there is even no feedback coming back okay so that's why if we have a loss
+12:33
+indicated by timeout the cwme will be directly set to one no
+12:41
+matter what is the current number if the current number is doubling is equal to 100
+12:46
+I don't care I just directly send it to one if there is a loss happening if if
+12:51
+we if we find some time out okay then the window growth exponentially to the
+12:58
+threshold and then grow linearly so how do we set this threshold
+13:04
+I'll explain this later your threshold is half of the window uh when congestion happens okay
+13:13
+um so let's look at one example
+13:19
+let's look at one example so
+13:26
+maybe let's finish this first let's finish this line and I'll explain example okay so if the loss is indicated
+13:33
+by three duplicate sdks then what we will do is um we cut the cwnd to half and then grow
+13:42
+linearly okay so this is called TCP Renault but TCP Tahoe is uh
+13:49
+means we always set CW and D to one no matter if the loss is indicated by time
+13:55
+out or through duplicate uh packets okay through duplicate AC keys
+14:02
+um so this TCP random and TCP Tahoe are the two modes that we may use okay so
+14:10
+then let's look at an example I know probably you feel like overwhelmed what does this mean okay so this basically
+14:17
+means at the very beginning
+14:22
+the cwnd is set to 1. okay which means each time we send out
+14:28
+only one packet and then we increase it to two then we double it to four we
+14:35
+double it to eight okay and here we reach a point this is
+14:41
+called a threshold so what is threshold threshold is usually half of the
+14:49
+previous uh um window size when congestion happens so
+14:56
+for example originally maybe this is 16 okay the middle size is 16. and then we
+15:04
+found loss okay the loss may be indicated by
+15:10
+timeout or through duplicate sdks so we find the laws okay then we decrease this
+15:16
+to one okay and now this is uh actually when it
+15:22
+increases to half of half of this window size okay then 16 divided by 2 equal to
+15:29
+8. then because last time we know at 16 we have
+15:36
+congestion so that's why now when we increase to eight we begin to be very carefully we
+15:43
+don't want to double again because if you double again the eight doubles becomes 16 is
+15:50
+congestion again right so we want to avoid the congestion that's why we will
+15:56
+increase linearly instead of exponentially so that's why we will have nine
+16:03
+ten eleven twelve now let's see if we have lost again
+16:10
+at this point okay and then next what you can choose is you can choose either the TCP Tahoe or TCP
+16:19
+Renault so if you choose TCP uh Tahoe then you will need to decrease this
+16:27
+directly to one again okay and they will double so one two
+16:35
+four the next one cannot be eight because what because now you can see
+16:40
+this is a CW and D equals to 12. so half of 12 is
+16:47
+six so we cannot make it eight we have to stop here at six that's why this
+16:53
+threshold is equal to six now is a half of 12 okay so then after that again you
+17:00
+will increase linearly okay so this is TCP Tahoe
+17:07
+if you are using TCP Renault then instead of going to one directly you
+17:13
+will go into six you will go to six drop it to six and then directly increase
+17:19
+linearly okay
+17:30
+okay so this will appear on the test this will appear on the test
+17:37
+um I will basically for example I I will give you uh a cwnd when congestion
+17:45
+happens camera loss happens and I will ask you what will you do if you are
+17:51
+using TCP to how what will you do if you are using TCP rhino
+17:57
+okay this is how we control the congestion um so if we summarize basically for t250
+18:05
+can just control we have three phases slow start congestion avoidance
+18:13
+and then if we have a congestion then we will do first recovery okay so
+18:21
+those are the three uh States for congestion control the slow start is
+18:26
+basically the exponential increase part so this is the
+18:33
+slow start this is the
+18:40
+congestion avoidance
+18:46
+so this is a the first
+18:53
+recovery
+18:58
+so these are the three phases so if we look at the TCP throughoutput
+19:04
+okay you look at the throughput um the TCP throughoutput is a function
+19:10
+of the window size and also the rtt right because during this rtt time we
+19:19
+are sending the window size by so data okay so then basically the TCP
+19:27
+throughput is a calc calculated by using uh something about window side divided
+19:34
+by the rtt right but because of this congestion control let's see okay let's
+19:39
+assume we firstly have a half a window size W okay half of a w okay
+19:45
+uh W is the window size mattered in bytes one loss occurs okay
+19:52
+we know we we will increase this until to W and then if we have loss we drop to
+19:58
+half of w then we increase again to W then we drop to half of w it's like that
+20:04
+okay of course this is just a very rough mirror okay it's not accurate
+20:11
+then if we look at this figure we know okay so the average of a window size is
+20:18
+back is actually this right the hourly average uh window size is
+20:25
+about um three quarters of w okay that means the throughput the
+20:33
+throughput for TCP is three quarter of w
+20:40
+divided by rtt okay so that's why you can say it's actually three quarters or
+20:45
+W over rtt okay that is how we calculate the throughput roughly or we estimate
+20:51
+the throughput okay and if you want to do a more
+20:58
+um accurate calculation there are actually some more
+21:03
+um accurate formula for to use okay so for example if we have 105 1500 bytes
+21:11
+segments um and rtt is 100 Ms then if we want to
+21:17
+reach a 10 Giga BPS throughput this requires 83
+21:24
+333 in flat segments okay and we can also calculate the throughput
+21:32
+in terms of a segment loss probability okay which means how many segments we
+21:37
+can we can afford losing Okay then if you use this formula to do the
+21:42
+calculation then to achieve a 10 Giga BPS throughput we need a loss rate of L
+21:49
+equal to 2 to 10 2 times 10 minus sorry 2 times 10 to uh
+21:57
+negative 10. okay this is actually a very small loss rate okay a very very
+22:03
+small loss rate that means if we want to reach a big a very good throughput we
+22:08
+really need velocity to be very small okay
+22:14
+um and because of this congestion control TCP has a very interesting feature called fairness TCP fairness so
+22:21
+what does this mean this means if we have t k uh K TCP sessions
+22:30
+sharing the simple connect link okay and the most important link has a
+22:37
+bandwidth of R then each session should have the average rate of r divided by K
+22:45
+okay so that means if we have two connections sharing a link then each connection will finally get uh
+22:54
+half over if we have 3 then each connection will finally got a third of
+22:59
+our of the bandwidth okay so you may think oh how can we achieve that how why do
+23:06
+how do we know right so why we have TCP Fair okay so now let's look at two
+23:14
+competing sessions okay um the horizontal one is connection one
+23:19
+throughput the the vertical one is the connection to throughput we have these
+23:25
+two connections sharing a link which has the bandwidth of r
+23:32
+okay we know we will do addictive increase and multiplicative decrease right so
+23:39
+let's see how it how how does this work so at the very beginning you can see
+23:44
+at this point
+23:51
+at this point as you can see the value for connection one
+23:58
+okay is much bigger than the value of connection two that means the throughput
+24:04
+for connection one is much bigger than the throughput of connection two okay
+24:09
+connection one is taking more of the bandwidth and gradually they will they
+24:14
+will have similar bandwidth how why let's see let's see why okay so this is
+24:20
+a at the very beginning and then they all increase so finally the increase to
+24:26
+this point okay at this point connection one now
+24:31
+has a throughput of this this bit okay
+24:39
+and then connection to throughput is become this
+24:45
+big okay you can see connection one is still bigger and then connection two right the
+24:51
+throughput for connection one is still bigger than connection two but now let's see if the if at this
+24:59
+point we have congestion okay then we will do much multiplicative
+25:04
+decrease that means both of them need to be cut to half okay so if we cut half
+25:11
+our connection why it's about this okay it's about this
+25:18
+if we cut to half our connection two okay half of connection two is about about this this value
+25:29
+okay or maybe below below this so it's
+25:35
+roughly it's at this point so then that means now okay now the note
+25:41
+the the and now the throughput they all come to here okay this point after that
+25:48
+we will do increase again a digital increase again right so increase again
+25:53
+okay so now they are increasing at the same time and 0.1 becomes becomes this
+26:01
+this big okay and then throughput two
+26:09
+thank you become this big
+26:15
+okay at this point throughput one to become this big so let's see if we come
+26:22
+to congestion again now we need to cut both to half again so then for
+26:29
+connection one half is like this about
+26:35
+I know it's getting messy but hopefully you are following me okay about this and
+26:41
+then half of connection two is about this
+26:48
+okay so now you can see then the node is come to is coming to uh
+26:54
+this point okay so if you continue if you continue then this node is getting
+27:02
+to um this dotted line closer and closer okay the starting line means the equal
+27:09
+bandwidth share right the if the the node is on this line then
+27:15
+that means the throughput for connection one two are basically the same okay basically
+27:22
+the same so you can say it is getting closer and closer
+27:27
+to sorry finally it will it will get very close to this uh uh to this line
+27:36
+okay so that's why we say uh finally these
+27:41
+two connections connection one two they will share the bandwidth okay they will
+27:49
+share the menu with this is called the TCP fairness okay
+27:55
+um so usually usually the multimedia apps
+28:02
+do not use TCP okay why because we know the multimedia
+28:09
+um apps um they want to use the reads or the
+28:15
+bandwidth as much as possible they don't want to be controlled okay so but TCP
+28:20
+has the congestion control that's something not good for them okay so they don't want the read throughout to buy
+28:26
+the congestion control um so
+28:33
+um for UDP we know UDP may know they can tolerate the packet loss those apps like radio
+28:40
+audience they can tolerate the packet loss they uh they want the data to be
+28:46
+sent out as fast as possible okay um and also the fairness actually can be
+28:52
+leverage by some applications if some applications they want to occupy
+28:57
+or they want to have more uh bandwidth okay what they can do is they can open
+29:04
+multiple parallel connections between two hosts okay then in this case uh
+29:11
+because of the TCP fairness that each session or each connection will get a
+29:18
+share of the bandwidth okay if this application owns a number of connections
+29:24
+then this application can get more bandwidth okay so basically the web
+29:29
+browser do this the web browser for example it may open multiple tabs okay
+29:36
+to establish connections between Two Hosts okay let's say if we have a link
+29:42
+root of r with nine existing connections Okay then if a new app asks for only one
+29:51
+TCP connection then now we have 10 connections right so each application
+29:57
+can get each connection can get uh one tenth of R okay but if this new
+30:04
+application is very greedy this may ask for 11 tcps
+30:09
+okay for 11 tcps then basically this new application we all got so each
+30:16
+connection firstly we know we'll get r divided by 9 plus 11. this is a
+30:22
+uh the number of connections is 20 right so then for this for each share this new
+30:30
+application will get 11 of them so this is about half hour
+30:35
+you can see the difference right if the new application asks for only one TCP it can get only one tenth of R but if it
+30:43
+asks for 11 tcps then it will get half hour okay so that's how the TCP fairness
+30:49
+can be leveraged by applications to get more bandwidth okay then that's all for
+30:56
+this chapter third

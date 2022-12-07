@@ -1,0 +1,540 @@
+0:03
+the five-point assignment is like a summary of what we have learned so far
+0:09
+from chapter 1 to chapter five okay I hope we can review what we have covered
+0:16
+and give you like a whole picture of what we have learned okay
+0:22
+so basically um today we are going to look at a day in
+0:28
+the life of a web request okay it's like a story okay and next story
+0:34
+um and we want to look at every every layer we want to when we make a web
+0:40
+request we want to see what what is happening behind the scene okay
+0:45
+um for you probably when you use web browser you what you do is you only click on a button and then you you are
+0:52
+you are done right so you type in the URL you hit enter and then you are
+0:58
+waiting for the webpage but there are actually a lot of things happening behind the scene and we want to learn
+1:05
+what is happening okay what is the entire process okay
+1:11
+so basically our goal is to put it all together we call this as synthesis okay
+1:18
+so the goal is to identify review and understand all the protocols at all
+1:24
+layers involved in a simile um simple scenario so basically the
+1:30
+scenario is very easy a student attaches a laptop to the campus Network and then
+1:38
+make a request of google.com very simple scenario okay let's see what is
+1:45
+happening so firstly you can see uh this this is the Comcast network this is the
+1:52
+school network okay this is the web server and this is Google's network of course this web server belongs to Google
+1:58
+okay this is Google's web server and now we assume a laptop is connecting
+2:06
+to this machine connecting to this network school network okay and then uh we the student
+2:13
+then open the web browser and try to request google.com then of course what
+2:20
+will happen is uh Google's web server will return a web page right to the
+2:26
+students computer so this is a very simple scenario but actually yes
+2:33
+um from what we have learned before we know there are actually a lot of things happening
+2:38
+so first thing first thing keeping in mind when this computer joins the
+2:44
+network does this computer has uh have a IP address
+2:50
+it does not it does not have an IP address so it needs to firstly request
+2:57
+an IP address okay so how do we request the IP address
+3:06
+we all know that we have learned DHCP right the function of DCP protocol is
+3:13
+basically providing IP address to a newly joined computer
+3:18
+okay so then in this case we know in this case we know this computer
+3:25
+is making a dtcp request okay making a dtcp request and we know
+3:33
+that for dtcp it is application layer protocol and now pay attention we want to look at each
+3:40
+layer what what is the protocol used okay for application layer it is d2cp
+3:46
+for transport layer when it comes down to transport layer we
+3:52
+know we need to add a header transport layer header and this transport this transport layer
+3:58
+the protocol we we used should be UDP
+4:03
+not TCP so we haven't learned this before right I have explained why we should use only
+4:12
+UDP not TCP because current for TCP we know we need to establish a connection
+4:18
+between the source and the destination but here this computer itself does not
+4:25
+have any IP address yet and also it doesn't know who is the DHCP server who
+4:32
+is the destination okay so that's why it cannot make a TCP
+4:37
+connection that's why we have to use UDP so here I may have a test question
+4:43
+I will ask you what is the protocol used as the application layer what is the
+4:48
+protocol used at the transport layer so you should know those okay and then when
+4:54
+it comes down to a layer below we know we will use IP protocol right
+5:00
+um and then of course here we haven't started any like routine kind
+5:06
+of things yet but we will for sure add the source and destination IP address
+5:11
+okay and then it comes down the link layer if we are using ethernet okay then
+5:17
+we will use uh uh ethernet protocol okay the protocol for ethernet so you can see
+5:23
+uh finally then this packet comes down to physically here okay
+5:28
+and then next we know we know this this Frame
+5:35
+okay finally this Frame will be sent to the dtcp server but as we mentioned
+5:43
+we don't know who is the server yet okay so in this case what should we do
+5:48
+we actually we learned when we talk about the gcp we learned we should send
+5:54
+this to everybody this is called broadcasting right we should broadcast this message to everybody in this
+6:01
+network so then who how do we do the broadcasting we do broadcasting at
+6:08
+ethernet at the lower layer the link layer we know if we want to do the broadcasting we have to use the address
+6:15
+our 12 F's okay 12 F's on the left
+6:22
+okay so if the if this if we do broadcasting at the
+6:27
+um as the network layer we should use 255.255
+6:41
+.255.255 This Is How We Do broadcasting as the network layer so Network layer basically will specify the destination
+6:48
+address as a uh 255.255.255.255 but at the link layer if
+6:55
+we if we want to do broadcasting then we need to use 12 apps as the MAC address
+7:01
+as destination methodless okay I hope everything is clear so far okay then
+7:08
+after that we know uh the dtcb server will receive this message this request
+7:15
+and then begin to formulate a reply okay of course we know actually they're on a
+7:22
+number of uh back and forth Communications here but here we to
+7:27
+simplify the problem we just look at the last one okay how the dtcp server
+7:34
+formulated the reply the dtp server will basically a reply with
+7:42
+a message which contains the client's IP address
+7:48
+okay the IP address of the first hop router to remember
+7:54
+we have mentioned this for multiple times okay and also the name and IP
+8:00
+address our DNS server and if you remember we also have Network
+8:05
+mask okay so those are the information that
+8:12
+will be included in the reply message in the response message okay so the reason
+8:18
+that we want to provide not only the client IP address but also the other
+8:24
+information such as photo router IP address DNS IP address Network mask Etc
+8:30
+is basically introducing the network to this new camera okay to
+8:37
+this new camera so that's in the future this this computer will know who to contact okay so there you can see the
+8:45
+reply message is formulated and of course we are using UDP again okay at
+8:52
+the transport layer and the IP ethernet Fisk layer okay so
+8:58
+um so then you may ask how does this this switch
+9:04
+how does this switch know which link to forward you when this
+9:12
+packet comes in this Frame comes in the switch needs to forward it to this
+9:18
+new coming new camera right new computer then how does the switch know that we
+9:25
+should forward this to listening okay we actually have learned the switch
+9:32
+has a capability called self learning right self-learning then basically the
+9:39
+switch will have a table
+9:48
+a table called switch table okay in this switch table it will have the MAC address
+9:58
+the MAC address and the link output link um pair okay then so gradually the
+10:06
+switch will learn which Mac address is corresponding to which link so the
+10:12
+switch will know how to reach that computer okay so this is another thing you should keep in mind self-learning
+10:22
+okay so now now the client has
+10:29
+most of the information that it needs IP address its own IP address
+10:34
+the name and address of the DS server and the IP address of its first Hub
+10:40
+browser later we will know the first half router is also very important okay
+10:47
+so then the next thing is okay we want to send out the ATP request
+10:55
+right but we only know currently we only know google.com do we know the IP address of
+11:03
+google.com yet we do not know okay so then we have to use another protocol
+11:09
+called DNS okay DNS to make a request
+11:15
+to to get the IP address for google.com then in this case in this case again
+11:20
+okay uh we will application layer we will formulate a request that is the DS
+11:27
+request okay when it comes down to transport layer again we will add a header okay
+11:32
+and now you can see the transport layer is also using UDP
+11:38
+then it's also using UDP so here for DNS we can use TCP because we already know
+11:47
+um the DS server the DN server is IP address okay but
+11:54
+usually we we use UDP the major reason is is for uh is because UDP is much
+12:01
+faster okay it's much faster right we does not need to uh spend time on making
+12:07
+connections okay and we uh the UDP packet is also very lightweight we know
+12:12
+it has a much shorter header okay so we want to get this result as soon as
+12:18
+possible so that's the main reason we use UDP here at transport layer again okay so the lower layers are similar IP
+12:27
+ethernet and then physical layer okay um
+12:33
+but here we have a question so firstly we established the DNS query okay we
+12:39
+create this query and this is in cabinet encapsulating eodp
+12:45
+um in IP and ethernet then the next thing is we want to send this Frame to
+12:51
+the router okay we need to send this Frame to the to the router okay
+12:58
+and then now we need the MAC address of the
+13:04
+router right so we need the MAC address of the router if we want to send our frame to
+13:12
+it we all we know that we know that this router is actually the first Hub router
+13:26
+so pay attention you know some of you may ask why do we need to send this Frame to browser
+13:31
+because we know that the answer if you come back to
+13:39
+if you come back to this topology the DN server is actually in the Comcast
+13:46
+network and now this computer is in the school network okay so of course we will
+13:53
+need to send this to the first Hub router and then the first hole browser will forward the message for us to the
+14:00
+DN server and to to um to get the IP address for Google okay
+14:06
+so that's why we must contact this first Hub browser
+14:11
+and we already know the uh if we want to
+14:17
+contact this router we need to know the MAC address for this router right but now we already know the IP address for
+14:25
+this launcher how do we know so here I may ask you a question in the test how do you mean know the IP address
+14:32
+for this purpose of router and from what we have discussed here actually we know
+14:42
+how do we get that we gotta throw DHCP actually okay because DHCP protocol has
+14:49
+returned the IP address of the first up router that's how we get to learn about
+14:55
+this okay and now with this first hop
+15:00
+router's IP address okay so
+15:05
+so here let me
+15:28
+so our assumption here is we already know the IP address of the first hop
+15:35
+launcher how do we know we know the answer is DHCP okay we get to know this
+15:41
+through gcp and then the next thing is okay we now know the IP address of the
+15:47
+router that how do we know the MAC address of this router
+15:52
+so I want you to review what we have learned last time recall what we have learned last time if we already know the
+15:59
+id address of one interface if we want to know the I the MAC address for that
+16:06
+the corresponding Mac address then what we need to do is actually very easy
+16:11
+it's just uh using ARP right ARP address resolution protocol so what if they are
+16:18
+within the same line if they are within the same land then what we need to do is simply shouting to everybody simply
+16:26
+doing the broadcasting right so then basically this computer will send out an
+16:32
+Erp query to everybody asking say hey who has this IP address okay then that
+16:40
+router with this I uh IP address will reply with the MAC address with its own
+16:49
+Mac address okay so this is the ARP part okay uh and in the test in the final
+16:56
+exam I may ask you a question so how could the uh if the this is if this
+17:03
+computer wants to send a frame to the first Hub router then it needs the MAC address of firstcode browser so how
+17:10
+could this computer know the MAC address of this first Hub browser then you know the answer is actually Federal ARP okay
+17:19
+and then now we know the MAC address so then we can go ahead to send out the DNS query
+17:26
+okay the DNS query and okay we all also
+17:32
+know this DNS query will not stop here at the router it has to go through
+17:39
+um the network and finally reach the DS right and we also know if we want to
+17:46
+um know the MAC address of this DNS server okay we need to go through
+17:53
+also the Erp query right also the ARP query and we also know uh in this
+18:00
+process we actually need to change at this point okay at this point we need to change the
+18:06
+MAC address okay you you think about the sauce the
+18:13
+sauce mag
+18:41
+okay so when the frame leaves this computer okay now I use m1m2m through M4
+18:49
+to represent the MAC address for these different interfaces okay we know when
+18:55
+this when this Frame leaves the first computer okay the source Mac address is
+19:01
+actually M1 destination Mac address is actually M2 okay how do we know M2 we just we just
+19:09
+discussed we we do this through ARP query right and then
+19:25
+and then when the frame comes to here the the source
+19:32
+Max now becomes M third
+19:47
+uh actually it's even more complicated okay it's even more complicated now
+19:54
+because we have to go through two routers it's not just a wine router okay not just one router so then the
+20:00
+destination Mac is now has to be this Mac okay and then with this router will
+20:05
+have to change it again from uh this this Mac to this map so they say let's
+20:11
+see if this is M4 M4 M5 M6 okay this can be m
+20:19
+four okay um
+20:24
+and then here we need to make the MAC address as a source as M5
+20:31
+then destination as a M6 okay so uh but here for this part I will
+20:40
+not test you because this is getting more complicated um let's see I'll just erase this part
+20:47
+to make it easier to understand
+20:56
+okay uh but but if you still want to review okay if you want to have a better
+21:03
+understanding you'd better come back to the ARP protocol we have learned before
+21:09
+okay and um this this actually this slide
+21:14
+addresses the problem of routing to another uh lamp Okay how do we change
+21:20
+the MAC address so review that part again to have a better understanding but
+21:26
+anyway here here okay uh I will test you to that that depth the only thing you
+21:32
+need to know is actually within same line we know we have to send an Erp query then if we want to go across
+21:40
+different lines okay we also need to send out the ARP query
+21:45
+okay and then
+21:53
+okay we also need to send out the Erp query but but finally finally okay
+22:00
+finally this DNS requests need to be sent to the DN server okay and then in
+22:06
+this process in this process we need we know the router has to do some routine okay and then here is uh where we want
+22:16
+we want to consider the routine protocol so what kind of routing protocol can we use so we have learned the the internet
+22:24
+routine and the intra as routine right so for example for intra is routing we
+22:31
+learned the bgp we know there is ibdp and ebdp so they have different
+22:37
+um functions right so for EDP ebgp we
+22:42
+know it is using to it is used to learn reachability information
+22:48
+ipdp is then used to propagate the reachability information to everybody
+22:54
+inside this local area network okay that is a bgt then for OS for the intro as
+23:01
+routine protocol we know we can use ospf okay so those are the protocols that we
+23:07
+have learned for round team so here I want I want you to know only ospf and BJP
+23:14
+um and then finally this cancer will received this uh uh this DNS query and
+23:20
+you can see the headers are removed layer by layer finally the application
+23:26
+layer has the DS query then it will form a response
+23:31
+okay one more response and reply to the computer to the client the IP address of
+23:39
+google.com so now finally we get the IP address of
+23:44
+google.com okay then the next thing we need to do is okay now I have the IP address then
+23:53
+we can finally send out the HTTP request right so then you can see the computer
+23:59
+now forms a HTTP request and then a weight comes down to the transport layer
+24:05
+okay we know we must use TCP the reason is because we need
+24:11
+reliability okay we want this request to be sent without any error okay and of course
+24:19
+before we do data exchange we have learned this for many times
+24:25
+before we do this exchange we need to firstly establish a connection how do we
+24:31
+establish the connection we do three-way handshake do you still remember that okay we do three hashing to establish a
+24:38
+connection this is actually an extra step compared to UDP for UDP we do not
+24:45
+need to do any three hashing right we do not need to establish any uh connection
+24:51
+but for TCP for TCP we have to establish the connection
+24:56
+um so how do we do the three hatching we we know we firstly set the same into one
+25:04
+okay such thing into one and the AC key equal to zero
+25:10
+okay then the other side will reply with
+25:20
+with uh sorry with c equal to 1 AC equals to one okay
+25:27
+then finally we will have a confirmation from the client with
+25:36
+c equal to 0 is equal to one that's how we establish the connection okay
+25:42
+and then you can see this is sent this is sent this is actually the first step
+25:47
+this is sent to the server okay this is the first step sent to the server uh and
+25:53
+then the silver will formulate sing a c k okay this is the second step actually
+26:00
+this is this one
+26:27
+just this is the scene ack uh reply okay
+26:32
+and sorry it's too fast then it is sent back so you can see the client
+26:39
+um remove the headers layer by layer and actually there is another one finally
+26:44
+finally um uh the client will also confirm again with c equal to 0 AC k equal to one okay
+26:52
+this is the three-way handshake uh and then we know the TCP connection now
+26:57
+established okay so as a final step now the HTTP request
+27:03
+can be sent out okay and we add headers at each layer and we are using TCP and then this is
+27:11
+set to the server the server remove all the headers extracted HTTP request and
+27:19
+then finally form a response with the requested web page okay so then this is
+27:28
+this HTTP response actually has actually has the web page
+27:34
+in the data right so this is a response message it's a send back to the client
+27:39
+and finally the client now can remove all the headers lead by layer and then
+27:46
+extract the web page and display it on the web browser so this is the final step
+27:52
+um okay so that is uh the day in the live for the HTTP request and reply
+27:59
+uh actually you can see uh this is a this is a really long process right so if we summarize
+28:07
+the first step is DHCP the DCP is mainly used for getting the IP address for the
+28:14
+client and also get some information about the network for example the first
+28:20
+half routers IP address uh the IP address for the DS server and the network mask Etc okay so those are the
+28:28
+information that we get through the hcp server um and then the second protocol we use
+28:34
+is actually uh DNS because knowing only Google's
+28:41
+um hostname is not enough we need the IP address for this computer that's why we
+28:47
+need to um send out another DNS query
+28:53
+um and then finally we do HTTP okay then we
+28:58
+can send out the HTTP request and of course before the HTTP request we need to establish a connection first right
+29:05
+through Theory handshake um and then at lower layer at lower layer we know a lot of things has
+29:11
+happened for example how do we do broadcasting we use
+29:17
+um uh if it's Network layer we use 255 255 25
+29:23
+as the IP address if it's link layer we use 12 apps as the MAC address right
+29:29
+that's how we do the broadcasting and how could the switch now
+29:34
+um which outputting to choose to send we know the switch has a switch table and
+29:41
+how do we get the sweet table we use self learning right
+29:47
+um and also sometimes we know the IP address of the first home browser okay
+29:52
+or some computer some other IP address so then we need to know the MAC address
+29:59
+for that interface how do we know the MAC address we know we we can use ARP
+30:05
+query so you can see a lot of information is contained in this one complete story one scenario a lot of
+30:14
+information and I really hope I really hope you can go back to review what we have learned
+30:22
+today and kind of synthesize uh all the different layers and make this story
+30:28
+complete okay and then in the final exam I will definitely have a question about
+30:34
+this okay I'll be I will ask you what are the protocols used at each layer
+30:41
+um how do how does the sweet table be generated how is the switch table be
+30:47
+generated or how could the switch know which output link to send okay how do we do broadcasting okay or uh if you do not
+30:56
+know the IP address and how do you send this package to the
+31:02
+destination okay we know we have to do broadcasting sometimes so
+31:07
+uh and also I may ask you something about the ARP query so a lot of things I
+31:13
+will ask so really please review what we have learned today okay
