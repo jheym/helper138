@@ -36,6 +36,7 @@ def index():
         </style>
         <h1> Helper 138 </h1>
         <a href="https://cdn.discordapp.com/attachments/1013687788807405579/1049190892583526443/all138slidesAnnotated.pdf">Link to PDF of all slides</a>
+         (Includes table of contents for each chapter, section, and subsection!)
         <br><br><br>
         This is a study tool for CSC138.
         In the box below, you can search keywords or phrases from all lectures. 
@@ -86,6 +87,7 @@ def filter_transcript(keywords: str):
             for rownum in i:
                 text += df.iloc[rownum]['text'] + '\n'
             # Formatting matched strings in HTML
+             # FIXME: When someone searches 'a', replace recursively replaces 'a' in </span> resulting in bad output
             for i in re.findall(pattern, text):
                 text = text.replace(
                     i, '<b><span style="color: #ff0000">' + i + '</span></b>')

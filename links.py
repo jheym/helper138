@@ -32,7 +32,7 @@ links = {
     '11-16': 'https://youtu.be/-fO9uYDlSUI',
     '11-18': 'https://youtu.be/S_q7Tmx1NcM',
     '11-21': 'https://youtu.be/aRrj6K_RxwI',
-    '11:23': 'https://youtu.be/iFErbGyQONk',
+    '11-23': 'https://youtu.be/iFErbGyQONk',
     '11-28': 'https://youtu.be/oJJbMVYzEj0',
     '11-30': 'https://youtu.be/rG3_AybT40w',
     '12-02': 'https://youtu.be/2g9qe7vqedU',
