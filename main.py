@@ -14,47 +14,87 @@ def index():
 
     keywords = request.args.get("keywords", "")
     if keywords:
-        keywords = filter_transcript(keywords)
+        res = filter_transcript(keywords)
     else:
-        keywords = ""
+        res = ""
 
     return (
         """
         <!DOCTYPE html>
         <html>
+        
         <style>
         body 
         {
             margin:auto;
-            width:1024px;
+            width:80%;
             padding:10px;
             background-color:#1a1a1a;
             font-size:18px;
             font-family:Helvetica;
             color:#bbbbbb;
         }
+        input:focus::placeholder 
+        {
+            color: transparent;
+        }
+        input[type=text] 
+        {
+            width: 100%;
+            height: 60px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid red;
+            border-radius: 4px;
+            font-size: 20px;
+        }
+        input[type=submit]
+        {
+            background-color: white;
+            border: none;
+            color: black;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        a:link 
+        {
+            color:#0096FF;
+        }
+        a:visited {
+            color:#0096FF;
+        }
+        a:hover {
+            color:#89CFF0;
+        }
         </style>
+
+
         <h1> Helper 138 </h1>
-        <a href="https://cdn.discordapp.com/attachments/1013687788807405579/1049190892583526443/all138slidesAnnotated.pdf">Link to PDF of all slides</a>
-         (Includes table of contents for each chapter, section, and subsection!)
-        <br><br><br>
+        <h3> <a href="https://cdn.discordapp.com/attachments/1013687788807405579/1049190892583526443/all138slidesAnnotated.pdf">Link to PDF of all slides</a>
+         (Includes table of contents for each chapter, section, and subsection!) </h3>
+        <h3> <a href="https://youtube.com/playlist?list=PLis31mB9Uihr9Z_wFL0rMAP__CbuFYZVx" target="_blank" rel="noopener noreferrer">Link to all lectures Youtube Playlist</a> </h3>
+        
+        <h2> Instructions </h2>
         This is a study tool for CSC138.
         In the box below, you can search keywords or phrases from all lectures. 
+        To search multiple keywords, separate them by a comma as shown in the example below.
+        The search is case sensitive so you may want to try different variations of the same word. 
+        Only exact matches will be found.
         <br><br>
-        Separate keywords or phrases by commas, spaces are okay. Case sensitive.
-        <br><br>
-        For example, try something like this: 
-        <p style="background-color:Gray;"> <code> exam,exams,final,test,remember this,important,understand,dns,DNS,TCP,tcp,http,HTTP </code> </p>
+        For example, you can type something like <code style="background-color:#301934"> test,exam,DNS,dns</code> into the search box
+        and all occurences of the professor saying any of those keywords will be displayed.
         <br>
-        
         <br>
         Click the timestamp link to go to that part of the lecture. Goodluck on the final!
         <br><br>
         <form action="" method="get">
-                    <input type="text" placeholder="test,exam,final,midterm,important,exams,tests" size="100" height="50" name="keywords">
+                    <input type="text" placeholder="type something here"  name="keywords">
                     <input type="submit" value="Search">
                 </form>"""
-        + keywords +
+        + res +
         """
         </body>
         </html>"""
@@ -87,11 +127,14 @@ def filter_transcript(keywords: str):
             for rownum in i:
                 text += df.iloc[rownum]['text'] + '\n'
             # Formatting matched strings in HTML
-             # FIXME: When someone searches 'a', replace recursively replaces 'a' in </span> resulting in bad output
-            for i in re.findall(pattern, text):
-                text = text.replace(
-                    i, '<b><span style="color: #ff0000">' + i + '</span></b>')
-
+            words = text.split()
+            keywordslist = keywords.split(sep='|')
+            for i in range(len(words)):
+                if words[i] in keywordslist:
+                    words[i] = '<b><span style="color: #FF3131">' + \
+                        words[i] + '</span></b>'
+            text = ' '.join(words)
+            # accumulating each text group into one large output
             res += f'<p><a href="{links[video]}?t={seconds}" target="_blank" rel="noopener noreferrer">{video} Lecture - {timestamp}</a>' \
                 + '<br>' + text + '</p>'
         except Exception as e:
