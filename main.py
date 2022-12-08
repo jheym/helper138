@@ -1,12 +1,12 @@
 from flask import Flask
 from flask import request
-import re
 import pandas as pd
+import re
 from links import links
 
 app = Flask(__name__)
 
-df = pd.read_csv('transcript.csv')
+df = pd.read_csv('lowercase-transcript.csv')
 
 
 @app.route("/")
@@ -80,8 +80,7 @@ def index():
         <h2> Instructions </h2>
         This is a study tool for CSC138.
         In the box below, you can search keywords or phrases from all lectures. 
-        To search multiple keywords, separate them by a comma as shown in the example below.
-        The search is case sensitive so you may want to try different variations of the same word. 
+        To search multiple keywords, separate them by a comma as shown in the example below. 
         Only exact matches will be found.
         <br><br>
         For example, you can type something like <code style="background-color:#301934"> test,exam,DNS,dns</code> into the search box
@@ -102,10 +101,10 @@ def index():
 
 
 def filter_transcript(keywords: str):
-    keywords = keywords.replace(',', '|')
+    _keywords = keywords.lower().replace(',', '|')
     # Regex pattern for exact matching words e.g. '\b(final|exam|test)\b'
     # not that \b needs to be escaped
-    pattern = rf'\b({keywords})\b'
+    pattern = rf'\b({_keywords})\b'
 
     rowMatches = df.index[df['text'].str.contains(pattern) == True].tolist()
     # print(rowMatches)
@@ -120,21 +119,22 @@ def filter_transcript(keywords: str):
             timestamp = df.iloc[i[0]]['timestamp']
             video = df.iloc[i[0]]['video']
             text = ''
+
             # Calculate time in seconds from timestamp
             time = timestamp.split(':', 1)
             seconds = (int(time[0]) * 60) + int(time[1])
+
             # Accumulate all text from surrounding rows
             for rownum in i:
                 text += df.iloc[rownum]['text'] + '\n'
-            # Formatting matched strings in HTML
-            words = text.split()
-            keywordslist = keywords.split(sep='|')
-            for i in range(len(words)):
-                if words[i] in keywordslist:
-                    words[i] = '<b><span style="color: #FF3131">' + \
-                        words[i] + '</span></b>'
-            text = ' '.join(words)
-            # accumulating each text group into one large output
+
+            # Find and replace keywords with HTML color tags using regex
+            # FIXME: paragraphs with more than one match get double colored in html
+            for m in re.finditer(pattern, text):
+                print(m.group(0))
+                text = re.sub(
+                    rf'\b{m.group(0)}\b', f'<b><span style="color:#FF3131">{m.group(0)}</span></b>', text)
+                print(text)
             res += f'<p><a href="{links[video]}?t={seconds}" target="_blank" rel="noopener noreferrer">{video} Lecture - {timestamp}</a>' \
                 + '<br>' + text + '</p>'
         except Exception as e:
@@ -142,6 +142,10 @@ def filter_transcript(keywords: str):
             continue
     # print(res)
     return str(res)
+
+
+def replColor(m):
+    return f'<b><span style="color:# FF3131">{m.group(0)}</span></b>'
 
 
 if __name__ == "__main__":
