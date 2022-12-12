@@ -102,18 +102,18 @@ def index():
 
 def filter_transcript(keywords: str):
     _keywords = keywords.lower().replace(',', '|')
+    rowsExpanded = []
+    res = ''
     # Regex pattern for exact matching words e.g. '\b(final|exam|test)\b'
     # not that \b needs to be escaped
     pattern = rf'\b({_keywords})\b'
 
     rowMatches = df.index[df['text'].str.contains(pattern) == True].tolist()
-    # print(rowMatches)
-    rowsExpanded = []
 
     # adding surrounding rows for more context
     for i in rowMatches:
         rowsExpanded.append([i - 2, i - 1, i, i + 1, i + 2])
-    res = ''
+
     for i in rowsExpanded:
         try:
             timestamp = df.iloc[i[0]]['timestamp']
@@ -131,16 +131,17 @@ def filter_transcript(keywords: str):
             # Find and replace keywords with HTML color tags using regex
             # FIXME: paragraphs with more than one match get double colored in html
             for m in re.finditer(pattern, text):
-                print(m.group(0))
                 text = re.sub(
                     rf'\b{m.group(0)}\b', f'<b><span style="color:#FF3131">{m.group(0)}</span></b>', text)
-                print(text)
+
+            # Accumulate
             res += f'<p><a href="{links[video]}?t={seconds}" target="_blank" rel="noopener noreferrer">{video} Lecture - {timestamp}</a>' \
                 + '<br>' + text + '</p>'
+
         except Exception as e:
             print(e)  # Most likely due to index OOB
             continue
-    # print(res)
+
     return str(res)
 
 
